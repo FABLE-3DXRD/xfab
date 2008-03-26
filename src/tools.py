@@ -1,5 +1,6 @@
 
 import numpy as n
+from math import degrees
 
 def find_omega(Gw,costth):
 	Glen = n.sqrt(n.dot(Gw,Gw))
@@ -91,6 +92,93 @@ def FormB(ucell):
 
 
 
+def FormAinv(ucell):
+	# calculate the inverse of the A matrix given in eq. 3.23 of 
+	#   H.F. Poulsen.
+	#   Three-dimensional X-ray diffraction microscopy. 
+	#   Mapping polycrystals and their dynamics. 
+	#   (Springer Tracts in Modern Physics, v. 205), (Springer, Berlin, 2004).
+	#
+	#
+	# FormAinv(unit_cell)
+	#
+	# unit_cell = [a, b, c, alpha, beta, gamma] 
+	# returns Ainv [3x3]
+	#
+	# Jette Oddershede, March 7, 2008.
+	
+        a = ucell[0]
+        b = ucell[1]
+        c = ucell[2]
+        calp = n.cos(ucell[3]*n.pi/180.)
+        cbet = n.cos(ucell[4]*n.pi/180.)
+        cgam = n.cos(ucell[5]*n.pi/180.)
+        salp = n.sin(ucell[3]*n.pi/180.)
+        sbet = n.sin(ucell[4]*n.pi/180.)
+        sgam = n.sin(ucell[5]*n.pi/180.)
+
+        #Volume of unit cell
+        V = CellVolume(ucell)
+
+        #  Calculate reciprocal lattice parameters
+        salpstar = V/(a*b*c*sbet*sgam)                 
+        calpstar = (cbet*cgam-calp)/(sbet*sgam)        
+
+        # Form A matrix following eq. 3.23 in H.F Poulsen
+        A = n.array([[a, b*cgam,  c*cbet       ],\
+             [0, b*sgam, -c*sbet*calpstar ],\
+             [0, 0,       c*sbet*salpstar ]])
+        Ainv = n.linalg.inv(A)
+        return Ainv
+
+
+def A2ucell(A):
+    # calculate lattice constants from the A-matix as
+	# defined in H.F.Poulsen 2004 eqn.3.23
+	#
+	# A2ucell(A)
+	#
+	# A [3x3] upper triangular matrix
+	# returns unit_cell = [a, b, c, alpha, beta, gamma] 
+	#
+	# Jette Oddershede, March 10, 2008.
+
+		g = n.dot(n.transpose(A),A)
+		a = n.sqrt(g[0,0])
+		b = n.sqrt(g[1,1])
+		c = n.sqrt(g[2,2])
+		alpha = degrees(n.arccos(g[1,2]/b/c))
+		beta  = degrees(n.arccos(g[0,2]/a/c))
+		gamma = degrees(n.arccos(g[0,1]/a/b))
+		ucell = [a, b, c, alpha, beta, gamma]
+		return ucell
+	
+def epsilon2B(epsilon,A0inv):
+    #   calculate B matrix of (Gcart = B Ghkl) from epsilon and A0inv
+	#   as in H.F. Poulsen (2004) page 33.
+    #
+	# epsilon2B(epsilon, A0inv)
+	#
+	# epsilon = [e11, e12, e13, e22, e23, e33] 
+	# A0inv = upper triangular 3x3 matrix, inverse of the A-matrix
+	#                calculated using the unstrained lattice constants
+	#
+	# returns B [3x3] for strained lattice constants
+	#
+	# Jette Oddershede, March 10, 2008.
+	
+	A = n.zeros([3,3])
+	A[0,0] = (epsilon[0]+1)/A0inv[0,0]
+	A[1,1] = (epsilon[3]+1)/A0inv[1,1]
+	A[2,2] = (epsilon[5]+1)/A0inv[2,2]
+	A[0,1] = (2*epsilon[1]-A[0,0]*A0inv[0,1])/A0inv[1,1] 
+	A[1,2] = (2*epsilon[4]-A[1,1]*A0inv[1,2])/A0inv[2,2]
+	A[0,2] = (2*epsilon[2]-A[0,0]*A0inv[0,2]-A[0,1]*A0inv[1,2])/A0inv[2,2]
+	strainedcell = A2ucell(A)
+	B = FormB(strainedcell)
+	return B
+
+	
 def sintl(ucell,hkl):
 	# sintl calculate sin(theta)/lambda of the reflection "hkl" given
 	# the unit cell "ucell" 
