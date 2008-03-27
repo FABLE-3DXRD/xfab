@@ -177,7 +177,65 @@ def epsilon2B(epsilon,A0inv):
 	strainedcell = A2ucell(A)
 	B = FormB(strainedcell)
 	return B
+	
+def euler2U(phi1,PHI,phi2):
+	# U matrix from Euler angles phi1, PHI, phi2.
+	# The formalism follows the ID11-3DXRD specs
+	#
+	#   U = euler2u(phi1, PHI, phi2)
+	#
+	# INPUT: phi, PHI, and phi2 in radians
+	# OUTPUT [U11 U12 U13; U21 U22 U23; U31 U32 U33]
+	#
+	#  Henning Poulsen, Risoe 15/6 2002.
+	#
+	# Changed input angles to be in radians instead of degrees
+	# Henning Osholm Sørensen, Risø National Laboratory, June 23, 2006.
+	#
+	# Translated from MATLAB to python by Jette Oddershede, March 26 2008
+	#
+	U = n.zeros([3,3])
+	U[0,0] =  n.cos(phi1)*n.cos(phi2)-n.sin(phi1)*n.sin(phi2)*n.cos(PHI)
+	U[1,0] =  n.sin(phi1)*n.cos(phi2)+n.cos(phi1)*n.sin(phi2)*n.cos(PHI)
+	U[2,0] =  n.sin(phi2)*n.sin(PHI)
+	U[0,1] =  -n.cos(phi1)*n.sin(phi2)-n.sin(phi1)*n.cos(phi2)*n.cos(PHI)
+	U[1,1] =  -n.sin(phi1)*n.sin(phi2)+n.cos(phi1)*n.cos(phi2)*n.cos(PHI)
+	U[2,1] =  n.cos(phi2)*n.sin(PHI)
+	U[0,2] =  n.sin(phi1)*n.sin(PHI) 
+	U[1,2] =  -n.cos(phi1)*n.sin(PHI)
+	U[2,2] =  n.cos(PHI)
+	return U
+	
 
+def geneps(mean_diag,spread_diag,mean_offdiag,spread_offdiag):
+	# generate strain tensor components using a normal distribution with the specified 
+	# mean and spread for diagonal and off-diagonal elements
+	#
+	# INPUT: mean_diag,spread_diag,mean_offdiag,spread_offdiag
+	# Output: [eps11, eps12, eps13, eps22, eps23, eps33]
+	#
+	# Jette Oddershede, RISOE DTU, March 27 2008
+	
+	diag = []
+	if spread_diag == 0:
+		for i in range(3):
+			diag.append(mean_diag)
+			
+	else:
+		for i in range(3):
+			diag.append(n.random.normal(mean_diag,spread_diag))
+			
+	offdiag = []
+	if spread_offdiag == 0:
+		for i in range(3):
+			offdiag.append(mean_offdiag)
+			
+	else:
+		for i in range(3):
+			offdiag.append(n.random.normal(mean_offdiag,spread_offdiag))
+			
+	eps = n.array([diag[0], offdiag[0], offdiag[1], diag[1], offdiag[2], diag[2]])
+	return eps
 	
 def sintl(ucell,hkl):
 	# sintl calculate sin(theta)/lambda of the reflection "hkl" given
