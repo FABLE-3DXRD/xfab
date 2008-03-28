@@ -190,7 +190,7 @@ def euler2U(phi1,PHI,phi2):
 	#  Henning Poulsen, Risoe 15/6 2002.
 	#
 	# Changed input angles to be in radians instead of degrees
-	# Henning Osholm Sørensen, Risø National Laboratory, June 23, 2006.
+	# Henning Osholm Sorensen, Riso National Laboratory, June 23, 2006.
 	#
 	# Translated from MATLAB to python by Jette Oddershede, March 26 2008
 	#
@@ -481,3 +481,22 @@ def sysabs(hkl,syscond):
                 sysabs = 1
 
     return sysabs
+
+
+def formfactor(atom_no,stl):
+    # Calculation of the atomic form factor at a specified sin(theta)/lambda
+    # using the analytic fit to the Direc form factors from 
+    #Int. Tab. Cryst Sect. C
+
+    # Read atom library 
+    f = open('atomlib.dat','r')
+    data = f.readlines()[atom_no].split()
+    f.close()
+
+    # Calc form factor
+    formfac = 0
+    for i in range(4):
+        formfac = formfac + eval(data[i+1])*n.exp(-eval(data[i+5])*stl*stl) 
+    formfac = formfac + eval(data[9])
+    return formfac
+
