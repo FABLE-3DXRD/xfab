@@ -164,7 +164,7 @@ def FormAinv(ucell):
 
 
 def A2ucell(A):
-    # calculate lattice constants from the A-matix as
+        # calculate lattice constants from the A-matix as
 	# defined in H.F.Poulsen 2004 eqn.3.23
 	#
 	# A2ucell(A)
@@ -185,9 +185,9 @@ def A2ucell(A):
 		return ucell
 	
 def epsilon2B(epsilon,A0inv):
-    #   calculate B matrix of (Gcart = B Ghkl) from epsilon and A0inv
+        #   calculate B matrix of (Gcart = B Ghkl) from epsilon and A0inv
 	#   as in H.F. Poulsen (2004) page 33.
-    #
+        #
 	# epsilon2B(epsilon, A0inv)
 	#
 	# epsilon = [e11, e12, e13, e22, e23, e33] 
@@ -237,6 +237,74 @@ def euler2U(phi1,PHI,phi2):
 	U[2,2] =  n.cos(PHI)
 	return U
 	
+def U2euler(U):
+        # Euler angles (phi1, PHI, phi2) from U matrix
+	# The formalism follows the ID11-3DXRD specs
+	# Note that there are two solutions
+	# (phi1, PHI, phi2) AND (phi1 + pi, -PHI, phi2 + pi)
+	# We pick the one with phi1 in the range [-pi/2 pi/2]
+	#
+	# Henning Poulsen, Risoe National Laboratory June 15, 2002.
+	#
+	# Fails if U[2,1] or U[1,2] = 0 e.g. then U[2,2] = ~1
+	# If U[2,2] ~ 1 ph1 = ph2 = atan(U[1,0]/U[0,0])/2
+	# In this case there is only one solution.
+	#
+	# Henning Osholm Sorensen, Risoe National Laboratory, June 23, 2006.
+	#
+	# Translated from MATLAB to python by Henning Osholm, March 28, 2008.
+	phi1 = [0,0]
+	PHI  = [0,0]
+	phi2 = [0,0]
+
+	PHI[0] = n.arccos(U[2,2])
+	if PHI[0] < 0.0001:
+            phi2[0] = n.arctan(U[1,0]/U[0,0])/2.
+            phi1[0] = phi2[0]
+	else:
+            # There is two solutions
+            phi1[0] = n.arctan(-U[0,2]/U[1,2])
+            phi2[0] = n.arctan(-U[2,0]/U[2,1])
+            PHI[1] = 2*n.pi-PHI[0]
+	    phi1[1] = phi1[0]+n.pi
+	    phi2[1] = phi2[0]+n.pi
+
+	# The correct combination is found by brute-force
+	minsum = n.Inf  
+	for j in range(2):
+	    for k in range(2):
+                U2 = euler2U(phi1[1],PHI[j],phi2[k])
+		Udev = abs(U2-U)
+		sumUdev = n.sum(Udev)
+		if sumUdev < minsum:
+		    minsum = sumUdev
+		    mj = j
+		    mk = k
+	return [ phi1[1], PHI[mj], phi2[mk] ]
+
+def rod2U(r):
+	# rod2U calculates the U orientation matrix given an oriention
+	# represented in Rodrigues space. r = [r1, r2, r3]
+	g = n.zeros((3,3))
+	r2 = n.dot(r,r)
+
+        for i in range(3):
+            for j in range(3):
+                if i==j:
+                   fac = 1;
+		else:
+                   fac = 0
+		term=0
+		for k in range(3):
+                   if [i,j,k] == [0,1,2] or [i,j,k] == [1,2,0] or [i,j,k] == [2,0,1]:
+                      sign = 1
+		   elif [i,j,k] == [2,1,0] or [i,j,k] == [0,2,1] or [i,j,k] == [1,0,2]:
+		      sign = -1
+		   else:
+                      sign = 0
+		   term = term + 2*sign*r[k];
+		g[i,j] =  1/(1+r2) * ((1-r2)*fac + 2*r[i]*r[j] - term);
+	return n.transpose(g)
 
 def sintl(ucell,hkl):
 	# sintl calculate sin(theta)/lambda of the reflection "hkl" given
@@ -248,7 +316,7 @@ def sintl(ucell,hkl):
 	#         hkl = [h, k, l]
 	# OUTPUT: sin(theta)/lambda
 	#
-	# Henning Osholm Soerensen, Risoe National Laboratory, June 23, 2006.
+	# Henning Osholm Sorensen, Risoe National Laboratory, June 23, 2006.
 
 	a   = float(ucell[0])
 	b   = float(ucell[1])
