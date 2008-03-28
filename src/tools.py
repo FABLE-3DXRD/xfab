@@ -32,6 +32,37 @@ def find_omega(Gw,costth):
 	return Omega
 
 
+
+
+def CellInvert(ucell):
+        a = ucell[0]
+        b = ucell[1]
+        c = ucell[2]
+        calp = n.cos(ucell[3]*n.pi/180.)
+        cbet = n.cos(ucell[4]*n.pi/180.)
+        cgam = n.cos(ucell[5]*n.pi/180.)
+        salp = n.sin(ucell[3]*n.pi/180.)
+        sbet = n.sin(ucell[4]*n.pi/180.)
+        sgam = n.sin(ucell[5]*n.pi/180.)
+	V = CellVolume(ucell)
+
+	astar = b*c*salp/V
+	bstar = a*c*sbet/V
+	cstar = a*b*sgam/V
+	salpstar = V/(a*b*c*sbet*sgam)
+	sbetstar = V/(a*b*c*salp*sgam)
+	sgamstar = V/(a*b*c*salp*sbet)
+	calpstar = (cbet*cgam-calp)/(sbet*sgam)
+	cbetstar = (calp*cgam-cbet)/(salp*sgam)
+	cgamstar = (calp*cbet-cgam)/(salp*sbet)
+
+	alpstar = n.arccos(calpstar)*180./n.pi;
+	betstar = n.arccos(cbetstar)*180./n.pi;
+	gamstar = n.arccos(cgamstar)*180./n.pi;
+  
+	return [astar, bstar, cstar, alpstar, betstar, gamstar]
+
+
 def CellVolume(ucell):
         a = ucell[0]
         b = ucell[1]
