@@ -582,20 +582,3 @@ def sysabs(hkl,syscond):
     return sysabs
 
 
-def formfactor(atom_no,stl):
-    # Calculation of the atomic form factor at a specified sin(theta)/lambda
-    # using the analytic fit to the Direc form factors from 
-    #Int. Tab. Cryst Sect. C
-
-    # Read atom library 
-    f = open('atomlib.dat','r')
-    data = f.readlines()[atom_no].split()
-    f.close()
-
-    # Calc form factor
-    formfac = 0
-    for i in range(4):
-        formfac = formfac + eval(data[i+1])*n.exp(-eval(data[i+5])*stl*stl) 
-    formfac = formfac + eval(data[9])
-    return formfac
-
