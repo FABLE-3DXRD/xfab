@@ -340,13 +340,13 @@ def sintl(ucell,hkl):
 
 
 def genhkl(ucell,sysconditions,sintlmin,sintlmax):
-
-    # Generate reflections up to maximum sin(theta)/lambda (sintlmax)
-    # The program follows the method described in: 
-    # Le Page and Gabe (1979) J. Appl. Cryst., 12, 464-466
-    #
-    # Henning Osholm Soerensen, June 23, 2006.
-
+    """
+     Generate reflections up to maximum sin(theta)/lambda (sintlmax)
+     The program follows the method described in: 
+     Le Page and Gabe (1979) J. Appl. Cryst., 12, 464-466
+    
+     Henning Osholm Sorensen, June 23, 2006.
+    """
     segm = n.array([[[ 0, 0,  0],[ 1, 0, 0],[ 0, 1, 0],[ 0, 0,  1]],\
                     [[-1, 0,  1],[-1, 0, 0],[ 0, 1, 0],[ 0, 0,  1]],\
                     [[-1, 1,  0],[-1, 0, 0],[ 0, 1, 0],[ 0, 0, -1]],\
