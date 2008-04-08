@@ -6,8 +6,7 @@ from xfab import sg
 from xfab import atomlib
 
 
-
-def StructureFactor(hkl,ucell,sgname, atoms):
+def StructureFactor(hkl,ucell,sgname,atoms,disper = None):
     """
     Calculation of the structure factor of reflection hkl
     
@@ -32,8 +31,8 @@ def StructureFactor(hkl,ucell,sgname, atoms):
     Fimg = 0.0
 
     for i in range(noatoms):
-        sfreal = 0.0
-        sfimg = 0.0
+        #sfreal = 0.0
+        #sfimg = 0.0
     
         #Check whether isotrop or anisotropic displacements 
         if atoms[i].adp_type == 'Uiso':
@@ -44,6 +43,15 @@ def StructureFactor(hkl,ucell,sgname, atoms):
             betaij = Uij2betaij(atoms[i].adp,ucell);
         else:
             logging.error("wrong no of elements in atomlist")
+
+        # Atomic form factors
+        f = FormFactor(atoms[i].atomtype,stl)
+        if disper != None:
+            fp = disper[atoms[i].atomtype][0]
+            fpp = disper[atoms[i].atomtype][1]
+        else:
+            fp = 0.0
+            fpp = 0.0
 
         for j in range(mysg.nsymop):
             # atomic displacement factor
@@ -56,15 +64,8 @@ def StructureFactor(hkl,ucell,sgname, atoms):
             exponent = 2*n.pi*n.dot(hkl,r)
 
             #forming the real and imaginary parts of F
-            sfreal = sfreal + expij*n.cos(exponent)
-            sfimg = sfimg + expij*n.sin(exponent)
-
-
-        # Including the atomic formfactor
-        formfac = FormFactor(atoms[i].atomtype,stl)*atoms[i].occ/atoms[i].symmulti
-        
-        Freal = Freal + formfac*sfreal
-        Fimg = Fimg + formfac*sfimg
+            Freal = Freal + expij*(n.cos(exponent)*(f+fp)-fpp*n.sin(exponent))*atoms[i].occ/atoms[i].symmulti
+            Fimg = Fimg + expij*(n.sin(exponent)*(f+fp)+fpp*n.cos(exponent))*atoms[i].occ/atoms[i].symmulti
 
     return [Freal, Fimg]
 
@@ -83,7 +84,6 @@ def Uij2betaij(adp,ucell):
     Henning Osholm Sorensen, Risoe National Laboratory, June 23, 2006.
     Translated to python code March 29, 2008
     """
-    print adp
     U  = n.array([[adp[0], adp[5], adp[4]],
                   [adp[5], adp[1], adp[3]], 
                   [adp[4], adp[3], adp[2]]])
@@ -103,22 +103,20 @@ def Uij2betaij(adp,ucell):
 def FormFactor(atomtype,stl):
     """
      Calculation of the atomic form factor at a specified sin(theta)/lambda
-     using the analytic fit to the Direc form factors from 
-     Int. Tab. Cryst Sect. C
+     using the analytic fit to the  form factors from 
+     Int. Tab. Cryst Sect. C 6.1.1.4
+
     """
 
-    # Read atom library 
-    #f = open('atomlib.dat','r')
-    #data = f.readlines()[atom_no].split()
-    #f.close()
-    print atomtype
-    data = atomlib.Direc_ff[atomtype]
-    print data
+    data = atomlib.formfactor[atomtype]
+
     # Calc form factor
     formfac = 0
+
     for i in range(4):
         formfac = formfac + data[i]*n.exp(-data[i+4]*stl*stl) 
     formfac = formfac + data[8]
+
     return formfac
 
 
@@ -137,6 +135,7 @@ class atomlist:
         self.sgname = sgname
         self.sgno = sgno
         self.cell = cell
+        self.dispersion = {}
         self.atom = []
     def add_atom(self,label=None, atomtype=None, pos=None, adp_type=None, adp=None, occ=None, symmulti=None):
         self.atom.append(atom_entry(label=label, atomtype=atomtype, pos=pos, adp_type=adp_type,
@@ -156,7 +155,6 @@ class build_atomlist:
         if cifblkname == None:   
             #Try to guess blockname                                                     
             blocks = cf.keys()
-            print blocks
             if len(blocks) > 1:
                 if len(blocks) == 2 and 'global' in blocks:
                     blockname = blocks[abs(blocks.index('global')-1)]
@@ -180,12 +178,10 @@ class build_atomlist:
         from re import sub
         from string import upper
         if cifblk == None:
-            print 'in here'
             try:
                 cifblk = self.CIFopen(ciffile=ciffile,cifblkname=cifblkname)
             except:
                 raise IOError()
-        print cifblk['_cell_length_a']
         self.atomlist.cell = [self.remove_esd(cifblk['_cell_length_a']),
                               self.remove_esd(cifblk['_cell_length_b']),
                               self.remove_esd(cifblk['_cell_length_c']),
@@ -196,11 +192,20 @@ class build_atomlist:
         #self.atomlist.sgname = upper(sub("\s+","",cifblk['_symmetry_space_group_name_H-M']))
         self.atomlist.sgname = sub("\s+","",cifblk['_symmetry_space_group_name_H-M'])
 
+        # Dispersion factors
+        for i in range(len(cifblk['_atom_type_symbol'])):
+            try:
+                self.atomlist.dispersion[cifblk['_atom_type_symbol'][i]] =\
+                    [self.remove_esd(cifblk['_atom_type_scat_dispersion_real'][i]),
+                     self.remove_esd(cifblk['_atom_type_scat_dispersion_imag'][i])]
+            except:
+                self.atomlist.dispersion[cifblk['_atom_type_symbol'][i]] = None
+                logging.warning('No dispersion factors for %s in cif file - set to zero' %cifblk['_atom_type_symbol'][i])
+
         for i in range(len(cifblk['_atom_site_type_symbol'])):
             label = cifblk['_atom_site_label'][i]
             #atomno = atomtype[upper(cifblk['_atom_site_type_symbol'][i])]
             atomtype = upper(cifblk['_atom_site_type_symbol'][i])
-            print atomtype
             x = self.remove_esd(cifblk['_atom_site_fract_x'][i])
             y = self.remove_esd(cifblk['_atom_site_fract_y'][i])
             z = self.remove_esd(cifblk['_atom_site_fract_z'][i])
@@ -253,21 +258,4 @@ class build_atomlist:
             value = atof(a[:a.find('(')])
         return value
 
-
-atomtype = {'H'  :  1, 'HE' :  2, 'LI' :  3, 'BE' :  4, 'B'  :  5, 'C'  :  6,
-            'N'  :  7, 'O'  :  8, 'F'  :  9, 'NE' : 10, 'NA' : 11, 'MG' : 12,
-            'AL' : 13, 'SI' : 14, 'P'  : 15, 'S'  : 16, 'CL' : 17, 'AR' : 18,
-            'K'  : 19, 'CA' : 20, 'SC' : 21, 'TI' : 22, 'V'  : 23, 'CR' : 24,
-            'MN' : 25, 'FE' : 26, 'CO' : 27, 'NI' : 28, 'CU' : 29, 'ZN' : 30,
-            'GA' : 31, 'GE' : 32, 'AS' : 33, 'SE' : 34, 'BR' : 35, 'KR' : 36,
-            'RB' : 37, 'SR' : 38, 'Y'  : 39, 'ZR' : 40, 'NB' : 41, 'MO' : 42,
-            'TC' : 43, 'RU' : 44, 'RH' : 45, 'PD' : 46, 'AG' : 47, 'CD' : 48,
-            'IN' : 49, 'SN' : 50, 'SB' : 51, 'TE' : 52, 'I'  : 53, 'XE' : 54,
-            'CS' : 55, 'BA' : 56, 'LA' : 57, 'CE' : 58, 'PR' : 59, 'PM' : 60,
-            'SM' : 61, 'EU' : 62, 'GD' : 63, 'GD' : 64, 'TB' : 65, 'DY' : 66,
-            'HO' : 67, 'ER' : 68, 'TM' : 69, 'YB' : 70, 'LU' : 71, 'HF' : 72,
-            'TA' : 73, 'W'  : 74, 'RE' : 75, 'OS' : 76, 'IR' : 77, 'PT' : 78,
-            'AU' : 79, 'HG' : 80, 'TL' : 81, 'PB' : 82, 'BI' : 83, 'PO' : 84,
-            'AT' : 85, 'RN' : 86, 'FR' : 87, 'RA' : 88, 'AC' : 89, 'TH' : 90,
-            'PA' : 91, 'U'  : 92, 'NP' : 93, 'PU' : 94, 'AM' : 95, 'CM' : 96}
 
