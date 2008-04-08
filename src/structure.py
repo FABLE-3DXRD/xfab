@@ -5,7 +5,6 @@ from xfab import tools
 from xfab import sg
 from xfab import atomlib
 
-
 def StructureFactor(hkl,ucell,sgname,atoms,disper = None):
     """
     Calculation of the structure factor of reflection hkl
@@ -14,13 +13,12 @@ def StructureFactor(hkl,ucell,sgname,atoms,disper = None):
     
     INPUT : hkl =       [h, k, l] 
             unit_cell = [a, b, c, alpha, beta, gamma] 
-            atomlist:  structural parameters
-            sg:         read from sglib(sgno) (space group library)
-            atom:       read from atomlib (library of form factors)
+            sgname:     space group name (e.g. 'P 21/c')
+            atoms:      structural parameters (as an object)
     OUTPUT: The real and imaginary parts of the the structure factor
     
     Henning Osholm Sorensen, June 23, 2006.
-    Translated to python code March 29, 2008
+    Translated to python code April 8, 2008
     """
     
     mysg = sg.sg(sgname=sgname) 
@@ -31,9 +29,6 @@ def StructureFactor(hkl,ucell,sgname,atoms,disper = None):
     Fimg = 0.0
 
     for i in range(noatoms):
-        #sfreal = 0.0
-        #sfimg = 0.0
-    
         #Check whether isotrop or anisotropic displacements 
         if atoms[i].adp_type == 'Uiso':
             U = atoms[i].adp
@@ -76,8 +71,8 @@ def Uij2betaij(adp,ucell):
     betaij = Uij2betaij(adp,unit_cell)
     
     INPUT:  adp: anisotropic displacement parameter U matrix
-            Uijs given in order: [U11, U22, U33, U23, U13, U12]
-            unit_cell = [a b c alpha beta gamma] 
+            Uijs are given in this order: [U11, U22, U33, U23, U13, U12]
+            unit_cell = [a, b, c, alpha, beta, gamma] 
 
     OUTPUT: betaij: beta displacement matrix
     
@@ -95,7 +90,6 @@ def Uij2betaij(adp,ucell):
         for j in range(3):
             betaij[i,j] = 2*n.pi**2*cellstar[i]*cellstar[j]*U[i,j];
 
-
     return betaij
 
 
@@ -105,6 +99,13 @@ def FormFactor(atomtype,stl):
      Calculation of the atomic form factor at a specified sin(theta)/lambda
      using the analytic fit to the  form factors from 
      Int. Tab. Cryst Sect. C 6.1.1.4
+
+     INPUT:   atomtype: Atom type (string) e.g. 'C' 
+              stl: form factor calculated sin(theta)/lambda = stl
+     OUTPUT:  atomic form factor (no dispersion)
+              
+
+     Henning Osholm Sorensen, Risoe National Laboratory, April 9, 2008.
 
     """
 
