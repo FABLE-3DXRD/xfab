@@ -59,8 +59,11 @@ def StructureFactor(hkl,ucell,sgname,atoms,disper = None):
             exponent = 2*n.pi*n.dot(hkl,r)
 
             #forming the real and imaginary parts of F
-            Freal = Freal + expij*(n.cos(exponent)*(f+fp)-fpp*n.sin(exponent))*atoms[i].occ/atoms[i].symmulti
-            Fimg = Fimg + expij*(n.sin(exponent)*(f+fp)+fpp*n.cos(exponent))*atoms[i].occ/atoms[i].symmulti
+            s = n.sin(exponent)
+            c = n.cos(exponent)
+            site_pop = atoms[i].occ/atoms[i].symmulti
+            Freal = Freal + expij*(c*(f+fp)-s*fpp)*site_pop
+            Fimg = Fimg + expij*(s*(f+fp)+c*fpp)*site_pop
 
     return [Freal, Fimg]
 
@@ -122,7 +125,8 @@ def FormFactor(atomtype,stl):
 
 
 class atom_entry:
-    def __init__(self,label=None, atomtype=None, pos=None, adp_type=None, adp=None, occ=None, symmulti=None):
+    def __init__(self,label=None, atomtype=None, pos=None,
+                 adp_type=None, adp=None, occ=None, symmulti=None):
         self.label = label
         self.atomtype = atomtype
         self.pos = pos
@@ -138,7 +142,8 @@ class atomlist:
         self.cell = cell
         self.dispersion = {}
         self.atom = []
-    def add_atom(self,label=None, atomtype=None, pos=None, adp_type=None, adp=None, occ=None, symmulti=None):
+    def add_atom(self,label=None, atomtype=None, pos=None, 
+                 adp_type=None, adp=None, occ=None, symmulti=None):
         self.atom.append(atom_entry(label=label, atomtype=atomtype, pos=pos, adp_type=adp_type,
                                     adp=adp, occ=occ, symmulti=symmulti))
 
@@ -151,7 +156,7 @@ class build_atomlist:
         try:
             cf = ReadCif(ciffile)
         except:
-            print 'File %s could not be accessed' %ciffile
+            logging.error('File %s could not be accessed' %ciffile)
 
         if cifblkname == None:   
             #Try to guess blockname                                                     
@@ -159,19 +164,20 @@ class build_atomlist:
             if len(blocks) > 1:
                 if len(blocks) == 2 and 'global' in blocks:
                     blockname = blocks[abs(blocks.index('global')-1)]
-                    print blockname
                 else:
-                    print 'More than one possible data set:'
-                    print 'The following data block names are in the file:'
+                    logging.error('More than one possible data set:')
+                    logging.error('The following data block names are in the file:')
                     for block in blocks:
-                        print block
+                        logging.error(block)
                     raise IOError
             else:
+                # Only one available
                 blockname = blocks[0]
+        #Extract block
         try:
             self.cifblk = cf[cifblkname]
         except:
-            print 'Block - %s - not found in %s' %(blockname,ciffile)
+            logging.error('Block - %s - not found in %s' %(blockname,ciffile))
             raise IOError
         return self.cifblk
 
@@ -226,7 +232,7 @@ class build_atomlist:
                 multi = self.remove_esd(cifblk['_atom_site_symetry_multiplicity'][i])
             else:
                 multi = 1.0
-                print 'WARNING %s has no multiplicity given in cif file >>>  Value default 1.0' %label
+                logging.warning('%s has no multiplicity given in cif file >>>  Value default 1.0' %label)
 
 
 
@@ -249,7 +255,7 @@ class build_atomlist:
     def remove_esd(self,a):
         """                                                                         
         This function will remove the esd part of the entry,
-        fx '1.234(56)' to '1.234'.                                                                             
+        e.g. '1.234(56)' to '1.234'.                                                                             
         """
         from string import atof
         
