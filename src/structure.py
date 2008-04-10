@@ -169,7 +169,7 @@ class build_atomlist:
                     logging.error('The following data block names are in the file:')
                     for block in blocks:
                         logging.error(block)
-                    raise IOError
+                    raise Exception
             else:
                 # Only one available
                 blockname = blocks[0]
@@ -181,14 +181,17 @@ class build_atomlist:
             raise IOError
         return self.cifblk
 
-    def CIFread(self,ciffile = None,cifblk = None, cifblkname = None):
+    def CIFread(self,ciffile = None, cifblkname = None, cifblk = None):
         from re import sub
         from string import upper
-        if cifblk == None:
+        if ciffile != None:
             try:
                 cifblk = self.CIFopen(ciffile=ciffile,cifblkname=cifblkname)
             except:
                 raise IOError()
+        elif cifblk == None:
+            cifblk = self.cifblk
+
         self.atomlist.cell = [self.remove_esd(cifblk['_cell_length_a']),
                               self.remove_esd(cifblk['_cell_length_b']),
                               self.remove_esd(cifblk['_cell_length_c']),
