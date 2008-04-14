@@ -2,7 +2,7 @@
 xfab is a library of data and functions for use in Crystallographic computations. xfab is part of the project fable: http://fable.wiki.sourceforge.net
 
 
-Copyright (c) 2008, Henning Osholm Sørensen, Risø National Laboratory,
+Copyright (c) 2008, Henning Osholm Sørensen, Riso National Laboratory,
 Technical University of Denmark, DK-4000 Roskilde, Denmark
 All rights reserved.
 
