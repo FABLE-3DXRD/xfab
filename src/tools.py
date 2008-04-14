@@ -333,15 +333,15 @@ def quart2Omega(w,wx,wy):
          wx and wy (the rotations around x and y bringing the z-axis to the true rotation axis, in radians)
          Quarternions are used for the calculations to avoid singularities in subsequent refinements
 	"""
-        w = w*n.pi/180. 
+        whalf = w*n.pi/360. 
         Wx = n.array([[1, 0        , 0         ],
 		              [0, n.cos(wx), -n.sin(wx)],
 		              [0, n.sin(wx),  n.cos(wx)]])
         Wy = n.array([[ n.cos(wy), 0, n.sin(wy)],
 		              [0         , 1, 0        ],
 		              [-n.sin(wy), 0, n.cos(wy)]])
-        qua = n.dot(Wx,n.dot(Wy,n.array([[0],[0],[n.sin(w)]]))) 
-        q = [n.sin(w),qua[0,0],qua[1,0],qua[2,0]] 
+        qua = n.dot(Wx,n.dot(Wy,n.array([[0],[0],[n.sin(whalf)]]))) 
+        q = [n.sin(whalf),qua[0,0],qua[1,0],qua[2,0]] 
         Omega = n.array([[1-2*q[2]**2-2*q[3]**2  ,2*q[1]*q[2]-2*q[3]*q[0],2*q[1]*q[3]+2*q[2]*q[0]],
 			 [2*q[1]*q[2]+2*q[3]*q[0],1-2*q[1]**2-2*q[3]**2  ,2*q[2]*q[3]-2*q[1]*q[0]],
 			 [2*q[1]*q[3]-2*q[2]*q[0],2*q[2]*q[3]+2*q[1]*q[0],1-2*q[1]**2-2*q[2]**2]])
