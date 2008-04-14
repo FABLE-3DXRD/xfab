@@ -316,13 +316,13 @@ def detect_tilt(tilt_x,tilt_y,tilt_z):
          Henning Osholm S<F8>rensen 2006
 	""" 
 	Rx = n.array([[            1,            0,            0],
-		      [            0,  cos(tilt_x), -sin(tilt_x)],
-		      [            0,  sin(tilt_x),  cos(tilt_x)]])
-	Ry = n.array([[  cos(tilt_y),            0,  sin(tilt_y)],
+		      [            0,  n.cos(tilt_x), -n.sin(tilt_x)],
+		      [            0,  n.sin(tilt_x),  n.cos(tilt_x)]])
+	Ry = n.array([[  n.cos(tilt_y),            0,  n.sin(tilt_y)],
 		      [            0,            1,            0],
-		      [ -sin(tilt_y),            0,  cos(tilt_y)]])
-	Rz = n.array([[  cos(tilt_z), -sin(tilt_z),            0],
-		      [  sin(tilt_z),  cos(tilt_z),            0],
+		      [ -n.sin(tilt_y),            0,  n.cos(tilt_y)]])
+	Rz = n.array([[  n.cos(tilt_z), -n.sin(tilt_z),            0],
+		      [  n.sin(tilt_z),  n.cos(tilt_z),            0],
 		      [            0,            0,            1]])
 	R = n.dot(Rx,n.dot(Ry,Rz))
         return R
@@ -339,8 +339,8 @@ def quart2Omega(w,wx,wy):
         Wy = n.array([[ n.cos(wy), 0, n.sin(wy)],
 		      [0         , 1, 0        ],
 		      [-n.sin(wy), 0, n.cos(wy)]])
-        qua = n.dot(Wx,n.dot(Wy,n.array([[0],[0],[n.sin(w[id[i][j]])]]))) 
-        q = [n.sin(w[id[i][j]]),qua[0,0],qua[1,0],qua[2,0]] 
+        qua = n.dot(Wx,n.dot(Wy,n.array([[0],[0],[n.sin(w)]]))) 
+        q = [n.sin(w),qua[0,0],qua[1,0],qua[2,0]] 
         Omega = n.array([[1-2*q[2]**2-2*q[3]**2  ,2*q[1]*q[2]-2*q[3]*q[0],2*q[1]*q[3]+2*q[2]*q[0]],
 			 [2*q[1]*q[2]+2*q[3]*q[0],1-2*q[1]**2-2*q[3]**2  ,2*q[2]*q[3]-2*q[1]*q[0]],
 			 [2*q[1]*q[3]-2*q[2]*q[0],2*q[2]*q[3]+2*q[1]*q[0],1-2*q[1]**2-2*q[2]**2]])
