@@ -280,7 +280,7 @@ def U2euler(U):
 		    minsum = sumUdev
 		    mj = j
 		    mk = k
-	return [ phi1[1], PHI[mj], phi2[mk] ]
+	return n.array([ phi1[1], PHI[mj], phi2[mk] ])
 
 def rod2U(r):
 	# rod2U calculates the U orientation matrix given an oriention
@@ -341,7 +341,7 @@ def quart2Omega(w,wx,wy):
 		              [0         , 1, 0        ],
 		              [-n.sin(wy), 0, n.cos(wy)]])
         qua = n.dot(Wx,n.dot(Wy,n.array([[0],[0],[n.sin(whalf)]]))) 
-        q = [n.sin(whalf),qua[0,0],qua[1,0],qua[2,0]] 
+        q = [n.cos(whalf),qua[0,0],qua[1,0],qua[2,0]] 
         Omega = n.array([[1-2*q[2]**2-2*q[3]**2  ,2*q[1]*q[2]-2*q[3]*q[0],2*q[1]*q[3]+2*q[2]*q[0]],
 			 [2*q[1]*q[2]+2*q[3]*q[0],1-2*q[1]**2-2*q[3]**2  ,2*q[2]*q[3]-2*q[1]*q[0]],
 			 [2*q[1]*q[3]-2*q[2]*q[0],2*q[2]*q[3]+2*q[1]*q[0],1-2*q[1]**2-2*q[2]**2]])
