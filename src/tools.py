@@ -2,10 +2,52 @@
 import numpy as n
 from math import degrees
 
-def find_omega(Gw,costth):
+
+def find_omega_wedge(Gw,tth,wedge):
+	"""
+	This code is taken from the GrainSpotter program by Soren Schmidt
+	"""
+
+	#Normalize G-vector
+	Gw = Gw/sqrt(dot(Gw,Gw))
+
+	costth = cos(tth)
+	sintth = sin(tth)
+	cosfactor = costth -1
+	length = sqrt(-2*cosfactor)
+	sinwedge = sin(wedge)
+	coswedge = cos(wedge)
+	# Determine cos(eta)
+	coseta = ( Gw[2]*length + sinwedge * cosfactor ) / coswedge / sintth
+
+	Omega = []
+
+	if (abs(coseta)>1.):
+		return Omega
+	# else calc the two eta values
+        eta = [arccos(coseta), 2*pi-arccos(coseta)]
+	
+	# Now find the Omega value(s)
+	# A slight change in the code from GrainSpotter: the lenght 
+	# Here the original a and b is divided by length since
+	# these can be only scale somega and comega equally 
+	a = (coswedge * cosfactor + sinwedge * sintth * coseta)
+	for i in range(2):
+		b = -sintth * sin(eta[i])
+		somega = (b*Gw[0]-a*Gw[1])/(a*a+b*b)
+		comega = (Gw[0]-b*somega)/a;
+      
+		Omega.append(arctan2(somega,comega))
+		if Omega[i]> pi:
+			Omega[i] = Omega[i]-2*pi
+	return Omega
+
+
+
+
+def find_omega(Gw,tth):
 	Glen = n.sqrt(n.dot(Gw,Gw))
-	#theta = arcsin(Glen/(2*K))
-	#costth = cos(2*theta)
+	costth = n.cos(tth)
 	
 	#    Trying to implement Soerens omega determination
 	#    Solve equation of type a*cos(w)+b*sin(w) = c by fixpoint method.
