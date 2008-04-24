@@ -123,18 +123,18 @@ def FormB(ucell):
 
 
 
-def FormAinv(ucell):
-	# calculate the inverse of the A matrix given in eq. 3.23 of 
+def FormA(ucell):
+	# calculate the A matrix given in eq. 3.23 of 
 	#   H.F. Poulsen.
 	#   Three-dimensional X-ray diffraction microscopy. 
 	#   Mapping polycrystals and their dynamics. 
 	#   (Springer Tracts in Modern Physics, v. 205), (Springer, Berlin, 2004).
 	#
 	#
-	# FormAinv(unit_cell)
+	# FormA(unit_cell)
 	#
 	# unit_cell = [a, b, c, alpha, beta, gamma] 
-	# returns Ainv [3x3]
+	# returns A [3x3]
 	#
 	# Jette Oddershede, March 7, 2008.
 	
@@ -159,12 +159,16 @@ def FormAinv(ucell):
         A = n.array([[a, b*cgam,  c*cbet       ],\
              [0, b*sgam, -c*sbet*calpstar ],\
              [0, 0,       c*sbet*salpstar ]])
+        return A
+		
+def FormAinv(ucell):
+        A = FormA(ucell)
         Ainv = n.linalg.inv(A)
         return Ainv
 
 
 def A2ucell(A):
-        # calculate lattice constants from the A-matix as
+    # calculate lattice constants from the A-matix as
 	# defined in H.F.Poulsen 2004 eqn.3.23
 	#
 	# A2ucell(A)
@@ -184,20 +188,43 @@ def A2ucell(A):
 		ucell = [a, b, c, alpha, beta, gamma]
 		return ucell
 	
-def epsilon2B(epsilon,A0inv):
-        #   calculate B matrix of (Gcart = B Ghkl) from epsilon and A0inv
+def B2ucell(B): 
+    # calculate lattice constants from the B-matix as
+	# defined in H.F.Poulsen 2004 eqn.3.4
+	#
+	# B2ucell(B)
+	#
+	# B [3x3] upper triangular matrix
+	# returns unit_cell = [a, b, c, alpha, beta, gamma] 
+	#
+	# Jette Oddershede, April 21, 2008.
+        
+		B = B/(2*n.pi)
+		g = n.dot(n.transpose(B),B)
+		astar = n.sqrt(g[0,0])
+		bstar = n.sqrt(g[1,1])
+		cstar = n.sqrt(g[2,2])
+		alphastar = degrees(n.arccos(g[1,2]/bstar/cstar))
+		betastar  = degrees(n.arccos(g[0,2]/astar/cstar))
+		gammastar = degrees(n.arccos(g[0,1]/astar/bstar))
+		
+		ucell = CellInvert([astar,bstar,cstar,alphastar,betastar,gammastar])
+		return ucell
+	
+def epsilon2B(epsilon,ucell):
+    #   calculate B matrix of (Gcart = B Ghkl) from epsilon and unstrained cell
 	#   as in H.F. Poulsen (2004) page 33.
-        #
-	# epsilon2B(epsilon, A0inv)
+    #
+	# epsilon2B(epsilon, ucell)
 	#
 	# epsilon = [e11, e12, e13, e22, e23, e33] 
-	# A0inv = upper triangular 3x3 matrix, inverse of the A-matrix
-	#                calculated using the unstrained lattice constants
+	# unit_cell = [a, b, c, alpha, beta, gamma] 
 	#
 	# returns B [3x3] for strained lattice constants
 	#
 	# Jette Oddershede, March 10, 2008.
 	
+	A0inv = FormAinv(ucell)
 	A = n.zeros([3,3])
 	A[0,0] = (epsilon[0]+1)/A0inv[0,0]
 	A[1,1] = (epsilon[3]+1)/A0inv[1,1]
@@ -208,6 +235,27 @@ def epsilon2B(epsilon,A0inv):
 	strainedcell = A2ucell(A)
 	B = FormB(strainedcell)
 	return B
+	
+def B2epsilon(B,ucell):
+    #   calculate epsilon from the the unstrained cell and the B matrix of (Gcart = B Ghkl) 
+	#   as in H.F. Poulsen (2004) page 33.
+    #
+	# B2epsilon(epsilon, ucell)
+	#
+	# B upper triangular 3x3 matrix of strained lattice constants
+	# unit_cell = [a, b, c, alpha, beta, gamma] of unstrained lattice
+	#
+	# returns epsilon = [e11, e12, e13, e22, e23, e33] 
+	#
+	# Jette Oddershede, April 21, 2008.
+	
+	A0inv = FormAinv(ucell)
+	A = FormA(B2ucell(B))
+	T = n.dot(A,A0inv)
+	I = n.array([[1,0,0],[0,1,0],[0,0,1]])
+	eps = 0.5*(T+n.transpose(T))-I
+	epsilon = [eps[0,0],eps[0,1],eps[0,2],eps[1,1],eps[1,2],eps[2,2]]
+	return epsilon
 	
 def euler2U(phi1,PHI,phi2):
 	# U matrix from Euler angles phi1, PHI, phi2.
