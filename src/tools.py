@@ -1,7 +1,6 @@
 
 import numpy as n
-from numpy import dot, sin, cos, sqrt, arccos, arctan2
-from math import degrees, pi
+from math import degrees
 
 
 def find_omega_wedge(Gw,tth,wedge):
@@ -10,14 +9,14 @@ def find_omega_wedge(Gw,tth,wedge):
 	"""
 
 	#Normalize G-vector
-	Gw = Gw/sqrt(dot(Gw,Gw))
+	Gw = Gw/n.sqrt(n.dot(Gw,Gw))
 
-	costth = cos(tth)
-	sintth = sin(tth)
+	costth = n.cos(tth)
+	sintth = n.sin(tth)
 	cosfactor = costth -1
-	length = sqrt(-2*cosfactor)
-	sinwedge = sin(wedge)
-	coswedge = cos(wedge)
+	length = n.sqrt(-2*cosfactor)
+	sinwedge = n.sin(wedge)
+	coswedge = n.cos(wedge)
 	# Determine cos(eta)
 	coseta = ( Gw[2]*length + sinwedge * cosfactor ) / coswedge / sintth
 
@@ -26,7 +25,7 @@ def find_omega_wedge(Gw,tth,wedge):
 	if (abs(coseta)>1.):
 		return Omega
 	# else calc the two eta values
-        eta = [arccos(coseta), 2*pi-arccos(coseta)]
+        eta = [n.arccos(coseta), 2*n.pi-n.arccos(coseta)]
 	
 	# Now find the Omega value(s)
 	# A slight change in the code from GrainSpotter: the lenght 
@@ -34,13 +33,13 @@ def find_omega_wedge(Gw,tth,wedge):
 	# these can be only scale somega and comega equally 
 	a = (coswedge * cosfactor + sinwedge * sintth * coseta)
 	for i in range(2):
-		b = -sintth * sin(eta[i])
+		b = -sintth * n.sin(eta[i])
 		somega = (b*Gw[0]-a*Gw[1])/(a*a+b*b)
 		comega = (Gw[0]-b*somega)/a;
       
-		Omega.append(arctan2(somega,comega))
-		if Omega[i]> pi:
-			Omega[i] = Omega[i]-2*pi
+		Omega.append(n.arctan2(somega,comega))
+		if Omega[i]> n.pi:
+			Omega[i] = Omega[i]-2*n.pi
 	return Omega
 
 
@@ -105,6 +104,12 @@ def CellInvert(ucell):
   
 	return [astar, bstar, cstar, alpstar, betstar, gamstar]
 
+
+def OMEGA(omega):
+	Om = n.array([[n.cos(omega), -n.sin(omega), 0],
+		      [n.sin(omega),  n.cos(omega), 0],
+		      [  0         ,  0           , 1]])
+	return Om
 
 def CellVolume(ucell):
         a = ucell[0]
