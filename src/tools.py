@@ -1,6 +1,7 @@
 
 import numpy as n
-from math import degrees
+from numpy import dot, sin, cos, sqrt, arccos, arctan2
+from math import degrees, pi
 
 
 def find_omega_wedge(Gw,tth,wedge):
