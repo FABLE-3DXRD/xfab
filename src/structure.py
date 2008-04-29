@@ -163,7 +163,7 @@ class build_atomlist:
             blocks = cf.keys()
             if len(blocks) > 1:
                 if len(blocks) == 2 and 'global' in blocks:
-                    blockname = blocks[abs(blocks.index('global')-1)]
+                    cifblkname = blocks[abs(blocks.index('global')-1)]
                 else:
                     logging.error('More than one possible data set:')
                     logging.error('The following data block names are in the file:')
@@ -172,7 +172,7 @@ class build_atomlist:
                     raise Exception
             else:
                 # Only one available
-                blockname = blocks[0]
+                cifblkname = blocks[0]
         #Extract block
         try:
             self.cifblk = cf[cifblkname]
