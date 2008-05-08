@@ -124,6 +124,34 @@ def FormFactor(atomtype,stl):
     return formfac
 
 
+def int_intensity(F2,L,P,I0,wavelength,cell_vol,cryst_vol):
+	"""
+	Calculate the reflection intensities scaling factor
+        
+        INPUT:
+        F2        : the structure factor squared
+        L         : Lorentz factor
+        P         : Polarisation factor
+        I0        : Incoming beam flux
+        wavelength: in Angstroem
+        cell_vol  : Volume of unit cell in AA^3
+        cryst_vol : Volume of crystal in mm^3
+
+        OUTPUT:
+        int_intensity: integrated intensity
+
+        """
+#        print F2,L,P,I0,wavelength,cell_vol,cryst_vol
+        
+	emass =9.1093826e-31
+	echarge = 1.60217653e-19
+	pi4eps0 = 1.11265e-10
+	c = 299792458.0
+	k1 = (echarge**2/(pi4eps0*emass*c**2)*1000)**2 # Unit is mm
+	k2 = wavelength**3 * cryst_vol * 1e21/cell_vol**2 # 1e21 to go from mm^3 to AA^3
+        return k1*k2*I0*L*P*F2
+
+
 class atom_entry:
     def __init__(self,label=None, atomtype=None, pos=None,
                  adp_type=None, adp=None, occ=None, symmulti=None):
