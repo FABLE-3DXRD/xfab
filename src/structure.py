@@ -210,7 +210,11 @@ class build_atomlist:
         return self.cifblk
 
     def PDBread(self,pdbfile = None):
-        from string import atof,split,lower,upper
+        """
+        function to read pdb file (www.pdb.org) and make 
+        atomlist structure
+        """
+        from string import atof,atoi,lower,upper
         from re import sub
         try:
            text = open(pdbfile,'r').readlines()
@@ -219,8 +223,7 @@ class build_atomlist:
 
 
         for i in range(len(text)):
-            ff = text[i].find('CRYST1')
-            if ff == 0:
+            if text[i].find('CRYST1') == 0:
                 a = atof(text[i][6:15])
                 b = atof(text[i][15:24])
                 c = atof(text[i][24:33])
@@ -231,40 +234,43 @@ class build_atomlist:
 
         self.atomlist.cell = [a, b, c, alp, bet, gam]
 
-        #self.atomlist.sgname = upper(sub("\s+","",cifblk['_symmetry_space_group_name_H-M']))
-        sgtmp =split(sg)
+        # Make space group name
+        sgtmp =sg.split()
         sg = ''
-
         for i in range(len(sgtmp)):
             if sgtmp[i] != '1':
                 sg=sg+lower(sgtmp[i])
-        self.atomlist.sgname = sgtmp
+        self.atomlist.sgname = sg
 
+        # Build SCALE matrix for transformation of 
+        # orthonormal atomic coordinates to fractional
+        scalemat = n.zeros((3,4))
         for i in range(len(text)):
-            ff = text[i].find('SCALE')
-            if ff == 0:
+            if text[i].find('SCALE') == 0:
                 # FOUND SCALE LINE
-                pass
-
-
+                scale = text[i].split()
+                scaleline = atoi(scale[0][-1])-1
+                for j in range(1,len(scale)):
+                    scalemat[scaleline,j-1] = atof(scale[j])
+                
         no = 0
         for i in range(len(text)):
-            ff = text[i].find('ATOM')
-            ff2 = text[i].find('HETATM')
-            if ff == 0 or ff2 ==0:
+            if text[i].find('ATOM') == 0 or text[i].find('HETATM') ==0:
                 no = no + 1 
                 label = sub("\s+","",text[i][12:16])
                 atomtype = upper(sub("\s+","",text[i][76:78]))
                 x = atof(text[i][30:38])
                 y = atof(text[i][38:46])
                 z = atof(text[i][46:54])
-                adp = atof(text[i][60:66])/(8*n.pi*n.pi)
+                # transform orthonormal coordinates to fractional
+                pos = n.dot(scalemat,[x,y,z,1])
+                adp = atof(text[i][60:66])/(8*n.pi**2) # B to U
                 adp_type = 'Uiso'
                 occ = atof(text[i][54:60])
                 multi = 1.0
                 self.atomlist.add_atom(label=label,
                                        atomtype=atomtype,
-                                       pos = [x,y,z],
+                                       pos = pos,
                                        adp_type= adp_type,
                                        adp = adp,
                                        occ=occ ,
