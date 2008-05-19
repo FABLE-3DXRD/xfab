@@ -209,6 +209,69 @@ class build_atomlist:
             raise IOError
         return self.cifblk
 
+    def PDBread(self,pdbfile = None):
+        from string import atof,split,lower,upper
+        from re import sub
+        try:
+           text = open(pdbfile,'r').readlines()
+        except:
+            logging.error('File %s could not be accessed' %pdbfile)
+
+
+        for i in range(len(text)):
+            ff = text[i].find('CRYST1')
+            if ff == 0:
+                a = atof(text[i][6:15])
+                b = atof(text[i][15:24])
+                c = atof(text[i][24:33])
+                alp = atof(text[i][33:40])
+                bet = atof(text[i][40:47])
+                gam = atof(text[i][47:54])
+                sg = text[i][55:66]
+
+        self.atomlist.cell = [a, b, c, alp, bet, gam]
+
+        #self.atomlist.sgname = upper(sub("\s+","",cifblk['_symmetry_space_group_name_H-M']))
+        sgtmp =split(sg)
+        sg = ''
+
+        for i in range(len(sgtmp)):
+            if sgtmp[i] != '1':
+                sg=sg+lower(sgtmp[i])
+        self.atomlist.sgname = sgtmp
+
+        for i in range(len(text)):
+            ff = text[i].find('SCALE')
+            if ff == 0:
+                # FOUND SCALE LINE
+                pass
+
+
+        no = 0
+        for i in range(len(text)):
+            ff = text[i].find('ATOM')
+            ff2 = text[i].find('HETATM')
+            if ff == 0 or ff2 ==0:
+                no = no + 1 
+                label = sub("\s+","",text[i][12:16])
+                atomtype = upper(sub("\s+","",text[i][76:78]))
+                x = atof(text[i][30:38])
+                y = atof(text[i][38:46])
+                z = atof(text[i][46:54])
+                adp = atof(text[i][60:66])/(8*n.pi*n.pi)
+                adp_type = 'Uiso'
+                occ = atof(text[i][54:60])
+                multi = 1.0
+                self.atomlist.add_atom(label=label,
+                                       atomtype=atomtype,
+                                       pos = [x,y,z],
+                                       adp_type= adp_type,
+                                       adp = adp,
+                                       occ=occ ,
+                                       symmulti=multi)
+
+
+
     def CIFread(self,ciffile = None, cifblkname = None, cifblk = None):
         from re import sub
         from string import upper
@@ -238,7 +301,8 @@ class build_atomlist:
                      self.remove_esd(cifblk['_atom_type_scat_dispersion_imag'][i])]
             except:
                 self.atomlist.dispersion[cifblk['_atom_type_symbol'][i]] = None
-                logging.warning('No dispersion factors for %s in cif file - set to zero' %cifblk['_atom_type_symbol'][i])
+                logging.warning('No dispersion factors for %s in cif file - set to zero'\
+                                    %cifblk['_atom_type_symbol'][i])
 
         for i in range(len(cifblk['_atom_site_type_symbol'])):
             label = cifblk['_atom_site_label'][i]
@@ -286,7 +350,7 @@ class build_atomlist:
     def remove_esd(self,a):
         """                                                                         
         This function will remove the esd part of the entry,
-        e.g. '1.234(56)' to '1.234'.                                                                             
+        e.g. '1.234(56)' to '1.234'.
         """
         from string import atof
         
