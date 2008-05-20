@@ -20,7 +20,6 @@ def StructureFactor(hkl,ucell,sgname,atoms,disper = None):
     Henning Osholm Sorensen, June 23, 2006.
     Translated to python code April 8, 2008
     """
-    
     mysg = sg.sg(sgname=sgname) 
     stl = tools.sintl(ucell,hkl)
     noatoms = len(atoms)
@@ -41,12 +40,12 @@ def StructureFactor(hkl,ucell,sgname,atoms,disper = None):
 
         # Atomic form factors
         f = FormFactor(atoms[i].atomtype,stl)
-        if disper != None:
-            fp = disper[atoms[i].atomtype][0]
-            fpp = disper[atoms[i].atomtype][1]
-        else:
+        if disper == None or disper[atoms[i].atomtype] ==None :
             fp = 0.0
             fpp = 0.0
+        else:
+            fp = disper[atoms[i].atomtype][0]
+            fpp = disper[atoms[i].atomtype][1]
 
         for j in range(mysg.nsymop):
             # atomic displacement factor
@@ -276,6 +275,7 @@ class build_atomlist:
                                        occ=occ ,
                                        symmulti=multi)
 
+                self.atomlist.dispersion[atomtype] = None
 
 
     def CIFread(self,ciffile = None, cifblkname = None, cifblk = None):
