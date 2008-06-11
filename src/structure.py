@@ -37,10 +37,9 @@ def StructureFactor(hkl,ucell,sgname,atoms,disper = None):
             betaij = Uij2betaij(atoms[i].adp,ucell);
         else:
             logging.error("wrong no of elements in atomlist")
-
         # Atomic form factors
         f = FormFactor(atoms[i].atomtype,stl)
-        if disper == None or disper[atoms[i].atomtype] ==None :
+        if disper == None or disper[atoms[i].atomtype] == None :
             fp = 0.0
             fpp = 0.0
         else:
@@ -302,11 +301,11 @@ class build_atomlist:
         # Dispersion factors
         for i in range(len(cifblk['_atom_type_symbol'])):
             try:
-                self.atomlist.dispersion[cifblk['_atom_type_symbol'][i]] =\
+                self.atomlist.dispersion[upper(cifblk['_atom_type_symbol'][i])] =\
                     [self.remove_esd(cifblk['_atom_type_scat_dispersion_real'][i]),
                      self.remove_esd(cifblk['_atom_type_scat_dispersion_imag'][i])]
             except:
-                self.atomlist.dispersion[cifblk['_atom_type_symbol'][i]] = None
+                self.atomlist.dispersion[upper(cifblk['_atom_type_symbol'][i])] = None
                 logging.warning('No dispersion factors for %s in cif file - set to zero'\
                                     %cifblk['_atom_type_symbol'][i])
 
@@ -349,7 +348,6 @@ class build_atomlist:
                         self.remove_esd(cifblk['_atom_site_aniso_U_23'][anisonumber]),
                         self.remove_esd(cifblk['_atom_site_aniso_U_13'][anisonumber]),
                         self.remove_esd(cifblk['_atom_site_aniso_U_12'][anisonumber])]
-            
             self.atomlist.add_atom(label=label, atomtype=atomtype, pos = [x,y,z],
                                    adp_type= adp_type, adp = adp, occ=occ , symmulti=multi)
 
