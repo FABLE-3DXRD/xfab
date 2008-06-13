@@ -40,7 +40,7 @@ def find_omega_wedge(Gw,tth,wedge):
 		Omega.append(n.arctan2(somega,comega))
 		if Omega[i]> n.pi:
 			Omega[i] = Omega[i]-2*n.pi
-	return Omega
+	return n.array(Omega)
 
 
 
@@ -71,7 +71,7 @@ def find_omega(Gw,tth):
 		Omega.append(n.arccos(comega))
 		if somega < 0:
 			Omega[1] = -Omega[1]
-	return Omega
+	return n.array(Omega)
 
 
 
