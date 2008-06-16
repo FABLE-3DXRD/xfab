@@ -4,6 +4,19 @@ import numpy as n
 
 from xfab import structure
 
+        
+
+class test_multiplicity(unittest.TestCase):
+    def test_general_pos(self):
+         multi = structure.multiplicity(n.array([0.13,0.23,0.05]),sgname='P21')
+         self.assertEquals(multi,1)
+    def test_alu_pos(self):
+         multi = structure.multiplicity(n.array([0.0,0.0,0.0]),sgname='Fm-3m')
+         self.assertEquals(multi,48)
+    def test_tft_mirror(self):
+         multi = structure.multiplicity(n.array([0.0,0.25821,0.16339]),sgname='Cmca')
+         self.assertEquals(multi,2)
+
 class test_cifread(unittest.TestCase):
     def test_cifopen(self):  ## test method names begin 'test*'
         mylist =  structure.build_atomlist()
@@ -13,6 +26,7 @@ class test_cifread(unittest.TestCase):
         mylist.CIFread('PPA.cif','oPPA')
         self.assertEquals([8.5312,4.8321,10.125,90.00,92.031,90.00],
                           mylist.atomlist.cell)
+
 
 class test_structurefactor(unittest.TestCase):
     def test_sfcalc(self):  ## test method names begin 'test*'

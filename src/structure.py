@@ -150,6 +150,29 @@ def int_intensity(F2,L,P,I0,wavelength,cell_vol,cryst_vol):
         return k1*k2*I0*L*P*F2
 
 
+def multiplicity(position,sgname):
+    mysg = sg.sg(sgname=sgname)
+    lp = n.zeros((mysg.nuniq,3))
+
+    for i in range(mysg.nuniq):
+        lp[i,:] = n.dot(position,mysg.rot[i])+mysg.trans[i]
+
+    lpu = n.array([lp[0,:]])
+    nuniq = 1
+
+    for i in range(1,mysg.nuniq):
+        for j in range(nuniq):
+            t = lp[i]-lpu[j]
+            if n.sum(n.mod(t,1)) < 0.00001:
+                break
+            else:
+                if j == nuniq-1:
+                    lpu = n.concatenate((lpu, [lp[i,:]]))
+                    nuniq += 1
+
+    multi = mysg.nuniq/nuniq
+    return multi
+
 class atom_entry:
     def __init__(self,label=None, atomtype=None, pos=None,
                  adp_type=None, adp=None, occ=None, symmulti=None):
@@ -265,7 +288,7 @@ class build_atomlist:
                 adp = atof(text[i][60:66])/(8*n.pi**2) # B to U
                 adp_type = 'Uiso'
                 occ = atof(text[i][54:60])
-                multi = 1.0
+                multi = multiplicity(pos,sgname)
                 self.atomlist.add_atom(label=label,
                                        atomtype=atomtype,
                                        pos = pos,
@@ -331,9 +354,7 @@ class build_atomlist:
             elif cifblk.has_key('_atom_site_symetry_multiplicity'):
                 multi = self.remove_esd(cifblk['_atom_site_symetry_multiplicity'][i])
             else:
-                multi = 1.0
-                logging.warning('%s has no multiplicity given in cif file >>>  Value default 1.0' %label)
-
+                multi = multiplicity([x,y,z],self.atomlist.sgname)
 
 
             if adp_type == None:
