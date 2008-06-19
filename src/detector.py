@@ -77,3 +77,65 @@ def trans_orientation(img,o11,o12,o21,o22,dir='forward'):
             img = n.flipud(img)
         return img
     raise ValueError, 'detector orientation makes no sense 3'
+
+
+
+def detyz2xy(coor,o11,o12,o21,o22,dety_size,detz_size):
+    """
+    Transforming dety, detz coordinates to meet (x,y) coordinates
+    of the raw image according to the  detector orientation matrix given.
+    The definition of (dety,detz) is defined in 
+    "3DXRD and TotalCryst Geometry - Version 1.0.2" by
+    H.F. Poulsen, S. Schmidt, J. Wright, H.O. Sorensen
+    
+    Detector_orientation: o= [[o11,o12],
+                              [o21,o22]]
+    returns (dety,detz)
+    """
+    
+
+    if abs(o11) == 1:
+         if (abs(o22) != 1) or (o12 != 0) or (o21 != 0):
+             raise ValueError, 'detector orientation makes no sense 1'
+    elif abs(o12) == 1:
+        if abs(o21) != 1 or (o11 != 0) or (o22 != 0):
+            raise ValueError, 'detector orientation makes no sense 2'
+    else:
+        raise ValueError, 'detector orientation makes no sense 3'
+    # transpose (dety,detz) to (detz,dety) to match order of (x,y)
+    coor = n.array([coor[1],coor[0]])
+    o = n.array([[o11,o12],[o21,o22]])
+    det_size = n.array([dety_size-1,detz_size-1])
+    coor = n.dot(o,coor)- n.clip(n.dot(o,det_size),-n.max(det_size),0)
+    return coor
+
+def xy2detyz(coor,o11,o12,o21,o22,dety_size,detz_size):
+    """
+    Transforming (x,y) coordinates of the raw image 
+    to (dety, detz) coordinates according to the  
+    detector orientation matrix given.
+    The definition of (dety,detz) is defined in 
+    "3DXRD and TotalCryst Geometry - Version 1.0.2" by
+    H.F. Poulsen, S. Schmidt, J. Wright, H.O. Sorensen
+    
+    Detector_orientation: o= [[o11,o12],
+                              [o21,o22]]
+    returns (dety,detz)
+
+    """
+    
+
+    if abs(o11) == 1:
+         if (abs(o22) != 1) or (o12 != 0) or (o21 != 0):
+             raise ValueError, 'detector orientation makes no sense 1'
+    elif abs(o12) == 1:
+        if abs(o21) != 1 or (o11 != 0) or (o22 != 0):
+            raise ValueError, 'detector orientation makes no sense 2'
+    else:
+        raise ValueError, 'detector orientation makes no sense 3'
+    o = n.array([[o11,o12],[o21,o22]])
+    det_size = n.array([dety_size-1,detz_size-1])
+    coor = n.dot(o,coor)- n.clip(n.dot(o,det_size),-n.max(det_size),0)
+    # transpose (x,y) to (y,x) to match order of (dety,detz)
+    coor = n.array([coor[1],coor[0]])
+    return coor

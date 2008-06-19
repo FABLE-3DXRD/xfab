@@ -103,5 +103,22 @@ class test_detector_flips(unittest.TestCase):
         self.assertEquals(a.tolist(),b.tolist())
 
 
+class test_detector_coord_transform(unittest.TestCase):
+    def test1(self):  ## o11, o12, o21, o22 = 1, 0, 0, 1
+        xy = [10,20]
+        (dety,detz) = detector.detyz2xy(xy,1,0,0,1,1024,1024)
+        self.assertEquals(xy,[detz,dety])
+
+    def test2(self):  ## o11, o12, o21, o22 = 1, 0, 0, 1
+        detyz = [10,20]
+        (x,y) = detector.xy2detyz(detyz,1,0,0,1,1024,1024)
+        self.assertEquals(detyz,[y,x])
+
+    def test3(self):  ## o11, o12, o21, o22 = -1, 0, 0, -1
+        detyz = n.array([841.38745747, 62.2754412563])
+        xy = detector.xy2detyz(detyz,-1,0,0,-1,1024,1024)
+        detyz2 = detector.detyz2xy(xy,-1,0,0,-1,1024,1024)
+        self.assertEquals(detyz.all(),detyz2.all())
+
 if __name__ == '__main__':
     unittest.main()
