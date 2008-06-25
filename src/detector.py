@@ -19,7 +19,7 @@ def det_coor(Gt, costth, wavelength, distance, y_size, z_size, dety_center, detz
     v = n.array([costth, 
                  wavelength/(2*n.pi)*Gt[1],
                  wavelength/(2*n.pi)*Gt[2]])
-    t = R_tilt[0,0]*distance/n.sum(R_tilt[:,0]*v)
+    t = (R_tilt[0,0]*distance-n.sum(R_tilt[:,0]*n.array([tx, ty, tz])))/n.sum(R_tilt[:,0]*v)
     Ltv = n.array([tx-distance, ty, tz])+ t*v
     dety = n.sum(R_tilt[:,1]*Ltv)/y_size + dety_center
     detz = n.sum(R_tilt[:,2]*Ltv)/z_size + detz_center
