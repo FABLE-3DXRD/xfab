@@ -6,19 +6,52 @@ def det_coor(Gt, costth, wavelength, distance, y_size, z_size, dety_center, detz
              R_tilt, tx, ty, tz,):
     """
     Calculates detector coordinates dety,detz
+
     INPUT:
     Gt is the g-vector 
     y_size and z-size are the detector pixel size in y, and z (in microns)
     (dety_center, detz-center) is the beam center of the detector (in pixels)
     R_tilt is the rotation matrix of the detector
     (tx, ty, tz) is the position of the grain at the present omega
+
     OUTPUT:
     [dety, detz]
     """
 
+    # Unit directional vector for reflection
     v = n.array([costth, 
                  wavelength/(2*n.pi)*Gt[1],
                  wavelength/(2*n.pi)*Gt[2]])
+    t = (R_tilt[0,0]*distance-n.sum(R_tilt[:,0]*n.array([tx, ty, tz])))/n.sum(R_tilt[:,0]*v)
+    Ltv = n.array([tx-distance, ty, tz])+ t*v
+    dety = n.sum(R_tilt[:,1]*Ltv)/y_size + dety_center
+    detz = n.sum(R_tilt[:,2]*Ltv)/z_size + detz_center
+    return [dety, detz]
+
+def det_coor2(tth, eta, distance, y_size, z_size, dety_center, detz_center,
+             R_tilt, tx, ty, tz,):
+    """
+    Calculates detector coordinates dety,detz
+    Alternative to det_coor using the angles the azimuthal angle eta for calculation of 
+    the detector coordinates instead of the g-vector
+
+    INPUT:
+    tth is two-theta
+    eta is the azimuthal angle around the beam center ccw with eta= 0 at +ylab
+    y_size and z-size are the detector pixel size in y, and z (in microns)
+    (dety_center, detz-center) is the beam center of the detector (in pixels)
+    R_tilt is the rotation matrix of the detector
+    (tx, ty, tz) is the position of the grain at the present omega
+
+    OUTPUT:
+    [dety, detz]
+    """
+    costth = n.cos(tth)
+    sintth = n.sin(tth)
+    # Unit directional vector for reflection
+    v = n.array([costth, 
+                 -sintth*n.sin(eta),
+                 sintth*n.cos(eta)])
     t = (R_tilt[0,0]*distance-n.sum(R_tilt[:,0]*n.array([tx, ty, tz])))/n.sum(R_tilt[:,0]*v)
     Ltv = n.array([tx-distance, ty, tz])+ t*v
     dety = n.sum(R_tilt[:,1]*Ltv)/y_size + dety_center

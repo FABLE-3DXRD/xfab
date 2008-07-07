@@ -1,6 +1,6 @@
 import unittest
 import numpy as n
-from xfab import detector
+from xfab import tools,detector
 
 class test_detector_flips(unittest.TestCase):
 
@@ -119,6 +119,40 @@ class test_detector_coord_transform(unittest.TestCase):
         xy = detector.xy2detyz(detyz,-1,0,0,-1,1024,1024)
         detyz2 = detector.detyz2xy(xy,-1,0,0,-1,1024,1024)
         self.assertEquals(detyz.all(),detyz2.all())
+
+class test_detector_coord(unittest.TestCase):
+    def test_compare_calc(self):  
+        tth =  21.836334 *n.pi/180.
+        omega = -89.247851 *n.pi/180.
+        eta =  45.480703*n.pi/180.
+        (dety_orig, detz_orig) = (109.418256, 925.772491)
+        gv = n.dot(tools.OMEGA(omega),n.array([3.260078, -0.928075, 3.217533]))
+        wavelength = 0.5092836 # in angstrom
+        distance  = 135.00                        # sample-detector distance (mm)
+        dety_center = 521.5                              # beamcenter, y in pixel coordinatees
+        detz_center = 531.5                              # beamcenter, z in pixel coordinatees
+        y_size = 0.0936   # Pixel size y (mm)
+        z_size = 0.0962   # Pixel size z (mm)
+        dety_size = 1024.0     # detector y size (pixels)
+        detz_size = 1024.0     # detector z size (pixels)
+        tilt_x =   0.0        # detector tilt counterclockwise around lab x axis in rad 
+        tilt_y =   0.0        # detector tilt counterclockwise around lab y axis in rad 
+        tilt_z =   0.0       # detector tilt counterclockwise around lab z axis in rad 
+        tx = 0
+        ty = 0
+        tz = 0
+        R_tilt = tools.detect_tilt(tilt_x,tilt_y,tilt_z)
+        costth = n.cos(tth)
+
+        (dety1,detz1) = detector.det_coor(gv,costth , wavelength, distance, y_size, z_size, dety_center, detz_center,
+             R_tilt, tx, ty, tz)
+        #print dety1,detz1
+        (dety2,detz2) = detector.det_coor2(tth, eta, distance, y_size, z_size, dety_center, detz_center,
+             R_tilt, tx, ty, tz)
+        #print dety2,detz2
+
+        self.assertAlmostEquals(dety1,dety2,4)
+        self.assertAlmostEquals(detz1,detz2,4)
 
 if __name__ == '__main__':
     unittest.main()
