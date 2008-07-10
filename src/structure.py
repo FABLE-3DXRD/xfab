@@ -288,7 +288,7 @@ class build_atomlist:
                 adp = atof(text[i][60:66])/(8*n.pi**2) # B to U
                 adp_type = 'Uiso'
                 occ = atof(text[i][54:60])
-                multi = multiplicity(pos,sgname)
+                multi = multiplicity(pos,self.atomlist.sgname)
                 self.atomlist.add_atom(label=label,
                                        atomtype=atomtype,
                                        pos = pos,
