@@ -7,6 +7,7 @@ def find_omega_wedge(Gw,tth,wedge):
 	"""
 	This code is taken from the GrainSpotter program by Soren Schmidt
 	"""
+	
 
 	#Normalize G-vector
 	Gw = Gw/n.sqrt(n.dot(Gw,Gw))
@@ -21,11 +22,13 @@ def find_omega_wedge(Gw,tth,wedge):
 	coseta = ( Gw[2]*length + sinwedge * cosfactor ) / coswedge / sintth
 
 	Omega = []
+	eta = []
 
 	if (abs(coseta)>1.):
-		return Omega
+		return Omega,eta
 	# else calc the two eta values
-        eta = [n.arccos(coseta), 2*n.pi-n.arccos(coseta)]
+        eta = n.array([n.arccos(coseta), 2*n.pi-n.arccos(coseta)])
+	#print eta*180.0/n.pi
 	
 	# Now find the Omega value(s)
 	# A slight change in the code from GrainSpotter: the lenght 
@@ -40,7 +43,7 @@ def find_omega_wedge(Gw,tth,wedge):
 		Omega.append(n.arctan2(somega,comega))
 		if Omega[i]> n.pi:
 			Omega[i] = Omega[i]-2*n.pi
-	return n.array(Omega)
+	return n.array(Omega),eta
 
 
 
@@ -74,8 +77,6 @@ def find_omega(Gw,tth):
 	return n.array(Omega)
 
 
-
-
 def CellInvert(ucell):
         a = ucell[0]
         b = ucell[1]
@@ -106,6 +107,13 @@ def CellInvert(ucell):
 
 
 def OMEGA(omega):
+	"""
+	Calc Omega rotation matrix having an omega angle of "omega"
+
+	INPUT: omega (in radians)
+	
+	OUTPUT: Omega rotation matrix
+	"""
 	Om = n.array([[n.cos(omega), -n.sin(omega), 0],
 		      [n.sin(omega),  n.cos(omega), 0],
 		      [  0         ,  0           , 1]])
@@ -444,6 +452,7 @@ def quart2Omega(w,wx,wy):
         return Omega
 
 
+
 def sintl(ucell,hkl):
 	# sintl calculate sin(theta)/lambda of the reflection "hkl" given
 	# the unit cell "ucell" 
@@ -476,6 +485,44 @@ def sintl(ucell,hkl):
 
 	return stl
 
+
+def tth(ucell,hkl,wavelength):
+	"""
+
+	tth calculate two theta of the reflection given
+	the unit cell and wavelenght
+	
+	INPUT:  ucell = [a, b, c, alpha, beta, gamma] (in Angstroem and degrees)
+	        hkl = [h, k, l]
+	        wavelenth (in Angstroem) 
+
+	OUTPUT: twotheta (in radians)
+	
+	Henning Osholm Sorensen, Risoe-DTU, July 16, 2008.
+	"""
+
+	stl = sintl(ucell,hkl) # calls sintl function in tools
+	tth = 2*n.arcsin(wavelength*stl)
+	
+	return tth
+
+def tth2(gve,wavelength):
+	"""
+	
+	calculates two theta for a scattering vector given the wavelenght
+	
+	INPUT:  gve: scattering vector 
+	             (defined in reciprocal space (2*pi/lambda))
+	        wavelenth (in Angstroem) 
+
+	OUTPUT: twotheta (in radians)
+	
+	Henning Osholm Sorensen, Risoe DTU, July 17, 2008.
+	"""
+	length = n.sqrt(n.dot(gve,gve))
+	tth = 2.0*n.arcsin(length*wavelength/(4*n.pi))
+	
+	return tth
 
 def genhkl(ucell,sysconditions,sintlmin,sintlmax):
     """
