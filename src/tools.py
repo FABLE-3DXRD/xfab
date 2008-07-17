@@ -133,20 +133,19 @@ def CellVolume(ucell):
 	return V
 
 def FormB(ucell):
-	# calculate B matrix of (Gcart = B Ghkl) following eq. 3.4 in 
-	#   H.F. Poulsen.
-	#   Three-dimensional X-ray diffraction microscopy. 
-	#   Mapping polycrystals and their dynamics. 
-	#   (Springer Tracts in Modern Physics, v. 205), (Springer, Berlin, 2004).
-	#
-	#
-	# FormB(unit_cell)
-	#
-	# unit_cell = [a, b, c, alpha, beta, gamma] 
-	# returns B [3x3]
-	#
-	# Henning Osholm Sorensen, June 11, 2007.
+	"""
+	calculate B matrix of (Gcart = B Ghkl) following eq. 3.4 in 
+	H.F. Poulsen.
+	Three-dimensional X-ray diffraction microscopy. 
+	Mapping polycrystals and their dynamics. 
+	Springer Tracts in Modern Physics, v. 205), (Springer, Berlin, 2004).
 	
+	INPUT:  ucell - unit_cell = [a, b, c, alpha, beta, gamma] 
+	OUTPUT: B - a 3x3 matrix
+	
+	Henning Osholm Sorensen, Risoe-DTU, June 11, 2007.
+	"""
+
         a = ucell[0]
         b = ucell[1]
         c = ucell[2]
@@ -180,19 +179,18 @@ def FormB(ucell):
 
 
 def FormA(ucell):
-	# calculate the A matrix given in eq. 3.23 of 
-	#   H.F. Poulsen.
-	#   Three-dimensional X-ray diffraction microscopy. 
-	#   Mapping polycrystals and their dynamics. 
-	#   (Springer Tracts in Modern Physics, v. 205), (Springer, Berlin, 2004).
-	#
-	#
-	# FormA(unit_cell)
-	#
-	# unit_cell = [a, b, c, alpha, beta, gamma] 
-	# returns A [3x3]
-	#
-	# Jette Oddershede, March 7, 2008.
+	"""
+	calculate the A matrix given in eq. 3.23 of H.F. Poulsen.
+	Three-dimensional X-ray diffraction microscopy. 
+	Mapping polycrystals and their dynamics. 
+	(Springer Tracts in Modern Physics, v. 205), (Springer, Berlin, 2004).
+	
+	INPUT: ucell - unit_cell = [a, b, c, alpha, beta, gamma] 
+	
+	OUTPUT A - a 3x3 matrix
+	
+	Jette Oddershede, March 7, 2008.
+	"""
 	
         a = ucell[0]
         b = ucell[1]
@@ -224,15 +222,17 @@ def FormAinv(ucell):
 
 
 def A2ucell(A):
-    # calculate lattice constants from the A-matix as
-	# defined in H.F.Poulsen 2004 eqn.3.23
-	#
-	# A2ucell(A)
-	#
-	# A [3x3] upper triangular matrix
-	# returns unit_cell = [a, b, c, alpha, beta, gamma] 
-	#
-	# Jette Oddershede, March 10, 2008.
+	"""
+	calculate lattice constants from the A-matix as
+	defined in H.F.Poulsen 2004 eqn.3.23
+	
+	A2ucell(A)
+	
+	A [3x3] upper triangular matrix
+	returns unit_cell = [a, b, c, alpha, beta, gamma] 
+	
+	Jette Oddershede, March 10, 2008.
+	"""
 
 		g = n.dot(n.transpose(A),A)
 		a = n.sqrt(g[0,0])
@@ -245,15 +245,15 @@ def A2ucell(A):
 		return ucell
 	
 def B2ucell(B): 
-    # calculate lattice constants from the B-matix as
-	# defined in H.F.Poulsen 2004 eqn.3.4
-	#
-	# B2ucell(B)
-	#
-	# B [3x3] upper triangular matrix
-	# returns unit_cell = [a, b, c, alpha, beta, gamma] 
-	#
-	# Jette Oddershede, April 21, 2008.
+	"""
+	calculate lattice constants from the B-matix as
+	defined in H.F.Poulsen 2004 eqn.3.4
+	
+	B [3x3] upper triangular matrix
+	returns unit_cell = [a, b, c, alpha, beta, gamma] 
+	
+	Jette Oddershede, April 21, 2008.
+	"""
         
 		B = B/(2*n.pi)
 		g = n.dot(n.transpose(B),B)
@@ -268,17 +268,17 @@ def B2ucell(B):
 		return ucell
 	
 def epsilon2B(epsilon,ucell):
-    #   calculate B matrix of (Gcart = B Ghkl) from epsilon and unstrained cell
-	#   as in H.F. Poulsen (2004) page 33.
-    #
-	# epsilon2B(epsilon, ucell)
-	#
-	# epsilon = [e11, e12, e13, e22, e23, e33] 
-	# unit_cell = [a, b, c, alpha, beta, gamma] 
-	#
-	# returns B [3x3] for strained lattice constants
-	#
-	# Jette Oddershede, March 10, 2008.
+	"""
+	calculate B matrix of (Gcart = B Ghkl) from epsilon and 
+	unstrained cell	as in H.F. Poulsen (2004) page 33.
+
+	INPUT: epsilon - strain tensor [e11, e12, e13, e22, e23, e33] 
+	       ucell - unit cell = [a, b, c, alpha, beta, gamma] 
+	
+	OUTPUT: B - [3x3] for strained lattice constants
+	
+	Jette Oddershede, March 10, 2008.
+	"""
 	
 	A0inv = FormAinv(ucell)
 	A = n.zeros([3,3])
@@ -293,17 +293,18 @@ def epsilon2B(epsilon,ucell):
 	return B
 	
 def B2epsilon(B,ucell):
-    #   calculate epsilon from the the unstrained cell and the B matrix of (Gcart = B Ghkl) 
-	#   as in H.F. Poulsen (2004) page 33.
-    #
-	# B2epsilon(epsilon, ucell)
-	#
-	# B upper triangular 3x3 matrix of strained lattice constants
-	# unit_cell = [a, b, c, alpha, beta, gamma] of unstrained lattice
-	#
-	# returns epsilon = [e11, e12, e13, e22, e23, e33] 
-	#
-	# Jette Oddershede, April 21, 2008.
+	"""
+	calculate epsilon from the the unstrained cell and 
+	the B matrix of (Gcart = B Ghkl) as in H.F. Poulsen (2004) page 33.
+    
+	INPUT: B - upper triangular 3x3 matrix of strained lattice constants
+	       ucell -  unit cell = [a, b, c, alpha, beta, gamma] 
+	                of unstrained lattice
+	
+	OUTPUT: epsilon = [e11, e12, e13, e22, e23, e33] 
+	
+	Jette Oddershede, April 21, 2008.
+	"""
 	
 	A0inv = FormAinv(ucell)
 	A = FormA(B2ucell(B))
@@ -314,21 +315,23 @@ def B2epsilon(B,ucell):
 	return epsilon
 	
 def euler2U(phi1,PHI,phi2):
-	# U matrix from Euler angles phi1, PHI, phi2.
-	# The formalism follows the ID11-3DXRD specs
-	#
-	#   U = euler2u(phi1, PHI, phi2)
-	#
-	# INPUT: phi, PHI, and phi2 in radians
-	# OUTPUT [U11 U12 U13; U21 U22 U23; U31 U32 U33]
-	#
-	#  Henning Poulsen, Risoe 15/6 2002.
-	#
-	# Changed input angles to be in radians instead of degrees
-	# Henning Osholm Sorensen, Riso National Laboratory, June 23, 2006.
-	#
-	# Translated from MATLAB to python by Jette Oddershede, March 26 2008
-	#
+	"""
+	U matrix from Euler angles phi1, PHI, phi2.
+	The formalism follows the ID11-3DXRD specs
+	
+	  U = euler2u(phi1, PHI, phi2)
+	
+	INPUT: phi, PHI, and phi2 in radians
+	OUTPUT [U11 U12 U13; U21 U22 U23; U31 U32 U33]
+	
+	 Henning Poulsen, Risoe 15/6 2002.
+	
+	Changed input angles to be in radians instead of degrees
+	Henning Osholm Sorensen, Riso National Laboratory, June 23, 2006.
+	
+	Translated from MATLAB to python by Jette Oddershede, March 26 2008
+	
+	"""
 	U = n.zeros([3,3])
 	U[0,0] =  n.cos(phi1)*n.cos(phi2)-n.sin(phi1)*n.sin(phi2)*n.cos(PHI)
 	U[1,0] =  n.sin(phi1)*n.cos(phi2)+n.cos(phi1)*n.sin(phi2)*n.cos(PHI)
@@ -342,21 +345,24 @@ def euler2U(phi1,PHI,phi2):
 	return U
 	
 def U2euler(U):
-        # Euler angles (phi1, PHI, phi2) from U matrix
-	# The formalism follows the ID11-3DXRD specs
-	# Note that there are two solutions
-	# (phi1, PHI, phi2) AND (phi1 + pi, -PHI, phi2 + pi)
-	# We pick the one with phi1 in the range [-pi/2 pi/2]
-	#
-	# Henning Poulsen, Risoe National Laboratory June 15, 2002.
-	#
-	# Fails if U[2,1] or U[1,2] = 0 e.g. then U[2,2] = ~1
-	# If U[2,2] ~ 1 ph1 = ph2 = atan(U[1,0]/U[0,0])/2
-	# In this case there is only one solution.
-	#
-	# Henning Osholm Sorensen, Risoe National Laboratory, June 23, 2006.
-	#
-	# Translated from MATLAB to python by Henning Osholm, March 28, 2008.
+	"""
+        Euler angles (phi1, PHI, phi2) from U matrix
+	The formalism follows the ID11-3DXRD specs
+	Note that there are two solutions
+	(phi1, PHI, phi2) AND (phi1 + pi, -PHI, phi2 + pi)
+	We pick the one with phi1 in the range [-pi/2 pi/2]
+	
+	Henning Poulsen, Risoe National Laboratory June 15, 2002.
+	
+	Fails if U[2,1] or U[1,2] = 0 e.g. then U[2,2] = ~1
+	If U[2,2] ~ 1 ph1 = ph2 = atan(U[1,0]/U[0,0])/2
+	In this case there is only one solution.
+	
+	Henning Osholm Sorensen, Risoe National Laboratory, June 23, 2006.
+	
+	Translated from MATLAB to python by Henning Osholm, March 28, 2008.
+	"""
+
 	phi1 = [0,0]
 	PHI  = [0,0]
 	phi2 = [0,0]
