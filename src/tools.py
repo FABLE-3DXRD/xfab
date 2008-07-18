@@ -234,15 +234,15 @@ def A2ucell(A):
 	Jette Oddershede, March 10, 2008.
 	"""
 
-		g = n.dot(n.transpose(A),A)
-		a = n.sqrt(g[0,0])
-		b = n.sqrt(g[1,1])
-		c = n.sqrt(g[2,2])
-		alpha = degrees(n.arccos(g[1,2]/b/c))
-		beta  = degrees(n.arccos(g[0,2]/a/c))
-		gamma = degrees(n.arccos(g[0,1]/a/b))
-		ucell = [a, b, c, alpha, beta, gamma]
-		return ucell
+	g = n.dot(n.transpose(A),A)
+	a = n.sqrt(g[0,0])
+	b = n.sqrt(g[1,1])
+	c = n.sqrt(g[2,2])
+	alpha = degrees(n.arccos(g[1,2]/b/c))
+	beta  = degrees(n.arccos(g[0,2]/a/c))
+	gamma = degrees(n.arccos(g[0,1]/a/b))
+	ucell = [a, b, c, alpha, beta, gamma]
+	return ucell
 	
 def B2ucell(B): 
 	"""
@@ -255,17 +255,17 @@ def B2ucell(B):
 	Jette Oddershede, April 21, 2008.
 	"""
         
-		B = B/(2*n.pi)
-		g = n.dot(n.transpose(B),B)
-		astar = n.sqrt(g[0,0])
-		bstar = n.sqrt(g[1,1])
-		cstar = n.sqrt(g[2,2])
-		alphastar = degrees(n.arccos(g[1,2]/bstar/cstar))
-		betastar  = degrees(n.arccos(g[0,2]/astar/cstar))
-		gammastar = degrees(n.arccos(g[0,1]/astar/bstar))
-		
-		ucell = CellInvert([astar,bstar,cstar,alphastar,betastar,gammastar])
-		return ucell
+	B = B/(2*n.pi)
+	g = n.dot(n.transpose(B),B)
+	astar = n.sqrt(g[0,0])
+	bstar = n.sqrt(g[1,1])
+	cstar = n.sqrt(g[2,2])
+	alphastar = degrees(n.arccos(g[1,2]/bstar/cstar))
+	betastar  = degrees(n.arccos(g[0,2]/astar/cstar))
+	gammastar = degrees(n.arccos(g[0,1]/astar/bstar))
+	
+	ucell = CellInvert([astar,bstar,cstar,alphastar,betastar,gammastar])
+	return ucell
 	
 def epsilon2B(epsilon,ucell):
 	"""
