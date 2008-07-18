@@ -172,3 +172,25 @@ def xy2detyz(coor,o11,o12,o21,o22,dety_size,detz_size):
     # transpose (x,y) to (y,x) to match order of (dety,detz)
     coor = n.array([coor[1],coor[0]])
     return coor
+
+def distort(coor,o11,o12,o21,o22,dety_size,detz_size,spatial):
+    # To match the coordinate system of the spline file
+    (x,y) = detyz2xy(coor,
+                     o11,
+                     o12,
+                     o21,
+                     o22,
+                     dety_size,
+                     detz_size)
+    # Do the spatial distortion
+    (xd,yd) = spatial.distort(x,y)
+    
+    # transform coordinates back to dety,detz
+    coord = xy2detyz([xd,yd],
+                    o11,
+                    o12,
+                    o21,
+                    o22,
+                    dety_size,
+                    detz_size)
+    return coord
