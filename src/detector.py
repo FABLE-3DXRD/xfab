@@ -138,7 +138,7 @@ def detyz2xy(coor,o11,o12,o21,o22,dety_size,detz_size):
     # transpose (dety,detz) to (detz,dety) to match order of (x,y)
     coor = n.array([coor[1],coor[0]])
     o = n.array([[o11,o12],[o21,o22]])
-    det_size = n.array([dety_size-1,detz_size-1])
+    det_size = n.array([detz_size-1,dety_size-1]) # also transpose coord in size
     coor = n.dot(o,coor)- n.clip(n.dot(o,det_size),-n.max(det_size),0)
     return coor
 
