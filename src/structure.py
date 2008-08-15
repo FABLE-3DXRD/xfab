@@ -36,7 +36,10 @@ def StructureFactor(hkl,ucell,sgname,atoms,disper = None):
             # transform Uij to betaij
             betaij = Uij2betaij(atoms[i].adp,ucell);
         else:
-            logging.error("wrong no of elements in atomlist")
+            expij = 1
+            atoms[i].adp = 'Uiso'
+            #logging.error("wrong no of elements in atomlist")
+
         # Atomic form factors
         f = FormFactor(atoms[i].atomtype,stl)
         if disper == None or disper[atoms[i].atomtype] == None :
