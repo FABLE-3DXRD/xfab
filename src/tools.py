@@ -221,6 +221,39 @@ def FormAinv(ucell):
         return Ainv
 
 
+def ubi2ucell(ubi):
+	"""
+	calculate lattice constants from the UBI-matrix as
+	defined in H.F.Poulsen 2004 eqn.3.23
+	
+	ubi2ucell(ubi)
+	
+	ubi [3x3] matrix of (U*B)^-1
+	in this case B = B /2pi
+	returns unit_cell = [a, b, c, alpha, beta, gamma] 
+	
+	"""
+	ucell = A2ucell(n.transpose(ubi))
+	return n.array(ucell)
+	
+def ubi2U(ubi):
+	"""
+	calculate lattice constants from the UBI-matrix 
+	defined(U*B)^-1 and is B from FormB devided by 2pi
+	
+	ubi2U(ubi)
+	
+	ubi [3x3] matrix
+
+	returns U matrix 
+	
+	"""
+	ucell = ubi2ucell(ubi)
+	B = FormB(ucell)
+	U = n.transpose(n.dot(B,ubi))/(2*n.pi)
+	return U
+	
+
 def A2ucell(A):
 	"""
 	calculate lattice constants from the A-matix as
