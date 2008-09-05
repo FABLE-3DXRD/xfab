@@ -684,15 +684,15 @@ def sysabs(hkl,syscond):
     if syscond[1] != 0 :
         x = syscond[1]
         if (abs(h+l))%x !=0:
-            sysabs=1
+            sysabs=2
 
     if syscond[2] != 0:
         x = syscond[2]
         if (abs(k+l))%x !=0:
-            sysabs=1
+            sysabs=3
 
     if syscond[3] != 0:
-        sysabs=1
+        sysabs=4
         x = syscond[3]
         if (abs(h+k))%x == 0:
             if (abs(h+l))%x == 0:
@@ -702,61 +702,61 @@ def sysabs(hkl,syscond):
     if syscond[4] != 0:
         x = syscond[4]
         if (abs(h+k+l))%x != 0:
-            sysabs=1
+            sysabs=5
 
     if syscond[5] != 0:
         x = syscond[5]
         if (abs(-h+k+l))%x != 0:
-            sysabs=1
+            sysabs=6
 
     # HHL class
     if (h-k) == 0:
         if syscond[6] != 0 :
             x = syscond[6]
             if (abs(h))%x != 0:
-                sysabs = 1
+                sysabs = 7
         if syscond[7] != 0:
             x = syscond[7]
             if (abs(l))%x != 0:
-                sysabs = 1
+                sysabs = 8
         if syscond[8] != 0:
             x = syscond[8]
             if (abs(h+l))%x != 0:
-                sysabs = 1
+                sysabs = 9
         if syscond[9] != 0:
             x = syscond[9]
             if (abs(h+h+l))%x != 0:
-                sysabs = 1
+                sysabs = 10
 
     # 0KL class
     if h == 0:
         if syscond[10] != 0:
             x = syscond[10]
             if (abs(k))%x != 0:
-                sysabs = 1
+                sysabs = 11
         if syscond[11] != 0:
             x = syscond[11]
             if (abs(l))%x != 0:
-                sysabs = 1
+                sysabs = 12
         if syscond[12] != 0:
             x = syscond[12]
             if (abs(k+l))%x != 0:
-                sysabs = 1
+                sysabs = 13
 
     # H0L class
     if k == 0:
         if syscond[13] != 0:
             x = syscond[13]
             if (abs(h))%x != 0:
-                sysabs = 1
+                sysabs = 14
         if syscond[14] != 0:
             x = syscond[14]
             if (abs(l))%x != 0:
-                sysabs = 1
+                sysabs = 15
         if syscond[15] != 0:
             x = syscond[15]
             if (abs(h+l))%x != 0:
-                sysabs = 1
+                sysabs = 16
 
 
     # HK0 class
@@ -764,15 +764,15 @@ def sysabs(hkl,syscond):
         if syscond[16] != 0:
             x = syscond[16]
             if (abs(h))%x != 0:
-                sysabs = 1
+                sysabs = 17
         if syscond[17] != 0:
             x = syscond[17]
             if (abs(k))%x != 0:
-                sysabs = 1
+                sysabs = 18
         if syscond[18] != 0:
             x = syscond[18]
             if (abs(h+k))%x != 0:
-                sysabs = 1
+                sysabs = 19
 
     # HH0 class
     if l == 0:
@@ -780,29 +780,29 @@ def sysabs(hkl,syscond):
             if syscond[19] != 0: 
                 x = syscond[19]
                 if (abs(h))%x != 0:
-                    sysabs = 1
+                    sysabs = 20
 
     # H00 class
     if abs(k)+abs(l) == 0:
         if syscond[20] != 0:
             x = syscond[20]
             if (abs(h))%x != 0:
-                sysabs = 1
+                sysabs = 21
 
     # 0K0 class
     if abs(h)+abs(l) == 0:
         if syscond[21] != 0:
             x = syscond[21]
             if (abs(k))%x != 0:
-                sysabs = 1
+                sysabs = 22
 
     # 00L class
     if abs(h)+abs(k) == 0:
         if syscond[22] != 0:
             x = syscond[22]
             if (abs(l))%x != 0:
-                sysabs = 1
-
+                sysabs = 23
+    
     return sysabs
 
 
