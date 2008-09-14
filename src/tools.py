@@ -563,7 +563,7 @@ def tth2(gve,wavelength):
 	
 	return tth
 
-def genhkl(ucell,sysconditions,sintlmin,sintlmax):
+def genhkl(ucell,sysconditions,sintlmin,sintlmax,output_stl=None):
     """
      Generate reflections up to maximum sin(theta)/lambda (sintlmax)
      The program follows the method described in: 
@@ -577,8 +577,9 @@ def genhkl(ucell,sysconditions,sintlmin,sintlmax):
                     [[ 0, 1, -1],[ 1, 0, 0],[ 0, 1, 0],[ 0, 0, -1]]])
 
     nref = 0
-    H = n.array([[0,0,0]])         # Data of half sphere
-    stl = n.array([0])
+    #H = n.array([[0,0,0]])         # Data of half sphere
+    H = n.zeros((0,3))
+    stl = n.array([])
     sintlH = 0.0
 
     for i in range(4):
@@ -597,10 +598,11 @@ def genhkl(ucell,sysconditions,sintlmin,sintlmax):
                     nref = nref + 1
                     if nref != 1:
                         if sysabs(HLAST,sysconditions) == 0:
-                            H = n.concatenate((H,[HLAST]))
-                            H = n.concatenate((H,[-HLAST]))
-                            stl = n.concatenate((stl,[sintlH]))
-                            stl = n.concatenate((stl,[sintlH]))
+				if  sintlH > sintlmin and sintlH <= sintlmax:
+					H = n.concatenate((H,[HLAST]))
+					H = n.concatenate((H,[-HLAST]))
+					stl = n.concatenate((stl,[sintlH]))
+					stl = n.concatenate((stl,[sintlH]))
                         else: 
                             nref=nref - 1
                     HNEW = HLAST + segm[segn,1,:]
@@ -627,11 +629,11 @@ def genhkl(ucell,sysconditions,sintlmin,sintlmax):
                 ltest = 1
             ktest = 0
 
-    H =  H[1:]  #remove the [0 0 0] used for being able to use n.concatanate
-    #stl =  stl[1:] #remove the [0 0 0] used for being able to use n.concatanate
-    #stl = transpose([stl])
-    #Hstl = concatenate((H,stl),1) # combine hkl and sintl
-    #return Hstl
+    stl = n.transpose([stl])
+    H = n.concatenate((H,stl),1) # combine hkl and sintl
+    H =  H[n.argsort(H,0)[:,3],:] # sort hkl's according to stl
+    if output_stl == None:
+	    H = H[:,:3]
     return H
 
 def sysabs(hkl,syscond):
