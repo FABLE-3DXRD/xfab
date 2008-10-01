@@ -58,6 +58,17 @@ def det_coor2(tth, eta, distance, y_size, z_size, dety_center, detz_center,
     detz = n.sum(R_tilt[:,2]*Ltv)/z_size + detz_center
     return [dety, detz]
 
+    
+def detector2lab(dety,detz,L,py,pz,y0,z0,R_tilt):
+    """
+        calculates the laboratory coordinates (xl,yl,zl) from the detector coordinates (dety,detz),
+        the sample-to-detector distance L, the pixel sizes (py and pz), the beam centre (y0,z0) 
+        and the detector tilt R_tilt 
+    """
+       
+    lab = n.array([[L],[0],[0]]) + n.dot(R_tilt,n.array([[0],[py*(dety-y0)],[pz*(detz-z0)]]))
+    return [lab[0][0],lab[1][0],lab[2][0]]
+    
 
 def trans_orientation(img,o11,o12,o21,o22,dir='forward'):
     """
