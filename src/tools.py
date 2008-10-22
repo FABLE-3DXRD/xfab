@@ -3,6 +3,52 @@ import numpy as n
 from math import degrees
 
 
+def find_omega_quart(Gw,tth,wx,wy):
+    """
+    For Gw find the omega rotation (in radians) around an axis 
+    tilted by wx radians around x (chi) and wy radians around y (wedge)
+    Furthermore find eta (in radians)
+    Soren Schmidt, implemented by Jette Oddershede
+    """
+
+    assert abs(n.dot(Gw,Gw)-n.sin(tth/2)**2) < 1e-9, 'g-vector must have length sin(theta)'
+    Wx = n.array([[1, 0        , 0         ],
+                  [0, n.cos(wx), -n.sin(wx)],
+		          [0, n.sin(wx),  n.cos(wx)]])
+    Wy = n.array([[ n.cos(wy), 0, n.sin(wy)],
+	              [0         , 1, 0        ],
+	              [-n.sin(wy), 0, n.cos(wy)]])
+    normal = n.dot(Wx,n.dot(Wy,n.array([0,0,1])))
+
+    a = Gw[0]*(1-normal[0]**2) - Gw[1]*normal[0]*normal[1] - Gw[2]*normal[0]*normal[2]
+    b = Gw[2]*normal[1] - Gw[1]*normal[2]
+    c = - n.dot(Gw,Gw) - Gw[0]*normal[0]**2 - Gw[1]*normal[0]*normal[1] - Gw[2]*normal[0]*normal[2]
+    d = a*a + b*b - c*c
+
+    omega = []
+    eta = []
+    if d < 0:
+        pass
+    else:
+        sqD = n.sqrt(d)
+    
+    
+        for i in range(2):
+            cosomega = (a*c + b*sqD*(-1)**i)/(a*a+b*b)
+            sinomega = (b*c + a*sqD*(-1)**(i+1))/(a*a+b*b)
+            omega.append(n.arctan2(sinomega,cosomega))
+            if omega[i] > n.pi:
+                omega[i] = omega[i] - 2*n.pi
+            Omega = quart2Omega(omega[i]*180./n.pi,wx,wy)
+            G = n.dot(Omega,Gw)
+            sineta = -2*G[1]/n.sin(tth)
+            coseta = 2*G[2]/n.sin(tth)
+            eta.append(n.arctan2(sineta,coseta))
+            
+    return n.array(omega),n.array(eta)
+    
+    
+
 def find_omega_wedge(Gw,tth,wedge):
 	"""
 	This code is taken from the GrainSpotter program by Soren Schmidt
@@ -115,8 +161,8 @@ def OMEGA(omega):
 	OUTPUT: Omega rotation matrix
 	"""
 	Om = n.array([[n.cos(omega), -n.sin(omega), 0],
-		      [n.sin(omega),  n.cos(omega), 0],
-		      [  0         ,  0           , 1]])
+                  [n.sin(omega),  n.cos(omega), 0],
+                  [  0         ,  0           , 1]])
 	return Om
 
 def CellVolume(ucell):
@@ -469,7 +515,8 @@ def detect_tilt(tilt_x,tilt_y,tilt_z):
 		          [              0,              0,              1]])
 	R = n.dot(Rx,n.dot(Ry,Rz))
 	return R
-        
+       
+       
 def quart2Omega(w,wx,wy):
 	"""
          calculate the Omega rotation matrix given w (the motorised rotation in degrees, usually around the z-axis)
@@ -483,11 +530,11 @@ def quart2Omega(w,wx,wy):
         Wy = n.array([[ n.cos(wy), 0, n.sin(wy)],
 		              [0         , 1, 0        ],
 		              [-n.sin(wy), 0, n.cos(wy)]])
-        qua = n.dot(Wx,n.dot(Wy,n.array([[0],[0],[n.sin(whalf)]]))) 
-        q = [n.cos(whalf),qua[0,0],qua[1,0],qua[2,0]] 
+        qua = n.dot(Wx,n.dot(Wy,n.array([0,0,n.sin(whalf)]))) 
+        q = [n.cos(whalf),qua[0],qua[1],qua[2]] 
         Omega = n.array([[1-2*q[2]**2-2*q[3]**2  ,2*q[1]*q[2]-2*q[3]*q[0],2*q[1]*q[3]+2*q[2]*q[0]],
-			 [2*q[1]*q[2]+2*q[3]*q[0],1-2*q[1]**2-2*q[3]**2  ,2*q[2]*q[3]-2*q[1]*q[0]],
-			 [2*q[1]*q[3]-2*q[2]*q[0],2*q[2]*q[3]+2*q[1]*q[0],1-2*q[1]**2-2*q[2]**2]])
+                        [2*q[1]*q[2]+2*q[3]*q[0],1-2*q[1]**2-2*q[3]**2  ,2*q[2]*q[3]-2*q[1]*q[0]],
+                        [2*q[1]*q[3]-2*q[2]*q[0],2*q[2]*q[3]+2*q[1]*q[0],1-2*q[1]**2-2*q[2]**2]])
         return Omega
 
 
