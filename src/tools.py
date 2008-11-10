@@ -471,6 +471,19 @@ def U2euler(U):
 		    mk = k
 	return n.array([ phi1[1], PHI[mj], phi2[mk] ])
 
+def U2rod(U):
+    """
+    Get Rodrigues vector from U matrix (Busing Levy)
+    Taken from ImageD11.indexing.ubitoRod of Jon Wright
+    
+    OBS: changes sign of Rod vector compared to original function
+    """
+    w,v = n.linalg.eig(U)
+    ehat = v[:,0]
+    angle = -1*n.arccos(w[1].real)
+    Rod = ehat * n.tan(angle/2.)
+    return Rod.real
+
 def rod2U(r):
 	# rod2U calculates the U orientation matrix given an oriention
 	# represented in Rodrigues space. r = [r1, r2, r3]
