@@ -78,6 +78,12 @@ def trans_orientation(img,o11,o12,o21,o22,dir='forward'):
     as defined in 
     "3DXRD and TotalCryst Geometry - Version 1.0.2" by
     H.F. Poulsen, S. Schmidt, J. Wright, H.O. Sorensen
+
+    It is important to note that the image is not only flipped 
+    using the orientation matrix, but also transposed such the 
+    the returned array img has the coordinates [dety,detz].
+    Therefore even the identy orientation matrix performs a transformation.
+    To avoid this please use the function image_flipping
     
     Detector_orientation: [[o11,o12],[o21,o22]]
     if pretransposed to get img -> img(dety,detz) then
@@ -91,6 +97,11 @@ def trans_orientation(img,o11,o12,o21,o22,dir='forward'):
            [[  0, -1],[ -1,  0]]  => fliplr flipud
            [[  0, -1],[  1,  0]]  => fliplr
            [[  0,  1],[ -1,  0]]  => flipud
+           
+    dir can takes the values 'forward' or 'inverse'
+    ´forward': raw image -> 3DXRD standard
+    'inverse': 3DXRD standard -> raw image
+ 
     """
 
     if abs(o11) == 1:
@@ -133,17 +144,22 @@ def image_flipping(img,o11,o12,o21,o22,dir='forward'):
     H.F. Poulsen, S. Schmidt, J. Wright, H.O. Sorensen
     
     Detector_orientation: [[o11,o12],[o21,o22]]
-    if pretransposed to get img -> img(dety,detz) then
+
            [[o11,o12],[o21,o22]]
            [[  1,  0],[  0,  1]]  => nothing
-           [[ -1,  0],[  0,  1]]  => fliplr
-           [[  1,  0],[  0, -1]]  => flipud
+           [[ -1,  0],[  0,  1]]  => flipud
+           [[  1,  0],[  0, -1]]  => fliplr
            [[ -1,  0],[  0, -1]]  => flipud fliplr
-    These will not be pretransposed
-           [[  0,  1],[  1,  0]]  => nothing
-           [[  0, -1],[ -1,  0]]  => fliplr flipud
-           [[  0, -1],[  1,  0]]  => fliplr
-           [[  0,  1],[ -1,  0]]  => flipud
+
+           [[  0,  1],[  1,  0]]  => transpose
+           [[  0, -1],[ -1,  0]]  => transpose fliplr flipud
+           [[  0, -1],[  1,  0]]  => transpose flipud
+           [[  0,  1],[ -1,  0]]  => transpose flipud
+           
+    dir can takes the values 'forward' or 'inverse'
+    ´forward': raw image -> 3DXRD standard
+    'inverse': 3DXRD standard -> raw image
+
     """
 
     if abs(o11) == 1:
@@ -163,14 +179,14 @@ def image_flipping(img,o11,o12,o21,o22,dir='forward'):
         
         if o12 == -1:
             if dir == 'forward':
-                img = n.fliplr(img)
-            else:
                 img = n.flipud(img)
+            else:
+                img = n.fliplr(img)
         if o21 == -1:
             if dir == 'forward':
-                img = n.flipud(img)
-            else:
                 img = n.fliplr(img)
+            else:
+                img = n.flipud(img)
         return img
     raise ValueError, 'detector orientation makes no sense 3'
 
