@@ -28,17 +28,20 @@ def Umis(U_1,U_2,crystal_system):
     #Permutation matrix defined by crystal system 
     perm = permutations(crystal_system)
     nperm = perm.shape[0]
-
+    print nperm
     t_save = zeros((0,2))
     for k in range(nperm):
+        print k
         g = dot(U_2,transpose(dot(U_1,perm[k])))
         detg = det(g)
+        print k,g,detg
         if detg < 0.9999 or detg > 1.0001:
             print 'mistake %f' %detg
         else:
             length = (g.diagonal().sum()-1.)/2.
             if abs(length) > 1.00000000:
-                continue
+                length = 1.
+            print k,length
             t = arccos(length)
             t_save = concatenate((t_save,array([[k,t*180/pi]])),0)
     return t_save
