@@ -40,12 +40,15 @@ def Umis(U_1,U_2,crystal_system):
         else:
             length = (g.diagonal().sum()-1.)/2.
             if abs(length) > 1.00000000:
-                length = 1.
-#            print k,length
+                if length > 1:
+                    length = 1.
+                else:
+                    length = -1.                    
             t = arccos(length)
             t_save = concatenate((t_save,array([[k,t*180/pi]])),0)
     return t_save
 
+    
 def add_perm(U,crystal_system):
     perm = permutations(crystal_system)
     nperm = perm.shape[0]
