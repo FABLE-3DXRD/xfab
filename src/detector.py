@@ -98,9 +98,9 @@ def trans_orientation(img,o11,o12,o21,o22,dir='forward'):
            [[  0, -1],[  1,  0]]  => fliplr
            [[  0,  1],[ -1,  0]]  => flipud
            
-    dir can takes the values 'forward' or 'inverse'
-    ´forward': raw image -> 3DXRD standard
-    'inverse': 3DXRD standard -> raw image
+    dir can takes the values forward or inverse
+    forward: raw image -> 3DXRD standard
+    inverse: 3DXRD standard -> raw image
  
     """
 
@@ -156,9 +156,9 @@ def image_flipping(img,o11,o12,o21,o22,dir='forward'):
            [[  0, -1],[  1,  0]]  => transpose flipud
            [[  0,  1],[ -1,  0]]  => transpose flipud
            
-    dir can takes the values 'forward' or 'inverse'
-    ´forward': raw image -> 3DXRD standard
-    'inverse': 3DXRD standard -> raw image
+    dir can takes the values forward or inverse
+    forward: raw image -> 3DXRD standard
+    inverse: 3DXRD standard -> raw image
 
     """
 
