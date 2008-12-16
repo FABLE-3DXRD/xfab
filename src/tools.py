@@ -400,15 +400,14 @@ def euler2U(phi1,PHI,phi2):
 	
 	  U = euler2u(phi1, PHI, phi2)
 	
-	INPUT: phi, PHI, and phi2 in radians
-	OUTPUT [U11 U12 U13; U21 U22 U23; U31 U32 U33]
-	
-	 Henning Poulsen, Risoe 15/6 2002.
+	INPUT: phi1, PHI, and phi2 angles in radians
+	OUTPUT: U = array([[U11, U12, U13],[ U21, U22, U23],[U31, U32, U33]])
 	
 	Changed input angles to be in radians instead of degrees
 	Henning Osholm Sorensen, Riso National Laboratory, June 23, 2006.
 	
 	Translated from MATLAB to python by Jette Oddershede, March 26 2008
+        Origingal MATLAB code from: Henning Poulsen, Risoe 15/6 2002.
 	
 	"""
 	U = n.zeros([3,3])
@@ -425,14 +424,16 @@ def euler2U(phi1,PHI,phi2):
 	
 def U2euler(U):
 	"""
-        Euler angles (phi1, PHI, phi2) from U matrix
+        calculate Euler angles (phi1, PHI, phi2) from a U matrix
 	The formalism follows the ID11-3DXRD specs
 	Note that there are two solutions
 	(phi1, PHI, phi2) AND (phi1 + pi, -PHI, phi2 + pi)
 	We pick the one with phi1 in the range [-pi/2 pi/2]
 	
-	Henning Poulsen, Risoe National Laboratory June 15, 2002.
-	
+	INPUT: array([[U11, U12, U13],[ U21, U22, U23],[U31, U32, U33]])
+
+	OUTPUT: euler_angles = array([phi1, PHI, phi2]) in radians
+
 	Fails if U[2,1] or U[1,2] = 0 e.g. then U[2,2] = ~1
 	If U[2,2] ~ 1 ph1 = ph2 = atan(U[1,0]/U[0,0])/2
 	In this case there is only one solution.
@@ -440,6 +441,10 @@ def U2euler(U):
 	Henning Osholm Sorensen, Risoe National Laboratory, June 23, 2006.
 	
 	Translated from MATLAB to python by Henning Osholm, March 28, 2008.
+
+        Originally based on code from:
+	Henning Poulsen, Risoe National Laboratory June 15, 2002.
+
 	"""
 
 	phi1 = [0,0]
@@ -453,23 +458,25 @@ def U2euler(U):
 	else:
             # There is two solutions
             phi1[0] = n.arctan(-U[0,2]/U[1,2])
-            phi2[0] = n.arctan(-U[2,0]/U[2,1])
+            phi2[0] = n.arctan(U[2,0]/U[2,1])
             PHI[1] = 2*n.pi-PHI[0]
 	    phi1[1] = phi1[0]+n.pi
 	    phi2[1] = phi2[0]+n.pi
-
+            
+        # Pick smallest solution for phi1
+        phi1 = min(phi1)
 	# The correct combination is found by brute-force
 	minsum = n.Inf  
 	for j in range(2):
 	    for k in range(2):
-                U2 = euler2U(phi1[1],PHI[j],phi2[k])
+                U2 = euler2U(phi1,PHI[j],phi2[k])
 		Udev = abs(U2-U)
 		sumUdev = n.sum(Udev)
 		if sumUdev < minsum:
 		    minsum = sumUdev
 		    mj = j
 		    mk = k
-	return n.array([ phi1[1], PHI[mj], phi2[mk] ])
+	return n.array([ phi1, PHI[mj], phi2[mk] ])
 
 def U2rod(U):
     """
