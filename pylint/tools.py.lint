@@ -1,0 +1,268 @@
+************* Module src.tools
+C: 10:find_omega_quart: Invalid name "gw" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 10:find_omega_quart: Invalid name "wx" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 10:find_omega_quart: Invalid name "wy" (should match [a-z_][a-z0-9_]{2,30}$)
+R: 10:find_omega_quart: Too many local variables (21/15)
+C: 20:find_omega_quart: Invalid name "Wx" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 23:find_omega_quart: Invalid name "Wy" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 28:find_omega_quart: Invalid name "a" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 31:find_omega_quart: Invalid name "b" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 32:find_omega_quart: Invalid name "c" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 35:find_omega_quart: Invalid name "d" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 42:find_omega_quart: Invalid name "sqD" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 51:find_omega_quart: Invalid name "Omega" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 52:find_omega_quart: Invalid name "G" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 61:find_omega_wedge: Invalid name "gw" (should match [a-z_][a-z0-9_]{2,30}$)
+R: 61:find_omega_wedge: Too many local variables (17/15)
+C: 70:find_omega_wedge: Invalid name "gw" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 81:find_omega_wedge: Invalid name "Omega" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 94:find_omega_wedge: Invalid name "a" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 96:find_omega_wedge: Invalid name "b" (should match [a-z_][a-z0-9_]{2,30}$)
+C:108:find_omega: Missing docstring
+C:108:find_omega: Invalid name "gw" (should match [a-z_][a-z0-9_]{2,30}$)
+C:109:find_omega: Invalid name "Glen" (should match [a-z_][a-z0-9_]{2,30}$)
+C:114:find_omega: Invalid name "a" (should match [a-z_][a-z0-9_]{2,30}$)
+C:115:find_omega: Invalid name "b" (should match [a-z_][a-z0-9_]{2,30}$)
+C:116:find_omega: Invalid name "c" (should match [a-z_][a-z0-9_]{2,30}$)
+C:118:find_omega: Invalid name "d" (should match [a-z_][a-z0-9_]{2,30}$)
+C:119:find_omega: Invalid name "sqD" (should match [a-z_][a-z0-9_]{2,30}$)
+C:121:find_omega: Invalid name "Omega" (should match [a-z_][a-z0-9_]{2,30}$)
+C:123:find_omega: Invalid name "sqD" (should match [a-z_][a-z0-9_]{2,30}$)
+C:137:CellInvert: Invalid name "CellInvert" (should match [a-z_][a-z0-9_]{2,30}$)
+R:137:CellInvert: Too many local variables (20/15)
+C:147:CellInvert: Invalid name "a" (should match [a-z_][a-z0-9_]{2,30}$)
+C:148:CellInvert: Invalid name "b" (should match [a-z_][a-z0-9_]{2,30}$)
+C:149:CellInvert: Invalid name "c" (should match [a-z_][a-z0-9_]{2,30}$)
+C:156:CellInvert: Invalid name "V" (should match [a-z_][a-z0-9_]{2,30}$)
+C:175:OMEGA: Invalid name "OMEGA" (should match [a-z_][a-z0-9_]{2,30}$)
+C:183:OMEGA: Invalid name "Om" (should match [a-z_][a-z0-9_]{2,30}$)
+C:188:CellVolume: Invalid name "CellVolume" (should match [a-z_][a-z0-9_]{2,30}$)
+C:198:CellVolume: Invalid name "a" (should match [a-z_][a-z0-9_]{2,30}$)
+C:199:CellVolume: Invalid name "b" (should match [a-z_][a-z0-9_]{2,30}$)
+C:200:CellVolume: Invalid name "c" (should match [a-z_][a-z0-9_]{2,30}$)
+C:207:CellVolume: Invalid name "V" (should match [a-z_][a-z0-9_]{2,30}$)
+C:210:FormB: Invalid name "FormB" (should match [a-z_][a-z0-9_]{2,30}$)
+R:210:FormB: Too many local variables (19/15)
+C:224:FormB: Invalid name "a" (should match [a-z_][a-z0-9_]{2,30}$)
+C:225:FormB: Invalid name "b" (should match [a-z_][a-z0-9_]{2,30}$)
+C:226:FormB: Invalid name "c" (should match [a-z_][a-z0-9_]{2,30}$)
+C:235:FormB: Invalid name "V" (should match [a-z_][a-z0-9_]{2,30}$)
+C:250:FormB: Invalid name "B" (should match [a-z_][a-z0-9_]{2,30}$)
+C:257:FormA: Invalid name "FormA" (should match [a-z_][a-z0-9_]{2,30}$)
+C:271:FormA: Invalid name "a" (should match [a-z_][a-z0-9_]{2,30}$)
+C:272:FormA: Invalid name "b" (should match [a-z_][a-z0-9_]{2,30}$)
+C:273:FormA: Invalid name "c" (should match [a-z_][a-z0-9_]{2,30}$)
+C:282:FormA: Invalid name "V" (should match [a-z_][a-z0-9_]{2,30}$)
+C:289:FormA: Invalid name "A" (should match [a-z_][a-z0-9_]{2,30}$)
+C:294:FormAinv: Invalid name "FormAinv" (should match [a-z_][a-z0-9_]{2,30}$)
+C:308:FormAinv: Invalid name "A" (should match [a-z_][a-z0-9_]{2,30}$)
+C:309:FormAinv: Invalid name "Ainv" (should match [a-z_][a-z0-9_]{2,30}$)
+C:328:ubi2U: Invalid name "ubi2U" (should match [a-z_][a-z0-9_]{2,30}$)
+C:341:ubi2U: Invalid name "B" (should match [a-z_][a-z0-9_]{2,30}$)
+C:342:ubi2U: Invalid name "U" (should match [a-z_][a-z0-9_]{2,30}$)
+C:346:A2ucell: Invalid name "A2ucell" (should match [a-z_][a-z0-9_]{2,30}$)
+C:346:A2ucell: Invalid name "A" (should match [a-z_][a-z0-9_]{2,30}$)
+C:359:A2ucell: Invalid name "g" (should match [a-z_][a-z0-9_]{2,30}$)
+C:360:A2ucell: Invalid name "a" (should match [a-z_][a-z0-9_]{2,30}$)
+C:361:A2ucell: Invalid name "b" (should match [a-z_][a-z0-9_]{2,30}$)
+C:362:A2ucell: Invalid name "c" (should match [a-z_][a-z0-9_]{2,30}$)
+C:369:B2ucell: Invalid name "B2ucell" (should match [a-z_][a-z0-9_]{2,30}$)
+C:369:B2ucell: Invalid name "B" (should match [a-z_][a-z0-9_]{2,30}$)
+C:380:B2ucell: Invalid name "B" (should match [a-z_][a-z0-9_]{2,30}$)
+C:381:B2ucell: Invalid name "g" (should match [a-z_][a-z0-9_]{2,30}$)
+C:393:epsilon2B: Invalid name "epsilon2B" (should match [a-z_][a-z0-9_]{2,30}$)
+C:406:epsilon2B: Invalid name "A0inv" (should match [a-z_][a-z0-9_]{2,30}$)
+C:407:epsilon2B: Invalid name "A" (should match [a-z_][a-z0-9_]{2,30}$)
+C:415:epsilon2B: Invalid name "B" (should match [a-z_][a-z0-9_]{2,30}$)
+C:418:B2epsilon: Invalid name "B2epsilon" (should match [a-z_][a-z0-9_]{2,30}$)
+C:418:B2epsilon: Invalid name "B" (should match [a-z_][a-z0-9_]{2,30}$)
+C:432:B2epsilon: Invalid name "A0inv" (should match [a-z_][a-z0-9_]{2,30}$)
+C:433:B2epsilon: Invalid name "A" (should match [a-z_][a-z0-9_]{2,30}$)
+C:434:B2epsilon: Invalid name "T" (should match [a-z_][a-z0-9_]{2,30}$)
+C:435:B2epsilon: Invalid name "I" (should match [a-z_][a-z0-9_]{2,30}$)
+C:441:euler2U: Invalid name "euler2U" (should match [a-z_][a-z0-9_]{2,30}$)
+C:441:euler2U: Invalid name "PHI" (should match [a-z_][a-z0-9_]{2,30}$)
+C:458:euler2U: Invalid name "U" (should match [a-z_][a-z0-9_]{2,30}$)
+C:470:U2euler: Invalid name "U2euler" (should match [a-z_][a-z0-9_]{2,30}$)
+C:470:U2euler: Invalid name "U" (should match [a-z_][a-z0-9_]{2,30}$)
+C:496:U2euler: Invalid name "PHI" (should match [a-z_][a-z0-9_]{2,30}$)
+C:517:U2euler: Invalid name "U2" (should match [a-z_][a-z0-9_]{2,30}$)
+C:518:U2euler: Invalid name "Udev" (should match [a-z_][a-z0-9_]{2,30}$)
+C:519:U2euler: Invalid name "sumUdev" (should match [a-z_][a-z0-9_]{2,30}$)
+C:522:U2euler: Invalid name "mj" (should match [a-z_][a-z0-9_]{2,30}$)
+C:523:U2euler: Invalid name "mk" (should match [a-z_][a-z0-9_]{2,30}$)
+C:526:U2rod: Invalid name "U2rod" (should match [a-z_][a-z0-9_]{2,30}$)
+C:526:U2rod: Invalid name "U" (should match [a-z_][a-z0-9_]{2,30}$)
+C:533:U2rod: Invalid name "w" (should match [a-z_][a-z0-9_]{2,30}$)
+C:533:U2rod: Invalid name "v" (should match [a-z_][a-z0-9_]{2,30}$)
+C:536:U2rod: Invalid name "Rod" (should match [a-z_][a-z0-9_]{2,30}$)
+C:539:rod2U: Invalid name "rod2U" (should match [a-z_][a-z0-9_]{2,30}$)
+C:539:rod2U: Invalid name "r" (should match [a-z_][a-z0-9_]{2,30}$)
+C:544:rod2U: Invalid name "g" (should match [a-z_][a-z0-9_]{2,30}$)
+C:545:rod2U: Invalid name "r2" (should match [a-z_][a-z0-9_]{2,30}$)
+C:578:detect_tilt: Invalid name "Rx" (should match [a-z_][a-z0-9_]{2,30}$)
+C:581:detect_tilt: Invalid name "Ry" (should match [a-z_][a-z0-9_]{2,30}$)
+C:584:detect_tilt: Invalid name "Rz" (should match [a-z_][a-z0-9_]{2,30}$)
+C:587:detect_tilt: Invalid name "R" (should match [a-z_][a-z0-9_]{2,30}$)
+C:591:quart2Omega: Invalid name "quart2Omega" (should match [a-z_][a-z0-9_]{2,30}$)
+C:591:quart2Omega: Invalid name "w" (should match [a-z_][a-z0-9_]{2,30}$)
+C:591:quart2Omega: Invalid name "wx" (should match [a-z_][a-z0-9_]{2,30}$)
+C:591:quart2Omega: Invalid name "wy" (should match [a-z_][a-z0-9_]{2,30}$)
+C:598:quart2Omega: Invalid name "Wx" (should match [a-z_][a-z0-9_]{2,30}$)
+C:601:quart2Omega: Invalid name "Wy" (should match [a-z_][a-z0-9_]{2,30}$)
+C:605:quart2Omega: Invalid name "q" (should match [a-z_][a-z0-9_]{2,30}$)
+C:606:quart2Omega: Invalid name "Omega" (should match [a-z_][a-z0-9_]{2,30}$)
+C:632:sintl: Invalid name "a" (should match [a-z_][a-z0-9_]{2,30}$)
+C:633:sintl: Invalid name "b" (should match [a-z_][a-z0-9_]{2,30}$)
+C:634:sintl: Invalid name "c" (should match [a-z_][a-z0-9_]{2,30}$)
+C:639:sintl: Invalid name "h" (should match [a-z_][a-z0-9_]{2,30}$)
+C:639:sintl: Invalid name "l" (should match [a-z_][a-z0-9_]{2,30}$)
+R:691:genhkl: Too many local variables (18/15)
+C:705:genhkl: Invalid name "H" (should match [a-z_][a-z0-9_]{2,30}$)
+C:707:genhkl: Invalid name "sintlH" (should match [a-z_][a-z0-9_]{2,30}$)
+C:715:genhkl: Invalid name "HLAST" (should match [a-z_][a-z0-9_]{2,30}$)
+C:716:genhkl: Invalid name "HSAVE" (should match [a-z_][a-z0-9_]{2,30}$)
+C:717:genhkl: Invalid name "sintlH" (should match [a-z_][a-z0-9_]{2,30}$)
+C:726:genhkl: Invalid name "H" (should match [a-z_][a-z0-9_]{2,30}$)
+C:727:genhkl: Invalid name "H" (should match [a-z_][a-z0-9_]{2,30}$)
+C:732:genhkl: Invalid name "HNEW" (should match [a-z_][a-z0-9_]{2,30}$)
+C:733:genhkl: Invalid name "sintlH" (should match [a-z_][a-z0-9_]{2,30}$)
+C:736:genhkl: Invalid name "HLAST" (should match [a-z_][a-z0-9_]{2,30}$)
+C:741:genhkl: Invalid name "HLAST" (should match [a-z_][a-z0-9_]{2,30}$)
+C:742:genhkl: Invalid name "HNEW" (should match [a-z_][a-z0-9_]{2,30}$)
+C:743:genhkl: Invalid name "sintlH" (should match [a-z_][a-z0-9_]{2,30}$)
+C:749:genhkl: Invalid name "HLAST" (should match [a-z_][a-z0-9_]{2,30}$)
+C:750:genhkl: Invalid name "HNEW" (should match [a-z_][a-z0-9_]{2,30}$)
+C:751:genhkl: Invalid name "sintlH" (should match [a-z_][a-z0-9_]{2,30}$)
+C:757:genhkl: Invalid name "H" (should match [a-z_][a-z0-9_]{2,30}$)
+C:758:genhkl: Invalid name "H" (should match [a-z_][a-z0-9_]{2,30}$)
+C:760:genhkl: Invalid name "H" (should match [a-z_][a-z0-9_]{2,30}$)
+R:691:genhkl: Too many branches (13/12)
+C:803:sysabs: Invalid name "h" (should match [a-z_][a-z0-9_]{2,30}$)
+C:803:sysabs: Invalid name "l" (should match [a-z_][a-z0-9_]{2,30}$)
+C:808:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:813:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:818:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:824:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:831:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:836:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:843:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:847:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:851:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:855:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:862:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:866:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:870:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:877:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:881:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:885:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:893:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:897:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:901:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:909:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:916:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:923:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:930:sysabs: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+R:763:sysabs: Too many branches (57/12)
+R:763:sysabs: Too many statements (107/50)
+
+
+Report
+======
+447 statements analysed.
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |0     |0        |=          |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |0.000 |0.000    |=          |
++-------------------------+------+---------+-----------+
+
+
+
+Raw metrics
+-----------
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |499    |57.29 |499      |=          |
++----------+-------+------+---------+-----------+
+|docstring |286    |32.84 |284      |+2.00      |
++----------+-------+------+---------+-----------+
+|comment   |26     |2.99  |26       |=          |
++----------+-------+------+---------+-----------+
+|empty     |60     |6.89  |60       |=          |
++----------+-------+------+---------+-----------+
+
+
+
+External dependencies
+---------------------
+::
+
+    numpy (src.tools)
+
+
+
+Statistics by type
+------------------
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |1      |1          |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|class    |0      |0          |=          |0.00        |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|method   |0      |0          |=          |0.00        |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|function |26     |26         |=          |96.15       |61.54    |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+Messages by category
+--------------------
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |158    |158      |=          |
++-----------+-------+---------+-----------+
+|refactor   |8      |8        |=          |
++-----------+-------+---------+-----------+
+|warning    |0      |0        |=          |
++-----------+-------+---------+-----------+
+|error      |0      |0        |=          |
++-----------+-------+---------+-----------+
+
+
+
+Messages
+--------
+
++-----------+-----------+
+|message id |occurences |
++===========+===========+
+|C0103      |157        |
++-----------+-----------+
+|R0914      |5          |
++-----------+-----------+
+|R0912      |2          |
++-----------+-----------+
+|R0915      |1          |
++-----------+-----------+
+|C0111      |1          |
++-----------+-----------+
+
+
+
+Global evaluation
+-----------------
+Your code has been rated at 6.29/10 (previous run: 6.29/10)
+

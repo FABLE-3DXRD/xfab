@@ -1,0 +1,801 @@
+************* Module sglib
+C:  1: Too many lines in module (11591)
+C:  8:Sg1: Missing docstring
+C: 10:Sg1.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:  8:Sg1: Too few public methods (0/2)
+C: 19:Sg2: Missing docstring
+C: 21:Sg2.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R: 19:Sg2: Too few public methods (0/2)
+C: 32:Sg3: Missing docstring
+C: 34:Sg3.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R: 32:Sg3: Too few public methods (0/2)
+C: 46:Sg4: Missing docstring
+C: 48:Sg4.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 54:Sg4.__init__: Comma not followed by a space
+        self.rot = [[[ 1, 0, 0], [0, 1, 0],[0, 0,  1]],
+                                          ^^
+                    [[-1, 0, 0], [0, 1, 0],[0, 0, -1]]]
+R: 46:Sg4: Too few public methods (0/2)
+C: 59:Sg5: Missing docstring
+C: 61:Sg5.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 67:Sg5.__init__: Comma not followed by a space
+        self.rot = [[[ 1, 0, 0],[0, 1, 0],[0, 0,  1]],
+                               ^^
+                    [[-1, 0, 0],[0, 1, 0],[0, 0, -1]],
+                    [[ 1, 0, 0],[0, 1, 0],[0, 0,  1]],
+                    [[-1, 0, 0],[0, 1, 0],[0, 0, -1]]]
+R: 59:Sg5: Too few public methods (0/2)
+C: 77:Sg6: Missing docstring
+C: 79:Sg6.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R: 77:Sg6: Too few public methods (0/2)
+C: 90:Sg7: Missing docstring
+C: 92:Sg7.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R: 90:Sg7: Too few public methods (0/2)
+C:104:Sg8: Missing docstring
+C:106:Sg8.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:104:Sg8: Too few public methods (0/2)
+C:122:Sg9: Missing docstring
+C:124:Sg9.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:122:Sg9: Too few public methods (0/2)
+C:139:Sg10: Missing docstring
+C:141:Sg10.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+C:151:Sg10.__init__: Comma not followed by a space
+        self.trans = [[0.00,0.00,0.00],
+                           ^^
+                      [0.00,0.00,0.00],
+                      [0.00,0.00,0.00],
+                      [0.00,0.00,0.00]]
+R:139:Sg10: Too few public methods (0/2)
+C:156:Sg11: Missing docstring
+C:158:Sg11.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:156:Sg11: Too few public methods (0/2)
+C:176:Sg12: Missing docstring
+C:178:Sg12.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:176:Sg12: Too few public methods (0/2)
+C:204:Sg13: Missing docstring
+C:206:Sg13.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:204:Sg13: Too few public methods (0/2)
+C:224:Sg14: Missing docstring
+C:226:Sg14.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:224:Sg14: Too few public methods (0/2)
+C:244:Sg15: Missing docstring
+C:246:Sg15.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:244:Sg15: Too few public methods (0/2)
+C:272:Sg16: Missing docstring
+C:274:Sg16.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:272:Sg16: Too few public methods (0/2)
+C:292:Sg17: Missing docstring
+C:294:Sg17.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:292:Sg17: Too few public methods (0/2)
+C:312:Sg18: Missing docstring
+C:314:Sg18.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:312:Sg18: Too few public methods (0/2)
+C:332:Sg19: Missing docstring
+C:334:Sg19.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:332:Sg19: Too few public methods (0/2)
+C:352:Sg20: Missing docstring
+C:354:Sg20.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:352:Sg20: Too few public methods (0/2)
+C:380:Sg21: Missing docstring
+C:382:Sg21.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:380:Sg21: Too few public methods (0/2)
+C:408:Sg22: Missing docstring
+C:410:Sg22.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:408:Sg22: Too few public methods (0/2)
+C:452:Sg23: Missing docstring
+C:454:Sg23.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:452:Sg23: Too few public methods (0/2)
+C:480:Sg24: Missing docstring
+C:482:Sg24.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:480:Sg24: Too few public methods (0/2)
+C:508:Sg25: Missing docstring
+C:510:Sg25.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:508:Sg25: Too few public methods (0/2)
+C:528:Sg26: Missing docstring
+C:530:Sg26.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:528:Sg26: Too few public methods (0/2)
+C:548:Sg27: Missing docstring
+C:550:Sg27.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:548:Sg27: Too few public methods (0/2)
+C:568:Sg28: Missing docstring
+C:570:Sg28.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:568:Sg28: Too few public methods (0/2)
+C:588:Sg29: Missing docstring
+C:590:Sg29.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:588:Sg29: Too few public methods (0/2)
+C:608:Sg30: Missing docstring
+C:610:Sg30.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:608:Sg30: Too few public methods (0/2)
+C:628:Sg31: Missing docstring
+C:630:Sg31.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:628:Sg31: Too few public methods (0/2)
+C:648:Sg32: Missing docstring
+C:650:Sg32.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:648:Sg32: Too few public methods (0/2)
+C:668:Sg33: Missing docstring
+C:670:Sg33.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:668:Sg33: Too few public methods (0/2)
+C:688:Sg34: Missing docstring
+C:690:Sg34.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:688:Sg34: Too few public methods (0/2)
+C:708:Sg35: Missing docstring
+C:710:Sg35.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:708:Sg35: Too few public methods (0/2)
+C:736:Sg36: Missing docstring
+C:738:Sg36.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:736:Sg36: Too few public methods (0/2)
+C:764:Sg37: Missing docstring
+C:766:Sg37.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:764:Sg37: Too few public methods (0/2)
+C:792:Sg38: Missing docstring
+C:794:Sg38.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:792:Sg38: Too few public methods (0/2)
+C:820:Sg39: Missing docstring
+C:822:Sg39.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:820:Sg39: Too few public methods (0/2)
+C:848:Sg40: Missing docstring
+C:850:Sg40.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:848:Sg40: Too few public methods (0/2)
+C:876:Sg41: Missing docstring
+C:878:Sg41.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:876:Sg41: Too few public methods (0/2)
+C:904:Sg42: Missing docstring
+C:906:Sg42.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:904:Sg42: Too few public methods (0/2)
+C:948:Sg43: Missing docstring
+C:950:Sg43.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:948:Sg43: Too few public methods (0/2)
+C:992:Sg44: Missing docstring
+C:994:Sg44.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:992:Sg44: Too few public methods (0/2)
+C:1020:Sg45: Missing docstring
+C:1022:Sg45.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1020:Sg45: Too few public methods (0/2)
+C:1048:Sg46: Missing docstring
+C:1050:Sg46.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1048:Sg46: Too few public methods (0/2)
+C:1076:Sg47: Missing docstring
+C:1078:Sg47.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1076:Sg47: Too few public methods (0/2)
+C:1104:Sg48: Missing docstring
+C:1106:Sg48.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1104:Sg48: Too few public methods (0/2)
+C:1132:Sg49: Missing docstring
+C:1134:Sg49.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1132:Sg49: Too few public methods (0/2)
+C:1160:Sg50: Missing docstring
+C:1162:Sg50.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1160:Sg50: Too few public methods (0/2)
+C:1188:Sg51: Missing docstring
+C:1190:Sg51.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1188:Sg51: Too few public methods (0/2)
+C:1216:Sg52: Missing docstring
+C:1218:Sg52.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1216:Sg52: Too few public methods (0/2)
+C:1244:Sg53: Missing docstring
+C:1246:Sg53.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1244:Sg53: Too few public methods (0/2)
+C:1272:Sg54: Missing docstring
+C:1274:Sg54.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1272:Sg54: Too few public methods (0/2)
+C:1300:Sg55: Missing docstring
+C:1302:Sg55.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1300:Sg55: Too few public methods (0/2)
+C:1328:Sg56: Missing docstring
+C:1330:Sg56.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1328:Sg56: Too few public methods (0/2)
+C:1356:Sg57: Missing docstring
+C:1358:Sg57.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1356:Sg57: Too few public methods (0/2)
+C:1384:Sg58: Missing docstring
+C:1386:Sg58.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1384:Sg58: Too few public methods (0/2)
+C:1412:Sg59: Missing docstring
+C:1414:Sg59.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1412:Sg59: Too few public methods (0/2)
+C:1440:Sg60: Missing docstring
+C:1442:Sg60.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1440:Sg60: Too few public methods (0/2)
+C:1468:Sg61: Missing docstring
+C:1470:Sg61.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1468:Sg61: Too few public methods (0/2)
+C:1496:Sg62: Missing docstring
+C:1498:Sg62.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1496:Sg62: Too few public methods (0/2)
+C:1524:Sg63: Missing docstring
+C:1526:Sg63.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1524:Sg63: Too few public methods (0/2)
+C:1568:Sg64: Missing docstring
+C:1570:Sg64.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1568:Sg64: Too few public methods (0/2)
+C:1612:Sg65: Missing docstring
+C:1614:Sg65.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1612:Sg65: Too few public methods (0/2)
+C:1656:Sg66: Missing docstring
+C:1658:Sg66.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1656:Sg66: Too few public methods (0/2)
+C:1700:Sg67: Missing docstring
+C:1702:Sg67.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1700:Sg67: Too few public methods (0/2)
+C:1744:Sg68: Missing docstring
+C:1746:Sg68.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1744:Sg68: Too few public methods (0/2)
+C:1788:Sg69: Missing docstring
+C:1790:Sg69.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1788:Sg69: Too few public methods (0/2)
+C:1864:Sg70: Missing docstring
+C:1866:Sg70.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1864:Sg70: Too few public methods (0/2)
+C:1940:Sg71: Missing docstring
+C:1942:Sg71.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1940:Sg71: Too few public methods (0/2)
+C:1984:Sg72: Missing docstring
+C:1986:Sg72.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:1984:Sg72: Too few public methods (0/2)
+C:2028:Sg73: Missing docstring
+C:2030:Sg73.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2028:Sg73: Too few public methods (0/2)
+C:2072:Sg74: Missing docstring
+C:2074:Sg74.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2072:Sg74: Too few public methods (0/2)
+C:2116:Sg75: Missing docstring
+C:2118:Sg75.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2116:Sg75: Too few public methods (0/2)
+C:2136:Sg76: Missing docstring
+C:2138:Sg76.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2136:Sg76: Too few public methods (0/2)
+C:2156:Sg77: Missing docstring
+C:2158:Sg77.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2156:Sg77: Too few public methods (0/2)
+C:2176:Sg78: Missing docstring
+C:2178:Sg78.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2176:Sg78: Too few public methods (0/2)
+C:2196:Sg79: Missing docstring
+C:2198:Sg79.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2196:Sg79: Too few public methods (0/2)
+C:2224:Sg80: Missing docstring
+C:2226:Sg80.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2224:Sg80: Too few public methods (0/2)
+C:2252:Sg81: Missing docstring
+C:2254:Sg81.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2252:Sg81: Too few public methods (0/2)
+C:2272:Sg82: Missing docstring
+C:2274:Sg82.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2272:Sg82: Too few public methods (0/2)
+C:2300:Sg83: Missing docstring
+C:2302:Sg83.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2300:Sg83: Too few public methods (0/2)
+C:2328:Sg84: Missing docstring
+C:2330:Sg84.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2328:Sg84: Too few public methods (0/2)
+C:2356:Sg85: Missing docstring
+C:2358:Sg85.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2356:Sg85: Too few public methods (0/2)
+C:2384:Sg86: Missing docstring
+C:2386:Sg86.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2384:Sg86: Too few public methods (0/2)
+C:2412:Sg87: Missing docstring
+C:2414:Sg87.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2412:Sg87: Too few public methods (0/2)
+C:2456:Sg88: Missing docstring
+C:2458:Sg88.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2456:Sg88: Too few public methods (0/2)
+C:2500:Sg89: Missing docstring
+C:2502:Sg89.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2500:Sg89: Too few public methods (0/2)
+C:2528:Sg90: Missing docstring
+C:2530:Sg90.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2528:Sg90: Too few public methods (0/2)
+C:2556:Sg91: Missing docstring
+C:2558:Sg91.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2556:Sg91: Too few public methods (0/2)
+C:2584:Sg92: Missing docstring
+C:2586:Sg92.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2584:Sg92: Too few public methods (0/2)
+C:2612:Sg93: Missing docstring
+C:2614:Sg93.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2612:Sg93: Too few public methods (0/2)
+C:2640:Sg94: Missing docstring
+C:2642:Sg94.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2640:Sg94: Too few public methods (0/2)
+C:2668:Sg95: Missing docstring
+C:2670:Sg95.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2668:Sg95: Too few public methods (0/2)
+C:2696:Sg96: Missing docstring
+C:2698:Sg96.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2696:Sg96: Too few public methods (0/2)
+C:2724:Sg97: Missing docstring
+C:2726:Sg97.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2724:Sg97: Too few public methods (0/2)
+C:2768:Sg98: Missing docstring
+C:2770:Sg98.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2768:Sg98: Too few public methods (0/2)
+C:2812:Sg99: Missing docstring
+C:2814:Sg99.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2812:Sg99: Too few public methods (0/2)
+C:2840:Sg100: Missing docstring
+C:2842:Sg100.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2840:Sg100: Too few public methods (0/2)
+C:2868:Sg101: Missing docstring
+C:2870:Sg101.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2868:Sg101: Too few public methods (0/2)
+C:2896:Sg102: Missing docstring
+C:2898:Sg102.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2896:Sg102: Too few public methods (0/2)
+C:2924:Sg103: Missing docstring
+C:2926:Sg103.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2924:Sg103: Too few public methods (0/2)
+C:2952:Sg104: Missing docstring
+C:2954:Sg104.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2952:Sg104: Too few public methods (0/2)
+C:2980:Sg105: Missing docstring
+C:2982:Sg105.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:2980:Sg105: Too few public methods (0/2)
+C:3008:Sg106: Missing docstring
+C:3010:Sg106.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3008:Sg106: Too few public methods (0/2)
+C:3036:Sg107: Missing docstring
+C:3038:Sg107.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3036:Sg107: Too few public methods (0/2)
+C:3080:Sg108: Missing docstring
+C:3082:Sg108.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3080:Sg108: Too few public methods (0/2)
+C:3124:Sg109: Missing docstring
+C:3126:Sg109.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3124:Sg109: Too few public methods (0/2)
+C:3168:Sg110: Missing docstring
+C:3170:Sg110.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3168:Sg110: Too few public methods (0/2)
+C:3212:Sg111: Missing docstring
+C:3214:Sg111.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3212:Sg111: Too few public methods (0/2)
+C:3240:Sg112: Missing docstring
+C:3242:Sg112.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3240:Sg112: Too few public methods (0/2)
+C:3268:Sg113: Missing docstring
+C:3270:Sg113.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3268:Sg113: Too few public methods (0/2)
+C:3296:Sg114: Missing docstring
+C:3298:Sg114.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3296:Sg114: Too few public methods (0/2)
+C:3324:Sg115: Missing docstring
+C:3326:Sg115.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3324:Sg115: Too few public methods (0/2)
+C:3352:Sg116: Missing docstring
+C:3354:Sg116.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3352:Sg116: Too few public methods (0/2)
+C:3380:Sg117: Missing docstring
+C:3382:Sg117.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3380:Sg117: Too few public methods (0/2)
+C:3408:Sg118: Missing docstring
+C:3410:Sg118.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3408:Sg118: Too few public methods (0/2)
+C:3436:Sg119: Missing docstring
+C:3438:Sg119.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3436:Sg119: Too few public methods (0/2)
+C:3480:Sg120: Missing docstring
+C:3482:Sg120.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3480:Sg120: Too few public methods (0/2)
+C:3524:Sg121: Missing docstring
+C:3526:Sg121.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3524:Sg121: Too few public methods (0/2)
+C:3568:Sg122: Missing docstring
+C:3570:Sg122.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3568:Sg122: Too few public methods (0/2)
+C:3612:Sg123: Missing docstring
+C:3614:Sg123.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3612:Sg123: Too few public methods (0/2)
+C:3656:Sg124: Missing docstring
+C:3658:Sg124.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3656:Sg124: Too few public methods (0/2)
+C:3700:Sg125: Missing docstring
+C:3702:Sg125.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3700:Sg125: Too few public methods (0/2)
+C:3744:Sg126: Missing docstring
+C:3746:Sg126.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3744:Sg126: Too few public methods (0/2)
+C:3788:Sg127: Missing docstring
+C:3790:Sg127.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3788:Sg127: Too few public methods (0/2)
+C:3832:Sg128: Missing docstring
+C:3834:Sg128.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3832:Sg128: Too few public methods (0/2)
+C:3876:Sg129: Missing docstring
+C:3878:Sg129.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3876:Sg129: Too few public methods (0/2)
+C:3920:Sg130: Missing docstring
+C:3922:Sg130.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3920:Sg130: Too few public methods (0/2)
+C:3964:Sg131: Missing docstring
+C:3966:Sg131.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:3964:Sg131: Too few public methods (0/2)
+C:4008:Sg132: Missing docstring
+C:4010:Sg132.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4008:Sg132: Too few public methods (0/2)
+C:4052:Sg133: Missing docstring
+C:4054:Sg133.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4052:Sg133: Too few public methods (0/2)
+C:4096:Sg134: Missing docstring
+C:4098:Sg134.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4096:Sg134: Too few public methods (0/2)
+C:4140:Sg135: Missing docstring
+C:4142:Sg135.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4140:Sg135: Too few public methods (0/2)
+C:4184:Sg136: Missing docstring
+C:4186:Sg136.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4184:Sg136: Too few public methods (0/2)
+C:4228:Sg137: Missing docstring
+C:4230:Sg137.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4228:Sg137: Too few public methods (0/2)
+C:4272:Sg138: Missing docstring
+C:4274:Sg138.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4272:Sg138: Too few public methods (0/2)
+C:4316:Sg139: Missing docstring
+C:4318:Sg139.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4316:Sg139: Too few public methods (0/2)
+C:4392:Sg140: Missing docstring
+C:4394:Sg140.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4392:Sg140: Too few public methods (0/2)
+C:4468:Sg141: Missing docstring
+C:4470:Sg141.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4468:Sg141: Too few public methods (0/2)
+C:4544:Sg142: Missing docstring
+C:4546:Sg142.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4544:Sg142: Too few public methods (0/2)
+C:4620:Sg143: Missing docstring
+C:4622:Sg143.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4620:Sg143: Too few public methods (0/2)
+C:4638:Sg144: Missing docstring
+C:4640:Sg144.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4638:Sg144: Too few public methods (0/2)
+C:4656:Sg145: Missing docstring
+C:4658:Sg145.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4656:Sg145: Too few public methods (0/2)
+C:4674:Sg146: Missing docstring
+C:4676:Sg146.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4674:Sg146: Too few public methods (0/2)
+C:4704:Sg147: Missing docstring
+C:4706:Sg147.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4704:Sg147: Too few public methods (0/2)
+C:4728:Sg148: Missing docstring
+C:4730:Sg148.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4728:Sg148: Too few public methods (0/2)
+C:4776:Sg149: Missing docstring
+C:4778:Sg149.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4776:Sg149: Too few public methods (0/2)
+C:4800:Sg150: Missing docstring
+C:4802:Sg150.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4800:Sg150: Too few public methods (0/2)
+C:4824:Sg151: Missing docstring
+C:4826:Sg151.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4824:Sg151: Too few public methods (0/2)
+C:4848:Sg152: Missing docstring
+C:4850:Sg152.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4848:Sg152: Too few public methods (0/2)
+C:4872:Sg153: Missing docstring
+C:4874:Sg153.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4872:Sg153: Too few public methods (0/2)
+C:4896:Sg154: Missing docstring
+C:4898:Sg154.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4896:Sg154: Too few public methods (0/2)
+C:4920:Sg155: Missing docstring
+C:4922:Sg155.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4920:Sg155: Too few public methods (0/2)
+C:4968:Sg156: Missing docstring
+C:4970:Sg156.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4968:Sg156: Too few public methods (0/2)
+C:4992:Sg157: Missing docstring
+C:4994:Sg157.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:4992:Sg157: Too few public methods (0/2)
+C:5016:Sg158: Missing docstring
+C:5018:Sg158.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5016:Sg158: Too few public methods (0/2)
+C:5040:Sg159: Missing docstring
+C:5042:Sg159.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5040:Sg159: Too few public methods (0/2)
+C:5064:Sg160: Missing docstring
+C:5066:Sg160.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5064:Sg160: Too few public methods (0/2)
+C:5112:Sg161: Missing docstring
+C:5114:Sg161.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5112:Sg161: Too few public methods (0/2)
+C:5160:Sg162: Missing docstring
+C:5162:Sg162.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5160:Sg162: Too few public methods (0/2)
+C:5196:Sg163: Missing docstring
+C:5198:Sg163.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5196:Sg163: Too few public methods (0/2)
+C:5232:Sg164: Missing docstring
+C:5234:Sg164.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5232:Sg164: Too few public methods (0/2)
+C:5268:Sg165: Missing docstring
+C:5270:Sg165.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5268:Sg165: Too few public methods (0/2)
+C:5304:Sg166: Missing docstring
+C:5306:Sg166.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5304:Sg166: Too few public methods (0/2)
+C:5388:Sg167: Missing docstring
+C:5390:Sg167.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5388:Sg167: Too few public methods (0/2)
+C:5472:Sg168: Missing docstring
+C:5474:Sg168.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5472:Sg168: Too few public methods (0/2)
+C:5496:Sg169: Missing docstring
+C:5498:Sg169.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5496:Sg169: Too few public methods (0/2)
+C:5520:Sg170: Missing docstring
+C:5522:Sg170.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5520:Sg170: Too few public methods (0/2)
+C:5544:Sg171: Missing docstring
+C:5546:Sg171.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5544:Sg171: Too few public methods (0/2)
+C:5568:Sg172: Missing docstring
+C:5570:Sg172.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5568:Sg172: Too few public methods (0/2)
+C:5592:Sg173: Missing docstring
+C:5594:Sg173.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5592:Sg173: Too few public methods (0/2)
+C:5616:Sg174: Missing docstring
+C:5618:Sg174.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5616:Sg174: Too few public methods (0/2)
+C:5640:Sg175: Missing docstring
+C:5642:Sg175.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5640:Sg175: Too few public methods (0/2)
+C:5676:Sg176: Missing docstring
+C:5678:Sg176.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5676:Sg176: Too few public methods (0/2)
+C:5712:Sg177: Missing docstring
+C:5714:Sg177.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5712:Sg177: Too few public methods (0/2)
+C:5748:Sg178: Missing docstring
+C:5750:Sg178.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5748:Sg178: Too few public methods (0/2)
+C:5784:Sg179: Missing docstring
+C:5786:Sg179.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5784:Sg179: Too few public methods (0/2)
+C:5820:Sg180: Missing docstring
+C:5822:Sg180.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5820:Sg180: Too few public methods (0/2)
+C:5856:Sg181: Missing docstring
+C:5858:Sg181.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5856:Sg181: Too few public methods (0/2)
+C:5892:Sg182: Missing docstring
+C:5894:Sg182.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5892:Sg182: Too few public methods (0/2)
+C:5928:Sg183: Missing docstring
+C:5930:Sg183.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5928:Sg183: Too few public methods (0/2)
+C:5964:Sg184: Missing docstring
+C:5966:Sg184.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:5964:Sg184: Too few public methods (0/2)
+C:6000:Sg185: Missing docstring
+C:6002:Sg185.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:6000:Sg185: Too few public methods (0/2)
+C:6036:Sg186: Missing docstring
+C:6038:Sg186.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:6036:Sg186: Too few public methods (0/2)
+C:6072:Sg187: Missing docstring
+C:6074:Sg187.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:6072:Sg187: Too few public methods (0/2)
+C:6108:Sg188: Missing docstring
+C:6110:Sg188.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:6108:Sg188: Too few public methods (0/2)
+C:6144:Sg189: Missing docstring
+C:6146:Sg189.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:6144:Sg189: Too few public methods (0/2)
+C:6180:Sg190: Missing docstring
+C:6182:Sg190.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:6180:Sg190: Too few public methods (0/2)
+C:6216:Sg191: Missing docstring
+C:6218:Sg191.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:6216:Sg191: Too few public methods (0/2)
+C:6276:Sg192: Missing docstring
+C:6278:Sg192.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:6276:Sg192: Too few public methods (0/2)
+C:6336:Sg193: Missing docstring
+C:6338:Sg193.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:6336:Sg193: Too few public methods (0/2)
+C:6396:Sg194: Missing docstring
+C:6398:Sg194.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:6396:Sg194: Too few public methods (0/2)
+C:6456:Sg195: Missing docstring
+C:6458:Sg195.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:6456:Sg195: Too few public methods (0/2)
+C:6492:Sg196: Missing docstring
+C:6494:Sg196.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:6492:Sg196: Too few public methods (0/2)
+C:6600:Sg197: Missing docstring
+C:6602:Sg197.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:6600:Sg197: Too few public methods (0/2)
+C:6660:Sg198: Missing docstring
+C:6662:Sg198.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:6660:Sg198: Too few public methods (0/2)
+C:6696:Sg199: Missing docstring
+C:6698:Sg199.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:6696:Sg199: Too few public methods (0/2)
+C:6756:Sg200: Missing docstring
+C:6758:Sg200.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:6756:Sg200: Too few public methods (0/2)
+C:6816:Sg201: Missing docstring
+C:6818:Sg201.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:6816:Sg201: Too few public methods (0/2)
+C:6876:Sg202: Missing docstring
+C:6878:Sg202.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:6876:Sg202: Too few public methods (0/2)
+C:7080:Sg203: Missing docstring
+C:7082:Sg203.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:7080:Sg203: Too few public methods (0/2)
+C:7284:Sg204: Missing docstring
+C:7286:Sg204.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:7284:Sg204: Too few public methods (0/2)
+C:7392:Sg205: Missing docstring
+C:7394:Sg205.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:7392:Sg205: Too few public methods (0/2)
+C:7452:Sg206: Missing docstring
+C:7454:Sg206.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:7452:Sg206: Too few public methods (0/2)
+C:7560:Sg207: Missing docstring
+C:7562:Sg207.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:7560:Sg207: Too few public methods (0/2)
+C:7620:Sg208: Missing docstring
+C:7622:Sg208.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:7620:Sg208: Too few public methods (0/2)
+C:7680:Sg209: Missing docstring
+C:7682:Sg209.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:7680:Sg209: Too few public methods (0/2)
+C:7884:Sg210: Missing docstring
+C:7886:Sg210.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:7884:Sg210: Too few public methods (0/2)
+C:8088:Sg211: Missing docstring
+C:8090:Sg211.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:8088:Sg211: Too few public methods (0/2)
+C:8196:Sg212: Missing docstring
+C:8198:Sg212.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:8196:Sg212: Too few public methods (0/2)
+C:8256:Sg213: Missing docstring
+C:8258:Sg213.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:8256:Sg213: Too few public methods (0/2)
+C:8316:Sg214: Missing docstring
+C:8318:Sg214.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:8316:Sg214: Too few public methods (0/2)
+C:8424:Sg215: Missing docstring
+C:8426:Sg215.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:8424:Sg215: Too few public methods (0/2)
+C:8484:Sg216: Missing docstring
+C:8486:Sg216.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:8484:Sg216: Too few public methods (0/2)
+C:8688:Sg217: Missing docstring
+C:8690:Sg217.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:8688:Sg217: Too few public methods (0/2)
+C:8796:Sg218: Missing docstring
+C:8798:Sg218.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:8796:Sg218: Too few public methods (0/2)
+C:8856:Sg219: Missing docstring
+C:8858:Sg219.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:8856:Sg219: Too few public methods (0/2)
+C:9060:Sg220: Missing docstring
+C:9062:Sg220.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:9060:Sg220: Too few public methods (0/2)
+C:9168:Sg221: Missing docstring
+C:9170:Sg221.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:9168:Sg221: Too few public methods (0/2)
+C:9276:Sg222: Missing docstring
+C:9278:Sg222.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:9276:Sg222: Too few public methods (0/2)
+C:9384:Sg223: Missing docstring
+C:9386:Sg223.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:9384:Sg223: Too few public methods (0/2)
+C:9492:Sg224: Missing docstring
+C:9494:Sg224.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:9492:Sg224: Too few public methods (0/2)
+C:9600:Sg225: Missing docstring
+C:9602:Sg225.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:9600:Sg225: Too few public methods (0/2)
+C:9996:Sg226: Missing docstring
+C:9998:Sg226.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:9996:Sg226: Too few public methods (0/2)
+C:10392:Sg227: Missing docstring
+C:10394:Sg227.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:10392:Sg227: Too few public methods (0/2)
+C:10788:Sg228: Missing docstring
+C:10790:Sg228.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:10788:Sg228: Too few public methods (0/2)
+C:11184:Sg229: Missing docstring
+C:11186:Sg229.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:11184:Sg229: Too few public methods (0/2)
+C:11388:Sg230: Missing docstring
+C:11390:Sg230.__init__: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+R:11388:Sg230: Too few public methods (0/2)
+
+
+Report
+======
+2070 statements analysed.
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |0     |0        |=          |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |0.000 |0.000    |=          |
++-------------------------+------+---------+-----------+
+
+
+
+Raw metrics
+-----------
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |11571  |99.93 |11609    |-38.00     |
++----------+-------+------+---------+-----------+
+|docstring |4      |0.03  |4        |=          |
++----------+-------+------+---------+-----------+
+|comment   |0      |0.00  |0        |=          |
++----------+-------+------+---------+-----------+
+|empty     |4      |0.03  |4        |=          |
++----------+-------+------+---------+-----------+
+
+
+
+Statistics by type
+------------------
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |1      |1          |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|class    |230    |230        |=          |0.00        |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|method   |230    |230        |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|function |0      |0          |=          |0.00        |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+Messages by category
+--------------------
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |464    |461      |+3.00      |
++-----------+-------+---------+-----------+
+|refactor   |230    |230      |=          |
++-----------+-------+---------+-----------+
+|warning    |0      |0        |=          |
++-----------+-------+---------+-----------+
+|error      |0      |0        |=          |
++-----------+-------+---------+-----------+
+
+
+
+Messages
+--------
+
++-----------+-----------+
+|message id |occurences |
++===========+===========+
+|R0903      |230        |
++-----------+-----------+
+|C0111      |230        |
++-----------+-----------+
+|C0103      |230        |
++-----------+-----------+
+|C0324      |3          |
++-----------+-----------+
+|C0302      |1          |
++-----------+-----------+
+
+
+
+Global evaluation
+-----------------
+Your code has been rated at 6.65/10 (previous run: 6.66/10)
+

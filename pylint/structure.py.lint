@@ -1,0 +1,213 @@
+************* Module src.structure
+C:221: Line too long (88/80)
+C:228: Line too long (84/80)
+C:339: Line too long (82/80)
+C:340: Line too long (83/80)
+C:341: Line too long (83/80)
+C:343: Line too long (86/80)
+C:344: Line too long (89/80)
+C:364: Line too long (86/80)
+C:368: Line too long (85/80)
+C:379: Line too long (86/80)
+C:380: Line too long (86/80)
+C:381: Line too long (86/80)
+C:382: Line too long (86/80)
+C:383: Line too long (86/80)
+C:384: Line too long (86/80)
+C:390: Line too long (84/80)
+C: 13:StructureFactor: Invalid name "StructureFactor" (should match [a-z_][a-z0-9_]{2,30}$)
+R: 13:StructureFactor: Too many local variables (24/15)
+C: 32:StructureFactor: Invalid name "Freal" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 33:StructureFactor: Invalid name "Fimg" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 38:StructureFactor: Invalid name "U" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 49:StructureFactor: Invalid name "f" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 51:StructureFactor: Invalid name "fp" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 54:StructureFactor: Invalid name "fp" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 64:StructureFactor: Invalid name "r" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 68:StructureFactor: Invalid name "s" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 69:StructureFactor: Invalid name "c" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 71:StructureFactor: Invalid name "Freal" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 72:StructureFactor: Invalid name "Fimg" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 76:Uij2betaij: Invalid name "Uij2betaij" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 91:Uij2betaij: Invalid name "U" (should match [a-z_][a-z0-9_]{2,30}$)
+C:106:FormFactor: Invalid name "FormFactor" (should match [a-z_][a-z0-9_]{2,30}$)
+C:133:int_intensity: Invalid name "F2" (should match [a-z_][a-z0-9_]{2,30}$)
+C:133:int_intensity: Invalid name "L" (should match [a-z_][a-z0-9_]{2,30}$)
+C:133:int_intensity: Invalid name "P" (should match [a-z_][a-z0-9_]{2,30}$)
+C:133:int_intensity: Invalid name "I0" (should match [a-z_][a-z0-9_]{2,30}$)
+R:133:int_intensity: Too many arguments (7/5)
+C:155:int_intensity: Invalid name "c" (should match [a-z_][a-z0-9_]{2,30}$)
+C:156:int_intensity: Invalid name "k1" (should match [a-z_][a-z0-9_]{2,30}$)
+C:158:int_intensity: Invalid name "k2" (should match [a-z_][a-z0-9_]{2,30}$)
+C:162:multiplicity: Missing docstring
+C:164:multiplicity: Invalid name "lp" (should match [a-z_][a-z0-9_]{2,30}$)
+C:174:multiplicity: Invalid name "t" (should match [a-z_][a-z0-9_]{2,30}$)
+C:185:atom_entry: Invalid name "atom_entry" (should match [A-Z_][a-zA-Z0-9]+$)
+C:185:atom_entry: Missing docstring
+R:186:atom_entry.__init__: Too many arguments (8/5)
+R:185:atom_entry: Too few public methods (0/2)
+C:196:atomlist: Invalid name "atomlist" (should match [A-Z_][a-zA-Z0-9]+$)
+C:196:atomlist: Missing docstring
+C:203:atomlist.add_atom: Missing docstring
+R:203:atomlist.add_atom: Too many arguments (8/5)
+R:196:atomlist: Too few public methods (1/2)
+C:209:build_atomlist: Invalid name "build_atomlist" (should match [A-Z_][a-zA-Z0-9]+$)
+C:209:build_atomlist: Missing docstring
+C:213:build_atomlist.CIFopen: Invalid name "CIFopen" (should match [a-z_][a-z0-9_]{2,30}$)
+C:213:build_atomlist.CIFopen: Missing docstring
+W:218:build_atomlist.CIFopen: No exception type(s) specified
+C:216:build_atomlist.CIFopen: Invalid name "cf" (should match [a-z_][a-z0-9_]{2,30}$)
+E:239:build_atomlist.CIFopen: Undefined variable 'blockname'
+C:243:build_atomlist.PDBread: Invalid name "PDBread" (should match [a-z_][a-z0-9_]{2,30}$)
+W:264:build_atomlist.PDBread: Redefining name 'sg' from outer scope (line 10)
+R:243:build_atomlist.PDBread: Too many local variables (32/15)
+W:248:build_atomlist.PDBread: Uses of a deprecated module 'string'
+W:253:build_atomlist.PDBread: No exception type(s) specified
+C:258:build_atomlist.PDBread: Invalid name "a" (should match [a-z_][a-z0-9_]{2,30}$)
+C:259:build_atomlist.PDBread: Invalid name "b" (should match [a-z_][a-z0-9_]{2,30}$)
+C:260:build_atomlist.PDBread: Invalid name "c" (should match [a-z_][a-z0-9_]{2,30}$)
+C:264:build_atomlist.PDBread: Invalid name "sg" (should match [a-z_][a-z0-9_]{2,30}$)
+C:270:build_atomlist.PDBread: Invalid name "sg" (should match [a-z_][a-z0-9_]{2,30}$)
+C:273:build_atomlist.PDBread: Invalid name "sg" (should match [a-z_][a-z0-9_]{2,30}$)
+C:287:build_atomlist.PDBread: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+C:290:build_atomlist.PDBread: Invalid name "no" (should match [a-z_][a-z0-9_]{2,30}$)
+C:293:build_atomlist.PDBread: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:294:build_atomlist.PDBread: Invalid name "y" (should match [a-z_][a-z0-9_]{2,30}$)
+C:295:build_atomlist.PDBread: Invalid name "z" (should match [a-z_][a-z0-9_]{2,30}$)
+C:313:build_atomlist.CIFread: Invalid name "CIFread" (should match [a-z_][a-z0-9_]{2,30}$)
+C:313:build_atomlist.CIFread: Missing docstring
+R:313:build_atomlist.CIFread: Too many local variables (17/15)
+W:315:build_atomlist.CIFread: Uses of a deprecated module 'string'
+W:343:build_atomlist.CIFread: No exception type(s) specified
+C:351:build_atomlist.CIFread: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:352:build_atomlist.CIFread: Invalid name "y" (should match [a-z_][a-z0-9_]{2,30}$)
+C:353:build_atomlist.CIFread: Invalid name "z" (should match [a-z_][a-z0-9_]{2,30}$)
+W:357:build_atomlist.CIFread: No exception type(s) specified
+W:361:build_atomlist.CIFread: No exception type(s) specified
+R:313:build_atomlist.CIFread: Too many branches (14/12)
+C:389:build_atomlist.remove_esd: Invalid name "a" (should match [a-z_][a-z0-9_]{2,30}$)
+W:395:build_atomlist.remove_esd: Uses of a deprecated module 'string'
+R:389:build_atomlist.remove_esd: Method could be a function
+W:237:build_atomlist.CIFopen: Attribute 'cifblk' defined outside __init__
+
+
+Report
+======
+206 statements analysed.
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |0     |0        |=          |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |0.000 |0.000    |=          |
++-------------------------+------+---------+-----------+
+
+
+
+Raw metrics
+-----------
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |254    |71.55 |254      |=          |
++----------+-------+------+---------+-----------+
+|docstring |69     |19.44 |69       |=          |
++----------+-------+------+---------+-----------+
+|comment   |12     |3.38  |12       |=          |
++----------+-------+------+---------+-----------+
+|empty     |20     |5.63  |20       |=          |
++----------+-------+------+---------+-----------+
+
+
+
+External dependencies
+---------------------
+::
+
+    CifFile (src.structure)
+    numpy (src.structure)
+    xfab 
+      \-tools (src.structure)
+      \-sg (src.structure)
+      \-atomlib (src.structure)
+
+
+
+Statistics by type
+------------------
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |1      |1          |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|class    |3      |3          |=          |0.00        |100.00   |
++---------+-------+-----------+-----------+------------+---------+
+|method   |8      |8          |=          |62.50       |37.50    |
++---------+-------+-----------+-----------+------------+---------+
+|function |5      |5          |=          |80.00       |60.00    |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+Messages by category
+--------------------
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |69     |69       |=          |
++-----------+-------+---------+-----------+
+|refactor   |10     |10       |=          |
++-----------+-------+---------+-----------+
+|warning    |10     |12       |-2.00      |
++-----------+-------+---------+-----------+
+|error      |1      |1        |=          |
++-----------+-------+---------+-----------+
+
+
+
+Messages
+--------
+
++-----------+-----------+
+|message id |occurences |
++===========+===========+
+|C0103      |46         |
++-----------+-----------+
+|C0301      |16         |
++-----------+-----------+
+|C0111      |7          |
++-----------+-----------+
+|W0702      |5          |
++-----------+-----------+
+|W0402      |3          |
++-----------+-----------+
+|R0914      |3          |
++-----------+-----------+
+|R0913      |3          |
++-----------+-----------+
+|R0903      |2          |
++-----------+-----------+
+|W0621      |1          |
++-----------+-----------+
+|W0201      |1          |
++-----------+-----------+
+|R0912      |1          |
++-----------+-----------+
+|R0201      |1          |
++-----------+-----------+
+|E0602      |1          |
++-----------+-----------+
+
+
+
+Global evaluation
+-----------------
+Your code has been rated at 5.44/10 (previous run: 5.38/10)
+

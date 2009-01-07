@@ -1,3 +1,8 @@
+"""
+xfab.structure for reading crystal structure files (cif,pdb)
+and calculation of form factors and structure factors etc. 
+"""
+
 import numpy as n
 import logging
 
@@ -5,7 +10,7 @@ from xfab import tools
 from xfab import sg
 from xfab import atomlib
 
-def StructureFactor(hkl,ucell,sgname,atoms,disper = None):
+def StructureFactor(hkl, ucell, sgname, atoms, disper = None):
     """
     Calculation of the structure factor of reflection hkl
     
@@ -20,8 +25,8 @@ def StructureFactor(hkl,ucell,sgname,atoms,disper = None):
     Henning Osholm Sorensen, June 23, 2006.
     Translated to python code April 8, 2008
     """
-    mysg = sg.sg(sgname=sgname) 
-    stl = tools.sintl(ucell,hkl)
+    mysg = sg.sg(sgname = sgname) 
+    stl = tools.sintl(ucell, hkl)
     noatoms = len(atoms)
 
     Freal = 0.0
@@ -31,17 +36,17 @@ def StructureFactor(hkl,ucell,sgname,atoms,disper = None):
         #Check whether isotrop or anisotropic displacements 
         if atoms[i].adp_type == 'Uiso':
             U = atoms[i].adp
-            expij=n.exp(-8*n.pi**2*U*stl**2)
+            expij = n.exp(-8*n.pi**2*U*stl**2)
         elif atoms[i].adp_type == 'Uani':
             # transform Uij to betaij
-            betaij = Uij2betaij(atoms[i].adp,ucell);
+            betaij = Uij2betaij(atoms[i].adp, ucell)
         else:
             expij = 1
             atoms[i].adp = 'Uiso'
             #logging.error("wrong no of elements in atomlist")
 
         # Atomic form factors
-        f = FormFactor(atoms[i].atomtype,stl)
+        f = FormFactor(atoms[i].atomtype, stl)
         if disper == None or disper[atoms[i].atomtype] == None :
             fp = 0.0
             fpp = 0.0
@@ -52,12 +57,12 @@ def StructureFactor(hkl,ucell,sgname,atoms,disper = None):
         for j in range(mysg.nsymop):
             # atomic displacement factor
             if atoms[i].adp_type == 'Uani':
-                betaijrot = n.dot(mysg.rot[j],n.dot(betaij,mysg.rot[j]))
-                expij=n.exp(-n.dot(hkl,n.dot(betaijrot,hkl)))
+                betaijrot = n.dot(mysg.rot[j], n.dot(betaij, mysg.rot[j]))
+                expij = n.exp(-n.dot(hkl, n.dot(betaijrot, hkl)))
                 
             # exponent for phase factor
-            r = n.dot(mysg.rot[j],atoms[i].pos) + mysg.trans[j]
-            exponent = 2*n.pi*n.dot(hkl,r)
+            r = n.dot(mysg.rot[j], atoms[i].pos) + mysg.trans[j]
+            exponent = 2*n.pi*n.dot(hkl, r)
 
             #forming the real and imaginary parts of F
             s = n.sin(exponent)
@@ -68,7 +73,7 @@ def StructureFactor(hkl,ucell,sgname,atoms,disper = None):
 
     return [Freal, Fimg]
 
-def Uij2betaij(adp,ucell):
+def Uij2betaij(adp, ucell):
     """
     Uij2betaij transform the ADP U-matrix into the beta form 
     
@@ -87,18 +92,18 @@ def Uij2betaij(adp,ucell):
                   [adp[5], adp[1], adp[3]], 
                   [adp[4], adp[3], adp[2]]])
 
-    betaij = n.zeros((3,3))
+    betaij = n.zeros((3, 3))
     cellstar = tools.CellInvert(ucell)
  
     for i in range(3):
         for j in range(3):
-            betaij[i,j] = 2*n.pi**2*cellstar[i]*cellstar[j]*U[i,j];
+            betaij[i, j] = 2*n.pi**2*cellstar[i]*cellstar[j]*U[i, j]
 
     return betaij
 
 
 
-def FormFactor(atomtype,stl):
+def FormFactor(atomtype, stl):
     """
      Calculation of the atomic form factor at a specified sin(theta)/lambda
      using the analytic fit to the  form factors from 
@@ -125,59 +130,60 @@ def FormFactor(atomtype,stl):
     return formfac
 
 
-def int_intensity(F2,L,P,I0,wavelength,cell_vol,cryst_vol):
-	"""
-	Calculate the reflection intensities scaling factor
-        
-        INPUT:
-        F2        : the structure factor squared
-        L         : Lorentz factor
-        P         : Polarisation factor
-        I0        : Incoming beam flux
-        wavelength: in Angstroem
-        cell_vol  : Volume of unit cell in AA^3
-        cryst_vol : Volume of crystal in mm^3
+def int_intensity(F2, L, P, I0, wavelength, cell_vol, cryst_vol):
+    """
+    Calculate the reflection intensities scaling factor
+    
+    INPUT:
+    F2        : the structure factor squared
+    L         : Lorentz factor
+    P         : Polarisation factor
+    I0        : Incoming beam flux
+    wavelength: in Angstroem
+    cell_vol  : Volume of unit cell in AA^3
+    cryst_vol : Volume of crystal in mm^3
 
-        OUTPUT:
-        int_intensity: integrated intensity
+    OUTPUT:
+    int_intensity: integrated intensity
 
-        """
-#        print F2,L,P,I0,wavelength,cell_vol,cryst_vol
-        
-	emass =9.1093826e-31
-	echarge = 1.60217653e-19
-	pi4eps0 = 1.11265e-10
-	c = 299792458.0
-	k1 = (echarge**2/(pi4eps0*emass*c**2)*1000)**2 # Unit is mm
-	k2 = wavelength**3 * cryst_vol * 1e21/cell_vol**2 # 1e21 to go from mm^3 to AA^3
-        return k1*k2*I0*L*P*F2
+    """
+#    print F2,L,P,I0,wavelength,cell_vol,cryst_vol
+    
+    emass = 9.1093826e-31
+    echarge = 1.60217653e-19
+    pi4eps0 = 1.11265e-10
+    c = 299792458.0
+    k1 = (echarge**2/(pi4eps0*emass*c**2)*1000)**2 # Unit is mm
+    # the factor 1e21 used below is to go from mm^3 to AA^3
+    k2 = wavelength**3 * cryst_vol * 1e21/cell_vol**2 
+    return k1*k2*I0*L*P*F2
 
 
-def multiplicity(position,sgname):
-    mysg = sg.sg(sgname=sgname)
-    lp = n.zeros((mysg.nuniq,3))
+def multiplicity(position, sgname):
+    mysg = sg.sg(sgname = sgname)
+    lp = n.zeros((mysg.nuniq, 3))
 
     for i in range(mysg.nuniq):
-        lp[i,:] = n.dot(position,mysg.rot[i])+mysg.trans[i]
+        lp[i, :] = n.dot(position, mysg.rot[i]) + mysg.trans[i]
 
-    lpu = n.array([lp[0,:]])
+    lpu = n.array([lp[0, :]])
     nuniq = 1
 
-    for i in range(1,mysg.nuniq):
+    for i in range(1, mysg.nuniq):
         for j in range(nuniq):
             t = lp[i]-lpu[j]
-            if n.sum(n.mod(t,1)) < 0.00001:
+            if n.sum(n.mod(t, 1)) < 0.00001:
                 break
             else:
                 if j == nuniq-1:
-                    lpu = n.concatenate((lpu, [lp[i,:]]))
+                    lpu = n.concatenate((lpu, [lp[i, :]]))
                     nuniq += 1
 
     multi = mysg.nuniq/nuniq
     return multi
 
 class atom_entry:
-    def __init__(self,label=None, atomtype=None, pos=None,
+    def __init__(self, label=None, atomtype=None, pos=None,
                  adp_type=None, adp=None, occ=None, symmulti=None):
         self.label = label
         self.atomtype = atomtype
@@ -194,16 +200,17 @@ class atomlist:
         self.cell = cell
         self.dispersion = {}
         self.atom = []
-    def add_atom(self,label=None, atomtype=None, pos=None, 
+    def add_atom(self, label=None, atomtype=None, pos=None, 
                  adp_type=None, adp=None, occ=None, symmulti=None):
-        self.atom.append(atom_entry(label=label, atomtype=atomtype, pos=pos, adp_type=adp_type,
+        self.atom.append(atom_entry(label=label, atomtype=atomtype,
+                                    pos=pos, adp_type=adp_type,
                                     adp=adp, occ=occ, symmulti=symmulti))
 
 class build_atomlist:
     def __init__(self):
         self.atomlist = atomlist()
         
-    def CIFopen(self,ciffile=None,cifblkname=None):
+    def CIFopen(self, ciffile=None, cifblkname=None):
         from CifFile import ReadCif # part of the PycifRW module
         try:
             cf = ReadCif(ciffile)
@@ -215,7 +222,7 @@ class build_atomlist:
             blocks = cf.keys()
             if len(blocks) > 1:
                 if len(blocks) == 2 and 'global' in blocks:
-                    cifblkname = blocks[abs(blocks.index('global')-1)]
+                    cifblkname = blocks[abs(blocks.index('global') - 1)]
                 else:
                     logging.error('More than one possible data set:')
                     logging.error('The following data block names are in the file:')
@@ -229,21 +236,21 @@ class build_atomlist:
         try:
             self.cifblk = cf[cifblkname]
         except:
-            logging.error('Block - %s - not found in %s' %(blockname,ciffile))
+            logging.error('Block - %s - not found in %s' % (blockname, ciffile))
             raise IOError
         return self.cifblk
 
-    def PDBread(self,pdbfile = None):
+    def PDBread(self, pdbfile = None):
         """
         function to read pdb file (www.pdb.org) and make 
         atomlist structure
         """
-        from string import atof,atoi,lower,upper
+        from string import atof, atoi, lower, upper
         from re import sub
         try:
-           text = open(pdbfile,'r').readlines()
+            text = open(pdbfile, 'r').readlines()
         except:
-            logging.error('File %s could not be accessed' %pdbfile)
+            logging.error('File %s could not be accessed' % pdbfile)
 
 
         for i in range(len(text)):
@@ -259,56 +266,56 @@ class build_atomlist:
         self.atomlist.cell = [a, b, c, alp, bet, gam]
 
         # Make space group name
-        sgtmp =sg.split()
+        sgtmp = sg.split()
         sg = ''
         for i in range(len(sgtmp)):
             if sgtmp[i] != '1':
-                sg=sg+lower(sgtmp[i])
+                sg = sg + lower(sgtmp[i])
         self.atomlist.sgname = sg
 
         # Build SCALE matrix for transformation of 
         # orthonormal atomic coordinates to fractional
-        scalemat = n.zeros((3,4))
+        scalemat = n.zeros((3, 4))
         for i in range(len(text)):
             if text[i].find('SCALE') == 0:
                 # FOUND SCALE LINE
                 scale = text[i].split()
                 scaleline = atoi(scale[0][-1])-1
-                for j in range(1,len(scale)):
-                    scalemat[scaleline,j-1] = atof(scale[j])
+                for j in range(1, len(scale)):
+                    scalemat[scaleline, j-1] = atof(scale[j])
                 
         no = 0
         for i in range(len(text)):
             if text[i].find('ATOM') == 0 or text[i].find('HETATM') ==0:
                 no = no + 1 
-                label = sub("\s+","",text[i][12:16])
-                atomtype = upper(sub("\s+","",text[i][76:78]))
+                label = sub("\s+", "", text[i][12:16])
+                atomtype = upper(sub("\s+", "", text[i][76:78]))
                 x = atof(text[i][30:38])
                 y = atof(text[i][38:46])
                 z = atof(text[i][46:54])
                 # transform orthonormal coordinates to fractional
-                pos = n.dot(scalemat,[x,y,z,1])
+                pos = n.dot(scalemat, [x, y, z, 1])
                 adp = atof(text[i][60:66])/(8*n.pi**2) # B to U
                 adp_type = 'Uiso'
                 occ = atof(text[i][54:60])
-                multi = multiplicity(pos,self.atomlist.sgname)
+                multi = multiplicity(pos, self.atomlist.sgname)
                 self.atomlist.add_atom(label=label,
                                        atomtype=atomtype,
                                        pos = pos,
                                        adp_type= adp_type,
                                        adp = adp,
-                                       occ=occ ,
+                                       occ=occ,
                                        symmulti=multi)
 
                 self.atomlist.dispersion[atomtype] = None
 
 
-    def CIFread(self,ciffile = None, cifblkname = None, cifblk = None):
+    def CIFread(self, ciffile = None, cifblkname = None, cifblk = None):
         from re import sub
         from string import upper
         if ciffile != None:
             try:
-                cifblk = self.CIFopen(ciffile=ciffile,cifblkname=cifblkname)
+                cifblk = self.CIFopen(ciffile=ciffile, cifblkname=cifblkname)
             except:
                 raise IOError()
         elif cifblk == None:
@@ -321,8 +328,10 @@ class build_atomlist:
                               self.remove_esd(cifblk['_cell_angle_beta']),
                               self.remove_esd(cifblk['_cell_angle_gamma'])]
 
-        #self.atomlist.sgname = upper(sub("\s+","",cifblk['_symmetry_space_group_name_H-M']))
-        self.atomlist.sgname = sub("\s+","",cifblk['_symmetry_space_group_name_H-M'])
+        #self.atomlist.sgname = upper(sub("\s+","",
+        #                       cifblk['_symmetry_space_group_name_H-M']))
+        self.atomlist.sgname = sub("\s+", "",
+                                   cifblk['_symmetry_space_group_name_H-M'])
 
         # Dispersion factors
         for i in range(len(cifblk['_atom_type_symbol'])):
@@ -353,11 +362,12 @@ class build_atomlist:
 
             if cifblk.has_key('_atom_site_symmetry_multiplicity'):
                 multi = self.remove_esd(cifblk['_atom_site_symmetry_multiplicity'][i])
-            # In old SHELXL versions this code was written as '_atom_site_symetry_multiplicity'
+            # In old SHELXL versions this code was written
+            # as '_atom_site_symetry_multiplicity'
             elif cifblk.has_key('_atom_site_symetry_multiplicity'):
                 multi = self.remove_esd(cifblk['_atom_site_symetry_multiplicity'][i])
             else:
-                multi = multiplicity([x,y,z],self.atomlist.sgname)
+                multi = multiplicity([x, y, z], self.atomlist.sgname)
 
 
             if adp_type == None:
@@ -372,14 +382,16 @@ class build_atomlist:
                         self.remove_esd(cifblk['_atom_site_aniso_U_23'][anisonumber]),
                         self.remove_esd(cifblk['_atom_site_aniso_U_13'][anisonumber]),
                         self.remove_esd(cifblk['_atom_site_aniso_U_12'][anisonumber])]
-            self.atomlist.add_atom(label=label, atomtype=atomtype, pos = [x,y,z],
-                                   adp_type= adp_type, adp = adp, occ=occ , symmulti=multi)
+            self.atomlist.add_atom(label=label, atomtype=atomtype,
+                                   pos = [x, y, z], adp_type= adp_type, 
+                                   adp = adp, occ=occ , symmulti=multi)
 
-    def remove_esd(self,a):
+    def remove_esd(self, a):
         """                                                                         
         This function will remove the esd part of the entry,
         e.g. '1.234(56)' to '1.234'.
         """
+
         from string import atof
         
         if a.find('(') == -1:
