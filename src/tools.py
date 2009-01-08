@@ -523,18 +523,40 @@ def U2euler(U):
                 mk = k
     return n.array([ phi1, PHI[mj], phi2[mk] ])
 
-def U2rod(U):
+def U2rod_old(U):
     """
     Get Rodrigues vector from U matrix (Busing Levy)
     Taken from ImageD11.indexing.ubitoRod of Jon Wright
-    
-    OBS: changes sign of Rod vector compared to original function
+ 
+    added argsort of w
     """
     w, v = n.linalg.eig(U)
-    ehat = v[:, 0]
-    angle = -1*n.arccos(w[1].real)
+    #print w
+    #print v
+    order = n.argsort(w.real)
+    #print w, order
+    ehat = v[:, order[-1]]
+    angle = n.arccos(w[order[1]].real)
     Rod = ehat * n.tan(angle/2.)
     return Rod.real
+
+def U2rod(U):
+    """
+    Get Rodrigues vector from U matrix (Busing Levy)
+    INPUT: U 3x3 matrix
+    OUTPUT: Rodrigues vector  
+
+    Function taken from GrainsSpotter by Soeren Schmidt
+    """
+
+    ttt = 1+U[0,0]+U[1,1]+U[2,2]
+    if abs(ttt) < 1e-16: 
+        raise ValueError, 'Wrong trace of U'
+    a = 1/ttt
+    r1 = (U[1,2]-U[2,1])*a
+    r2 = (U[2,0]-U[0,2])*a
+    r3 = (U[0,1]-U[1,0])*a
+    return n.array([r1,r2,r3])
 
 def rod2U(r):
     """
