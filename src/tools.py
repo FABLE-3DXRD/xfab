@@ -523,22 +523,28 @@ def U2euler(U):
                 mk = k
     return n.array([ phi1, PHI[mj], phi2[mk] ])
 
-def U2rod_old(U):
-    """
-    Get Rodrigues vector from U matrix (Busing Levy)
-    Taken from ImageD11.indexing.ubitoRod of Jon Wright
+# def U2rod_old(U):
+#     """
+#     Get Rodrigues vector from U matrix (Busing Levy)
+#     Taken from ImageD11.indexing.ubitoRod of Jon Wright
  
-    added argsort of w
-    """
-    w, v = n.linalg.eig(U)
-    #print w
-    #print v
-    order = n.argsort(w.real)
-    #print w, order
-    ehat = v[:, order[-1]]
-    angle = n.arccos(w[order[1]].real)
-    Rod = ehat * n.tan(angle/2.)
-    return Rod.real
+#     added argsort of w
+#     """
+#     w, v = n.linalg.eig(U)
+#     #print w
+#     #print v
+#     order = n.argsort(w.real)
+#     #print w, order
+#     ehat = v[:, order[-1]]
+#     print order
+# #     if order.tolist() != range(3):
+# #         print 'HHFH'
+# #         angle = -1*n.arccos(w[order[1]].real)
+# #     else:
+# #         angle = n.arccos(w[order[1]].real)
+#     angle = n.arccos(w[order[1]].real)
+#     Rod = ehat * n.tan(angle/2.)
+#     return Rod.real
 
 def U2rod(U):
     """
@@ -557,6 +563,16 @@ def U2rod(U):
     r2 = (U[2,0]-U[0,2])*a
     r3 = (U[0,1]-U[1,0])*a
     return n.array([r1,r2,r3])
+
+def ubi2rod(ubi):
+    """
+    Get Rodrigues vector from UBI matrix
+    INPUT: UBI 3x3 matrix
+    OUTPUT: Rodrigues vector  
+
+    """
+
+    return U2rod(ubi2U(ubi))
 
 def rod2U(r):
     """
