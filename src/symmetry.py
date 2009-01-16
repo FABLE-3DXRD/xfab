@@ -88,7 +88,7 @@ def permutations(crystal_system):
 
     if crystal_system == 1: # Triclinic
         perm = zeros((1, 3, 3))
-        perm[0]  = [[ 1, 0, 0], [ 0, 1, 0], [ 0, 0, 1]]
+        perm[0]  = [[ 1., 0, 0], [ 0, 1., 0], [ 0, 0, 1.]]
 
     if crystal_system == 2: # Monoclinic
         perm = zeros((2, 3, 3))

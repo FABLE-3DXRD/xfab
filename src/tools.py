@@ -84,7 +84,8 @@ def find_omega_wedge(gw, twoth, wedge):
     if (abs(coseta) > 1.):
         return Omega, eta
     # else calc the two eta values
-    eta = n.array([n.arccos(coseta), 2*n.pi-n.arccos(coseta)])
+    eta = n.array([n.arccos(coseta), -n.arccos(coseta)])
+#    eta = n.array([n.arccos(coseta), 2*n.pi-n.arccos(coseta)]) # replaced this by the above to make find_omega_wedge and find_omega_quart give same eta 
     #print eta*180.0/n.pi
     
     # Now find the Omega value(s)
@@ -970,5 +971,4 @@ def sysabs(hkl, syscond):
                 sysabs_type = 23
     
     return sysabs_type
-
 
