@@ -575,6 +575,15 @@ def ubi2rod(ubi):
 
     return U2rod(ubi2U(ubi))
 
+def ubi2UandB(ubi):
+    """
+    Get Rodrigues vector from UBI matrix
+    INPUT: UBI 3x3 matrix
+    OUTPUT: U orientaion matrix and B metric matrix  
+
+    """
+    return UBtoUandB(n.linalg.inv(ubi)*(2*n.pi))
+
 def rod2U(r):
     """
     rod2U calculates the U orientation matrix given an oriention

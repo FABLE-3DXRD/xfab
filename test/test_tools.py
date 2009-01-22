@@ -171,6 +171,20 @@ class test_qr(unittest.TestCase):
         self.assertAlmostEquals(diffU,0,9)  
         self.assertAlmostEquals(diffB,0,9)  
         
-        
+
+    def test_ubi2rod(self):  
+        phi1 = 0.13
+        PHI  = 0.4
+        phi2 = 0.21
+        cell = [3,4,5,80,95,100]
+        Umat = tools.euler2U(phi1,PHI,phi2)
+        Bmat = tools.FormB(cell)
+        ubi = n.linalg.inv(n.dot(Umat, Bmat))*2*n.pi
+        (U1,B1) = tools.ubi2UandB(ubi)
+        diffU = n.abs(Umat-U1).sum()
+        diffB = n.abs(Bmat-B1).sum()
+        self.assertAlmostEquals(diffU,0,9)  
+        self.assertAlmostEquals(diffB,0,9)  
+
 if __name__ == '__main__':
     unittest.main()
