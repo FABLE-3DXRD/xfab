@@ -157,5 +157,20 @@ class test_ABepsilon(unittest.TestCase):
         B = tools.epsilon2B(eps,ucell)
         eps2 = tools.B2epsilon(B,ucell)
         
+class test_qr(unittest.TestCase):
+
+    def test_UdotBtoUandB(self):
+        ucell = n.array([3.5+n.random.rand(),3.5+n.random.rand(),3.5+n.random.rand(),89.5+n.random.rand(),89.5+n.random.rand(),89.5+n.random.rand()])
+        eps = (n.random.rand(6)-.5)/1000.
+        B = tools.epsilon2B(eps,ucell)
+        U = tools.euler2U(n.random.rand()*2.*n.pi,n.random.rand()*2.*n.pi,n.random.rand()*n.pi)
+        UB = n.dot(U,B)
+        (U1,B1) = tools.UBtoUandB(UB)
+        diffU = n.abs(U-U1).sum()
+        diffB = n.abs(B-B1).sum()
+        self.assertAlmostEquals(diffU,0,9)  
+        self.assertAlmostEquals(diffB,0,9)  
+        
+        
 if __name__ == '__main__':
     unittest.main()
