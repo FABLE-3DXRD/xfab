@@ -1,4 +1,4 @@
-************* Module src.detector
+************* Module detector
 C: 10:det_coor: Invalid name "Gt" (should match [a-z_][a-z0-9_]{2,30}$)
 C: 10:det_coor: Invalid name "R_tilt" (should match [a-z_][a-z0-9_]{2,30}$)
 C: 10:det_coor: Invalid name "tx" (should match [a-z_][a-z0-9_]{2,30}$)
@@ -18,17 +18,17 @@ R: 37:det_coor2: Too many local variables (18/15)
 C: 58:det_coor2: Invalid name "v" (should match [a-z_][a-z0-9_]{2,30}$)
 C: 61:det_coor2: Invalid name "t" (should match [a-z_][a-z0-9_]{2,30}$)
 C: 63:det_coor2: Invalid name "Ltv" (should match [a-z_][a-z0-9_]{2,30}$)
-C: 69:detector2lab: Invalid name "L" (should match [a-z_][a-z0-9_]{2,30}$)
-C: 69:detector2lab: Invalid name "py" (should match [a-z_][a-z0-9_]{2,30}$)
-C: 69:detector2lab: Invalid name "pz" (should match [a-z_][a-z0-9_]{2,30}$)
-C: 69:detector2lab: Invalid name "y0" (should match [a-z_][a-z0-9_]{2,30}$)
-C: 69:detector2lab: Invalid name "z0" (should match [a-z_][a-z0-9_]{2,30}$)
-C: 69:detector2lab: Invalid name "R_tilt" (should match [a-z_][a-z0-9_]{2,30}$)
-R: 69:detector2lab: Too many arguments (8/5)
+C: 69:detector_to_lab: Invalid name "L" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 69:detector_to_lab: Invalid name "py" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 69:detector_to_lab: Invalid name "pz" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 69:detector_to_lab: Invalid name "y0" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 69:detector_to_lab: Invalid name "z0" (should match [a-z_][a-z0-9_]{2,30}$)
+C: 69:detector_to_lab: Invalid name "R_tilt" (should match [a-z_][a-z0-9_]{2,30}$)
+R: 69:detector_to_lab: Too many arguments (8/5)
 R: 82:trans_orientation: Too many arguments (6/5)
 R:146:image_flipping: Too many arguments (6/5)
-R:204:detyz2xy: Too many arguments (7/5)
-R:238:xy2detyz: Too many arguments (7/5)
+R:204:detyz_to_xy: Too many arguments (7/5)
+R:238:xy_to_detyz: Too many arguments (7/5)
 R:272:distort: Too many arguments (8/5)
 C:277:distort: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
 C:277:distort: Invalid name "y" (should match [a-z_][a-z0-9_]{2,30}$)
@@ -59,7 +59,7 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |132    |45.99 |131      |+1.00      |
+|code      |132    |45.99 |132      |=          |
 +----------+-------+------+---------+-----------+
 |docstring |125    |43.55 |125      |=          |
 +----------+-------+------+---------+-----------+
@@ -74,7 +74,7 @@ External dependencies
 ---------------------
 ::
 
-    numpy (src.detector)
+    numpy (detector)
 
 
 
@@ -101,13 +101,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |25     |26       |-1.00      |
+|convention |25     |25       |=          |
 +-----------+-------+---------+-----------+
 |refactor   |10     |10       |=          |
 +-----------+-------+---------+-----------+
 |warning    |0      |0        |=          |
 +-----------+-------+---------+-----------+
-|error      |0      |0        |=          |
+|error      |0      |2        |-2.00      |
 +-----------+-------+---------+-----------+
 
 
@@ -129,5 +129,5 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at 6.35/10 (previous run: 6.25/10)
+Your code has been rated at 6.35/10 (previous run: 5.31/10)
 

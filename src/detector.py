@@ -66,7 +66,7 @@ def det_coor2(tth, eta, distance, y_size, z_size,
     return [dety, detz]
 
     
-def detector2lab(dety, detz, L, py, pz, y0, z0, R_tilt):
+def detector_to_lab(dety, detz, L, py, pz, y0, z0, R_tilt):
     """
     calculates the laboratory coordinates (xl,yl,zl) from the detector
     coordinates (dety,detz), the sample-to-detector distance L, the pixel
@@ -201,7 +201,7 @@ def image_flipping(img, o11, o12, o21, o22, flipdir='forward'):
 
 
 
-def detyz2xy(coor, o11, o12, o21, o22, dety_size, detz_size):
+def detyz_to_xy(coor, o11, o12, o21, o22, dety_size, detz_size):
     """
     Transforming dety, detz coordinates to meet (x,y) coordinates
     of the raw image according to the  detector orientation matrix given.
@@ -235,7 +235,7 @@ def detyz2xy(coor, o11, o12, o21, o22, dety_size, detz_size):
                                       -n.max(det_size), 0)
     return coor
 
-def xy2detyz(coor, o11, o12, o21, o22, dety_size, detz_size):
+def xy_to_detyz(coor, o11, o12, o21, o22, dety_size, detz_size):
     """
     Transforming (x,y) coordinates of the raw image 
     to (dety, detz) coordinates according to the  
@@ -274,23 +274,23 @@ def distort(coor, o11, o12, o21, o22, dety_size, detz_size, spatial):
     To match the coordinate system of the spline file
     """
 
-    (x, y) = detyz2xy(coor,
-                      o11,
-                      o12,
-                      o21,
-                      o22,
-                      dety_size,
-                      detz_size)
+    (x, y) = detyz_to_xy(coor,
+                         o11,
+                         o12,
+                         o21,
+                         o22,
+                         dety_size,
+                         detz_size)
 
     # Do the spatial distortion
     (xd, yd) = spatial.distort(x, y)
     
     # transform coordinates back to dety,detz
-    coord = xy2detyz([xd, yd],
-                     o11,
-                     o12,
-                     o21,
-                     o22,
-                     dety_size,
-                     detz_size)
+    coord = xy_to_detyz([xd, yd],
+                        o11,
+                        o12,
+                        o21,
+                        o22,
+                        dety_size,
+                        detz_size)
     return coord

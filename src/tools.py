@@ -7,7 +7,7 @@ import numpy as n
 from math import degrees
 
 
-def find_omega_quart(gw, twoth, wx, wy):
+def find_omega_quart(gvec, twoth, wx, wy):
     """
     For gw find the omega rotation (in radians) around an axis 
     tilted by wx radians around x (chi) and wy radians around y (wedge)
@@ -15,7 +15,7 @@ def find_omega_quart(gw, twoth, wx, wy):
     Soren Schmidt, implemented by Jette Oddershede
     """
 
-    assert abs(n.dot(gw, gw)-n.sin(twoth/2)**2) < 1e-9, \
+    assert abs(n.dot(gvec, gvec)-n.sin(twoth/2)**2) < 1e-9, \
         'g-vector must have length sin(theta)'
     Wx = n.array([[1, 0        , 0         ],
                   [0, n.cos(wx), -n.sin(wx)],
@@ -25,13 +25,13 @@ def find_omega_quart(gw, twoth, wx, wy):
                   [-n.sin(wy), 0, n.cos(wy)]])
     normal = n.dot(Wx, n.dot(Wy, n.array([0, 0, 1])))
 
-    a = gw[0]*(1-normal[0]**2) - \
-        gw[1]*normal[0]*normal[1] - \
-        gw[2]*normal[0]*normal[2]
-    b = gw[2]*normal[1] - gw[1]*normal[2]
-    c = - n.dot(gw, gw) - gw[0]*normal[0]**2 - \
-        gw[1]*normal[0]*normal[1] - \
-        gw[2]*normal[0]*normal[2]
+    a = gvec[0]*(1-normal[0]**2) - \
+        gvec[1]*normal[0]*normal[1] - \
+        gvec[2]*normal[0]*normal[2]
+    b = gvec[2]*normal[1] - gvec[1]*normal[2]
+    c = - n.dot(gvec, gvec) - gvec[0]*normal[0]**2 - \
+        gvec[1]*normal[0]*normal[1] - \
+        gvec[2]*normal[0]*normal[2]
     d = a*a + b*b - c*c
 
     omega = []
@@ -48,8 +48,8 @@ def find_omega_quart(gw, twoth, wx, wy):
             omega.append(n.arctan2(sinomega, cosomega))
             if omega[i] > n.pi:
                 omega[i] = omega[i] - 2*n.pi
-            Omega = quart2Omega(omega[i]*180./n.pi, wx, wy)
-            G = n.dot(Omega, gw)
+            Omega = quart_to_omega(omega[i]*180./n.pi, wx, wy)
+            G = n.dot(Omega, gvec)
             sineta = -2*G[1]/n.sin(twoth)
             coseta = 2*G[2]/n.sin(twoth)
             eta.append(n.arctan2(sineta, coseta))
@@ -85,7 +85,9 @@ def find_omega_wedge(gw, twoth, wedge):
         return Omega, eta
     # else calc the two eta values
     eta = n.array([n.arccos(coseta), -n.arccos(coseta)])
-#    eta = n.array([n.arccos(coseta), 2*n.pi-n.arccos(coseta)]) # replaced this by the above to make find_omega_wedge and find_omega_quart give same eta 
+    # replaced this by the above to make find_omega_wedge
+    # and find_omega_quart give same eta 
+    # eta = n.array([n.arccos(coseta), 2*n.pi-n.arccos(coseta)])
     #print eta*180.0/n.pi
     
     # Now find the Omega value(s)
@@ -107,11 +109,15 @@ def find_omega_wedge(gw, twoth, wedge):
 
 
 def find_omega(gw, twoth):
+    """
+    Calculate the omega angles for a g-vector gw given twotheta using Soeren
+    Schmidts algorithm.
+    Solves an equation of type a*cos(w)+b*sin(w) = c by the fixpoint method.
+    
+    """
     Glen = n.sqrt(n.dot(gw, gw))
     costth = n.cos(twoth)
     
-    #    Trying to implement Soerens omega determination
-    #    Solve equation of type a*cos(w)+b*sin(w) = c by fixpoint method.
     a =  gw[0]/Glen
     b = -gw[1]/Glen
     c = (costth - 1)/n.sqrt(2*(1 - costth))
@@ -135,26 +141,25 @@ def find_omega(gw, twoth):
     return n.array(Omega)
 
 
-def CellInvert(ucell):
+def cell_invert(unit_cell):
     """
-    CellInvert calculates the reciprocal unit cell parameters
+    cell_invert calculates the reciprocal unit cell parameters
     from the direct space unit cell
     
-    INPUT: ucell = [a, b, c, alpha, beta, gamma]
-    OUTPUT ucellstart = [astar, bstar, cstar, 
-                         alpastar, betastar, gammastar]
+    INPUT: unit_cell = [a, b, c, alpha, beta, gamma]
+    OUTPUT unit_cell_star = [astar, bstar, cstar, alpastar, betastar, gammastar]
 
     """
-    a = ucell[0]
-    b = ucell[1]
-    c = ucell[2]
-    calp = n.cos(ucell[3]*n.pi/180.)
-    cbet = n.cos(ucell[4]*n.pi/180.)
-    cgam = n.cos(ucell[5]*n.pi/180.)
-    salp = n.sin(ucell[3]*n.pi/180.)
-    sbet = n.sin(ucell[4]*n.pi/180.)
-    sgam = n.sin(ucell[5]*n.pi/180.)
-    V = CellVolume(ucell)
+    a = unit_cell[0]
+    b = unit_cell[1]
+    c = unit_cell[2]
+    calp = n.cos(unit_cell[3]*n.pi/180.)
+    cbet = n.cos(unit_cell[4]*n.pi/180.)
+    cgam = n.cos(unit_cell[5]*n.pi/180.)
+    salp = n.sin(unit_cell[3]*n.pi/180.)
+    sbet = n.sin(unit_cell[4]*n.pi/180.)
+    sgam = n.sin(unit_cell[5]*n.pi/180.)
+    V = cell_volume(unit_cell)
 
     astar = b*c*salp/V
     bstar = a*c*sbet/V
@@ -173,7 +178,7 @@ def CellInvert(ucell):
     return [astar, bstar, cstar, alpstar, betstar, gamstar]
 
 
-def OMEGA(omega):
+def form_omega_mat(omega):
     """
     Calc Omega rotation matrix having an omega angle of "omega"
     
@@ -186,29 +191,29 @@ def OMEGA(omega):
                   [  0         ,  0           , 1]])
     return Om
 
-def CellVolume(ucell):
+def cell_volume(unit_cell):
     """
-    CellVolume calculates the volume of the unit cell in AA^3
+    cell_volume calculates the volume of the unit cell in AA^3
     from the direct space unit cell parameters
     
-    INPUT: ucell = [a, b, c, alpha, beta, gamma]
+    INPUT: unit_cell = [a, b, c, alpha, beta, gamma]
     OUTPUT: volume
     
 
     """
-    a = ucell[0]
-    b = ucell[1]
-    c = ucell[2]
-    calp = n.cos(ucell[3]*n.pi/180.)
-    cbet = n.cos(ucell[4]*n.pi/180.)
-    cgam = n.cos(ucell[5]*n.pi/180.)
+    a = unit_cell[0]
+    b = unit_cell[1]
+    c = unit_cell[2]
+    calp = n.cos(unit_cell[3]*n.pi/180.)
+    cbet = n.cos(unit_cell[4]*n.pi/180.)
+    cgam = n.cos(unit_cell[5]*n.pi/180.)
     
     angular = n.sqrt(1 - calp*calp - cbet*cbet - cgam*cgam + 2*calp*cbet*cgam)
     #Volume of unit cell
     V = a*b*c*angular                                             
     return V
 
-def FormB(ucell):
+def form_b_mat(unit_cell):
     """
     calculate B matrix of (Gcart = B Ghkl) following eq. 3.4 in 
     H.F. Poulsen.
@@ -216,24 +221,24 @@ def FormB(ucell):
     Mapping polycrystals and their dynamics. 
     Springer Tracts in Modern Physics, v. 205), (Springer, Berlin, 2004).
     
-    INPUT:  ucell - unit_cell = [a, b, c, alpha, beta, gamma] 
+    INPUT:  unit_cell - unit_cell = [a, b, c, alpha, beta, gamma] 
     OUTPUT: B - a 3x3 matrix
     
     Henning Osholm Sorensen, Risoe-DTU, June 11, 2007.
     """
     
-    a = ucell[0]
-    b = ucell[1]
-    c = ucell[2]
-    calp = n.cos(ucell[3]*n.pi/180.)
-    cbet = n.cos(ucell[4]*n.pi/180.)
-    cgam = n.cos(ucell[5]*n.pi/180.)
-    salp = n.sin(ucell[3]*n.pi/180.)
-    sbet = n.sin(ucell[4]*n.pi/180.)
-    sgam = n.sin(ucell[5]*n.pi/180.)
+    a = unit_cell[0]
+    b = unit_cell[1]
+    c = unit_cell[2]
+    calp = n.cos(unit_cell[3]*n.pi/180.)
+    cbet = n.cos(unit_cell[4]*n.pi/180.)
+    cgam = n.cos(unit_cell[5]*n.pi/180.)
+    salp = n.sin(unit_cell[3]*n.pi/180.)
+    sbet = n.sin(unit_cell[4]*n.pi/180.)
+    sgam = n.sin(unit_cell[5]*n.pi/180.)
 
     #Volume of unit cell
-    V = CellVolume(ucell)
+    V = cell_volume(unit_cell)
     
     #  Calculate reciprocal lattice parameters: 
     # NOTICE PHYSICIST DEFINITION of recip axes with 2*pi
@@ -255,32 +260,32 @@ def FormB(ucell):
 
 
 
-def FormA(ucell):
+def form_a_mat(unit_cell):
     """
     calculate the A matrix given in eq. 3.23 of H.F. Poulsen.
     Three-dimensional X-ray diffraction microscopy. 
     Mapping polycrystals and their dynamics. 
     (Springer Tracts in Modern Physics, v. 205), (Springer, Berlin, 2004).
     
-    INPUT: ucell - unit_cell = [a, b, c, alpha, beta, gamma] 
+    INPUT: unit_cell - unit_cell = [a, b, c, alpha, beta, gamma] 
     
     OUTPUT A - a 3x3 matrix
     
     Jette Oddershede, March 7, 2008.
     """
     
-    a = ucell[0]
-    b = ucell[1]
-    c = ucell[2]
-    calp = n.cos(ucell[3]*n.pi/180.)
-    cbet = n.cos(ucell[4]*n.pi/180.)
-    cgam = n.cos(ucell[5]*n.pi/180.)
-    #salp = n.sin(ucell[3]*n.pi/180.)
-    sbet = n.sin(ucell[4]*n.pi/180.)
-    sgam = n.sin(ucell[5]*n.pi/180.)
+    a = unit_cell[0]
+    b = unit_cell[1]
+    c = unit_cell[2]
+    calp = n.cos(unit_cell[3]*n.pi/180.)
+    cbet = n.cos(unit_cell[4]*n.pi/180.)
+    cgam = n.cos(unit_cell[5]*n.pi/180.)
+    #salp = n.sin(unit_cell[3]*n.pi/180.)
+    sbet = n.sin(unit_cell[4]*n.pi/180.)
+    sgam = n.sin(unit_cell[5]*n.pi/180.)
     
     #Volume of unit cell
-    V = CellVolume(ucell)
+    V = cell_volume(unit_cell)
     
     #  Calculate reciprocal lattice parameters
     salpstar = V/(a*b*c*sbet*sgam)                 
@@ -292,64 +297,64 @@ def FormA(ucell):
                  [0, 0,       c*sbet*salpstar ]])
     return A
                 
-def FormAinv(ucell):
+def form_a_mat_inv(unit_cell):
     """
     calculate the inverse of the A matrix given in eq. 3.23 of H.F. Poulsen.
     Three-dimensional X-ray diffraction microscopy. 
     Mapping polycrystals and their dynamics. 
     (Springer Tracts in Modern Physics, v. 205), (Springer, Berlin, 2004).
     
-    INPUT: ucell - unit_cell = [a, b, c, alpha, beta, gamma] 
+    INPUT: unit_cell - unit_cell = [a, b, c, alpha, beta, gamma] 
     
     OUTPUT A^-1 - a 3x3 matrix
     
     Jette Oddershede, March 7, 2008.
     """
 
-    A = FormA(ucell)
+    A = form_a_mat(unit_cell)
     Ainv = n.linalg.inv(A)
     return Ainv
 
 
-def ubi2ucell(ubi):
+def ubi_to_cell(ubi):
     """
     calculate lattice constants from the UBI-matrix as
     defined in H.F.Poulsen 2004 eqn.3.23
     
-    ubi2ucell(ubi)
+    ubi_to_cell(ubi)
     
     ubi [3x3] matrix of (U*B)^-1
     in this case B = B /2pi
     returns unit_cell = [a, b, c, alpha, beta, gamma] 
     
     """
-    ucell = A2ucell(n.transpose(ubi))
-    return n.array(ucell)
+    unit_cell = a_to_cell(n.transpose(ubi))
+    return n.array(unit_cell)
         
-def ubi2U(ubi):
+def ubi_to_u(ubi):
     """
     calculate lattice constants from the UBI-matrix 
-    defined(U*B)^-1 and is B from FormB devided by 2pi
+    defined(U*B)^-1 and is B from form_b_mat devided by 2pi
     
-    ubi2U(ubi)
+    ubi_to_u(ubi)
     
     ubi [3x3] matrix
     
     returns U matrix 
     
     """
-    ucell = ubi2ucell(ubi)
-    B = FormB(ucell)
+    unit_cell = ubi_to_cell(ubi)
+    B = form_b_mat(unit_cell)
     U = n.transpose(n.dot(B, ubi))/(2*n.pi)
     return U
         
 
-def A2ucell(A):
+def a_to_cell(A):
     """
     calculate lattice constants from the A-matix as
     defined in H.F.Poulsen 2004 eqn.3.23
     
-    A2ucell(A)
+    a_to_cell(A)
     
     A [3x3] upper triangular matrix
     returns unit_cell = [a, b, c, alpha, beta, gamma] 
@@ -364,10 +369,10 @@ def A2ucell(A):
     alpha = degrees(n.arccos(g[1, 2]/b/c))
     beta  = degrees(n.arccos(g[0, 2]/a/c))
     gamma = degrees(n.arccos(g[0, 1]/a/b))
-    ucell = [a, b, c, alpha, beta, gamma]
-    return ucell
+    unit_cell = [a, b, c, alpha, beta, gamma]
+    return unit_cell
         
-def B2ucell(B): 
+def b_to_cell(B): 
     """
     calculate lattice constants from the B-matix as
     defined in H.F.Poulsen 2004 eqn.3.4
@@ -387,24 +392,24 @@ def B2ucell(B):
     betastar  = degrees(n.arccos(g[0, 2]/astar/cstar))
     gammastar = degrees(n.arccos(g[0, 1]/astar/bstar))
     
-    ucell = CellInvert([astar, bstar, cstar,
+    unit_cell = cell_invert([astar, bstar, cstar,
                         alphastar, betastar, gammastar])
-    return ucell
+    return unit_cell
         
-def epsilon2B(epsilon, ucell):
+def epsilon_to_b(epsilon, unit_cell):
     """
     calculate B matrix of (Gcart = B Ghkl) from epsilon and 
     unstrained cell as in H.F. Poulsen (2004) page 33.
     
     INPUT: epsilon - strain tensor [e11, e12, e13, e22, e23, e33] 
-    ucell - unit cell = [a, b, c, alpha, beta, gamma] 
+    unit_cell - unit cell = [a, b, c, alpha, beta, gamma] 
     
     OUTPUT: B - [3x3] for strained lattice constants
     
     Jette Oddershede, March 10, 2008.
     """
     
-    A0inv = FormAinv(ucell)
+    A0inv = form_a_mat_inv(unit_cell)
     A = n.zeros((3, 3))
     A[0, 0] = (epsilon[0]+1)/A0inv[0, 0]
     A[1, 1] = (epsilon[3]+1)/A0inv[1, 1]
@@ -412,17 +417,17 @@ def epsilon2B(epsilon, ucell):
     A[0, 1] = (2*epsilon[1]-A[0, 0]*A0inv[0, 1])/A0inv[1, 1] 
     A[1, 2] = (2*epsilon[4]-A[1, 1]*A0inv[1, 2])/A0inv[2, 2]
     A[0, 2] = (2*epsilon[2]-A[0, 0]*A0inv[0, 2]-A[0, 1]*A0inv[1, 2])/A0inv[2, 2]
-    strainedcell = A2ucell(A)
-    B = FormB(strainedcell)
+    strainedcell = a_to_cell(A)
+    B = form_b_mat(strainedcell)
     return B
         
-def B2epsilon(B, ucell):
+def b_to_epsilon(B, unit_cell):
     """
     calculate epsilon from the the unstrained cell and 
     the B matrix of (Gcart = B Ghkl) as in H.F. Poulsen (2004) page 33.
     
     INPUT: B - upper triangular 3x3 matrix of strained lattice constants
-    ucell -  unit cell = [a, b, c, alpha, beta, gamma] 
+    unit_cell -  unit cell = [a, b, c, alpha, beta, gamma] 
     of unstrained lattice
     
     OUTPUT: epsilon = [e11, e12, e13, e22, e23, e33] 
@@ -430,8 +435,8 @@ def B2epsilon(B, ucell):
     Jette Oddershede, April 21, 2008.
     """
     
-    A0inv = FormAinv(ucell)
-    A = FormA(B2ucell(B))
+    A0inv = form_a_mat_inv(unit_cell)
+    A = form_a_mat(b_to_cell(B))
     T = n.dot(A, A0inv)
     I = n.eye(3)
     eps = 0.5*(T+n.transpose(T))-I
@@ -439,12 +444,12 @@ def B2epsilon(B, ucell):
                eps[1, 1], eps[1, 2], eps[2, 2]]
     return epsilon
         
-def euler2U(phi1, PHI, phi2):
+def euler_to_u(phi1, PHI, phi2):
     """
     U matrix from Euler angles phi1, PHI, phi2.
     The formalism follows the ID11-3DXRD specs
     
-    U = euler2u(phi1, PHI, phi2)
+    U = euler_to_u(phi1, PHI, phi2)
     
     INPUT: phi1, PHI, and phi2 angles in radians
     OUTPUT: U = array([[U11, U12, U13],[ U21, U22, U23],[U31, U32, U33]])
@@ -468,7 +473,7 @@ def euler2U(phi1, PHI, phi2):
     U[2, 2] =   n.cos(PHI)
     return U
         
-def U2euler(U):
+def u_to_euler(U):
     """
     calculate Euler angles (phi1, PHI, phi2) from a U matrix
     The formalism follows the ID11-3DXRD specs
@@ -515,7 +520,7 @@ def U2euler(U):
     minsum = n.Inf  
     for j in range(2):
         for k in range(2):
-            U2 = euler2U(phi1, PHI[j], phi2[k])
+            U2 = euler_to_u(phi1, PHI[j], phi2[k])
             Udev = abs(U2 - U)
             sumUdev = n.sum(Udev)
             if sumUdev < minsum:
@@ -547,7 +552,7 @@ def U2euler(U):
 #     Rod = ehat * n.tan(angle/2.)
 #     return Rod.real
 
-def U2rod(U):
+def u_to_rod(U):
     """
     Get Rodrigues vector from U matrix (Busing Levy)
     INPUT: U 3x3 matrix
@@ -556,16 +561,16 @@ def U2rod(U):
     Function taken from GrainsSpotter by Soeren Schmidt
     """
 
-    ttt = 1+U[0,0]+U[1,1]+U[2,2]
+    ttt = 1+U[0, 0]+U[1, 1]+U[2, 2]
     if abs(ttt) < 1e-16: 
         raise ValueError, 'Wrong trace of U'
     a = 1/ttt
-    r1 = (U[1,2]-U[2,1])*a
-    r2 = (U[2,0]-U[0,2])*a
-    r3 = (U[0,1]-U[1,0])*a
-    return n.array([r1,r2,r3])
+    r1 = (U[1, 2]-U[2, 1])*a
+    r2 = (U[2, 0]-U[0, 2])*a
+    r3 = (U[0, 1]-U[1, 0])*a
+    return n.array([r1, r2, r3])
 
-def ubi2rod(ubi):
+def ubi_to_rod(ubi):
     """
     Get Rodrigues vector from UBI matrix
     INPUT: UBI 3x3 matrix
@@ -573,20 +578,20 @@ def ubi2rod(ubi):
 
     """
 
-    return U2rod(ubi2U(ubi))
+    return u_to_rod(ubi_to_u(ubi))
 
-def ubi2UandB(ubi):
+def ubi_to_u_b(ubi):
     """
     Get Rodrigues vector from UBI matrix
     INPUT: UBI 3x3 matrix
     OUTPUT: U orientaion matrix and B metric matrix  
 
     """
-    return UBtoUandB(n.linalg.inv(ubi)*(2*n.pi))
+    return ub_to_u_b(n.linalg.inv(ubi)*(2*n.pi))
 
-def rod2U(r):
+def rod_to_u(r):
     """
-    rod2U calculates the U orientation matrix given an oriention
+    rod_to_u calculates the U orientation matrix given an oriention
     represented in Rodrigues space. r = [r1, r2, r3]
     """
     g = n.zeros((3, 3))
@@ -614,32 +619,33 @@ def rod2U(r):
             g[i, j] =  1/(1+r2) * ((1-r2)*fac + 2*r[i]*r[j] - term)
     return n.transpose(g)
 
-def UBtoUandB(UB):
+def ub_to_u_b(UB):
     """
-    qr decomposition to get U unitary and B upper triangular with positive diagonal from UB
+    qr decomposition to get U unitary and B upper triangular with positive
+    diagonal from UB
     """
     
-    (U,B) = n.linalg.qr(UB)
-    if B[0,0] < 0:
-        B[0,0] = -B[0,0]
-        B[0,1] = -B[0,1]
-        B[0,2] = -B[0,2]
-        U[0,0] = -U[0,0]
-        U[1,0] = -U[1,0]
-        U[2,0] = -U[2,0]
-    if B[1,1] < 0:
-        B[1,1] = -B[1,1]
-        B[1,2] = -B[1,2]
-        U[0,1] = -U[0,1]
-        U[1,1] = -U[1,1]
-        U[2,1] = -U[2,1]
-    if B[2,2] < 0:
-        B[2,2] = -B[2,2]
-        U[0,2] = -U[0,2]
-        U[1,2] = -U[1,2]
-        U[2,2] = -U[2,2]
+    (U, B) = n.linalg.qr(UB)
+    if B[0, 0] < 0:
+        B[0, 0] = -B[0, 0]
+        B[0, 1] = -B[0, 1]
+        B[0, 2] = -B[0, 2]
+        U[0, 0] = -U[0, 0]
+        U[1, 0] = -U[1, 0]
+        U[2, 0] = -U[2, 0]
+    if B[1, 1] < 0:
+        B[1, 1] = -B[1, 1]
+        B[1, 2] = -B[1, 2]
+        U[0, 1] = -U[0, 1]
+        U[1, 1] = -U[1, 1]
+        U[2, 1] = -U[2, 1]
+    if B[2, 2] < 0:
+        B[2, 2] = -B[2, 2]
+        U[0, 2] = -U[0, 2]
+        U[1, 2] = -U[1, 2]
+        U[2, 2] = -U[2, 2]
         
-    return (U,B)
+    return (U, B)
 
     
 def detect_tilt(tilt_x, tilt_y, tilt_z):
@@ -664,11 +670,14 @@ def detect_tilt(tilt_x, tilt_y, tilt_z):
     return R
        
        
-def quart2Omega(w, wx, wy):
+def quart_to_omega(w, wx, wy):
     """
-     calculate the Omega rotation matrix given w (the motorised rotation in degrees, usually around the z-axis)
-     wx and wy (the rotations around x and y bringing the z-axis to the true rotation axis, in radians)
-     Quarternions are used for the calculations to avoid singularities in subsequent refinements
+     Calculate the Omega rotation matrix given w (the motorised rotation in
+     degrees, usually around the z-axis). 
+     wx and wy (the rotations around x and y bringing the z-axis to the true
+     rotation axis, in radians).
+     Quarternions are used for the calculations to avoid singularities in
+     subsequent refinements.
     """
     whalf = w*n.pi/360. 
     Wx = n.array([[1, 0        , 0         ],
@@ -692,25 +701,25 @@ def quart2Omega(w, wx, wy):
 
 
 
-def sintl(ucell, hkl):
+def sintl(unit_cell, hkl):
     """
     sintl calculate sin(theta)/lambda of the reflection "hkl" given
-    the unit cell "ucell" 
+    the unit cell "unit_cell" 
     
-    sintl(ucell,hkl)
+    sintl(unit_cell,hkl)
     
-    INPUT:  ucell = [a, b, c, alpha, beta, gamma]
+    INPUT:  unit_cell = [a, b, c, alpha, beta, gamma]
             hkl = [h, k, l]
     OUTPUT: sin(theta)/lambda
     
     Henning Osholm Sorensen, Risoe National Laboratory, June 23, 2006.
     """
-    a   = float(ucell[0])
-    b   = float(ucell[1])
-    c   = float(ucell[2])
-    calp = n.cos(ucell[3]*n.pi/180.)
-    cbet = n.cos(ucell[4]*n.pi/180.)
-    cgam = n.cos(ucell[5]*n.pi/180.)
+    a   = float(unit_cell[0])
+    b   = float(unit_cell[1])
+    c   = float(unit_cell[2])
+    calp = n.cos(unit_cell[3]*n.pi/180.)
+    cbet = n.cos(unit_cell[4]*n.pi/180.)
+    cgam = n.cos(unit_cell[5]*n.pi/180.)
 
     (h, k, l) = hkl
     
@@ -726,13 +735,13 @@ def sintl(ucell, hkl):
     return stl
 
 
-def tth(ucell, hkl, wavelength):
+def tth(unit_cell, hkl, wavelength):
     """
 
     tth calculate two theta of the reflection given
     the unit cell and wavelenght
     
-    INPUT:  ucell = [a, b, c, alpha, beta, gamma] (in Angstroem and degrees)
+    INPUT:  unit_cell = [a, b, c, alpha, beta, gamma] (in Angstroem and degrees)
             hkl = [h, k, l]
             wavelenth (in Angstroem) 
 
@@ -741,7 +750,7 @@ def tth(ucell, hkl, wavelength):
     Henning Osholm Sorensen, Risoe-DTU, July 16, 2008.
     """
 
-    stl = sintl(ucell, hkl) # calls sintl function in tools
+    stl = sintl(unit_cell, hkl) # calls sintl function in tools
     twotheta = 2*n.arcsin(wavelength*stl)
     
     return twotheta
@@ -764,7 +773,7 @@ def tth2(gve, wavelength):
     
     return twotheta
 
-def genhkl(ucell, sysconditions, sintlmin, sintlmax, output_stl=None):
+def genhkl(unit_cell, sysconditions, sintlmin, sintlmax, output_stl=None):
     """
     Generate reflections up to maximum sin(theta)/lambda (sintlmax)
     The program follows the method described in: 
@@ -790,7 +799,7 @@ def genhkl(ucell, sysconditions, sintlmin, sintlmax, output_stl=None):
         ltest = 0
         HLAST = segm[segn, 0, :]
         HSAVE = HLAST
-        sintlH = sintl(ucell, HSAVE)
+        sintlH = sintl(unit_cell, HSAVE)
 
         while ltest == 0:
             while ktest == 0:
@@ -806,7 +815,7 @@ def genhkl(ucell, sysconditions, sintlmin, sintlmax, output_stl=None):
                         else: 
                             nref = nref - 1
                     HNEW = HLAST + segm[segn, 1, :]
-                    sintlH = sintl(ucell, HNEW)
+                    sintlH = sintl(unit_cell, HNEW)
                     #if (sintlH >= sintlmin) and (sintlH <= sintlmax):
                     if sintlH <= sintlmax:
                         HLAST = HNEW
@@ -816,7 +825,7 @@ def genhkl(ucell, sysconditions, sintlmin, sintlmax, output_stl=None):
                 HLAST[0] = HSAVE[0]
                 HLAST    = HLAST + segm[segn, 2, :]
                 HNEW     = HLAST
-                sintlH   = sintl(ucell, HNEW)
+                sintlH   = sintl(unit_cell, HNEW)
                 if sintlH > sintlmax:
                     ktest = 1
                 htest = 0
@@ -824,7 +833,7 @@ def genhkl(ucell, sysconditions, sintlmin, sintlmax, output_stl=None):
             HLAST[1] = HSAVE[1]
             HLAST = HLAST + segm[segn, 3, :]
             HNEW = HLAST
-            sintlH = sintl(ucell, HNEW)
+            sintlH = sintl(unit_cell, HNEW)
             if sintlH > sintlmax:
                 ltest = 1
             ktest = 0
@@ -881,130 +890,130 @@ def sysabs(hkl, syscond):
     
     # HKL class
     if syscond[0] != 0:
-        x = syscond[0]
-        if (abs(h+k))%x !=0:
+        condition = syscond[0]
+        if (abs(h+k))%condition !=0:
             sysabs_type = 1
 
     if syscond[1] != 0 :
-        x = syscond[1]
-        if (abs(h+l))%x !=0:
+        condition = syscond[1]
+        if (abs(h+l))%condition !=0:
             sysabs_type = 2
 
     if syscond[2] != 0:
-        x = syscond[2]
-        if (abs(k+l))%x !=0:
+        condition = syscond[2]
+        if (abs(k+l))%condition !=0:
             sysabs_type = 3
 
     if syscond[3] != 0:
         sysabs_type = 4
-        x = syscond[3]
-        if (abs(h+k))%x == 0:
-            if (abs(h+l))%x == 0:
-                if  (abs(k+l))%x == 0:
+        condition = syscond[3]
+        if (abs(h+k))%condition == 0:
+            if (abs(h+l))%condition == 0:
+                if  (abs(k+l))%condition == 0:
                     sysabs_type = 0
 
     if syscond[4] != 0:
-        x = syscond[4]
-        if (abs(h+k+l))%x != 0:
+        condition = syscond[4]
+        if (abs(h+k+l))%condition != 0:
             sysabs_type = 5
 
     if syscond[5] != 0:
-        x = syscond[5]
-        if (abs(-h+k+l))%x != 0:
+        condition = syscond[5]
+        if (abs(-h+k+l))%condition != 0:
             sysabs_type = 6
 
     # HHL class
     if (h-k) == 0:
         if syscond[6] != 0 :
-            x = syscond[6]
-            if (abs(h))%x != 0:
+            condition = syscond[6]
+            if (abs(h))%condition != 0:
                 sysabs_type = 7
         if syscond[7] != 0:
-            x = syscond[7]
-            if (abs(l))%x != 0:
+            condition = syscond[7]
+            if (abs(l))%condition != 0:
                 sysabs_type = 8
         if syscond[8] != 0:
-            x = syscond[8]
-            if (abs(h+l))%x != 0:
+            condition = syscond[8]
+            if (abs(h+l))%condition != 0:
                 sysabs_type = 9
         if syscond[9] != 0:
-            x = syscond[9]
-            if (abs(h+h+l))%x != 0:
+            condition = syscond[9]
+            if (abs(h+h+l))%condition != 0:
                 sysabs_type = 10
 
     # 0KL class
     if h == 0:
         if syscond[10] != 0:
-            x = syscond[10]
-            if (abs(k))%x != 0:
+            condition = syscond[10]
+            if (abs(k))%condition != 0:
                 sysabs_type = 11
         if syscond[11] != 0:
-            x = syscond[11]
-            if (abs(l))%x != 0:
+            condition = syscond[11]
+            if (abs(l))%condition != 0:
                 sysabs_type = 12
         if syscond[12] != 0:
-            x = syscond[12]
-            if (abs(k+l))%x != 0:
+            condition = syscond[12]
+            if (abs(k+l))%condition != 0:
                 sysabs_type = 13
 
     # H0L class
     if k == 0:
         if syscond[13] != 0:
-            x = syscond[13]
-            if (abs(h))%x != 0:
+            condition = syscond[13]
+            if (abs(h))%condition != 0:
                 sysabs_type = 14
         if syscond[14] != 0:
-            x = syscond[14]
-            if (abs(l))%x != 0:
+            condition = syscond[14]
+            if (abs(l))%condition != 0:
                 sysabs_type = 15
         if syscond[15] != 0:
-            x = syscond[15]
-            if (abs(h+l))%x != 0:
+            condition = syscond[15]
+            if (abs(h+l))%condition != 0:
                 sysabs_type = 16
 
 
     # HK0 class
     if l == 0:
         if syscond[16] != 0:
-            x = syscond[16]
-            if (abs(h))%x != 0:
+            condition = syscond[16]
+            if (abs(h))%condition != 0:
                 sysabs_type = 17
         if syscond[17] != 0:
-            x = syscond[17]
-            if (abs(k))%x != 0:
+            condition = syscond[17]
+            if (abs(k))%condition != 0:
                 sysabs_type = 18
         if syscond[18] != 0:
-            x = syscond[18]
-            if (abs(h+k))%x != 0:
+            condition = syscond[18]
+            if (abs(h+k))%condition != 0:
                 sysabs_type = 19
 
     # HH0 class
     if l == 0:
         if h-k == 0:
             if syscond[19] != 0: 
-                x = syscond[19]
-                if (abs(h))%x != 0:
+                condition = syscond[19]
+                if (abs(h))%condition != 0:
                     sysabs_type = 20
 
     # H00 class
     if abs(k)+abs(l) == 0:
         if syscond[20] != 0:
-            x = syscond[20]
-            if (abs(h))%x != 0:
+            condition = syscond[20]
+            if (abs(h))%condition != 0:
                 sysabs_type = 21
 
     # 0K0 class
     if abs(h)+abs(l) == 0:
         if syscond[21] != 0:
-            x = syscond[21]
-            if (abs(k))%x != 0:
+            condition = syscond[21]
+            if (abs(k))%condition != 0:
                 sysabs_type = 22
 
     # 00L class
     if abs(h)+abs(k) == 0:
         if syscond[22] != 0:
-            x = syscond[22]
-            if (abs(l))%x != 0:
+            condition = syscond[22]
+            if (abs(l))%condition != 0:
                 sysabs_type = 23
     
     return sysabs_type

@@ -93,7 +93,7 @@ def Uij2betaij(adp, ucell):
                   [adp[4], adp[3], adp[2]]])
 
     betaij = n.zeros((3, 3))
-    cellstar = tools.CellInvert(ucell)
+    cellstar = tools.cell_invert(ucell)
  
     for i in range(3):
         for j in range(3):
