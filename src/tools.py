@@ -7,31 +7,31 @@ import numpy as n
 from math import degrees
 
 
-def find_omega_quart(gvec, twoth, wx, wy):
+def find_omega_quart(g_w, twoth, w_x, w_y):
     """
     For gw find the omega rotation (in radians) around an axis 
-    tilted by wx radians around x (chi) and wy radians around y (wedge)
+    tilted by w_x radians around x (chi) and w_y radians around y (wedge)
     Furthermore find eta (in radians)
     Soren Schmidt, implemented by Jette Oddershede
     """
 
-    assert abs(n.dot(gvec, gvec)-n.sin(twoth/2)**2) < 1e-9, \
+    assert abs(n.dot(g_w, g_w)-n.sin(twoth/2)**2) < 1e-9, \
         'g-vector must have length sin(theta)'
-    Wx = n.array([[1, 0        , 0         ],
-                  [0, n.cos(wx), -n.sin(wx)],
-                  [0, n.sin(wx),  n.cos(wx)]])
-    Wy = n.array([[ n.cos(wy), 0, n.sin(wy)],
-                  [0         , 1, 0        ],
-                  [-n.sin(wy), 0, n.cos(wy)]])
-    normal = n.dot(Wx, n.dot(Wy, n.array([0, 0, 1])))
+    w_mat_x = n.array([[1, 0        , 0         ],
+                       [0, n.cos(w_x), -n.sin(w_x)],
+                       [0, n.sin(w_x),  n.cos(w_x)]])
+    w_mat_y = n.array([[ n.cos(w_y), 0, n.sin(w_y)],
+                       [0         , 1, 0        ],
+                       [-n.sin(w_y), 0, n.cos(w_y)]])
+    normal = n.dot(w_mat_x, n.dot(w_mat_y, n.array([0, 0, 1])))
 
-    a = gvec[0]*(1-normal[0]**2) - \
-        gvec[1]*normal[0]*normal[1] - \
-        gvec[2]*normal[0]*normal[2]
-    b = gvec[2]*normal[1] - gvec[1]*normal[2]
-    c = - n.dot(gvec, gvec) - gvec[0]*normal[0]**2 - \
-        gvec[1]*normal[0]*normal[1] - \
-        gvec[2]*normal[0]*normal[2]
+    a = g_w[0]*(1-normal[0]**2) - \
+        g_w[1]*normal[0]*normal[1] - \
+        g_w[2]*normal[0]*normal[2]
+    b = g_w[2]*normal[1] - g_w[1]*normal[2]
+    c = - n.dot(g_w, g_w) - g_w[0]*normal[0]**2 - \
+        g_w[1]*normal[0]*normal[1] - \
+        g_w[2]*normal[0]*normal[2]
     d = a*a + b*b - c*c
 
     omega = []
@@ -39,35 +39,35 @@ def find_omega_quart(gvec, twoth, wx, wy):
     if d < 0:
         pass
     else:
-        sqD = n.sqrt(d)
+        sq_d = n.sqrt(d)
     
     
         for i in range(2):
-            cosomega = (a*c + b*sqD*(-1)**i)/(a*a+b*b)
-            sinomega = (b*c + a*sqD*(-1)**(i+1))/(a*a+b*b)
+            cosomega = (a*c + b*sq_d*(-1)**i)/(a*a+b*b)
+            sinomega = (b*c + a*sq_d*(-1)**(i+1))/(a*a+b*b)
             omega.append(n.arctan2(sinomega, cosomega))
             if omega[i] > n.pi:
                 omega[i] = omega[i] - 2*n.pi
-            Omega = quart_to_omega(omega[i]*180./n.pi, wx, wy)
-            G = n.dot(Omega, gvec)
-            sineta = -2*G[1]/n.sin(twoth)
-            coseta = 2*G[2]/n.sin(twoth)
+            omega_mat = quart_to_omega(omega[i]*180./n.pi, w_x, w_y)
+            g_t = n.dot(omega_mat, g_w)
+            sineta = -2*g_t[1]/n.sin(twoth)
+            coseta = 2*g_t[2]/n.sin(twoth)
             eta.append(n.arctan2(sineta, coseta))
             
     return n.array(omega), n.array(eta)
     
     
 
-def find_omega_wedge(gw, twoth, wedge):
+def find_omega_wedge(g_w, twoth, wedge):
     """
-    calculate the omega and eta angles for a g-vector gw given twotheta of 
-    gw is provided. The calculation takes a possible wedge angle intp account.
+    calculate the omega and eta angles for a g-vector g_w given twotheta of 
+    g_w is provided. The calculation takes a possible wedge angle intp account.
     This code is a translation of c-code from GrainSpotter by Soren Schmidt
     """
     
 
     #Normalize G-vector
-    gw = gw/n.sqrt(n.dot(gw, gw))
+    g_w = g_w/n.sqrt(n.dot(g_w, g_w))
 
     costth = n.cos(twoth)
     sintth = n.sin(twoth)
@@ -76,13 +76,13 @@ def find_omega_wedge(gw, twoth, wedge):
     sinwedge = n.sin(wedge)
     coswedge = n.cos(wedge)
     # Determine cos(eta)
-    coseta = ( gw[2]*length + sinwedge * cosfactor ) / coswedge / sintth
+    coseta = ( g_w[2]*length + sinwedge * cosfactor ) / coswedge / sintth
 
-    Omega = []
+    omega = []
     eta = []
 
     if (abs(coseta) > 1.):
-        return Omega, eta
+        return omega, eta
     # else calc the two eta values
     eta = n.array([n.arccos(coseta), -n.arccos(coseta)])
     # replaced this by the above to make find_omega_wedge
@@ -97,48 +97,48 @@ def find_omega_wedge(gw, twoth, wedge):
     a = (coswedge * cosfactor + sinwedge * sintth * coseta)
     for i in range(2):
         b = -sintth * n.sin(eta[i])
-        somega = (b*gw[0] - a*gw[1])/(a*a + b*b)
-        comega = (gw[0] - b*somega)/a
+        somega = (b*g_w[0] - a*g_w[1])/(a*a + b*b)
+        comega = (g_w[0] - b*somega)/a
         
-        Omega.append(n.arctan2(somega, comega))
-        if Omega[i] > n.pi:
-            Omega[i] = Omega[i] - 2*n.pi
-    return n.array(Omega), eta
+        omega.append(n.arctan2(somega, comega))
+        if omega[i] > n.pi:
+            omega[i] = omega[i] - 2*n.pi
+    return n.array(omega), eta
 
 
 
 
-def find_omega(gw, twoth):
+def find_omega(g_w, twoth):
     """
     Calculate the omega angles for a g-vector gw given twotheta using Soeren
     Schmidts algorithm.
     Solves an equation of type a*cos(w)+b*sin(w) = c by the fixpoint method.
     
     """
-    Glen = n.sqrt(n.dot(gw, gw))
+    g_g = n.sqrt(n.dot(g_w, g_w))
     costth = n.cos(twoth)
     
-    a =  gw[0]/Glen
-    b = -gw[1]/Glen
+    a =  g_w[0]/g_g
+    b = -g_w[1]/g_g
     c = (costth - 1)/n.sqrt(2*(1 - costth))
   
     d = a**2 + b**2
-    sqD = d - c**2
+    sq_d = d - c**2
     
-    Omega = []
-    if sqD > 0:
-        sqD = n.sqrt(sqD)
-        comega = (a*c + b*sqD)/d
-        somega = (b*c - a*sqD)/d
-        Omega.append(n.arccos(comega))
+    omega = []
+    if sq_d > 0:
+        sq_d = n.sqrt(sq_d)
+        comega = (a*c + b*sq_d)/d
+        somega = (b*c - a*sq_d)/d
+        omega.append(n.arccos(comega))
         if somega < 0:
-            Omega[0] = -Omega[0]
-        comega = comega - 2*b*sqD/d
-        somega = somega + 2*a*sqD/d
-        Omega.append(n.arccos(comega))
+            omega[0] = -omega[0]
+        comega = comega - 2*b*sq_d/d
+        somega = somega + 2*a*sq_d/d
+        omega.append(n.arccos(comega))
         if somega < 0:
-            Omega[1] = -Omega[1]
-    return n.array(Omega)
+            omega[1] = -omega[1]
+    return n.array(omega)
 
 
 def cell_invert(unit_cell):
@@ -670,7 +670,7 @@ def detect_tilt(tilt_x, tilt_y, tilt_z):
     return R
        
        
-def quart_to_omega(w, wx, wy):
+def quart_to_omega(w, w_x, w_y):
     """
      Calculate the Omega rotation matrix given w (the motorised rotation in
      degrees, usually around the z-axis). 
@@ -680,24 +680,24 @@ def quart_to_omega(w, wx, wy):
      subsequent refinements.
     """
     whalf = w*n.pi/360. 
-    Wx = n.array([[1, 0        , 0         ],
-                  [0, n.cos(wx), -n.sin(wx)],
-                  [0, n.sin(wx),  n.cos(wx)]])
-    Wy = n.array([[ n.cos(wy), 0, n.sin(wy)],
-                  [0         , 1, 0        ],
-                  [-n.sin(wy), 0, n.cos(wy)]])
-    qua = n.dot(Wx, n.dot(Wy, n.array([0, 0, n.sin(whalf)]))) 
+    w_mat_x = n.array([[1, 0         , 0         ],
+                       [0, n.cos(w_x), -n.sin(w_x)],
+                       [0, n.sin(w_x),  n.cos(w_x)]])
+    w_mat_y = n.array([[ n.cos(w_y), 0, n.sin(w_y)],
+                       [0          , 1, 0         ],
+                       [-n.sin(w_y), 0, n.cos(w_y)]])
+    qua = n.dot(w_mat_x, n.dot(w_mat_y, n.array([0, 0, n.sin(whalf)]))) 
     q = [n.cos(whalf), qua[0], qua[1], qua[2]] 
-    Omega = n.array([[1-2*q[2]**2-2*q[3]**2  ,
-                      2*q[1]*q[2]-2*q[3]*q[0],
-                      2*q[1]*q[3]+2*q[2]*q[0]],
-                     [2*q[1]*q[2]+2*q[3]*q[0],
-                      1-2*q[1]**2-2*q[3]**2  ,
-                      2*q[2]*q[3]-2*q[1]*q[0]],
-                     [2*q[1]*q[3]-2*q[2]*q[0],
-                      2*q[2]*q[3]+2*q[1]*q[0],
-                      1-2*q[1]**2-2*q[2]**2]])
-    return Omega
+    omega_mat = n.array([[1-2*q[2]**2-2*q[3]**2  ,
+                          2*q[1]*q[2]-2*q[3]*q[0],
+                          2*q[1]*q[3]+2*q[2]*q[0]],
+                         [2*q[1]*q[2]+2*q[3]*q[0],
+                          1-2*q[1]**2-2*q[3]**2  ,
+                          2*q[2]*q[3]-2*q[1]*q[0]],
+                         [2*q[1]*q[3]-2*q[2]*q[0],
+                          2*q[2]*q[3]+2*q[1]*q[0],
+                          1-2*q[1]**2-2*q[2]**2]])
+    return omega_mat
 
 
 

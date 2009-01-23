@@ -1,32 +1,17 @@
 ************* Module tools
 C:  1: Too many lines in module (1020)
-C: 10:find_omega_quart: Invalid name "wx" (should match [a-z_][a-z0-9_]{2,30}$)
-C: 10:find_omega_quart: Invalid name "wy" (should match [a-z_][a-z0-9_]{2,30}$)
 R: 10:find_omega_quart: Too many local variables (21/15)
-C: 20:find_omega_quart: Invalid name "Wx" (should match [a-z_][a-z0-9_]{2,30}$)
-C: 23:find_omega_quart: Invalid name "Wy" (should match [a-z_][a-z0-9_]{2,30}$)
 C: 28:find_omega_quart: Invalid name "a" (should match [a-z_][a-z0-9_]{2,30}$)
 C: 31:find_omega_quart: Invalid name "b" (should match [a-z_][a-z0-9_]{2,30}$)
 C: 32:find_omega_quart: Invalid name "c" (should match [a-z_][a-z0-9_]{2,30}$)
 C: 35:find_omega_quart: Invalid name "d" (should match [a-z_][a-z0-9_]{2,30}$)
-C: 42:find_omega_quart: Invalid name "sqD" (should match [a-z_][a-z0-9_]{2,30}$)
-C: 51:find_omega_quart: Invalid name "Omega" (should match [a-z_][a-z0-9_]{2,30}$)
-C: 52:find_omega_quart: Invalid name "G" (should match [a-z_][a-z0-9_]{2,30}$)
-C: 61:find_omega_wedge: Invalid name "gw" (should match [a-z_][a-z0-9_]{2,30}$)
 R: 61:find_omega_wedge: Too many local variables (17/15)
-C: 70:find_omega_wedge: Invalid name "gw" (should match [a-z_][a-z0-9_]{2,30}$)
-C: 81:find_omega_wedge: Invalid name "Omega" (should match [a-z_][a-z0-9_]{2,30}$)
 C: 97:find_omega_wedge: Invalid name "a" (should match [a-z_][a-z0-9_]{2,30}$)
 C: 99:find_omega_wedge: Invalid name "b" (should match [a-z_][a-z0-9_]{2,30}$)
-C:111:find_omega: Invalid name "gw" (should match [a-z_][a-z0-9_]{2,30}$)
-C:118:find_omega: Invalid name "Glen" (should match [a-z_][a-z0-9_]{2,30}$)
 C:121:find_omega: Invalid name "a" (should match [a-z_][a-z0-9_]{2,30}$)
 C:122:find_omega: Invalid name "b" (should match [a-z_][a-z0-9_]{2,30}$)
 C:123:find_omega: Invalid name "c" (should match [a-z_][a-z0-9_]{2,30}$)
 C:125:find_omega: Invalid name "d" (should match [a-z_][a-z0-9_]{2,30}$)
-C:126:find_omega: Invalid name "sqD" (should match [a-z_][a-z0-9_]{2,30}$)
-C:128:find_omega: Invalid name "Omega" (should match [a-z_][a-z0-9_]{2,30}$)
-C:130:find_omega: Invalid name "sqD" (should match [a-z_][a-z0-9_]{2,30}$)
 R:144:cell_invert: Too many local variables (20/15)
 C:153:cell_invert: Invalid name "a" (should match [a-z_][a-z0-9_]{2,30}$)
 C:154:cell_invert: Invalid name "b" (should match [a-z_][a-z0-9_]{2,30}$)
@@ -93,12 +78,7 @@ C:663:detect_tilt: Invalid name "Ry" (should match [a-z_][a-z0-9_]{2,30}$)
 C:666:detect_tilt: Invalid name "Rz" (should match [a-z_][a-z0-9_]{2,30}$)
 C:669:detect_tilt: Invalid name "R" (should match [a-z_][a-z0-9_]{2,30}$)
 C:673:quart_to_omega: Invalid name "w" (should match [a-z_][a-z0-9_]{2,30}$)
-C:673:quart_to_omega: Invalid name "wx" (should match [a-z_][a-z0-9_]{2,30}$)
-C:673:quart_to_omega: Invalid name "wy" (should match [a-z_][a-z0-9_]{2,30}$)
-C:683:quart_to_omega: Invalid name "Wx" (should match [a-z_][a-z0-9_]{2,30}$)
-C:686:quart_to_omega: Invalid name "Wy" (should match [a-z_][a-z0-9_]{2,30}$)
 C:690:quart_to_omega: Invalid name "q" (should match [a-z_][a-z0-9_]{2,30}$)
-C:691:quart_to_omega: Invalid name "Omega" (should match [a-z_][a-z0-9_]{2,30}$)
 C:717:sintl: Invalid name "a" (should match [a-z_][a-z0-9_]{2,30}$)
 C:718:sintl: Invalid name "b" (should match [a-z_][a-z0-9_]{2,30}$)
 C:719:sintl: Invalid name "c" (should match [a-z_][a-z0-9_]{2,30}$)
@@ -196,13 +176,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |122    |122      |=          |
+|convention |102    |107      |-5.00      |
 +-----------+-------+---------+-----------+
 |refactor   |8      |8        |=          |
 +-----------+-------+---------+-----------+
 |warning    |0      |0        |=          |
 +-----------+-------+---------+-----------+
-|error      |0      |1        |-1.00      |
+|error      |0      |0        |=          |
 +-----------+-------+---------+-----------+
 
 
@@ -213,7 +193,7 @@ Messages
 +-----------+-----------+
 |message id |occurences |
 +===========+===========+
-|C0103      |121        |
+|C0103      |101        |
 +-----------+-----------+
 |R0914      |5          |
 +-----------+-----------+
@@ -228,5 +208,5 @@ Messages
 
 Global evaluation
 -----------------
-Your code has been rated at 7.26/10 (previous run: 7.16/10)
+Your code has been rated at 7.68/10 (previous run: 7.58/10)
 
