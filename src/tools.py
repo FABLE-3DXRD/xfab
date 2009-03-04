@@ -7,6 +7,53 @@ import numpy as n
 from math import degrees
 
 
+def find_omega_general(g_w, twoth, w_x, w_y):
+    """
+    For gw find the omega rotation (in radians) around an axis 
+    tilted by w_x radians around x (chi) and w_y radians around y (wedge)
+    Furthermore find eta (in radians)
+    Soren Schmidt, implemented by Jette Oddershede
+    """
+
+    assert abs(n.dot(g_w, g_w)-n.sin(twoth/2)**2) < 1e-9, \
+        'g-vector must have length sin(theta)'
+    w_mat_x = n.array([[1, 0        , 0         ],
+                       [0, n.cos(w_x), -n.sin(w_x)],
+                       [0, n.sin(w_x),  n.cos(w_x)]])
+    w_mat_y = n.array([[ n.cos(w_y), 0, n.sin(w_y)],
+                       [0         , 1, 0        ],
+                       [-n.sin(w_y), 0, n.cos(w_y)]])
+    r_mat = n.dot(w_mat_x,w_mat_y)
+
+    a = g_w[0]*r_mat[0][0] + g_w[1]*r_mat[0][1] 
+    b = g_w[0]*r_mat[1][0] - g_w[1]*r_mat[0][0] 
+    c = - n.dot(g_w, g_w) - g_w[2]*r_mat[0][2] 
+    d = a*a + b*b - c*c
+
+    omega = []
+    eta = []
+    if d < 0:
+        pass
+    else:
+        sq_d = n.sqrt(d)
+    
+    
+        for i in range(2):
+            cosomega = (a*c + b*sq_d*(-1)**i)/(a*a+b*b)
+            sinomega = (b*c + a*sq_d*(-1)**(i+1))/(a*a+b*b)
+            omega.append(n.arctan2(sinomega, cosomega))
+            if omega[i] > n.pi:
+                omega[i] = omega[i] - 2*n.pi
+            omega_mat = form_omega_mat_general(omega[i], w_x, w_y)
+            g_t = n.dot(omega_mat, g_w)
+            sineta = -2*g_t[1]/n.sin(twoth)
+            coseta = 2*g_t[2]/n.sin(twoth)
+            eta.append(n.arctan2(sineta, coseta))
+            
+    return n.array(omega), n.array(eta)
+    
+    
+
 def find_omega_quart(g_w, twoth, w_x, w_y):
     """
     For gw find the omega rotation (in radians) around an axis 
@@ -131,11 +178,15 @@ def find_omega(g_w, twoth):
         comega = (a*c + b*sq_d)/d
         somega = (b*c - a*sq_d)/d
         omega.append(n.arccos(comega))
+#        if omega[0] > n.pi:
+#            omega[0] = omega[0] - 2*n.pi
         if somega < 0:
             omega[0] = -omega[0]
         comega = comega - 2*b*sq_d/d
         somega = somega + 2*a*sq_d/d
         omega.append(n.arccos(comega))
+#        if omega[1] > n.pi:
+#            omega[1] = omega[1] - 2*n.pi
         if somega < 0:
             omega[1] = -omega[1]
     return n.array(omega)
@@ -189,6 +240,24 @@ def form_omega_mat(omega):
     Om = n.array([[n.cos(omega), -n.sin(omega), 0],
                   [n.sin(omega),  n.cos(omega), 0],
                   [  0         ,  0           , 1]])
+    return Om
+
+def form_omega_mat_general(omega,chi,wedge):
+    """
+    Calc Omega rotation matrix having an omega angle of "omega"
+    
+    INPUT: omega (in radians)
+    
+    OUTPUT: Omega rotation matrix
+    """
+    phi_x = n.array([[1, 0         , 0         ],
+                     [0, n.cos(chi), -n.sin(chi)],
+                     [0, n.sin(chi),  n.cos(chi)]])
+    phi_y = n.array([[ n.cos(wedge), 0, n.sin(wedge)],
+                     [0            , 1, 0        ],
+                     [-n.sin(wedge), 0, n.cos(wedge)]])
+    Om = form_omega_mat(omega)
+    Om = n.dot(phi_x,n.dot(phi_y,Om))
     return Om
 
 def cell_volume(unit_cell):
