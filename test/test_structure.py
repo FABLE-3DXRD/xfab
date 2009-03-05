@@ -8,14 +8,24 @@ from xfab import structure
 
 class test_multiplicity(unittest.TestCase):
     def test_general_pos(self):
-         multi = structure.multiplicity(n.array([0.13,0.23,0.05]),sgname='P21')
-         self.assertEquals(multi,1)
+        multi = structure.multiplicity(n.array([0.13,0.23,0.05]),sgname='P21')
+        self.assertEquals(multi,2)
     def test_alu_pos(self):
-         multi = structure.multiplicity(n.array([0.0,0.0,0.0]),sgname='Fm-3m')
-         self.assertEquals(multi,48)
+        sgname ='Fm-3m'
+        ##fractional coor   x,   y,    z,   multiplicity   (from Int. Tables A)
+        pos = n.array([[0.0  , 0.0,  0.0,    4],
+                       [0.25 , 0.25, 0.25,   8],
+                       [0.5  , 0.5,  0.5,    4],
+                       [0.11 ,-0.43, 0.32, 192],
+                       [0.0  , 0.04, 0.21,  96],
+                       [0.0  , 0.21, 0.21,  48]])
+        for i in range(len(pos)):
+            multi = structure.multiplicity(pos[i,0:3], sgname)
+            self.assertEquals(multi,pos[i,3])
+
     def test_tft_mirror(self):
-         multi = structure.multiplicity(n.array([0.0,0.25821,0.16339]),sgname='Cmca')
-         self.assertEquals(multi,2)
+        multi = structure.multiplicity(n.array([0.0,0.25821,0.16339]),sgname='Cmca')
+        self.assertEquals(multi,8)
 
 class test_cifread(unittest.TestCase):
     def test_cifopen(self):  ## test method names begin 'test*'
@@ -46,7 +56,7 @@ class test_structurefactor(unittest.TestCase):
                                                  mylist.atomlist.dispersion)
             F2 = Fr**2 + Fi**2
             reldif = F2/eval(fcf['_refln_F_squared_calc'][i])-1
-            #print i, reldif, F2
+            print i, reldif, F2
             if F2 > 10: # Only compare those with an F^2 larger than ten 
                         # to avoid that the very weak reflections which
                         # have a relative difference that are slightly larger

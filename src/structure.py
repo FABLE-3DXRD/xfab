@@ -67,7 +67,7 @@ def StructureFactor(hkl, ucell, sgname, atoms, disper = None):
             #forming the real and imaginary parts of F
             s = n.sin(exponent)
             c = n.cos(exponent)
-            site_pop = atoms[i].occ/atoms[i].symmulti
+            site_pop = atoms[i].occ*atoms[i].symmulti/mysg.nsymop
             Freal = Freal + expij*(c*(f+fp)-s*fpp)*site_pop
             Fimg = Fimg + expij*(s*(f+fp)+c*fpp)*site_pop
 
@@ -159,27 +159,36 @@ def int_intensity(F2, L, P, I0, wavelength, cell_vol, cryst_vol):
     return k1*k2*I0*L*P*F2
 
 
-def multiplicity(position, sgname):
-    mysg = sg.sg(sgname = sgname)
-    lp = n.zeros((mysg.nuniq, 3))
+def multiplicity(position, sgname=None, sgno=None):
+    """
+    Calculates the multiplicity of a fractional position in the unit cell.
 
-    for i in range(mysg.nuniq):
+    """
+
+    if sgname != None:
+        mysg = sg.sg(sgname = sgname)
+    elif sgno !=None:
+        mysg = sg.sg(sgno = sgno)
+    else:
+        raise ValueError, 'No space group information provided'
+
+    lp = n.zeros((mysg.nsymop, 3))
+
+    for i in range(mysg.nsymop):
         lp[i, :] = n.dot(position, mysg.rot[i]) + mysg.trans[i]
 
     lpu = n.array([lp[0, :]])
-    nuniq = 1
+    multi = 1
 
-    for i in range(1, mysg.nuniq):
-        for j in range(nuniq):
+    for i in range(1, mysg.nsymop):
+        for j in range(multi):
             t = lp[i]-lpu[j]
             if n.sum(n.mod(t, 1)) < 0.00001:
                 break
             else:
-                if j == nuniq-1:
+                if j == multi-1:
                     lpu = n.concatenate((lpu, [lp[i, :]]))
-                    nuniq += 1
-
-    multi = mysg.nuniq/nuniq
+                    multi += 1
     return multi
 
 class atom_entry:
