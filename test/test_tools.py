@@ -263,5 +263,27 @@ class test_qr(unittest.TestCase):
         self.assertAlmostEquals(diffU,0,9)  
         self.assertAlmostEquals(diffB,0,9)  
 
+class test_reduce_cell(unittest.TestCase):
+    def test_1(self):
+        cell = n.array([9.07599708738,
+                        6.05007626616,
+                        44.33571511, 
+                        97.838350766558762, 
+                        90.0, 
+                        90.0])
+
+        red_cell = tools.reduce_cell(cell)
+        
+        red_cell_ref = n.array([9.0759970873799993, 
+                                6.0500773546922257,
+                                43.921476668199631,
+                                89.965630135621325,
+                                89.999999999999986,
+                                90.0])
+
+        diff_cell = n.abs(red_cell - red_cell_ref)
+        for diff_par in diff_cell:
+            self.assertAlmostEquals(diff_par,0,9)  
+    
 if __name__ == '__main__':
     unittest.main()

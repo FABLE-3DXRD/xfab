@@ -716,6 +716,45 @@ def ub_to_u_b(UB):
         
     return (U, B)
 
+def reduce_cell(unit_cell,uvw = 3):
+    """
+    reduce unit cell
+
+    INPUT: unit_cell - unit_cell = [a, b, c, alpha, beta, gamma] 
+    OUTPUT unit_cell reduced -  array([a, b, c, alpha, beta, gamma])
+    """
+
+    res = n.zeros((0, 4))
+    red_a_mat = n.zeros((3, 3))
+
+    a_mat = form_a_mat(unit_cell)
+
+    for i in n.arange(-uvw, uvw):
+        for j in n.arange(-uvw, uvw):
+            for k in n.arange(-uvw, uvw):
+                tmp = n.dot(a_mat, n.array([i, j, k]))
+                res = n.concatenate((res, [[i, j, k, n.linalg.norm(tmp)]]))
+                
+    res = res[n.argsort(res[:, 3]), :]
+
+    red_a_mat[0] = n.dot(a_mat, res[1, :3])
+
+    for i in range(2, len(res)):
+        tmp = n.dot(a_mat, res[i, :3])
+        kryds = n.cross(tmp, red_a_mat[0])
+        if n.sum(n.abs(kryds)) > 0.00001:
+            red_a_mat[1] = tmp
+            break
+
+    for j in range(i, len(res)):
+        tmp = n.dot(a_mat, res[j,:3])
+        dist = n.dot(kryds, tmp)/n.linalg.norm(kryds)
+        if dist >  0.00001:
+            red_a_mat[2] = tmp
+            break
+        
+    return a_to_cell(red_a_mat)
+
     
 def detect_tilt(tilt_x, tilt_y, tilt_z):
     """
