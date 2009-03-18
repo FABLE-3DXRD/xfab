@@ -639,6 +639,18 @@ def u_to_rod(U):
     r3 = (U[0, 1]-U[1, 0])*a
     return n.array([r1, r2, r3])
 
+def u_to_ubi(u_mat,unit_cell):
+    """
+    Get UBI matrix from U matrix and unit cell
+    INPUT: U orientaion matrix and unit cell
+    OUTPUT: UBI 3x3 matrix
+
+    """
+    b_mat = form_b_mat(unit_cell)
+    
+    return n.linalg.inv(n.dot(u_mat,b_mat))*(2*n.pi)
+
+
 def ubi_to_rod(ubi):
     """
     Get Rodrigues vector from UBI matrix
@@ -657,6 +669,7 @@ def ubi_to_u_b(ubi):
 
     """
     return ub_to_u_b(n.linalg.inv(ubi)*(2*n.pi))
+
 
 def rod_to_u(r):
     """

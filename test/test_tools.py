@@ -55,6 +55,26 @@ class test_rodrigues(unittest.TestCase):
         diff = n.abs(rodubi-rodU).sum()
         self.assertAlmostEquals(diff,0,9)
 
+class test_u2ubi(unittest.TestCase):
+    def test1(self):  
+        phi1 = 0.13
+        PHI  = 0.4
+        phi2 = 0.21
+        cell = [3,4,5,80,95,100]
+        Umat = tools.euler_to_u(phi1,PHI,phi2)
+        Bmat = tools.form_b_mat(cell)
+        ubi = n.linalg.inv(n.dot(Umat, Bmat))*2*n.pi
+        ubi2 = tools.u_to_ubi(Umat,cell)
+        (U2,B2) = tools.ubi_to_u_b(ubi2)
+        diff = n.abs(ubi-ubi2).sum()
+        self.assertAlmostEquals(diff,0,9)  
+        diff = n.abs(Umat-U2).sum()
+        self.assertAlmostEquals(diff,0,9)  
+        diff = n.abs(Bmat-B2).sum()
+        self.assertAlmostEquals(diff,0,9)  
+
+
+
 class test_twotheta(unittest.TestCase):
 
     def test_tth(self):
@@ -202,9 +222,9 @@ class test_general_orientation(unittest.TestCase):
         for i in range(len(omega1)):    
             if i==0:
                 print 'test_find_omega_general_wedge'
-            print eta1[i],eta2[i]
-            print Om1[i]
-            print Om2[i]
+#            print eta1[i],eta2[i]
+#            print Om1[i]
+#            print Om2[i]
             diff = n.abs(eta1[i]-eta2[i])
             self.assertAlmostEquals(diff,0,9)
             diff = n.abs(Om1[i]-Om2[i]).sum()
