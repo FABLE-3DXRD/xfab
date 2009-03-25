@@ -246,7 +246,7 @@ def form_omega_mat_general(omega,chi,wedge):
     """
     Calc Omega rotation matrix having an omega angle of "omega"
     
-    INPUT: omega (in radians)
+    INPUT: omega,chi and wedge (in radians)
     
     OUTPUT: Omega rotation matrix
     """
