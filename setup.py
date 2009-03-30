@@ -5,7 +5,7 @@ import sys
 
 setup(
   name='xfab',
-  version='0.0.1',
+  version='0.0.2',
   description='Crystallographic toolbox and library',
   license='GPL', maintainer='Henning Osholm Soerensen and Jon Wright',
   maintainer_email='henning.sorensen@risoe.dk or wright@esrf.eu',
