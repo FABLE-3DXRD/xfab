@@ -397,8 +397,7 @@ def ubi_to_cell(ubi):
     returns unit_cell = [a, b, c, alpha, beta, gamma] 
     
     """
-    unit_cell = a_to_cell(n.transpose(ubi))
-    return n.array(unit_cell)
+    return n.array(a_to_cell(n.transpose(ubi)))
         
 def ubi_to_u(ubi):
     """
@@ -966,7 +965,24 @@ def genhkl(unit_cell, sysconditions, sintlmin, sintlmax, output_stl=None):
         H = H[: , :3]
     return H
 
-def sysabs(hkl, syscond):
+def sysabs(hkl, syscond, crystal_system='primitiv'):
+
+    sys_type = sysabs_unique(hkl, syscond)
+    if crystal_system == 'hexagonal':
+        if sys_type == 0:
+            h = -(hkl[0]+hkl[1])
+            k = hkl[0]
+            l = hkl[2]
+            sys_type = sysabs_unique([h, k, l], syscond)
+            if sys_type == 0:
+                h = hkl[1]
+                k = -(hkl[0]+hkl[1])
+                l = hkl[2]
+                sys_type = sysabs_unique([h, k, l], syscond)
+    
+    return sys_type
+
+def sysabs_unique(hkl, syscond):
     """
     sysabs checks whether a reflection is systematic absent
     
