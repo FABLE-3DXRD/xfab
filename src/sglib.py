@@ -6339,7 +6339,7 @@ class Sg193:
         self.name = "P63/mcm"
         self.nsymop = 24
         self.nuniq = 24
-        self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2]
         self.rot = [
                           [[1,0,0],[0,1,0],[0,0,1]],
