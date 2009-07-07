@@ -893,7 +893,7 @@ def tth2(gve, wavelength):
     
     return twotheta
 
-def genhkl(unit_cell, sysconditions, sintlmin, sintlmax, output_stl=None):
+def genhkl(sgno, unit_cell, sysconditions, sintlmin, sintlmax, output_stl=None):
     """
     Generate reflections up to maximum sin(theta)/lambda (sintlmax)
     The program follows the method described in: 
@@ -910,7 +910,10 @@ def genhkl(unit_cell, sysconditions, sintlmin, sintlmax, output_stl=None):
     H = n.zeros((0, 3))
     stl = n.array([])
     sintlH = 0.0
-
+    crystal_system='primitiv'
+    if sgno > 142 and sgno < 195:
+        crystal_system='hexagonal'   
+    
     for i in range(4):
         segn = i
         # initialize the identifiers
@@ -926,7 +929,7 @@ def genhkl(unit_cell, sysconditions, sintlmin, sintlmax, output_stl=None):
                 while htest == 0:
                     nref = nref + 1
                     if nref != 1:
-                        if sysabs(HLAST, sysconditions) == 0:
+                        if sysabs(HLAST, sysconditions, crystal_system) == 0:
                             if  sintlH > sintlmin and sintlH <= sintlmax:
                                 H = n.concatenate((H, [HLAST]))
                                 H = n.concatenate((H, [-HLAST]))
@@ -964,8 +967,12 @@ def genhkl(unit_cell, sysconditions, sintlmin, sintlmax, output_stl=None):
     if output_stl == None:
         H = H[: , :3]
     return H
-
+    
 def sysabs(hkl, syscond, crystal_system='primitiv'):
+    """
+    Defined as sysabs_unique with the exception that permutations in a 
+    hexagonal lattice is taken into account.
+    """
 
     sys_type = sysabs_unique(hkl, syscond)
     if crystal_system == 'hexagonal':
@@ -981,12 +988,12 @@ def sysabs(hkl, syscond, crystal_system='primitiv'):
                 sys_type = sysabs_unique([h, k, l], syscond)
     
     return sys_type
-
+    
 def sysabs_unique(hkl, syscond):
     """
-    sysabs checks whether a reflection is systematic absent
+    sysabs_unique checks whether a reflection is systematic absent
     
-    sysabs = sysabs(hkl,syscond)
+    sysabs_unique = sysabs_unique(hkl,syscond)
      
     INPUT: hkl = [h k l] 
            syscond: [1x23] with condition for systematic absences in this
