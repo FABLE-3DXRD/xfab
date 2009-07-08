@@ -9,6 +9,7 @@ class Sg1:
     def __init__(self):
         self.no = 1
         self.name = "P1"
+        self.crystal_system = "triclinic"
         self.nsymop = 1
         self.nuniq = 1
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -20,6 +21,7 @@ class Sg2:
     def __init__(self):
         self.no = 2
         self.name = "P-1"
+        self.crystal_system = "triclinic"
         self.nsymop = 2
         self.nuniq = 2
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -33,6 +35,7 @@ class Sg3:
     def __init__(self):
         self.no = 3
         self.name = "P2"
+        self.crystal_system = "monoclinic"
         self.nsymop = 2
         self.nuniq = 2
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -47,6 +50,7 @@ class Sg4:
     def __init__(self):
         self.no = 4
         self.name = "P21"
+        self.crystal_system = "monoclinic"
         self.nsymop = 2
         self.nuniq = 2
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -60,6 +64,7 @@ class Sg5:
     def __init__(self):
         self.no = 5
         self.name = "C2"
+        self.crystal_system = "monoclinic"
         self.nsymop = 4
         self.nuniq = 2
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -78,6 +83,7 @@ class Sg6:
     def __init__(self):
         self.no = 6
         self.name = "Pm"
+        self.crystal_system = "monoclinic"
         self.nsymop = 2
         self.nuniq = 2
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -91,6 +97,7 @@ class Sg7:
     def __init__(self):
         self.no = 7
         self.name = "Pc"
+        self.crystal_system = "monoclinic"
         self.nsymop = 2
         self.nuniq = 2
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -105,6 +112,7 @@ class Sg8:
     def __init__(self):
         self.no = 8
         self.name = "Cm"
+        self.crystal_system = "monoclinic"
         self.nsymop = 4
         self.nuniq = 2
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -123,6 +131,7 @@ class Sg9:
     def __init__(self):
         self.no = 9
         self.name = "Cc"
+        self.crystal_system = "monoclinic"
         self.nsymop = 4
         self.nuniq = 2
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -140,6 +149,7 @@ class Sg10:
     def __init__(self):
         self.no = 10
         self.name = "P2/m"
+        self.crystal_system = "monoclinic"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -157,6 +167,7 @@ class Sg11:
     def __init__(self):
         self.no = 11
         self.name = "P21/m"
+        self.crystal_system = "monoclinic"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -177,6 +188,7 @@ class Sg12:
     def __init__(self):
         self.no = 12
         self.name = "C2/m"
+        self.crystal_system = "monoclinic"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -201,10 +213,12 @@ class Sg12:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg13:
     def __init__(self):
         self.no = 13
         self.name = "P2/c"
+        self.crystal_system = "monoclinic"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -221,10 +235,12 @@ class Sg13:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg14:
     def __init__(self):
         self.no = 14
         self.name = "P21/c"
+        self.crystal_system = "monoclinic"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -241,10 +257,12 @@ class Sg14:
                            [0.00,0.50,0.50],
                            [0.00,0.50,0.50],
                             ]
+
 class Sg15:
     def __init__(self):
         self.no = 15
         self.name = "C2/c"
+        self.crystal_system = "monoclinic"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -269,10 +287,12 @@ class Sg15:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg16:
     def __init__(self):
         self.no = 16
         self.name = "P222"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -289,10 +309,12 @@ class Sg16:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg17:
     def __init__(self):
         self.no = 17
         self.name = "P2221"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -309,10 +331,12 @@ class Sg17:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg18:
     def __init__(self):
         self.no = 18
         self.name = "P21212"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -329,10 +353,12 @@ class Sg18:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg19:
     def __init__(self):
         self.no = 19
         self.name = "P212121"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -349,10 +375,12 @@ class Sg19:
                            [0.00,0.50,0.50],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg20:
     def __init__(self):
         self.no = 20
         self.name = "C2221"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -377,10 +405,12 @@ class Sg20:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg21:
     def __init__(self):
         self.no = 21
         self.name = "C222"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -405,10 +435,12 @@ class Sg21:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg22:
     def __init__(self):
         self.no = 22
         self.name = "F222"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 16
         self.nuniq = 4
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2,
@@ -449,10 +481,12 @@ class Sg22:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg23:
     def __init__(self):
         self.no = 23
         self.name = "I222"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -477,10 +511,12 @@ class Sg23:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg24:
     def __init__(self):
         self.no = 24
         self.name = "I212121"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -505,10 +541,12 @@ class Sg24:
                            [0.50,0.00,0.00],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg25:
     def __init__(self):
         self.no = 25
         self.name = "Pmm2"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -525,10 +563,12 @@ class Sg25:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg26:
     def __init__(self):
         self.no = 26
         self.name = "Pmc21"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -545,10 +585,12 @@ class Sg26:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg27:
     def __init__(self):
         self.no = 27
         self.name = "Pcc2"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -565,10 +607,12 @@ class Sg27:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg28:
     def __init__(self):
         self.no = 28
         self.name = "Pma2"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -585,10 +629,12 @@ class Sg28:
                            [0.50,0.00,0.00],
                            [0.50,0.00,0.00],
                             ]
+
 class Sg29:
     def __init__(self):
         self.no = 29
         self.name = "Pca21"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -605,10 +651,12 @@ class Sg29:
                            [0.50,0.00,0.00],
                            [0.50,0.00,0.50],
                             ]
+
 class Sg30:
     def __init__(self):
         self.no = 30
         self.name = "Pnc2"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -625,10 +673,12 @@ class Sg30:
                            [0.00,0.50,0.50],
                            [0.00,0.50,0.50],
                             ]
+
 class Sg31:
     def __init__(self):
         self.no = 31
         self.name = "Pmn21"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -645,10 +695,12 @@ class Sg31:
                            [0.50,0.00,0.50],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg32:
     def __init__(self):
         self.no = 32
         self.name = "Pba2"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -665,10 +717,12 @@ class Sg32:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg33:
     def __init__(self):
         self.no = 33
         self.name = "Pna21"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -685,10 +739,12 @@ class Sg33:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg34:
     def __init__(self):
         self.no = 34
         self.name = "Pnn2"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -705,10 +761,12 @@ class Sg34:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg35:
     def __init__(self):
         self.no = 35
         self.name = "Cmm2"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -733,10 +791,12 @@ class Sg35:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg36:
     def __init__(self):
         self.no = 36
         self.name = "Cmc21"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -761,10 +821,12 @@ class Sg36:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg37:
     def __init__(self):
         self.no = 37
         self.name = "Ccc2"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2,
@@ -789,10 +851,12 @@ class Sg37:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg38:
     def __init__(self):
         self.no = 38
         self.name = "Amm2"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -817,10 +881,12 @@ class Sg38:
                            [0.00,0.50,0.50],
                            [0.00,0.50,0.50],
                             ]
+
 class Sg39:
     def __init__(self):
         self.no = 39
         self.name = "Abm2"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2,
@@ -845,10 +911,12 @@ class Sg39:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg40:
     def __init__(self):
         self.no = 40
         self.name = "Ama2"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -873,10 +941,12 @@ class Sg40:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg41:
     def __init__(self):
         self.no = 41
         self.name = "Aba2"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2,
@@ -901,10 +971,12 @@ class Sg41:
                            [0.50,0.00,0.50],
                            [0.50,0.00,0.50],
                             ]
+
 class Sg42:
     def __init__(self):
         self.no = 42
         self.name = "Fmm2"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 16
         self.nuniq = 4
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2,
@@ -945,10 +1017,12 @@ class Sg42:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg43:
     def __init__(self):
         self.no = 43
         self.name = "Fdd2"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 16
         self.nuniq = 4
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2,
@@ -989,10 +1063,12 @@ class Sg43:
                            [0.75,0.75,0.25],
                            [0.75,0.75,0.25],
                             ]
+
 class Sg44:
     def __init__(self):
         self.no = 44
         self.name = "Imm2"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -1017,10 +1093,12 @@ class Sg44:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg45:
     def __init__(self):
         self.no = 45
         self.name = "Iba2"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 2,
@@ -1045,10 +1123,12 @@ class Sg45:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg46:
     def __init__(self):
         self.no = 46
         self.name = "Ima2"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -1073,10 +1153,12 @@ class Sg46:
                            [0.00,0.50,0.50],
                            [0.00,0.50,0.50],
                             ]
+
 class Sg47:
     def __init__(self):
         self.no = 47
         self.name = "Pmmm"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1101,10 +1183,12 @@ class Sg47:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg48:
     def __init__(self):
         self.no = 48
         self.name = "Pnnn"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1129,10 +1213,12 @@ class Sg48:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg49:
     def __init__(self):
         self.no = 49
         self.name = "Pccm"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -1157,10 +1243,12 @@ class Sg49:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg50:
     def __init__(self):
         self.no = 50
         self.name = "Pban"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -1185,10 +1273,12 @@ class Sg50:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg51:
     def __init__(self):
         self.no = 51
         self.name = "Pmma"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1213,10 +1303,12 @@ class Sg51:
                            [0.00,0.00,0.00],
                            [0.50,0.00,0.00],
                             ]
+
 class Sg52:
     def __init__(self):
         self.no = 52
         self.name = "Pnna"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1241,10 +1333,12 @@ class Sg52:
                            [0.50,0.50,0.50],
                            [0.00,0.50,0.50],
                             ]
+
 class Sg53:
     def __init__(self):
         self.no = 53
         self.name = "Pmna"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1269,10 +1363,12 @@ class Sg53:
                            [0.50,0.00,0.50],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg54:
     def __init__(self):
         self.no = 54
         self.name = "Pcca"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -1297,10 +1393,12 @@ class Sg54:
                            [0.00,0.00,0.50],
                            [0.50,0.00,0.50],
                             ]
+
 class Sg55:
     def __init__(self):
         self.no = 55
         self.name = "Pbam"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -1325,10 +1423,12 @@ class Sg55:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg56:
     def __init__(self):
         self.no = 56
         self.name = "Pccn"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -1353,10 +1453,12 @@ class Sg56:
                            [0.00,0.50,0.50],
                            [0.50,0.00,0.50],
                             ]
+
 class Sg57:
     def __init__(self):
         self.no = 57
         self.name = "Pbcm"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -1381,10 +1483,12 @@ class Sg57:
                            [0.00,0.50,0.50],
                            [0.00,0.50,0.00],
                             ]
+
 class Sg58:
     def __init__(self):
         self.no = 58
         self.name = "Pnnm"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1409,10 +1513,12 @@ class Sg58:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg59:
     def __init__(self):
         self.no = 59
         self.name = "Pmmn"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1437,10 +1543,12 @@ class Sg59:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg60:
     def __init__(self):
         self.no = 60
         self.name = "Pbcn"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -1465,10 +1573,12 @@ class Sg60:
                            [0.00,0.00,0.50],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg61:
     def __init__(self):
         self.no = 61
         self.name = "Pbca"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -1493,10 +1603,12 @@ class Sg61:
                            [0.00,0.50,0.50],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg62:
     def __init__(self):
         self.no = 62
         self.name = "Pnma"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1521,10 +1633,12 @@ class Sg62:
                            [0.00,0.50,0.00],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg63:
     def __init__(self):
         self.no = 63
         self.name = "Cmcm"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -1565,10 +1679,12 @@ class Sg63:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg64:
     def __init__(self):
         self.no = 64
         self.name = "Cmca"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -1609,10 +1725,12 @@ class Sg64:
                            [0.50,0.00,0.50],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg65:
     def __init__(self):
         self.no = 65
         self.name = "Cmmm"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -1653,10 +1771,12 @@ class Sg65:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg66:
     def __init__(self):
         self.no = 66
         self.name = "Cccm"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2,
@@ -1697,10 +1817,12 @@ class Sg66:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg67:
     def __init__(self):
         self.no = 67
         self.name = "Cmma"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -1741,10 +1863,12 @@ class Sg67:
                            [0.50,0.00,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg68:
     def __init__(self):
         self.no = 68
         self.name = "Ccca"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2,
@@ -1785,10 +1909,12 @@ class Sg68:
                            [0.50,0.00,0.50],
                            [0.00,0.50,0.50],
                             ]
+
 class Sg69:
     def __init__(self):
         self.no = 69
         self.name = "Fmmm"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 32
         self.nuniq = 8
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2,
@@ -1861,10 +1987,12 @@ class Sg69:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg70:
     def __init__(self):
         self.no = 70
         self.name = "Fddd"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 32
         self.nuniq = 8
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2,
@@ -1937,10 +2065,12 @@ class Sg70:
                            [0.75,0.75,0.25],
                            [0.75,0.75,0.25],
                             ]
+
 class Sg71:
     def __init__(self):
         self.no = 71
         self.name = "Immm"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -1981,10 +2111,12 @@ class Sg71:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg72:
     def __init__(self):
         self.no = 72
         self.name = "Ibam"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 2,
@@ -2025,10 +2157,12 @@ class Sg72:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg73:
     def __init__(self):
         self.no = 73
         self.name = "Ibca"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 2,
@@ -2069,10 +2203,12 @@ class Sg73:
                            [0.50,0.00,0.00],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg74:
     def __init__(self):
         self.no = 74
         self.name = "Imma"
+        self.crystal_system = "orthorhombic"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -2113,10 +2249,12 @@ class Sg74:
                            [0.50,0.00,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg75:
     def __init__(self):
         self.no = 75
         self.name = "P4"
+        self.crystal_system = "tetragonal"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2133,10 +2271,12 @@ class Sg75:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg76:
     def __init__(self):
         self.no = 76
         self.name = "P41"
+        self.crystal_system = "tetragonal"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2153,10 +2293,12 @@ class Sg76:
                            [0.00,0.00,0.25],
                            [0.00,0.00,0.75],
                             ]
+
 class Sg77:
     def __init__(self):
         self.no = 77
         self.name = "P42"
+        self.crystal_system = "tetragonal"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2173,10 +2315,12 @@ class Sg77:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg78:
     def __init__(self):
         self.no = 78
         self.name = "P43"
+        self.crystal_system = "tetragonal"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2193,10 +2337,12 @@ class Sg78:
                            [0.00,0.00,0.75],
                            [0.00,0.00,0.25],
                             ]
+
 class Sg79:
     def __init__(self):
         self.no = 79
         self.name = "I4"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -2221,10 +2367,12 @@ class Sg79:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg80:
     def __init__(self):
         self.no = 80
         self.name = "I41"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -2249,10 +2397,12 @@ class Sg80:
                            [0.50,0.00,0.75],
                            [0.00,0.50,0.25],
                             ]
+
 class Sg81:
     def __init__(self):
         self.no = 81
         self.name = "P-4"
+        self.crystal_system = "tetragonal"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2269,10 +2419,12 @@ class Sg81:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg82:
     def __init__(self):
         self.no = 82
         self.name = "I-4"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -2297,10 +2449,12 @@ class Sg82:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg83:
     def __init__(self):
         self.no = 83
         self.name = "P4/m"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2325,10 +2479,12 @@ class Sg83:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg84:
     def __init__(self):
         self.no = 84
         self.name = "P42/m"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2353,10 +2509,12 @@ class Sg84:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg85:
     def __init__(self):
         self.no = 85
         self.name = "P4/n"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2381,10 +2539,12 @@ class Sg85:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg86:
     def __init__(self):
         self.no = 86
         self.name = "P42/n"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2409,10 +2569,12 @@ class Sg86:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg87:
     def __init__(self):
         self.no = 87
         self.name = "I4/m"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -2453,10 +2615,12 @@ class Sg87:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg88:
     def __init__(self):
         self.no = 88
         self.name = "I41/a"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -2497,10 +2661,12 @@ class Sg88:
                            [0.50,0.50,0.50],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg89:
     def __init__(self):
         self.no = 89
         self.name = "P422"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2525,10 +2691,12 @@ class Sg89:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg90:
     def __init__(self):
         self.no = 90
         self.name = "P4212"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2553,10 +2721,12 @@ class Sg90:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg91:
     def __init__(self):
         self.no = 91
         self.name = "P4122"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2581,10 +2751,12 @@ class Sg91:
                            [0.00,0.00,0.75],
                            [0.00,0.00,0.25],
                             ]
+
 class Sg92:
     def __init__(self):
         self.no = 92
         self.name = "P41212"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2609,10 +2781,12 @@ class Sg92:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg93:
     def __init__(self):
         self.no = 93
         self.name = "P4222"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2637,10 +2811,12 @@ class Sg93:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg94:
     def __init__(self):
         self.no = 94
         self.name = "P42212"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2665,10 +2841,12 @@ class Sg94:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg95:
     def __init__(self):
         self.no = 95
         self.name = "P4322"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2693,10 +2871,12 @@ class Sg95:
                            [0.00,0.00,0.25],
                            [0.00,0.00,0.75],
                             ]
+
 class Sg96:
     def __init__(self):
         self.no = 96
         self.name = "P43212"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2721,10 +2901,12 @@ class Sg96:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg97:
     def __init__(self):
         self.no = 97
         self.name = "I422"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -2765,10 +2947,12 @@ class Sg97:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg98:
     def __init__(self):
         self.no = 98
         self.name = "I4122"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -2809,10 +2993,12 @@ class Sg98:
                            [0.00,0.00,0.00],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg99:
     def __init__(self):
         self.no = 99
         self.name = "P4mm"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2837,10 +3023,12 @@ class Sg99:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg100:
     def __init__(self):
         self.no = 100
         self.name = "P4bm"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -2865,10 +3053,12 @@ class Sg100:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg101:
     def __init__(self):
         self.no = 101
         self.name = "P42cm"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -2893,10 +3083,12 @@ class Sg101:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg102:
     def __init__(self):
         self.no = 102
         self.name = "P42nm"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2921,10 +3113,12 @@ class Sg102:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg103:
     def __init__(self):
         self.no = 103
         self.name = "P4cc"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
@@ -2949,10 +3143,12 @@ class Sg103:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg104:
     def __init__(self):
         self.no = 104
         self.name = "P4nc"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
@@ -2977,10 +3173,12 @@ class Sg104:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg105:
     def __init__(self):
         self.no = 105
         self.name = "P42mc"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
@@ -3005,10 +3203,12 @@ class Sg105:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg106:
     def __init__(self):
         self.no = 106
         self.name = "P42bc"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 2, 0,
@@ -3033,10 +3233,12 @@ class Sg106:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg107:
     def __init__(self):
         self.no = 107
         self.name = "I4mm"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -3077,10 +3279,12 @@ class Sg107:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg108:
     def __init__(self):
         self.no = 108
         self.name = "I4cm"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 2, 2,
@@ -3121,10 +3325,12 @@ class Sg108:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg109:
     def __init__(self):
         self.no = 109
         self.name = "I41md"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 0, 0,
@@ -3165,10 +3371,12 @@ class Sg109:
                            [0.50,0.00,0.75],
                            [0.00,0.50,0.25],
                             ]
+
 class Sg110:
     def __init__(self):
         self.no = 110
         self.name = "I41cd"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 2, 2,
@@ -3209,10 +3417,12 @@ class Sg110:
                            [0.50,0.00,0.25],
                            [0.00,0.50,0.75],
                             ]
+
 class Sg111:
     def __init__(self):
         self.no = 111
         self.name = "P-42m"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3237,10 +3447,12 @@ class Sg111:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg112:
     def __init__(self):
         self.no = 112
         self.name = "P-42c"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
@@ -3265,10 +3477,12 @@ class Sg112:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg113:
     def __init__(self):
         self.no = 113
         self.name = "P-421m"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3293,10 +3507,12 @@ class Sg113:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg114:
     def __init__(self):
         self.no = 114
         self.name = "P-421c"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
@@ -3321,10 +3537,12 @@ class Sg114:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg115:
     def __init__(self):
         self.no = 115
         self.name = "P-4m2"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3349,10 +3567,12 @@ class Sg115:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg116:
     def __init__(self):
         self.no = 116
         self.name = "P-4c2"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -3377,10 +3597,12 @@ class Sg116:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg117:
     def __init__(self):
         self.no = 117
         self.name = "P-4b2"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -3405,10 +3627,12 @@ class Sg117:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg118:
     def __init__(self):
         self.no = 118
         self.name = "P-4n2"
+        self.crystal_system = "tetragonal"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3433,10 +3657,12 @@ class Sg118:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg119:
     def __init__(self):
         self.no = 119
         self.name = "I-4m2"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -3477,10 +3703,12 @@ class Sg119:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg120:
     def __init__(self):
         self.no = 120
         self.name = "I-4c2"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 2, 2,
@@ -3521,10 +3749,12 @@ class Sg120:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg121:
     def __init__(self):
         self.no = 121
         self.name = "I-42m"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -3565,10 +3795,12 @@ class Sg121:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg122:
     def __init__(self):
         self.no = 122
         self.name = "I-42d"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 0, 0,
@@ -3609,10 +3841,12 @@ class Sg122:
                            [0.00,0.50,0.25],
                            [0.00,0.50,0.25],
                             ]
+
 class Sg123:
     def __init__(self):
         self.no = 123
         self.name = "P4/mmm"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3653,10 +3887,12 @@ class Sg123:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg124:
     def __init__(self):
         self.no = 124
         self.name = "P4/mcc"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
@@ -3697,10 +3933,12 @@ class Sg124:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg125:
     def __init__(self):
         self.no = 125
         self.name = "P4/nbm"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -3741,10 +3979,12 @@ class Sg125:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg126:
     def __init__(self):
         self.no = 126
         self.name = "P4/nnc"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
@@ -3785,10 +4025,12 @@ class Sg126:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg127:
     def __init__(self):
         self.no = 127
         self.name = "P4/mbm"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -3829,10 +4071,12 @@ class Sg127:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg128:
     def __init__(self):
         self.no = 128
         self.name = "P4/mnc"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
@@ -3873,10 +4117,12 @@ class Sg128:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg129:
     def __init__(self):
         self.no = 129
         self.name = "P4/nmm"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3917,10 +4163,12 @@ class Sg129:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg130:
     def __init__(self):
         self.no = 130
         self.name = "P4/ncc"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
@@ -3961,10 +4209,12 @@ class Sg130:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg131:
     def __init__(self):
         self.no = 131
         self.name = "P42/mmc"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
@@ -4005,10 +4255,12 @@ class Sg131:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg132:
     def __init__(self):
         self.no = 132
         self.name = "P42/mcm"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -4049,10 +4301,12 @@ class Sg132:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg133:
     def __init__(self):
         self.no = 133
         self.name = "P42/nbc"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 2, 0,
@@ -4093,10 +4347,12 @@ class Sg133:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg134:
     def __init__(self):
         self.no = 134
         self.name = "P42/nnm"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -4137,10 +4393,12 @@ class Sg134:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg135:
     def __init__(self):
         self.no = 135
         self.name = "P42/mbc"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 2, 0,
@@ -4181,10 +4439,12 @@ class Sg135:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg136:
     def __init__(self):
         self.no = 136
         self.name = "P42/mnm"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -4225,10 +4485,12 @@ class Sg136:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg137:
     def __init__(self):
         self.no = 137
         self.name = "P42/nmc"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
@@ -4269,10 +4531,12 @@ class Sg137:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg138:
     def __init__(self):
         self.no = 138
         self.name = "P42/ncm"
+        self.crystal_system = "tetragonal"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -4313,10 +4577,12 @@ class Sg138:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg139:
     def __init__(self):
         self.no = 139
         self.name = "I4/mmm"
+        self.crystal_system = "tetragonal"
         self.nsymop = 32
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -4389,10 +4655,12 @@ class Sg139:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg140:
     def __init__(self):
         self.no = 140
         self.name = "I4/mcm"
+        self.crystal_system = "tetragonal"
         self.nsymop = 32
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 2, 2,
@@ -4465,10 +4733,12 @@ class Sg140:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg141:
     def __init__(self):
         self.no = 141
         self.name = "I41/amd"
+        self.crystal_system = "tetragonal"
         self.nsymop = 32
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 0, 0,
@@ -4541,10 +4811,12 @@ class Sg141:
                            [0.00,0.50,0.25],
                            [0.50,0.00,0.75],
                             ]
+
 class Sg142:
     def __init__(self):
         self.no = 142
         self.name = "I41/acd"
+        self.crystal_system = "tetragonal"
         self.nsymop = 32
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 2, 2,
@@ -4617,10 +4889,13 @@ class Sg142:
                            [0.00,0.50,0.75],
                            [0.50,0.00,0.25],
                             ]
+
+
 class Sg143:
     def __init__(self):
         self.no = 143
         self.name = "P3"
+        self.crystal_system = "trigonal"
         self.nsymop = 3
         self.nuniq = 3
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -4635,10 +4910,12 @@ class Sg143:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg144:
     def __init__(self):
         self.no = 144
         self.name = "P31"
+        self.crystal_system = "trigonal"
         self.nsymop = 3
         self.nuniq = 3
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -4653,10 +4930,12 @@ class Sg144:
                            [0.00,0.00,0.33],
                            [0.00,0.00,0.67],
                             ]
+
 class Sg145:
     def __init__(self):
         self.no = 145
         self.name = "P32"
+        self.crystal_system = "trigonal"
         self.nsymop = 3
         self.nuniq = 3
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -4671,10 +4950,13 @@ class Sg145:
                            [0.00,0.00,0.67],
                            [0.00,0.00,0.33],
                             ]
+
 class Sg146:
     def __init__(self):
         self.no = 146
         self.name = "R3"
+        self.crystal_system = "trigonal"
+        self.cell_choice = "hexagonal"
         self.nsymop = 9
         self.nuniq = 3
         self.syscond = [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0,
@@ -4701,10 +4983,12 @@ class Sg146:
                            [0.33,0.67,0.67],
                            [0.33,0.67,0.67],
                             ]
+
 class Sg147:
     def __init__(self):
         self.no = 147
         self.name = "P-3"
+        self.crystal_system = "trigonal"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -4725,10 +5009,13 @@ class Sg147:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg148:
     def __init__(self):
         self.no = 148
         self.name = "R-3"
+        self.crystal_system = "trigonal"
+        self.cell_choice = "hexagonal"
         self.nsymop = 18
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0,
@@ -4773,10 +5060,12 @@ class Sg148:
                            [0.33,0.67,0.67],
                            [0.33,0.67,0.67],
                             ]
+
 class Sg149:
     def __init__(self):
         self.no = 149
         self.name = "P312"
+        self.crystal_system = "trigonal"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -4797,10 +5086,12 @@ class Sg149:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg150:
     def __init__(self):
         self.no = 150
         self.name = "P321"
+        self.crystal_system = "trigonal"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -4821,10 +5112,12 @@ class Sg150:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg151:
     def __init__(self):
         self.no = 151
         self.name = "P3112"
+        self.crystal_system = "trigonal"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -4845,10 +5138,12 @@ class Sg151:
                            [0.00,0.00,0.33],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg152:
     def __init__(self):
         self.no = 152
         self.name = "P3121"
+        self.crystal_system = "trigonal"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -4869,10 +5164,12 @@ class Sg152:
                            [0.00,0.00,0.67],
                            [0.00,0.00,0.33],
                             ]
+
 class Sg153:
     def __init__(self):
         self.no = 153
         self.name = "P3212"
+        self.crystal_system = "trigonal"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -4893,10 +5190,12 @@ class Sg153:
                            [0.00,0.00,0.67],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg154:
     def __init__(self):
         self.no = 154
         self.name = "P3221"
+        self.crystal_system = "trigonal"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -4917,10 +5216,13 @@ class Sg154:
                            [0.00,0.00,0.33],
                            [0.00,0.00,0.67],
                             ]
+
 class Sg155:
     def __init__(self):
         self.no = 155
         self.name = "R32"
+        self.crystal_system = "trigonal"
+        self.cell_choice = "hexagonal"
         self.nsymop = 18
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0,
@@ -4965,10 +5267,12 @@ class Sg155:
                            [0.33,0.67,0.67],
                            [0.33,0.67,0.67],
                             ]
+
 class Sg156:
     def __init__(self):
         self.no = 156
         self.name = "P3m1"
+        self.crystal_system = "trigonal"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -4989,10 +5293,12 @@ class Sg156:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg157:
     def __init__(self):
         self.no = 157
         self.name = "P31m"
+        self.crystal_system = "trigonal"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5013,10 +5319,12 @@ class Sg157:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg158:
     def __init__(self):
         self.no = 158
         self.name = "P3c1"
+        self.crystal_system = "trigonal"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5037,10 +5345,12 @@ class Sg158:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg159:
     def __init__(self):
         self.no = 159
         self.name = "P31c"
+        self.crystal_system = "trigonal"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
@@ -5061,10 +5371,13 @@ class Sg159:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg160:
     def __init__(self):
         self.no = 160
         self.name = "R3m"
+        self.crystal_system = "trigonal"
+        self.cell_choice = "hexagonal"
         self.nsymop = 18
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0,
@@ -5109,10 +5422,13 @@ class Sg160:
                            [0.33,0.67,0.67],
                            [0.33,0.67,0.67],
                             ]
+
 class Sg161:
     def __init__(self):
         self.no = 161
         self.name = "R3c"
+        self.crystal_system = "trigonal"
+        self.cell_choice = "hexagonal"
         self.nsymop = 18
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0,
@@ -5157,10 +5473,12 @@ class Sg161:
                            [0.33,0.67,0.17],
                            [0.33,0.67,0.17],
                             ]
+
 class Sg162:
     def __init__(self):
         self.no = 162
         self.name = "P-31m"
+        self.crystal_system = "trigonal"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5193,10 +5511,12 @@ class Sg162:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg163:
     def __init__(self):
         self.no = 163
         self.name = "P-31c"
+        self.crystal_system = "trigonal"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
@@ -5229,10 +5549,12 @@ class Sg163:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg164:
     def __init__(self):
         self.no = 164
         self.name = "P-3m1"
+        self.crystal_system = "trigonal"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5265,10 +5587,12 @@ class Sg164:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg165:
     def __init__(self):
         self.no = 165
         self.name = "P-3c1"
+        self.crystal_system = "trigonal"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5301,10 +5625,13 @@ class Sg165:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg166:
     def __init__(self):
         self.no = 166
         self.name = "R-3m"
+        self.crystal_system = "trigonal"
+        self.cell_choice = "hexagonal"
         self.nsymop = 36
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0,
@@ -5385,10 +5712,13 @@ class Sg166:
                            [0.33,0.67,0.67],
                            [0.33,0.67,0.67],
                             ]
+
 class Sg167:
     def __init__(self):
         self.no = 167
         self.name = "R-3c"
+        self.crystal_system = "trigonal"
+        self.cell_choice = "hexagonal"
         self.nsymop = 36
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0,
@@ -5469,10 +5799,12 @@ class Sg167:
                            [0.33,0.67,0.17],
                            [0.33,0.67,0.17],
                             ]
+
 class Sg168:
     def __init__(self):
         self.no = 168
         self.name = "P6"
+        self.crystal_system = "XXXX"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5493,10 +5825,12 @@ class Sg168:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg169:
     def __init__(self):
         self.no = 169
         self.name = "P61"
+        self.crystal_system = "hexagonal"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5517,10 +5851,12 @@ class Sg169:
                            [0.00,0.00,0.83],
                            [0.00,0.00,0.17],
                             ]
+
 class Sg170:
     def __init__(self):
         self.no = 170
         self.name = "P65"
+        self.crystal_system = "hexagonal"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5541,10 +5877,12 @@ class Sg170:
                            [0.00,0.00,0.17],
                            [0.00,0.00,0.83],
                             ]
+
 class Sg171:
     def __init__(self):
         self.no = 171
         self.name = "P62"
+        self.crystal_system = "hexagonal"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5565,10 +5903,12 @@ class Sg171:
                            [0.00,0.00,0.67],
                            [0.00,0.00,0.33],
                             ]
+
 class Sg172:
     def __init__(self):
         self.no = 172
         self.name = "P64"
+        self.crystal_system = "hexagonal"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5589,10 +5929,12 @@ class Sg172:
                            [0.00,0.00,0.33],
                            [0.00,0.00,0.67],
                             ]
+
 class Sg173:
     def __init__(self):
         self.no = 173
         self.name = "P63"
+        self.crystal_system = "hexagonal"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5613,10 +5955,12 @@ class Sg173:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg174:
     def __init__(self):
         self.no = 174
         self.name = "P-6"
+        self.crystal_system = "hexagonal"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5637,10 +5981,12 @@ class Sg174:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg175:
     def __init__(self):
         self.no = 175
         self.name = "P6/m"
+        self.crystal_system = "hexagonal"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5673,10 +6019,12 @@ class Sg175:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg176:
     def __init__(self):
         self.no = 176
         self.name = "P63/m"
+        self.crystal_system = "hexagonal"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5709,10 +6057,12 @@ class Sg176:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg177:
     def __init__(self):
         self.no = 177
         self.name = "P622"
+        self.crystal_system = "hexagonal"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5745,10 +6095,12 @@ class Sg177:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg178:
     def __init__(self):
         self.no = 178
         self.name = "P6122"
+        self.crystal_system = "hexagonal"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5781,10 +6133,12 @@ class Sg178:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.17],
                             ]
+
 class Sg179:
     def __init__(self):
         self.no = 179
         self.name = "P6522"
+        self.crystal_system = "hexagonal"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5817,10 +6171,12 @@ class Sg179:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.83],
                             ]
+
 class Sg180:
     def __init__(self):
         self.no = 180
         self.name = "P6222"
+        self.crystal_system = "hexagonal"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5853,10 +6209,12 @@ class Sg180:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.33],
                             ]
+
 class Sg181:
     def __init__(self):
         self.no = 181
         self.name = "P6422"
+        self.crystal_system = "hexagonal"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5889,10 +6247,12 @@ class Sg181:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.67],
                             ]
+
 class Sg182:
     def __init__(self):
         self.no = 182
         self.name = "P6322"
+        self.crystal_system = "hexagonal"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5925,10 +6285,12 @@ class Sg182:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg183:
     def __init__(self):
         self.no = 183
         self.name = "P6mm"
+        self.crystal_system = "hexagonal"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5961,10 +6323,12 @@ class Sg183:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg184:
     def __init__(self):
         self.no = 184
         self.name = "P6cc"
+        self.crystal_system = "hexagonal"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
@@ -5997,10 +6361,12 @@ class Sg184:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg185:
     def __init__(self):
         self.no = 185
         self.name = "P63cm"
+        self.crystal_system = "hexagonal"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6033,10 +6399,12 @@ class Sg185:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg186:
     def __init__(self):
         self.no = 186
         self.name = "P63mc"
+        self.crystal_system = "hexagonal"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
@@ -6069,10 +6437,12 @@ class Sg186:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg187:
     def __init__(self):
         self.no = 187
         self.name = "P-6m2"
+        self.crystal_system = "hexagonal"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6105,10 +6475,12 @@ class Sg187:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg188:
     def __init__(self):
         self.no = 188
         self.name = "P-6c2"
+        self.crystal_system = "hexagonal"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6141,10 +6513,12 @@ class Sg188:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg189:
     def __init__(self):
         self.no = 189
         self.name = "P-62m"
+        self.crystal_system = "hexagonal"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6177,10 +6551,12 @@ class Sg189:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg190:
     def __init__(self):
         self.no = 190
         self.name = "P-62c"
+        self.crystal_system = "hexagonal"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
@@ -6213,10 +6589,12 @@ class Sg190:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg191:
     def __init__(self):
         self.no = 191
         self.name = "P6/mmm"
+        self.crystal_system = "hexagonal"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6273,10 +6651,12 @@ class Sg191:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg192:
     def __init__(self):
         self.no = 192
         self.name = "P6/mcc"
+        self.crystal_system = "hexagonal"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
@@ -6333,10 +6713,12 @@ class Sg192:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg193:
     def __init__(self):
         self.no = 193
         self.name = "P63/mcm"
+        self.crystal_system = "hexagonal"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -6393,10 +6775,12 @@ class Sg193:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg194:
     def __init__(self):
         self.no = 194
         self.name = "P63/mmc"
+        self.crystal_system = "hexagonal"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
@@ -6453,10 +6837,12 @@ class Sg194:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg195:
     def __init__(self):
         self.no = 195
         self.name = "P23"
+        self.crystal_system = "cubic"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6489,10 +6875,12 @@ class Sg195:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg196:
     def __init__(self):
         self.no = 196
         self.name = "F23"
+        self.crystal_system = "cubic"
         self.nsymop = 48
         self.nuniq = 12
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
@@ -6597,10 +6985,12 @@ class Sg196:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg197:
     def __init__(self):
         self.no = 197
         self.name = "I23"
+        self.crystal_system = "cubic"
         self.nsymop = 24
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -6657,10 +7047,12 @@ class Sg197:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg198:
     def __init__(self):
         self.no = 198
         self.name = "P213"
+        self.crystal_system = "cubic"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6693,10 +7085,12 @@ class Sg198:
                            [0.50,0.50,0.00],
                            [0.50,0.00,0.50],
                             ]
+
 class Sg199:
     def __init__(self):
         self.no = 199
         self.name = "I213"
+        self.crystal_system = "cubic"
         self.nsymop = 24
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -6753,10 +7147,12 @@ class Sg199:
                            [0.00,0.00,0.50],
                            [0.00,0.50,0.00],
                             ]
+
 class Sg200:
     def __init__(self):
         self.no = 200
         self.name = "Pm-3"
+        self.crystal_system = "cubic"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6813,10 +7209,12 @@ class Sg200:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg201:
     def __init__(self):
         self.no = 201
         self.name = "Pn-3"
+        self.crystal_system = "cubic"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6873,10 +7271,12 @@ class Sg201:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg202:
     def __init__(self):
         self.no = 202
         self.name = "Fm-3"
+        self.crystal_system = "cubic"
         self.nsymop = 96
         self.nuniq = 24
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
@@ -7077,10 +7477,12 @@ class Sg202:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg203:
     def __init__(self):
         self.no = 203
         self.name = "Fd-3"
+        self.crystal_system = "cubic"
         self.nsymop = 96
         self.nuniq = 24
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
@@ -7281,10 +7683,12 @@ class Sg203:
                            [0.75,0.75,0.25],
                            [0.75,0.75,0.25],
                             ]
+
 class Sg204:
     def __init__(self):
         self.no = 204
         self.name = "Im-3"
+        self.crystal_system = "cubic"
         self.nsymop = 48
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -7389,10 +7793,12 @@ class Sg204:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg205:
     def __init__(self):
         self.no = 205
         self.name = "Pa-3"
+        self.crystal_system = "cubic"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -7449,10 +7855,12 @@ class Sg205:
                            [0.50,0.50,0.00],
                            [0.50,0.00,0.50],
                             ]
+
 class Sg206:
     def __init__(self):
         self.no = 206
         self.name = "Ia-3"
+        self.crystal_system = "cubic"
         self.nsymop = 48
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 2,
@@ -7557,10 +7965,12 @@ class Sg206:
                            [0.00,0.00,0.50],
                            [0.00,0.50,0.00],
                             ]
+
 class Sg207:
     def __init__(self):
         self.no = 207
         self.name = "P432"
+        self.crystal_system = "cubic"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -7617,10 +8027,12 @@ class Sg207:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg208:
     def __init__(self):
         self.no = 208
         self.name = "P4232"
+        self.crystal_system = "cubic"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -7677,10 +8089,12 @@ class Sg208:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg209:
     def __init__(self):
         self.no = 209
         self.name = "F432"
+        self.crystal_system = "cubic"
         self.nsymop = 96
         self.nuniq = 24
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
@@ -7881,10 +8295,12 @@ class Sg209:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg210:
     def __init__(self):
         self.no = 210
         self.name = "F4132"
+        self.crystal_system = "cubic"
         self.nsymop = 96
         self.nuniq = 24
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
@@ -8085,10 +8501,12 @@ class Sg210:
                            [0.25,0.25,0.25],
                            [0.75,0.75,0.25],
                             ]
+
 class Sg211:
     def __init__(self):
         self.no = 211
         self.name = "I432"
+        self.crystal_system = "cubic"
         self.nsymop = 48
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -8193,10 +8611,12 @@ class Sg211:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg212:
     def __init__(self):
         self.no = 212
         self.name = "P4332"
+        self.crystal_system = "cubic"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -8253,10 +8673,12 @@ class Sg212:
                            [0.75,0.25,0.75],
                            [0.25,0.25,0.25],
                             ]
+
 class Sg213:
     def __init__(self):
         self.no = 213
         self.name = "P4132"
+        self.crystal_system = "cubic"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -8313,10 +8735,12 @@ class Sg213:
                            [0.25,0.75,0.25],
                            [0.75,0.75,0.75],
                             ]
+
 class Sg214:
     def __init__(self):
         self.no = 214
         self.name = "I4132"
+        self.crystal_system = "cubic"
         self.nsymop = 48
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -8421,10 +8845,12 @@ class Sg214:
                            [0.75,0.25,0.75],
                            [0.25,0.25,0.25],
                             ]
+
 class Sg215:
     def __init__(self):
         self.no = 215
         self.name = "P-43m"
+        self.crystal_system = "cubic"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -8481,10 +8907,12 @@ class Sg215:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg216:
     def __init__(self):
         self.no = 216
         self.name = "F-43m"
+        self.crystal_system = "cubic"
         self.nsymop = 96
         self.nuniq = 24
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
@@ -8685,10 +9113,12 @@ class Sg216:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg217:
     def __init__(self):
         self.no = 217
         self.name = "I-43m"
+        self.crystal_system = "cubic"
         self.nsymop = 48
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -8793,10 +9223,12 @@ class Sg217:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg218:
     def __init__(self):
         self.no = 218
         self.name = "P-43n"
+        self.crystal_system = "cubic"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -8853,10 +9285,12 @@ class Sg218:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg219:
     def __init__(self):
         self.no = 219
         self.name = "F-43c"
+        self.crystal_system = "cubic"
         self.nsymop = 96
         self.nuniq = 24
         self.syscond = [2, 2, 2, 2, 0, 0, 2, 2, 2, 0, 2, 2,
@@ -9057,10 +9491,12 @@ class Sg219:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg220:
     def __init__(self):
         self.no = 220
         self.name = "I-43d"
+        self.crystal_system = "cubic"
         self.nsymop = 48
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 0, 0,
@@ -9165,10 +9601,12 @@ class Sg220:
                            [0.25,0.25,0.75],
                            [0.75,0.25,0.25],
                             ]
+
 class Sg221:
     def __init__(self):
         self.no = 221
         self.name = "Pm-3m"
+        self.crystal_system = "cubic"
         self.nsymop = 48
         self.nuniq = 48
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -9273,10 +9711,12 @@ class Sg221:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg222:
     def __init__(self):
         self.no = 222
         self.name = "Pn-3n"
+        self.crystal_system = "cubic"
         self.nsymop = 48
         self.nuniq = 48
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -9381,10 +9821,12 @@ class Sg222:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg223:
     def __init__(self):
         self.no = 223
         self.name = "Pm-3n"
+        self.crystal_system = "cubic"
         self.nsymop = 48
         self.nuniq = 48
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -9489,10 +9931,12 @@ class Sg223:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg224:
     def __init__(self):
         self.no = 224
         self.name = "Pn-3m"
+        self.crystal_system = "cubic"
         self.nsymop = 48
         self.nuniq = 48
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -9597,10 +10041,12 @@ class Sg224:
                            [0.00,0.00,0.00],
                            [0.00,0.00,0.00],
                             ]
+
 class Sg225:
     def __init__(self):
         self.no = 225
         self.name = "Fm-3m"
+        self.crystal_system = "cubic"
         self.nsymop = 192
         self.nuniq = 48
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
@@ -9993,10 +10439,12 @@ class Sg225:
                            [0.50,0.50,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg226:
     def __init__(self):
         self.no = 226
         self.name = "Fm-3c"
+        self.crystal_system = "cubic"
         self.nsymop = 192
         self.nuniq = 48
         self.syscond = [2, 2, 2, 2, 0, 0, 2, 2, 2, 0, 2, 2,
@@ -10389,10 +10837,12 @@ class Sg226:
                            [0.00,0.00,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg227:
     def __init__(self):
         self.no = 227
         self.name = "Fd-3m"
+        self.crystal_system = "cubic"
         self.nsymop = 192
         self.nuniq = 48
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 4, 0, 2, 2,
@@ -10785,10 +11235,12 @@ class Sg227:
                            [0.00,0.00,0.00],
                            [0.50,0.50,0.00],
                             ]
+
 class Sg228:
     def __init__(self):
         self.no = 228
         self.name = "Fd-3c"
+        self.crystal_system = "cubic"
         self.nsymop = 192
         self.nuniq = 48
         self.syscond = [2, 2, 2, 2, 0, 0, 2, 2, 2, 0, 2, 2,
@@ -11181,10 +11633,12 @@ class Sg228:
                            [0.50,0.50,0.50],
                            [0.00,0.00,0.50],
                             ]
+
 class Sg229:
     def __init__(self):
         self.no = 229
         self.name = "Im-3m"
+        self.crystal_system = "cubic"
         self.nsymop = 96
         self.nuniq = 48
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -11385,10 +11839,12 @@ class Sg229:
                            [0.50,0.50,0.50],
                            [0.50,0.50,0.50],
                             ]
+
 class Sg230:
     def __init__(self):
         self.no = 230
         self.name = "Ia-3d"
+        self.crystal_system = "cubic"
         self.nsymop = 96
         self.nuniq = 48
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 2, 2,
