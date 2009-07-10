@@ -3,7 +3,7 @@ xfab.symmetry has a few function for calculation of symmetry
 related stuff
 """
 
-from numpy import zeros, arccos, pi, dot, transpose, array, concatenate
+from numpy import zeros, arccos, pi, dot, transpose, array, concatenate, cos, sin, dot
 from numpy.linalg import det
 
 
@@ -65,9 +65,9 @@ def add_perm(umat, crystal_system):
 def permutations(crystal_system):
     
     """ 
-    lattperm returns the set of indistinguasible lattice permutations
+    permutations returns the set of indistinguasible lattice permutations
     
-    [perm] = lattperm(crystal_system)
+    perm = permutations(crystal_system)
     
     crystal_system can be one of the following values
     
@@ -165,3 +165,80 @@ def permutations(crystal_system):
         perm[23] = [[ 0,  0, -1], [ 1,  0,  0], [ 0, -1,  0]]
 
     return perm
+
+def rotations(crystal_system):
+    
+    """ 
+    rotations returns the set of unitary rotation matrices
+    corresponding to the indistinguasible lattice permutations
+    The values of the function only differ from permutations for 
+    trigonal and hexagonal crystal systems
+    
+    rot = rotations(crystal_system)
+    
+    crystal_system can be one of the following values
+    
+    1: Triclinic
+    2: Monoclinic
+    3: Orthorhombic
+    4: Tetragonal
+    5: Trigonal
+    6: Hexagonal
+    7: Cubic
+    
+    Henning Osholm Sorensen, Riso, 30/6/2006
+    Implemented in python, 12/7/2008
+    """
+
+    if crystal_system < 1 or crystal_system > 7:
+        raise ValueError('Crystal system shoud have a value between 1 and 7')
+
+    if crystal_system == 1: # Triclinic
+        rot = permutations(crystal_system)
+
+    if crystal_system == 2: # Monoclinic
+        rot = permutations(crystal_system)
+
+    if crystal_system == 3: # Orthorhombic
+        rot = permutations(crystal_system)
+ 
+    if crystal_system == 4: # Tetragonal
+        rot = permutations(crystal_system)
+
+    if crystal_system == 5: # Trigonal
+        rot = zeros((6, 3, 3))
+        rot[0]  = [[ 1,  0, 0], [ 0,  1, 0], [ 0, 0,  1]]
+        rot[1]  = [[cos(-pi*2./3.), -sin(-pi*2./3.), 0],
+                   [sin(-pi*2./3.),  cos(-pi*2./3.), 0],
+                   [  0           ,  0             , 1]] #[ 0,  1, 0], [-1, -1, 0], [ 0, 0,  1]]
+        rot[2]  = [[cos(pi*2./3.), -sin(pi*2./3.), 0],
+                   [sin(pi*2./3.),  cos(pi*2./3.), 0],
+                   [  0          ,  0            , 1]] #[[-1, -1, 0], [ 1,  0, 0], [ 0, 0,  1]]
+        rot[3]  = [[ 0,  1, 0], [ 1,  0, 0], [ 0, 0, -1]]
+#        rot[3]  = [[ 1,  0, 0], [ 0,  -1, 0], [ 0, 0, -1]] #[[ 0,  1, 0], [ 1,  0, 0], [ 0, 0, -1]]
+        rot[4]  = dot(rot[3],rot[1]) #[[ 1,  0, 0], [-1, -1, 0], [ 0, 0, -1]]
+        rot[5]  = dot(rot[3],rot[2]) #[[-1, -1, 0], [ 0,  1, 0], [ 0, 0, -1]]
+
+    if crystal_system == 6: # Hexagonal
+        rot = zeros((12, 3, 3))
+        rot[0]  = [[ 1,  0, 0], [ 0,  1, 0], [ 0, 0,  1]]
+        rot[1]  = [[cos(-pi*2./3.), -sin(-pi*2./3.), 0],
+                   [sin(-pi*2./3.),  cos(-pi*2./3.), 0],
+                   [  0           ,  0             , 1]] #[ 0,  1, 0], [-1, -1, 0], [ 0, 0,  1]]
+        rot[2]  = [[cos(pi*2./3.), -sin(pi*2./3.), 0],
+                   [sin(pi*2./3.),  cos(pi*2./3.), 0],
+                   [  0          ,  0            , 1]] #[[-1, -1, 0], [ 1,  0, 0], [ 0, 0,  1]]
+        rot[3]  = [[-1,  0, 0], [ 0, -1, 0], [ 0, 0,  1]]
+        rot[4]  = dot(rot[3],rot[1]) #[[ 0, -1, 0], [ 1,  1, 0], [ 0, 0,  1]]
+        rot[5]  = dot(rot[3],rot[2]) #[[ 1,  1, 0], [-1,  0, 0], [ 0, 0,  1]]
+        rot[6]  = [[ 0,  1, 0], [ 1,  0, 0], [ 0, 0, -1]]
+        rot[7]  = dot(rot[6],rot[1]) #[[ 1,  0, 0], [-1, -1, 0], [ 0, 0, -1]]
+        rot[8]  = dot(rot[6],rot[2]) #[[-1, -1, 0], [ 0,  1, 0], [ 0, 0, -1]]
+        rot[9]  = [[ 0, -1, 0], [-1,  0, 0], [ 0, 0, -1]]
+        rot[10] = dot(rot[9],rot[1]) #[[-1,  0, 0], [ 1,  1, 0], [ 0, 0, -1]]
+        rot[11] = dot(rot[9],rot[2]) #[[ 1,  1, 0], [ 0, -1, 0], [ 0, 0, -1]]
+
+    if crystal_system == 7: # Cubic
+        rot = permutations(crystal_system)
+
+    return rot

@@ -23,6 +23,7 @@ class sg:
 
         self.name = obj.name
         self.no = obj.no
+        self.crystal_system = obj.crystal_system
         self.nsymop = obj.nsymop
         self.nuniq = obj.nuniq
         self.syscond = n.array(obj.syscond)

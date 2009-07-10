@@ -893,7 +893,7 @@ def tth2(gve, wavelength):
     
     return twotheta
 
-def genhkl(sgno, unit_cell, sysconditions, sintlmin, sintlmax, output_stl=None):
+def genhkl(crystal_system, unit_cell, sysconditions, sintlmin, sintlmax, output_stl=None):
     """
     Generate reflections up to maximum sin(theta)/lambda (sintlmax)
     The program follows the method described in: 
@@ -910,9 +910,6 @@ def genhkl(sgno, unit_cell, sysconditions, sintlmin, sintlmax, output_stl=None):
     H = n.zeros((0, 3))
     stl = n.array([])
     sintlH = 0.0
-    crystal_system='primitiv'
-    if sgno > 142 and sgno < 195:
-        crystal_system='hexagonal'   
     
     for i in range(4):
         segn = i
@@ -970,12 +967,12 @@ def genhkl(sgno, unit_cell, sysconditions, sintlmin, sintlmax, output_stl=None):
     
 def sysabs(hkl, syscond, crystal_system='primitiv'):
     """
-    Defined as sysabs_unique with the exception that permutations in a 
-    hexagonal lattice is taken into account.
+    Defined as sysabs_unique with the exception that permutations in  
+    trigonal and hexagonal lattices are taken into account.
     """
 
     sys_type = sysabs_unique(hkl, syscond)
-    if crystal_system == 'hexagonal':
+    if crystal_system == 'trigonal' or crystal_system == 'hexagonal':
         if sys_type == 0:
             h = -(hkl[0]+hkl[1])
             k = hkl[0]
