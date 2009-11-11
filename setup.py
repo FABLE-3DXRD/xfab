@@ -12,5 +12,5 @@ setup(
   download_url='http://sourceforge.net/project/showfiles.php?group_id=82044&package_id=309377',
   url='http://fable.wiki.sourceforge.net/xfab',
   packages=['xfab'],
-  package_dir={"xfab": "src"}
+  package_dir={"xfab": "xfab"}
 )
