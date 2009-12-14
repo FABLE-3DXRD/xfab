@@ -222,9 +222,13 @@ class build_atomlist:
     def CIFopen(self, ciffile=None, cifblkname=None):
         from CifFile import ReadCif # part of the PycifRW module
         try:
+            # the following is a trick to avoid that urllib.URLopen.open
+            # used by ReadCif misinterprets the url when a drive:\ is 
+            # present (Win)
+            ciffile = ciffile.replace(':','|')
             cf = ReadCif(ciffile)
         except:
-            logging.error('File %s could not be accessed' %ciffile)
+            logging.error('File %s could not be accessed' %ciffile)        
 
         if cifblkname == None:   
             #Try to guess blockname                                                     
