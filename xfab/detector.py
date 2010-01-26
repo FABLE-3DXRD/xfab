@@ -268,6 +268,42 @@ def xy_to_detyz(coor, o11, o12, o21, o22, dety_size, detz_size):
     # transpose (x,y) to (y,x) to match order of (dety,detz)
     coor = n.array([coor[1], coor[0]])
     return coor
+     
+     
+def detyz_to_eta_and_radpix(coor, dety_center, detz_center):
+    """
+    Transforming (dety,detz) coordinates to (eta,radpix),
+    where eta is in degrees (clockwise, zero point at 12 o'clock)
+    and radpix is the radial number of pixels from the beam center.
+    """
+    
+    radcoor = coor - n.array([dety_center,detz_center])
+    radpix = n.sqrt(n.sum(radcoor**2))
+    if radpix < 1:
+        cos_eta = 1
+    else:
+        cos_eta = radcoor[1]/radpix
+    if radcoor[0] <= 0:
+        eta = 180/n.pi*n.arccos(cos_eta)
+    else:
+        eta = 360-180/n.pi*n.arccos(cos_eta)
+        
+    return [eta,radpix]
+    
+
+def eta_and_radpix_to_detyz(eta, radpix, dety_center, detz_center):
+    """
+    Transforming (eta,radpix) to detector coordinates (dety.detz)
+    where eta is in degrees (clockwise, zero point at 12 o'clock)
+    and radpix is the radial number of pixels from the beam center.
+    """
+    
+    etarad = eta*n.pi/180.
+    radcoor = radpix*n.array([-n.sin(etarad),n.cos(etarad)])
+    coor = radcoor + n.array([dety_center,detz_center])
+    
+    return coor
+    
 
 def distort(coor, o11, o12, o21, o22, dety_size, detz_size, spatial):
     """
