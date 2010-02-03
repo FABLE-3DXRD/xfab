@@ -65,7 +65,30 @@ def det_coor2(tth, eta, distance, y_size, z_size,
     detz = n.sum(R_tilt[:, 2]*Ltv)/z_size + detz_center
     return [dety, detz]
 
-    
+def det_v(Gt, costth, wavelength, distance, y_size, z_size, 
+             dety_center, detz_center, R_tilt, tx, ty, tz):
+    """
+    Calculates direction of outgoing X-ray beam (used by fabric)
+    needs to be cleaned up
+
+    INPUT:
+    Gt is the g-vector 
+    y_size and z-size are the detector pixel size in y, and z (in microns)
+    (dety_center, detz-center) is the beam center of the detector (in pixels)
+    R_tilt is the rotation matrix of the detector
+    (tx, ty, tz) is the position of the grain at the present omega
+
+    OUTPUT:
+    [dety, detz]
+    """
+
+    # Unit directional vector for reflection
+    v = n.array([costth, 
+                 wavelength/(2*n.pi)*Gt[1],
+                 wavelength/(2*n.pi)*Gt[2]])
+    return v
+
+
 def detector_to_lab(dety, detz, L, py, pz, y0, z0, R_tilt):
     """
     calculates the laboratory coordinates (xl,yl,zl) from the detector
