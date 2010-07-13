@@ -893,6 +893,173 @@ def tth2(gve, wavelength):
     
     return twotheta
 
+
+
+def genhkl_unique(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='triclinic', Laue_class ='-1' , cell_choice='standard',output_stl=None):
+    """
+
+    TESTING
+
+    Generate reflections up to maximum sin(theta)/lambda (sintlmax)
+    The program follows the method described in: 
+    Le Page and Gabe (1979) J. Appl. Cryst., 12, 464-466
+    
+    Henning Osholm Sorensen, June 23, 2006.
+    """
+    # Triclinic : Laue group -1
+    # Monoclinic : Laue group 2/M 
+    if Laue_class == '-1':
+        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
+                        [[-1, 0,  1], [-1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
+                        [[-1, 1,  0], [-1, 0, 0], [ 0, 1, 0], [ 0, 0, -1]],
+                        [[ 0, 1, -1], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0, -1]]])
+    
+    # Monoclinic : Laue group 2/M 
+    # unique a
+    #segm = n.array([[[ 0, 0,  0], [ 0, 1, 0], [ 1, 0, 0], [ 0, 0,  1]],
+    #                [[ 0,-1,  1], [ 0,-1, 0], [ 1, 0, 0], [ 0, 0,  1]]])
+
+    # Monoclinic : Laue group 2/M 
+    # unique b
+        
+    if Laue_class == '2/m':
+        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
+                        [[-1, 0,  1], [-1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]]])
+
+    # unique c
+    #segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 0, 1], [ 0, 1,  0]],
+    #                [[-1, 1,  0], [-1, 0, 0], [ 0, 0, 1], [ 0, 1,  0]]])
+
+    # Orthorhombic : Laue group MMM
+    if Laue_class == 'mmm':
+        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]]])
+
+    # Tetragonal 
+    # Laue group : 4/MMM
+    if Laue_class == '4/mmm':
+        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]]])
+
+    # Laue group : 4/M
+    if Laue_class == '4/m':
+        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
+                        [[ 1, 2,  0], [ 1, 1, 0], [ 0, 1, 0], [ 0, 0,  1]]])
+
+    # Hexagonal
+    # Laue group : 6/MMM
+    if Laue_class == '6/mmm':
+        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]]])
+
+
+    # Laue group : 6/M
+    if Laue_class == '6/m':
+        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
+                        [[ 1, 2,  0], [ 0, 1, 0], [ 1, 1, 0], [ 0, 0,  1]]])
+
+    # Laue group : -3M1
+    if Laue_class == '-3m1' and cell_choice=='hexagonal':
+        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
+                        [[ 0, 1,  1], [ 0, 1, 0], [ 1, 1, 0], [ 0, 0,  1]]])
+
+    # Laue group : -31M
+    if Laue_class == '-31m'  and cell_choice=='hexagonal':
+        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
+                        [[ 1, 1, -1], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0, -1]]])
+
+    # Laue group : -3
+    if Laue_class == '-3' and cell_choice=='hexagonal':
+        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
+                        [[ 1, 2,  0], [ 1, 1, 0], [ 0, 1, 0], [ 0, 0,  1]],
+                        [[ 0, 1,  1], [ 0, 1, 0], [-1, 1, 0], [ 0, 0,  1]]])
+
+    # RHOMBOHEDRAL
+    # Laue group : -3M
+    if Laue_class == '-3' and cell_choice=='rhombohedral':
+        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 0,-1], [ 1, 1,  1]],
+                        [[ 1, 1,  0], [ 1, 0,-1], [ 0, 0,-1], [ 1, 1,  1]]])
+
+    # Laue group : -3
+    if Laue_class == '-3' and cell_choice=='rhombohedral':
+        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 0,-1], [ 1, 1,  1]],
+                        [[ 1, 1,  0], [ 1, 0,-1], [ 0, 0,-1], [ 1, 1,  1]],
+                        [[ 0,-1, -2], [ 1, 0, 0], [ 1, 0,-1], [-1,-1, -1]],
+                        [[ 1, 0, -2], [ 1, 0,-1], [ 0, 0,-1], [-1,-1, -1]]])
+
+    #Cubic
+    # Laue group : M3M
+    if Laue_class == 'm-3m':
+        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 1, 1,  1]]])
+
+    # Laue group : M3
+    if Laue_class == 'm-3':
+        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 1, 1,  1]],
+                        [[ 1, 2,  0], [ 0, 1, 0], [ 1, 1, 0], [ 1, 1,  1]]])
+
+
+    print Laue_class, cell_choice
+    nref = 0
+    H = n.zeros((0, 3))
+    stl = n.array([])
+    sintlH = 0.0
+    
+    for i in range(len(segm)):
+        segn = i
+        # initialize the identifiers
+        htest = 0
+        ktest = 0
+        ltest = 0
+        HLAST = segm[segn, 0, :]
+        HSAVE = HLAST
+        sintlH = sintl(unit_cell, HSAVE)
+
+        while ltest == 0:
+            while ktest == 0:
+                while htest == 0:
+                    nref = nref + 1
+                    #print 'nref', nref
+                    if nref != 1:
+                        ressss = sysabs(HLAST, sysconditions, crystal_system)
+                        #print 'before sysabs',HLAST, sintlH, ressss
+                        if sysabs(HLAST, sysconditions, crystal_system) == 0:
+                            #print HLAST, sintlH
+                            if  sintlH > sintlmin and sintlH <= sintlmax:
+                                H = n.concatenate((H, [HLAST]))
+                                stl = n.concatenate((stl, [sintlH]))
+                        else: 
+                            nref = nref - 1
+                    HNEW = HLAST + segm[segn, 1, :]
+                    sintlH = sintl(unit_cell, HNEW)
+                    #if (sintlH >= sintlmin) and (sintlH <= sintlmax):
+                    if sintlH <= sintlmax:
+                        HLAST = HNEW
+                    else: 
+                        htest = 1
+                    print 'HNEW, SINTL, htest ', HNEW, sintlH, htest
+      
+                HLAST[0] = HSAVE[0]
+                HLAST    = HLAST + segm[segn, 2, :]
+                HNEW     = HLAST
+                sintlH   = sintl(unit_cell, HNEW)
+                if sintlH > sintlmax:
+                    ktest = 1
+                htest = 0
+
+            HLAST[1] = HSAVE[1]
+            HLAST = HLAST + segm[segn, 3, :]
+            HNEW = HLAST
+            sintlH = sintl(unit_cell, HNEW)
+            if sintlH > sintlmax:
+                ltest = 1
+            ktest = 0
+
+    stl = n.transpose([stl])
+    H = n.concatenate((H, stl), 1) # combine hkl and sintl
+    #H =  H[n.argsort(H, 0)[:, 3], :] # sort hkl's according to stl
+    if output_stl == None:
+        H = H[: , :3]
+    return H
+
+
+
 def genhkl(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='triclinic', output_stl=None):
     """
     Generate reflections up to maximum sin(theta)/lambda (sintlmax)
@@ -906,12 +1073,13 @@ def genhkl(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='triclin
                     [[-1, 1,  0], [-1, 0, 0], [ 0, 1, 0], [ 0, 0, -1]],
                     [[ 0, 1, -1], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0, -1]]])
 
+
     nref = 0
     H = n.zeros((0, 3))
     stl = n.array([])
     sintlH = 0.0
     
-    for i in range(4):
+    for i in range(len(segm)):
         segn = i
         # initialize the identifiers
         htest = 0
@@ -926,7 +1094,10 @@ def genhkl(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='triclin
                 while htest == 0:
                     nref = nref + 1
                     if nref != 1:
+                        ressss = sysabs(HLAST, sysconditions, crystal_system)
+                        print 'before sysabs',HLAST, sintlH, ressss
                         if sysabs(HLAST, sysconditions, crystal_system) == 0:
+                            print HLAST, sintlH
                             if  sintlH > sintlmin and sintlH <= sintlmax:
                                 H = n.concatenate((H, [HLAST]))
                                 H = n.concatenate((H, [-HLAST]))
@@ -983,7 +1154,7 @@ def sysabs(hkl, syscond, crystal_system='triclinic'):
                 k = -(hkl[0]+hkl[1])
                 l = hkl[2]
                 sys_type = sysabs_unique([h, k, l], syscond)
-    
+    #print 'IN HERE it can be altered', sys_type
     return sys_type
     
 def sysabs_unique(hkl, syscond):
@@ -1060,8 +1231,10 @@ def sysabs_unique(hkl, syscond):
 
     if syscond[5] != 0:
         condition = syscond[5]
-        if (abs(-h+k+l))%condition != 0:
+        if (abs(-h+k+l))%condition != 0 or (-h+k+l)==0:
+            print 'We are in'
             sysabs_type = 6
+        print h,k,l,(abs(-h+k+l))%condition, -h+k+l,sysabs_type
 
     # HHL class
     if (h-k) == 0:
@@ -1157,5 +1330,6 @@ def sysabs_unique(hkl, syscond):
             if (abs(l))%condition != 0:
                 sysabs_type = 23
     
+    print h,k,l,sysabs_type
     return sysabs_type
 
