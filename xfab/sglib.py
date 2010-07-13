@@ -10,6 +10,7 @@ class Sg1:
         self.no = 1
         self.name = "P1"
         self.crystal_system = "triclinic"
+        self.Laue = "-1"
         self.nsymop = 1
         self.nuniq = 1
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -27,6 +28,7 @@ class Sg2:
         self.no = 2
         self.name = "P-1"
         self.crystal_system = "triclinic"
+        self.Laue = "-1"
         self.nsymop = 2
         self.nuniq = 2
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -47,6 +49,7 @@ class Sg3:
         self.no = 3
         self.name = "P2"
         self.crystal_system = "monoclinic"
+        self.Laue = "2/m"
         self.nsymop = 2
         self.nuniq = 2
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -67,6 +70,7 @@ class Sg4:
         self.no = 4
         self.name = "P21"
         self.crystal_system = "monoclinic"
+        self.Laue = "2/m"
         self.nsymop = 2
         self.nuniq = 2
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -87,6 +91,7 @@ class Sg5:
         self.no = 5
         self.name = "C2"
         self.crystal_system = "monoclinic"
+        self.Laue = "2/m"
         self.nsymop = 4
         self.nuniq = 2
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -111,6 +116,7 @@ class Sg6:
         self.no = 6
         self.name = "Pm"
         self.crystal_system = "monoclinic"
+        self.Laue = "2/m"
         self.nsymop = 2
         self.nuniq = 2
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -131,6 +137,7 @@ class Sg7:
         self.no = 7
         self.name = "Pc"
         self.crystal_system = "monoclinic"
+        self.Laue = "2/m"
         self.nsymop = 2
         self.nuniq = 2
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -151,6 +158,7 @@ class Sg8:
         self.no = 8
         self.name = "Cm"
         self.crystal_system = "monoclinic"
+        self.Laue = "2/m"
         self.nsymop = 4
         self.nuniq = 2
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -175,6 +183,7 @@ class Sg9:
         self.no = 9
         self.name = "Cc"
         self.crystal_system = "monoclinic"
+        self.Laue = "2/m"
         self.nsymop = 4
         self.nuniq = 2
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -199,6 +208,7 @@ class Sg10:
         self.no = 10
         self.name = "P2/m"
         self.crystal_system = "monoclinic"
+        self.Laue = "2/m"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -223,6 +233,7 @@ class Sg11:
         self.no = 11
         self.name = "P21/m"
         self.crystal_system = "monoclinic"
+        self.Laue = "2/m"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -247,6 +258,7 @@ class Sg12:
         self.no = 12
         self.name = "C2/m"
         self.crystal_system = "monoclinic"
+        self.Laue = "2/m"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -279,6 +291,7 @@ class Sg13:
         self.no = 13
         self.name = "P2/c"
         self.crystal_system = "monoclinic"
+        self.Laue = "2/m"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -303,6 +316,7 @@ class Sg14:
         self.no = 14
         self.name = "P21/c"
         self.crystal_system = "monoclinic"
+        self.Laue = "2/m"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -327,6 +341,7 @@ class Sg15:
         self.no = 15
         self.name = "C2/c"
         self.crystal_system = "monoclinic"
+        self.Laue = "2/m"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -359,6 +374,7 @@ class Sg16:
         self.no = 16
         self.name = "P222"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -383,6 +399,7 @@ class Sg17:
         self.no = 17
         self.name = "P2221"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -407,6 +424,7 @@ class Sg18:
         self.no = 18
         self.name = "P21212"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -431,6 +449,7 @@ class Sg19:
         self.no = 19
         self.name = "P212121"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -455,6 +474,7 @@ class Sg20:
         self.no = 20
         self.name = "C2221"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -487,6 +507,7 @@ class Sg21:
         self.no = 21
         self.name = "C222"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -519,6 +540,7 @@ class Sg22:
         self.no = 22
         self.name = "F222"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 4
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2,
@@ -567,6 +589,7 @@ class Sg23:
         self.no = 23
         self.name = "I222"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -599,6 +622,7 @@ class Sg24:
         self.no = 24
         self.name = "I212121"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -631,6 +655,7 @@ class Sg25:
         self.no = 25
         self.name = "Pmm2"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -655,6 +680,7 @@ class Sg26:
         self.no = 26
         self.name = "Pmc21"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -679,6 +705,7 @@ class Sg27:
         self.no = 27
         self.name = "Pcc2"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -703,6 +730,7 @@ class Sg28:
         self.no = 28
         self.name = "Pma2"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -727,6 +755,7 @@ class Sg29:
         self.no = 29
         self.name = "Pca21"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -751,6 +780,7 @@ class Sg30:
         self.no = 30
         self.name = "Pnc2"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -775,6 +805,7 @@ class Sg31:
         self.no = 31
         self.name = "Pmn21"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -799,6 +830,7 @@ class Sg32:
         self.no = 32
         self.name = "Pba2"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -823,6 +855,7 @@ class Sg33:
         self.no = 33
         self.name = "Pna21"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -847,6 +880,7 @@ class Sg34:
         self.no = 34
         self.name = "Pnn2"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -871,6 +905,7 @@ class Sg35:
         self.no = 35
         self.name = "Cmm2"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -903,6 +938,7 @@ class Sg36:
         self.no = 36
         self.name = "Cmc21"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -935,6 +971,7 @@ class Sg37:
         self.no = 37
         self.name = "Ccc2"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2,
@@ -967,6 +1004,7 @@ class Sg38:
         self.no = 38
         self.name = "Amm2"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -999,6 +1037,7 @@ class Sg39:
         self.no = 39
         self.name = "Abm2"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2,
@@ -1031,6 +1070,7 @@ class Sg40:
         self.no = 40
         self.name = "Ama2"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1063,6 +1103,7 @@ class Sg41:
         self.no = 41
         self.name = "Aba2"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2,
@@ -1095,6 +1136,7 @@ class Sg42:
         self.no = 42
         self.name = "Fmm2"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 4
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2,
@@ -1143,6 +1185,7 @@ class Sg43:
         self.no = 43
         self.name = "Fdd2"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 4
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2,
@@ -1191,6 +1234,7 @@ class Sg44:
         self.no = 44
         self.name = "Imm2"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -1223,6 +1267,7 @@ class Sg45:
         self.no = 45
         self.name = "Iba2"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 2,
@@ -1255,6 +1300,7 @@ class Sg46:
         self.no = 46
         self.name = "Ima2"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -1287,6 +1333,7 @@ class Sg47:
         self.no = 47
         self.name = "Pmmm"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1319,6 +1366,7 @@ class Sg48:
         self.no = 48
         self.name = "Pnnn"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1351,6 +1399,7 @@ class Sg49:
         self.no = 49
         self.name = "Pccm"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -1383,6 +1432,7 @@ class Sg50:
         self.no = 50
         self.name = "Pban"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -1415,6 +1465,7 @@ class Sg51:
         self.no = 51
         self.name = "Pmma"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1447,6 +1498,7 @@ class Sg52:
         self.no = 52
         self.name = "Pnna"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1479,6 +1531,7 @@ class Sg53:
         self.no = 53
         self.name = "Pmna"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1511,6 +1564,7 @@ class Sg54:
         self.no = 54
         self.name = "Pcca"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -1543,6 +1597,7 @@ class Sg55:
         self.no = 55
         self.name = "Pbam"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -1575,6 +1630,7 @@ class Sg56:
         self.no = 56
         self.name = "Pccn"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -1607,6 +1663,7 @@ class Sg57:
         self.no = 57
         self.name = "Pbcm"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -1639,6 +1696,7 @@ class Sg58:
         self.no = 58
         self.name = "Pnnm"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1671,6 +1729,7 @@ class Sg59:
         self.no = 59
         self.name = "Pmmn"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1703,6 +1762,7 @@ class Sg60:
         self.no = 60
         self.name = "Pbcn"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -1735,6 +1795,7 @@ class Sg61:
         self.no = 61
         self.name = "Pbca"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -1767,6 +1828,7 @@ class Sg62:
         self.no = 62
         self.name = "Pnma"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1799,6 +1861,7 @@ class Sg63:
         self.no = 63
         self.name = "Cmcm"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -1847,6 +1910,7 @@ class Sg64:
         self.no = 64
         self.name = "Cmca"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -1895,6 +1959,7 @@ class Sg65:
         self.no = 65
         self.name = "Cmmm"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -1943,6 +2008,7 @@ class Sg66:
         self.no = 66
         self.name = "Cccm"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2,
@@ -1991,6 +2057,7 @@ class Sg67:
         self.no = 67
         self.name = "Cmma"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -2039,6 +2106,7 @@ class Sg68:
         self.no = 68
         self.name = "Ccca"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2,
@@ -2087,6 +2155,7 @@ class Sg69:
         self.no = 69
         self.name = "Fmmm"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 32
         self.nuniq = 8
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2,
@@ -2167,6 +2236,7 @@ class Sg70:
         self.no = 70
         self.name = "Fddd"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 32
         self.nuniq = 8
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2,
@@ -2247,6 +2317,7 @@ class Sg71:
         self.no = 71
         self.name = "Immm"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -2295,6 +2366,7 @@ class Sg72:
         self.no = 72
         self.name = "Ibam"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 2,
@@ -2343,6 +2415,7 @@ class Sg73:
         self.no = 73
         self.name = "Ibca"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 2,
@@ -2391,6 +2464,7 @@ class Sg74:
         self.no = 74
         self.name = "Imma"
         self.crystal_system = "orthorhombic"
+        self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -2439,6 +2513,7 @@ class Sg75:
         self.no = 75
         self.name = "P4"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/m"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2463,6 +2538,7 @@ class Sg76:
         self.no = 76
         self.name = "P41"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/m"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2487,6 +2563,7 @@ class Sg77:
         self.no = 77
         self.name = "P42"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/m"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2511,6 +2588,7 @@ class Sg78:
         self.no = 78
         self.name = "P43"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/m"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2535,6 +2613,7 @@ class Sg79:
         self.no = 79
         self.name = "I4"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/m"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -2567,6 +2646,7 @@ class Sg80:
         self.no = 80
         self.name = "I41"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/m"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -2599,6 +2679,7 @@ class Sg81:
         self.no = 81
         self.name = "P-4"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/m"
         self.nsymop = 4
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2623,6 +2704,7 @@ class Sg82:
         self.no = 82
         self.name = "I-4"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/m"
         self.nsymop = 8
         self.nuniq = 4
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -2655,6 +2737,7 @@ class Sg83:
         self.no = 83
         self.name = "P4/m"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/m"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2687,6 +2770,7 @@ class Sg84:
         self.no = 84
         self.name = "P42/m"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/m"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2719,6 +2803,7 @@ class Sg85:
         self.no = 85
         self.name = "P4/n"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/m"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2751,6 +2836,7 @@ class Sg86:
         self.no = 86
         self.name = "P42/n"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/m"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2783,6 +2869,7 @@ class Sg87:
         self.no = 87
         self.name = "I4/m"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/m"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -2831,6 +2918,7 @@ class Sg88:
         self.no = 88
         self.name = "I41/a"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/m"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -2879,6 +2967,7 @@ class Sg89:
         self.no = 89
         self.name = "P422"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2911,6 +3000,7 @@ class Sg90:
         self.no = 90
         self.name = "P4212"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2943,6 +3033,7 @@ class Sg91:
         self.no = 91
         self.name = "P4122"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2975,6 +3066,7 @@ class Sg92:
         self.no = 92
         self.name = "P41212"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3007,6 +3099,7 @@ class Sg93:
         self.no = 93
         self.name = "P4222"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3039,6 +3132,7 @@ class Sg94:
         self.no = 94
         self.name = "P42212"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3071,6 +3165,7 @@ class Sg95:
         self.no = 95
         self.name = "P4322"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3103,6 +3198,7 @@ class Sg96:
         self.no = 96
         self.name = "P43212"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3135,6 +3231,7 @@ class Sg97:
         self.no = 97
         self.name = "I422"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -3183,6 +3280,7 @@ class Sg98:
         self.no = 98
         self.name = "I4122"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -3231,6 +3329,7 @@ class Sg99:
         self.no = 99
         self.name = "P4mm"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3263,6 +3362,7 @@ class Sg100:
         self.no = 100
         self.name = "P4bm"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -3295,6 +3395,7 @@ class Sg101:
         self.no = 101
         self.name = "P42cm"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -3327,6 +3428,7 @@ class Sg102:
         self.no = 102
         self.name = "P42nm"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3359,6 +3461,7 @@ class Sg103:
         self.no = 103
         self.name = "P4cc"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
@@ -3391,6 +3494,7 @@ class Sg104:
         self.no = 104
         self.name = "P4nc"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
@@ -3423,6 +3527,7 @@ class Sg105:
         self.no = 105
         self.name = "P42mc"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
@@ -3455,6 +3560,7 @@ class Sg106:
         self.no = 106
         self.name = "P42bc"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 2, 0,
@@ -3487,6 +3593,7 @@ class Sg107:
         self.no = 107
         self.name = "I4mm"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -3535,6 +3642,7 @@ class Sg108:
         self.no = 108
         self.name = "I4cm"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 2, 2,
@@ -3583,6 +3691,7 @@ class Sg109:
         self.no = 109
         self.name = "I41md"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 0, 0,
@@ -3631,6 +3740,7 @@ class Sg110:
         self.no = 110
         self.name = "I41cd"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 2, 2,
@@ -3679,6 +3789,7 @@ class Sg111:
         self.no = 111
         self.name = "P-42m"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3711,6 +3822,7 @@ class Sg112:
         self.no = 112
         self.name = "P-42c"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
@@ -3743,6 +3855,7 @@ class Sg113:
         self.no = 113
         self.name = "P-421m"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3775,6 +3888,7 @@ class Sg114:
         self.no = 114
         self.name = "P-421c"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
@@ -3807,6 +3921,7 @@ class Sg115:
         self.no = 115
         self.name = "P-4m2"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3839,6 +3954,7 @@ class Sg116:
         self.no = 116
         self.name = "P-4c2"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -3871,6 +3987,7 @@ class Sg117:
         self.no = 117
         self.name = "P-4b2"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -3903,6 +4020,7 @@ class Sg118:
         self.no = 118
         self.name = "P-4n2"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3935,6 +4053,7 @@ class Sg119:
         self.no = 119
         self.name = "I-4m2"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -3983,6 +4102,7 @@ class Sg120:
         self.no = 120
         self.name = "I-4c2"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 2, 2,
@@ -4031,6 +4151,7 @@ class Sg121:
         self.no = 121
         self.name = "I-42m"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -4079,6 +4200,7 @@ class Sg122:
         self.no = 122
         self.name = "I-42d"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 8
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 0, 0,
@@ -4127,6 +4249,7 @@ class Sg123:
         self.no = 123
         self.name = "P4/mmm"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -4175,6 +4298,7 @@ class Sg124:
         self.no = 124
         self.name = "P4/mcc"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
@@ -4223,6 +4347,7 @@ class Sg125:
         self.no = 125
         self.name = "P4/nbm"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -4271,6 +4396,7 @@ class Sg126:
         self.no = 126
         self.name = "P4/nnc"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
@@ -4319,6 +4445,7 @@ class Sg127:
         self.no = 127
         self.name = "P4/mbm"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -4367,6 +4494,7 @@ class Sg128:
         self.no = 128
         self.name = "P4/mnc"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
@@ -4415,6 +4543,7 @@ class Sg129:
         self.no = 129
         self.name = "P4/nmm"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -4463,6 +4592,7 @@ class Sg130:
         self.no = 130
         self.name = "P4/ncc"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
@@ -4511,6 +4641,7 @@ class Sg131:
         self.no = 131
         self.name = "P42/mmc"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
@@ -4559,6 +4690,7 @@ class Sg132:
         self.no = 132
         self.name = "P42/mcm"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -4607,6 +4739,7 @@ class Sg133:
         self.no = 133
         self.name = "P42/nbc"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 2, 0,
@@ -4655,6 +4788,7 @@ class Sg134:
         self.no = 134
         self.name = "P42/nnm"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -4703,6 +4837,7 @@ class Sg135:
         self.no = 135
         self.name = "P42/mbc"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 2, 0,
@@ -4751,6 +4886,7 @@ class Sg136:
         self.no = 136
         self.name = "P42/mnm"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -4799,6 +4935,7 @@ class Sg137:
         self.no = 137
         self.name = "P42/nmc"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
@@ -4847,6 +4984,7 @@ class Sg138:
         self.no = 138
         self.name = "P42/ncm"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -4895,6 +5033,7 @@ class Sg139:
         self.no = 139
         self.name = "I4/mmm"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 32
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -4975,6 +5114,7 @@ class Sg140:
         self.no = 140
         self.name = "I4/mcm"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 32
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 2, 2,
@@ -5055,6 +5195,7 @@ class Sg141:
         self.no = 141
         self.name = "I41/amd"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 32
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 0, 0,
@@ -5135,6 +5276,7 @@ class Sg142:
         self.no = 142
         self.name = "I41/acd"
         self.crystal_system = "tetragonal"
+        self.Laue = "4/mmm"
         self.nsymop = 32
         self.nuniq = 16
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 2, 2,
@@ -5215,6 +5357,7 @@ class Sg143:
         self.no = 143
         self.name = "P3"
         self.crystal_system = "trigonal"
+        self.Laue = "-3"
         self.nsymop = 3
         self.nuniq = 3
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5237,6 +5380,7 @@ class Sg144:
         self.no = 144
         self.name = "P31"
         self.crystal_system = "trigonal"
+        self.Laue = "-3"
         self.nsymop = 3
         self.nuniq = 3
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5259,6 +5403,7 @@ class Sg145:
         self.no = 145
         self.name = "P32"
         self.crystal_system = "trigonal"
+        self.Laue = "-3"
         self.nsymop = 3
         self.nuniq = 3
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5281,6 +5426,7 @@ class Sg146:
         self.no = 146
         self.name = "R3"
         self.crystal_system = "trigonal"
+        self.Laue = "-3"
         self.cell_choice = "hexagonal"
         self.nsymop = 9
         self.nuniq = 3
@@ -5315,6 +5461,7 @@ class Sg147:
         self.no = 147
         self.name = "P-3"
         self.crystal_system = "trigonal"
+        self.Laue = "-3"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5343,6 +5490,7 @@ class Sg148:
         self.no = 148
         self.name = "R-3"
         self.crystal_system = "trigonal"
+        self.Laue = "-3"
         self.cell_choice = "hexagonal"
         self.nsymop = 18
         self.nuniq = 6
@@ -5396,6 +5544,7 @@ class Sg149:
         self.no = 149
         self.name = "P312"
         self.crystal_system = "trigonal"
+        self.Laue = "-3m"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5424,6 +5573,7 @@ class Sg150:
         self.no = 150
         self.name = "P321"
         self.crystal_system = "trigonal"
+        self.Laue = "-3m"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5452,6 +5602,7 @@ class Sg151:
         self.no = 151
         self.name = "P3112"
         self.crystal_system = "trigonal"
+        self.Laue = "-3m"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5480,6 +5631,7 @@ class Sg152:
         self.no = 152
         self.name = "P3121"
         self.crystal_system = "trigonal"
+        self.Laue = "-3m"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5508,6 +5660,7 @@ class Sg153:
         self.no = 153
         self.name = "P3212"
         self.crystal_system = "trigonal"
+        self.Laue = "-3m"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5535,6 +5688,7 @@ class Sg154:
     def __init__(self):
         self.no = 154
         self.name = "P3221"
+        self.Laue = "-3m"
         self.crystal_system = "trigonal"
         self.nsymop = 6
         self.nuniq = 6
@@ -5564,6 +5718,7 @@ class Sg155:
         self.no = 155
         self.name = "R32"
         self.crystal_system = "trigonal"
+        self.Laue = "-3m1"
         self.cell_choice = "hexagonal"
         self.nsymop = 18
         self.nuniq = 6
@@ -5616,6 +5771,7 @@ class Sg156:
         self.no = 156
         self.name = "P3m1"
         self.crystal_system = "trigonal"
+        self.Laue = "-3m"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5643,7 +5799,8 @@ class Sg157:
     def __init__(self):
         self.no = 157
         self.name = "P31m"
-        self.crystal_system = "trigonal"
+        self.crystal_system = "trigonal" 
+        self.Laue = "-3m"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5672,6 +5829,7 @@ class Sg158:
         self.no = 158
         self.name = "P3c1"
         self.crystal_system = "trigonal"
+        self.Laue = "-3m"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5700,6 +5858,7 @@ class Sg159:
         self.no = 159
         self.name = "P31c"
         self.crystal_system = "trigonal"
+        self.Laue = "-3m"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
@@ -5728,6 +5887,7 @@ class Sg160:
         self.no = 160
         self.name = "R3m"
         self.crystal_system = "trigonal"
+        self.Laue = "-3m1"
         self.cell_choice = "hexagonal"
         self.nsymop = 18
         self.nuniq = 6
@@ -5780,6 +5940,7 @@ class Sg161:
         self.no = 161
         self.name = "R3c"
         self.crystal_system = "trigonal"
+        self.Laue = "-3m1"
         self.cell_choice = "hexagonal"
         self.nsymop = 18
         self.nuniq = 6
@@ -5832,6 +5993,7 @@ class Sg162:
         self.no = 162
         self.name = "P-31m"
         self.crystal_system = "trigonal"
+        self.Laue = "-3m"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5871,6 +6033,7 @@ class Sg163:
     def __init__(self):
         self.no = 163
         self.name = "P-31c"
+        self.Laue = "-3m"
         self.crystal_system = "trigonal"
         self.nsymop = 12
         self.nuniq = 12
@@ -5912,6 +6075,7 @@ class Sg164:
         self.no = 164
         self.name = "P-3m1"
         self.crystal_system = "trigonal"
+        self.Laue = "-3m"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5952,6 +6116,7 @@ class Sg165:
         self.no = 165
         self.name = "P-3c1"
         self.crystal_system = "trigonal"
+        self.Laue = "-3m"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5992,6 +6157,7 @@ class Sg166:
         self.no = 166
         self.name = "R-3m"
         self.crystal_system = "trigonal"
+        self.Laue = "-3m1"
         self.cell_choice = "hexagonal"
         self.nsymop = 36
         self.nuniq = 12
@@ -6080,11 +6246,12 @@ class Sg167:
         self.no = 167
         self.name = "R-3c"
         self.crystal_system = "trigonal"
+        self.Laue = "-3m1"
         self.cell_choice = "hexagonal"
         self.nsymop = 36
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0,
-                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6]
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -6167,7 +6334,8 @@ class Sg168:
     def __init__(self):
         self.no = 168
         self.name = "P6"
-        self.crystal_system = "XXXX"
+        self.crystal_system =  "hexagonal"
+        self.Laue = "6/m"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6196,6 +6364,7 @@ class Sg169:
         self.no = 169
         self.name = "P61"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/m"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6224,6 +6393,7 @@ class Sg170:
         self.no = 170
         self.name = "P65"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/m"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6252,6 +6422,7 @@ class Sg171:
         self.no = 171
         self.name = "P62"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/m"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6280,6 +6451,7 @@ class Sg172:
         self.no = 172
         self.name = "P64"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/m"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6308,6 +6480,7 @@ class Sg173:
         self.no = 173
         self.name = "P63"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/m"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6336,6 +6509,7 @@ class Sg174:
         self.no = 174
         self.name = "P-6"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/m"
         self.nsymop = 6
         self.nuniq = 6
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6364,6 +6538,7 @@ class Sg175:
         self.no = 175
         self.name = "P6/m"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/m"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6404,6 +6579,7 @@ class Sg176:
         self.no = 176
         self.name = "P63/m"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/m"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6444,6 +6620,7 @@ class Sg177:
         self.no = 177
         self.name = "P622"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6484,6 +6661,7 @@ class Sg178:
         self.no = 178
         self.name = "P6122"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6524,6 +6702,7 @@ class Sg179:
         self.no = 179
         self.name = "P6522"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6564,6 +6743,7 @@ class Sg180:
         self.no = 180
         self.name = "P6222"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6604,6 +6784,7 @@ class Sg181:
         self.no = 181
         self.name = "P6422"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6644,6 +6825,7 @@ class Sg182:
         self.no = 182
         self.name = "P6322"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6684,6 +6866,7 @@ class Sg183:
         self.no = 183
         self.name = "P6mm"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6724,6 +6907,7 @@ class Sg184:
         self.no = 184
         self.name = "P6cc"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
@@ -6764,6 +6948,7 @@ class Sg185:
         self.no = 185
         self.name = "P63cm"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6804,6 +6989,7 @@ class Sg186:
         self.no = 186
         self.name = "P63mc"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
@@ -6844,6 +7030,7 @@ class Sg187:
         self.no = 187
         self.name = "P-6m2"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6884,6 +7071,7 @@ class Sg188:
         self.no = 188
         self.name = "P-6c2"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6924,6 +7112,7 @@ class Sg189:
         self.no = 189
         self.name = "P-62m"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -6964,6 +7153,7 @@ class Sg190:
         self.no = 190
         self.name = "P-62c"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
@@ -7004,6 +7194,7 @@ class Sg191:
         self.no = 191
         self.name = "P6/mmm"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/mmm"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -7068,6 +7259,7 @@ class Sg192:
         self.no = 192
         self.name = "P6/mcc"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/mmm"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
@@ -7132,6 +7324,7 @@ class Sg193:
         self.no = 193
         self.name = "P63/mcm"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/mmm"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -7196,6 +7389,7 @@ class Sg194:
         self.no = 194
         self.name = "P63/mmc"
         self.crystal_system = "hexagonal"
+        self.Laue = "6/mmm"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
@@ -7260,6 +7454,7 @@ class Sg195:
         self.no = 195
         self.name = "P23"
         self.crystal_system = "cubic"
+        self.Laue = "m-3"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -7300,6 +7495,7 @@ class Sg196:
         self.no = 196
         self.name = "F23"
         self.crystal_system = "cubic"
+        self.Laue = "m-3"
         self.nsymop = 48
         self.nuniq = 12
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
@@ -7412,6 +7608,7 @@ class Sg197:
         self.no = 197
         self.name = "I23"
         self.crystal_system = "cubic"
+        self.Laue = "m-3"
         self.nsymop = 24
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -7476,6 +7673,7 @@ class Sg198:
         self.no = 198
         self.name = "P213"
         self.crystal_system = "cubic"
+        self.Laue = "m-3"
         self.nsymop = 12
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -7516,6 +7714,7 @@ class Sg199:
         self.no = 199
         self.name = "I213"
         self.crystal_system = "cubic"
+        self.Laue = "m-3"
         self.nsymop = 24
         self.nuniq = 12
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -7580,6 +7779,7 @@ class Sg200:
         self.no = 200
         self.name = "Pm-3"
         self.crystal_system = "cubic"
+        self.Laue = "m-3"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -7644,6 +7844,7 @@ class Sg201:
         self.no = 201
         self.name = "Pn-3"
         self.crystal_system = "cubic"
+        self.Laue = "m-3"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -7708,6 +7909,7 @@ class Sg202:
         self.no = 202
         self.name = "Fm-3"
         self.crystal_system = "cubic"
+        self.Laue = "m-3"
         self.nsymop = 96
         self.nuniq = 24
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
@@ -7916,6 +8118,7 @@ class Sg203:
         self.no = 203
         self.name = "Fd-3"
         self.crystal_system = "cubic"
+        self.Laue = "m-3"
         self.nsymop = 96
         self.nuniq = 24
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
@@ -8124,6 +8327,7 @@ class Sg204:
         self.no = 204
         self.name = "Im-3"
         self.crystal_system = "cubic"
+        self.Laue = "m-3"
         self.nsymop = 48
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -8236,6 +8440,7 @@ class Sg205:
         self.no = 205
         self.name = "Pa-3"
         self.crystal_system = "cubic"
+        self.Laue = "m-3"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
@@ -8300,6 +8505,7 @@ class Sg206:
         self.no = 206
         self.name = "Ia-3"
         self.crystal_system = "cubic"
+        self.Laue = "m-3"
         self.nsymop = 48
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 2,
@@ -8412,6 +8618,7 @@ class Sg207:
         self.no = 207
         self.name = "P432"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -8476,6 +8683,7 @@ class Sg208:
         self.no = 208
         self.name = "P4232"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -8540,6 +8748,7 @@ class Sg209:
         self.no = 209
         self.name = "F432"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 96
         self.nuniq = 24
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
@@ -8748,6 +8957,7 @@ class Sg210:
         self.no = 210
         self.name = "F4132"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 96
         self.nuniq = 24
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
@@ -8956,6 +9166,7 @@ class Sg211:
         self.no = 211
         self.name = "I432"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 48
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -9068,6 +9279,7 @@ class Sg212:
         self.no = 212
         self.name = "P4332"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -9132,6 +9344,7 @@ class Sg213:
         self.no = 213
         self.name = "P4132"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -9196,6 +9409,7 @@ class Sg214:
         self.no = 214
         self.name = "I4132"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 48
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -9308,6 +9522,7 @@ class Sg215:
         self.no = 215
         self.name = "P-43m"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -9372,6 +9587,7 @@ class Sg216:
         self.no = 216
         self.name = "F-43m"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 96
         self.nuniq = 24
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
@@ -9580,6 +9796,7 @@ class Sg217:
         self.no = 217
         self.name = "I-43m"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 48
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -9692,6 +9909,7 @@ class Sg218:
         self.no = 218
         self.name = "P-43n"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 24
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -9756,6 +9974,7 @@ class Sg219:
         self.no = 219
         self.name = "F-43c"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 96
         self.nuniq = 24
         self.syscond = [2, 2, 2, 2, 0, 0, 2, 2, 2, 0, 2, 2,
@@ -9964,6 +10183,7 @@ class Sg220:
         self.no = 220
         self.name = "I-43d"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 48
         self.nuniq = 24
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 0, 0,
@@ -10076,6 +10296,7 @@ class Sg221:
         self.no = 221
         self.name = "Pm-3m"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 48
         self.nuniq = 48
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -10188,6 +10409,7 @@ class Sg222:
         self.no = 222
         self.name = "Pn-3n"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 48
         self.nuniq = 48
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -10300,6 +10522,7 @@ class Sg223:
         self.no = 223
         self.name = "Pm-3n"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 48
         self.nuniq = 48
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -10412,6 +10635,7 @@ class Sg224:
         self.no = 224
         self.name = "Pn-3m"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 48
         self.nuniq = 48
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -10524,6 +10748,7 @@ class Sg225:
         self.no = 225
         self.name = "Fm-3m"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 192
         self.nuniq = 48
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
@@ -10924,6 +11149,7 @@ class Sg226:
         self.no = 226
         self.name = "Fm-3c"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 192
         self.nuniq = 48
         self.syscond = [2, 2, 2, 2, 0, 0, 2, 2, 2, 0, 2, 2,
@@ -11324,6 +11550,7 @@ class Sg227:
         self.no = 227
         self.name = "Fd-3m"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 192
         self.nuniq = 48
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 4, 0, 2, 2,
@@ -11724,6 +11951,7 @@ class Sg228:
         self.no = 228
         self.name = "Fd-3c"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 192
         self.nuniq = 48
         self.syscond = [2, 2, 2, 2, 0, 0, 2, 2, 2, 0, 2, 2,
@@ -12124,6 +12352,7 @@ class Sg229:
         self.no = 229
         self.name = "Im-3m"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 96
         self.nuniq = 48
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
@@ -12332,6 +12561,7 @@ class Sg230:
         self.no = 230
         self.name = "Ia-3d"
         self.crystal_system = "cubic"
+        self.Laue = "m-3m"
         self.nsymop = 96
         self.nuniq = 48
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 2, 2,

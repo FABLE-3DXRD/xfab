@@ -26,6 +26,7 @@ class sg:
         self.crystal_system = obj.crystal_system
         self.nsymop = obj.nsymop
         self.nuniq = obj.nuniq
+        self.Laue = obj.Laue
         self.syscond = n.array(obj.syscond)
         self.rot = n.array(obj.rot)
         self.trans = n.array(obj.trans)
