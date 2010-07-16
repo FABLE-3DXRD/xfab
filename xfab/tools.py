@@ -907,8 +907,8 @@ def genhkl_unique(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='
     Henning Osholm Sorensen, June 23, 2006.
     """
     # Triclinic : Laue group -1
-    # Monoclinic : Laue group 2/M 
     if Laue_class == '-1':
+        print 'Laue class : -1'
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
                         [[-1, 0,  1], [-1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
                         [[-1, 1,  0], [-1, 0, 0], [ 0, 1, 0], [ 0, 0, -1]],
@@ -923,6 +923,7 @@ def genhkl_unique(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='
     # unique b
         
     if Laue_class == '2/m':
+        print 'Laue class : 2/m'
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
                         [[-1, 0,  1], [-1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]]])
 
@@ -956,24 +957,29 @@ def genhkl_unique(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='
                         [[ 1, 2,  0], [ 0, 1, 0], [ 1, 1, 0], [ 0, 0,  1]]])
 
     # Laue group : -3M1
-    if Laue_class == '-3m1' and cell_choice=='hexagonal':
+    if Laue_class == '-3m1':
+        print 'Laue class : -3m1 (hex)'
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
                         [[ 0, 1,  1], [ 0, 1, 0], [ 1, 1, 0], [ 0, 0,  1]]])
 
     # Laue group : -31M
-    if Laue_class == '-31m'  and cell_choice=='hexagonal':
+    if Laue_class == '-31m':
+        print 'Laue class : -31m (hex)'
+
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
                         [[ 1, 1, -1], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0, -1]]])
 
     # Laue group : -3
-    if Laue_class == '-3' and cell_choice=='hexagonal':
+    if Laue_class == '-3':
+        print 'Laue class : -3 (hex)'
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
                         [[ 1, 2,  0], [ 1, 1, 0], [ 0, 1, 0], [ 0, 0,  1]],
                         [[ 0, 1,  1], [ 0, 1, 0], [-1, 1, 0], [ 0, 0,  1]]])
 
     # RHOMBOHEDRAL
     # Laue group : -3M
-    if Laue_class == '-3' and cell_choice=='rhombohedral':
+    if Laue_class == '-3m' and cell_choice=='rhombohedral':
+        print 'Laue class : -3m (Rhom)'
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 0,-1], [ 1, 1,  1]],
                         [[ 1, 1,  0], [ 1, 0,-1], [ 0, 0,-1], [ 1, 1,  1]]])
 
@@ -996,6 +1002,11 @@ def genhkl_unique(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='
 
 
     print Laue_class, cell_choice
+
+    print 'segments :'
+    print segm
+    print ''
+
     nref = 0
     H = n.zeros((0, 3))
     stl = n.array([])
@@ -1008,19 +1019,16 @@ def genhkl_unique(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='
         ktest = 0
         ltest = 0
         HLAST = segm[segn, 0, :]
-        HSAVE = HLAST
+        HSAVE1 = segm[segn, 0, :]
+        HSAVE = segm[segn, 0, :]
         sintlH = sintl(unit_cell, HSAVE)
-
         while ltest == 0:
             while ktest == 0:
                 while htest == 0:
                     nref = nref + 1
-                    #print 'nref', nref
                     if nref != 1:
                         ressss = sysabs(HLAST, sysconditions, crystal_system)
-                        #print 'before sysabs',HLAST, sintlH, ressss
                         if sysabs(HLAST, sysconditions, crystal_system) == 0:
-                            #print HLAST, sintlH
                             if  sintlH > sintlmin and sintlH <= sintlmax:
                                 H = n.concatenate((H, [HLAST]))
                                 stl = n.concatenate((stl, [sintlH]))
@@ -1033,9 +1041,9 @@ def genhkl_unique(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='
                         HLAST = HNEW
                     else: 
                         htest = 1
-                    print 'HNEW, SINTL, htest ', HNEW, sintlH, htest
       
-                HLAST[0] = HSAVE[0]
+                HLAST = HSAVE
+                HSAVE = HSAVE + segm[segn, 2, :]
                 HLAST    = HLAST + segm[segn, 2, :]
                 HNEW     = HLAST
                 sintlH   = sintl(unit_cell, HNEW)
@@ -1043,7 +1051,10 @@ def genhkl_unique(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='
                     ktest = 1
                 htest = 0
 
-            HLAST[1] = HSAVE[1]
+            HLAST = HSAVE1
+            HSAVE1 = HSAVE1 + segm[segn, 3, :]
+            HSAVE = HSAVE1
+
             HLAST = HLAST + segm[segn, 3, :]
             HNEW = HLAST
             sintlH = sintl(unit_cell, HNEW)
@@ -1053,7 +1064,7 @@ def genhkl_unique(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='
 
     stl = n.transpose([stl])
     H = n.concatenate((H, stl), 1) # combine hkl and sintl
-    #H =  H[n.argsort(H, 0)[:, 3], :] # sort hkl's according to stl
+    H =  H[n.argsort(H, 0)[:, 3], :] # sort hkl's according to stl
     if output_stl == None:
         H = H[: , :3]
     return H
@@ -1095,9 +1106,7 @@ def genhkl(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='triclin
                     nref = nref + 1
                     if nref != 1:
                         ressss = sysabs(HLAST, sysconditions, crystal_system)
-                        print 'before sysabs',HLAST, sintlH, ressss
                         if sysabs(HLAST, sysconditions, crystal_system) == 0:
-                            print HLAST, sintlH
                             if  sintlH > sintlmin and sintlH <= sintlmax:
                                 H = n.concatenate((H, [HLAST]))
                                 H = n.concatenate((H, [-HLAST]))
@@ -1144,6 +1153,7 @@ def sysabs(hkl, syscond, crystal_system='triclinic'):
 
     sys_type = sysabs_unique(hkl, syscond)
     if crystal_system == 'trigonal' or crystal_system == 'hexagonal':
+        print 'here we are  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG'
         if sys_type == 0:
             h = -(hkl[0]+hkl[1])
             k = hkl[0]
@@ -1194,6 +1204,10 @@ def sysabs_unique(hkl, syscond):
     H00          H=XN                             20
     0K0          K=XN                             21
     00L          L=XN                             22
+    H-HL         H=XN                             23
+                 L=XN                             24
+                 H+L=XN                           25
+
     Henning Osholm Sorensen, June 23, 2006.
     """
 
@@ -1231,7 +1245,7 @@ def sysabs_unique(hkl, syscond):
 
     if syscond[5] != 0:
         condition = syscond[5]
-        if (abs(-h+k+l))%condition != 0 or (-h+k+l)==0:
+        if (abs(-h+k+l))%condition != 0:
             print 'We are in'
             sysabs_type = 6
         print h,k,l,(abs(-h+k+l))%condition, -h+k+l,sysabs_type
@@ -1329,6 +1343,33 @@ def sysabs_unique(hkl, syscond):
             condition = syscond[22]
             if (abs(l))%condition != 0:
                 sysabs_type = 23
+
+    # H-HL class
+    if (h+k) == 0:
+        print '>>>>>>>>>>>>>>>>> DO I EVER GET HERE <<<<<<<<<<<<<<<<<<<<'
+        if syscond[23] != 0 :
+            condition = syscond[23]
+            if (abs(h))%condition != 0:
+                sysabs_type = 24
+        if syscond[24] != 0:
+            condition = syscond[24]
+            if (abs(l))%condition != 0:
+                sysabs_type = 25
+        if syscond[25] != 0:
+            condition = syscond[25]
+            if (abs(h+l))%condition != 0:
+                sysabs_type = 26
+
+
+##### NEW CONDITION FOR R-3c
+#     # H-H(0)L class
+#     if -h==k:
+#         print '>>>>>>>>>>>>>>>>> DO I EVER GET HERE <<<<<<<<<<<<<<<<<<<<'
+#         if syscond[23] != 0:
+#             condition = syscond[23]
+        
+#             if (h+l)%condition != 0 or l%2 !=0:
+#                 sysabs_type = 24
     
     print h,k,l,sysabs_type
     return sysabs_type
