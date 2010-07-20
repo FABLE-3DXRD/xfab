@@ -1244,9 +1244,7 @@ def sysabs_unique(hkl, syscond):
     if syscond[5] != 0:
         condition = syscond[5]
         if (abs(-h+k+l))%condition != 0:
-            print 'We are in'
             sysabs_type = 6
-        print h,k,l,(abs(-h+k+l))%condition, -h+k+l,sysabs_type
 
     # HHL class
     if (h-k) == 0:
@@ -1368,6 +1366,5 @@ def sysabs_unique(hkl, syscond):
 #             if (h+l)%condition != 0 or l%2 !=0:
 #                 sysabs_type = 24
     
-    print h,k,l,sysabs_type
     return sysabs_type
 
