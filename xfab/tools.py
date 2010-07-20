@@ -906,6 +906,8 @@ def genhkl_unique(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='
     
     Henning Osholm Sorensen, June 23, 2006.
     """
+    segm = None
+
     # Triclinic : Laue group -1
     if Laue_class == '-1':
         print 'Laue class : -1'
@@ -1000,12 +1002,9 @@ def genhkl_unique(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 1, 1,  1]],
                         [[ 1, 2,  0], [ 0, 1, 0], [ 1, 1, 0], [ 1, 1,  1]]])
 
-
-    print Laue_class, cell_choice
-
-    print 'segments :'
-    print segm
-    print ''
+    if segm == None:
+        print 'None Laue class found'
+        return False
 
     nref = 0
     H = n.zeros((0, 3))
@@ -1019,8 +1018,8 @@ def genhkl_unique(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='
         ktest = 0
         ltest = 0
         HLAST = segm[segn, 0, :]
-        HSAVE1 = segm[segn, 0, :]
         HSAVE = segm[segn, 0, :]
+        HSAVE1 = segm[segn, 0, :]  #HSAVE1 =HSAVE
         sintlH = sintl(unit_cell, HSAVE)
         while ltest == 0:
             while ktest == 0:
@@ -1153,7 +1152,6 @@ def sysabs(hkl, syscond, crystal_system='triclinic'):
 
     sys_type = sysabs_unique(hkl, syscond)
     if crystal_system == 'trigonal' or crystal_system == 'hexagonal':
-        print 'here we are  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG'
         if sys_type == 0:
             h = -(hkl[0]+hkl[1])
             k = hkl[0]
@@ -1346,7 +1344,6 @@ def sysabs_unique(hkl, syscond):
 
     # H-HL class
     if (h+k) == 0:
-        print '>>>>>>>>>>>>>>>>> DO I EVER GET HERE <<<<<<<<<<<<<<<<<<<<'
         if syscond[23] != 0 :
             condition = syscond[23]
             if (abs(h))%condition != 0:
