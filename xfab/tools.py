@@ -893,7 +893,42 @@ def tth2(gve, wavelength):
     
     return twotheta
 
+def genhkl_all(unit_cell, sintlmin, sintlmax,sgname=None, sgno = None,output_stl=False):
+    from xfab import sg
+    if sgname != None:
+        spg = sg.sg(sgname=sgname)
+    elif sgno != None:
+        spg = sg.sg(sgno=sgno)
+    else:
+        raise ValueError, 'No space group information given'
+    
+    H = genhkl_unique(unit_cell, 
+                      spg.syscond, 
+                      sintlmin, sintlmax, 
+                      crystal_system=spg.crystal_system, 
+                      Laue_class = spg.Laue ,
+                      output_stl=True)
 
+    Hall = n.zeros((0,4))
+
+    for refl in H[:]:
+        hkls = []
+        stl = refl[3]
+        for R in spg.rot[:spg.nuniq]:
+            hkls.append(n.dot(refl[:3],R))
+        a = n.array(hkls)
+        (dummy, rows) = n.unique1d((a*n.random.rand(3)).sum(axis=1),
+                                   return_index=True)
+        Hsub= n.concatenate((a[rows], 
+                             n.array([[stl]*len(rows)]).transpose()),
+                            axis=1)
+        Hall = n.concatenate((Hall,Hsub))
+
+    if output_stl == False:
+        return Hall[:,:3]
+    else:
+        return Hall
+    
 
 def genhkl_unique(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='triclinic', Laue_class ='-1' , cell_choice='standard',output_stl=None):
     """
