@@ -894,6 +894,29 @@ def tth2(gve, wavelength):
     return twotheta
 
 def genhkl_all(unit_cell, sintlmin, sintlmax,sgname=None, sgno = None,output_stl=False):
+    """
+	
+    Generate the full set of reflections given a unit cell and space group up to maximum sin(theta)/lambda (sintlmax)
+	
+	The function is using the function genhkl_base for the actual generation 
+
+    INPUT:  unit cell     : [a , b, c, alpha, beta, gamma]
+            sintlmin      : minimum sin(theta)/lambda for generated reflections
+            sintlmax      : maximum sin(theta)/lambda for generated reflections
+            sgno/sgname   : provide either the space group number or its name 
+                            e.g. sgno=225 or equivalently
+                                 sgname='Fm-3m'
+            output_stl    : Should sin(theta)/lambda be output (True/False)
+                            default=False
+
+    OUTPUT: list of reflections  (n by 3) or (n by 4) 
+            if sin(theta)/lambda is chosen to be output
+
+    The algorithm follows the method described in: 
+    Le Page and Gabe (1979) J. Appl. Cryst., 12, 464-466
+	    
+    Henning Osholm Sorensen, University of Copenhagen, July 22, 2010.
+    """
     from xfab import sg
     if sgname != None:
         spg = sg.sg(sgname=sgname)
@@ -902,7 +925,7 @@ def genhkl_all(unit_cell, sintlmin, sintlmax,sgname=None, sgno = None,output_stl
     else:
         raise ValueError, 'No space group information given'
     
-    H = genhkl_unique(unit_cell, 
+    H = genhkl_base(unit_cell, 
                       spg.syscond, 
                       sintlmin, sintlmax, 
                       crystal_system=spg.crystal_system, 
@@ -929,17 +952,77 @@ def genhkl_all(unit_cell, sintlmin, sintlmax,sgname=None, sgno = None,output_stl
     else:
         return Hall
     
+def genhkl_unique(unit_cell, sintlmin, sintlmax,sgname=None, sgno = None,output_stl=False):
+    """
+	
+    Generate the only unique set of reflections given a unit cell and space group up to maximum sin(theta)/lambda (sintlmax)
+	
+	The function is using the function genhkl_base for the actual generation 
 
-def genhkl_unique(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='triclinic', Laue_class ='-1' , cell_choice='standard',output_stl=None):
+    INPUT:  unit cell     : [a , b, c, alpha, beta, gamma]
+            sintlmin      : minimum sin(theta)/lambda for generated reflections
+            sintlmax      : maximum sin(theta)/lambda for generated reflections
+            sgno/sgname   : provide either the space group number or its name 
+                            e.g. sgno=225 or equivalently
+                                 sgname='Fm-3m'
+            output_stl    : Should sin(theta)/lambda be output (True/False)
+                            default=False
+
+    OUTPUT: list of reflections  (n by 3) or 
+                                 (n by 4) if sin(theta)/lambda is chosen to be output
+
+    The algorithm follows the method described in: 
+    Le Page and Gabe (1979) J. Appl. Cryst., 12, 464-466
+	    
+    Henning Osholm Sorensen, University of Copenhagen, July 22, 2010.
     """
 
-    TESTING
-
-    Generate reflections up to maximum sin(theta)/lambda (sintlmax)
-    The program follows the method described in: 
-    Le Page and Gabe (1979) J. Appl. Cryst., 12, 464-466
+    from xfab import sg
+    if sgname != None:
+        spg = sg.sg(sgname=sgname)
+    elif sgno != None:
+        spg = sg.sg(sgno=sgno)
+    else:
+        raise ValueError, 'No space group information given'
     
-    Henning Osholm Sorensen, June 23, 2006.
+    H = genhkl_base(unit_cell, 
+                      spg.syscond, 
+                      sintlmin, sintlmax, 
+                      crystal_system=spg.crystal_system, 
+                      Laue_class = spg.Laue ,
+                      output_stl=True)
+
+
+    if output_stl == False:
+        return H[:,:3]
+    else:
+        return H
+    
+
+def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='triclinic', Laue_class ='-1' , cell_choice='standard',output_stl=None):
+    """
+	
+    Generate the unique set of reflections for the cell up to maximum sin(theta)/lambda (sintlmax)
+
+    The algorithm follows the method described in: 
+    Le Page and Gabe (1979) J. Appl. Cryst., 12, 464-466
+	
+    INPUT:  unit cell     : [a , b, c, alpha, beta, gamma]
+            sysconditions : conditions for systematic absent reflections
+                            a 26 element list e.g. [0,0,2,0,0,0,0,0,.....,3] 
+                            see help(sysabs) function for details.
+            sintlmin      : minimum sin(theta)/lambda for generated reflections
+            sintlmax      : maximum sin(theta)/lambda for generated reflections
+            crystal_system: Crystal system (string), e.g. 'hexagonal'
+            Laue class    : Laue class of the lattice (-1, 2/m, mmm, .... etc)
+            cell_choice   : If more than cell choice can be made 
+                            e.g. R-3 can be either rhombohedral or hexagonal  
+            output_stl    : Should sin(theta)/lambda be output (True/False) default=False
+
+    OUTPUT: list of reflections  (n by 3) or 
+                                 (n by 4) if sin(theta)/lambda is chosen to be output
+    
+    Henning Osholm Sorensen, University of Copenhagen, July 22, 2010.
     """
     segm = None
 
@@ -957,8 +1040,7 @@ def genhkl_unique(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='
     #                [[ 0,-1,  1], [ 0,-1, 0], [ 1, 0, 0], [ 0, 0,  1]]])
 
     # Monoclinic : Laue group 2/M 
-    # unique b
-        
+    # unique b        
     if Laue_class == '2/m':
         print 'Laue class : 2/m'
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
@@ -1038,7 +1120,7 @@ def genhkl_unique(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='
                         [[ 1, 2,  0], [ 0, 1, 0], [ 1, 1, 0], [ 1, 1,  1]]])
 
     if segm == None:
-        print 'None Laue class found'
+        print 'No Laue class found'
         return False
 
     nref = 0
@@ -1076,20 +1158,17 @@ def genhkl_unique(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='
                     else: 
                         htest = 1
       
-                HLAST = HSAVE
                 HSAVE = HSAVE + segm[segn, 2, :]
-                HLAST    = HLAST + segm[segn, 2, :]
-                HNEW     = HLAST
+                HLAST = HSAVE
+                HNEW  = HLAST
                 sintlH   = sintl(unit_cell, HNEW)
                 if sintlH > sintlmax:
                     ktest = 1
                 htest = 0
 
-            HLAST = HSAVE1
             HSAVE1 = HSAVE1 + segm[segn, 3, :]
             HSAVE = HSAVE1
-
-            HLAST = HLAST + segm[segn, 3, :]
+            HLAST = HSAVE1
             HNEW = HLAST
             sintlH = sintl(unit_cell, HNEW)
             if sintlH > sintlmax:
@@ -1107,9 +1186,8 @@ def genhkl_unique(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='
 
 def genhkl(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='triclinic', output_stl=None):
     """
-    Generate reflections up to maximum sin(theta)/lambda (sintlmax)
-    The program follows the method described in: 
-    Le Page and Gabe (1979) J. Appl. Cryst., 12, 464-466
+	
+	OUTDATED SHOULD NOT BE USED ANYMORE - USE genhkl_all, genhkl_unique or genhkl_base. (July 22, 2010)
     
     Henning Osholm Sorensen, June 23, 2006.
     """
@@ -1183,6 +1261,45 @@ def sysabs(hkl, syscond, crystal_system='triclinic'):
     """
     Defined as sysabs_unique with the exception that permutations in  
     trigonal and hexagonal lattices are taken into account.
+
+	INPUT: hkl     : [h k l] 
+           syscond : [1x26] with condition for systematic absences in this
+                     space group, X in syscond should given as shown below
+		   crystal_system : crystal system (string) - e.g. triclinic or hexagonal
+		   
+    OUTPUT: sysbs  : if 1 the reflection is systematic absent 
+                     if 0 its not
+    
+    syscond:
+    class        systematic abs               sysconditions[i]
+    HKL          H+K=XN                            0
+                 H+L=XN                            1
+                 K+L=XN                            2
+                 H+K,H+L,K+L = XN                  3
+                 H+K+L=XN                          4
+                 -H+K+L=XN                         5 
+    HHL          H=XN                              6
+                 L=XN                              7
+                 H+L=XN                            8
+                 2H+L=XN                           9
+    0KL          K=XN                             10
+                 L=XN                             11
+                 K+L=XN                           12
+    H0L          H=XN                             13
+                 L=XN                             14
+                 H+L=XN                           15
+    HK0          H=XN                             16
+                 K=XN                             17
+                 H+K=XN                           18
+    HH0          H=XN                             19
+    H00          H=XN                             20
+    0K0          K=XN                             21
+    00L          L=XN                             22
+    H-HL         H=XN                             23
+                 L=XN                             24
+                 H+L=XN                           25
+
+
     """
 
     sys_type = sysabs_unique(hkl, syscond)
@@ -1197,7 +1314,7 @@ def sysabs(hkl, syscond, crystal_system='triclinic'):
                 k = -(hkl[0]+hkl[1])
                 l = hkl[2]
                 sys_type = sysabs_unique([h, k, l], syscond)
-    #print 'IN HERE it can be altered', sys_type
+
     return sys_type
     
 def sysabs_unique(hkl, syscond):
@@ -1206,11 +1323,11 @@ def sysabs_unique(hkl, syscond):
     
     sysabs_unique = sysabs_unique(hkl,syscond)
      
-    INPUT: hkl = [h k l] 
-           syscond: [1x23] with condition for systematic absences in this
-           space group, X in syscond should given as shown below
-    OUTPUT: sysbs: if 1 the reflection is systematic absent 
-                   if 0 its not
+    INPUT:  hkl     : [h k l] 
+            syscond : [1x26] with condition for systematic absences in this
+                      space group, X in syscond should given as shown below
+    OUTPUT: sysbs   :  if 1 the reflection is systematic absent 
+                       if 0 its not
     
     syscond:
     class        systematic abs               sysconditions[i]
