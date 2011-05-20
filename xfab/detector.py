@@ -284,8 +284,8 @@ def xy_to_detyz(coor, o11, o12, o21, o22, dety_size, detz_size):
         raise ValueError, 'detector orientation makes no sense 3'
     omat = n.array([[o11, o12],
                     [o21, o22]])
-    det_size = n.array([dety_size-1,
-                        detz_size-1])
+    det_size = n.array([detz_size-1,
+                        dety_size-1])
     coor = n.dot(omat, coor)- n.clip(n.dot(omat, det_size),
                                      -n.max(det_size), 0)
     # transpose (x,y) to (y,x) to match order of (dety,detz)
