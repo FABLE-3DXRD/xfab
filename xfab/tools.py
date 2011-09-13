@@ -416,7 +416,28 @@ def ubi_to_u(ubi):
     U = n.transpose(n.dot(B, ubi))/(2*n.pi)
     return U
         
-
+        
+def ubi_to_u_and_eps(ubi,unit_cell):
+    """
+    calculate lattice lattice rotation and strain from the UBI-matrix 
+    
+    (U,eps) = ubi_to_u_and_eps(ubi,unit_cell)
+    
+    ubi [3x3] matrix
+    unit_cell = [a,b,c,alpha,beta,gamma]
+    
+    returns U matrix and strain tensor components
+    eps = [e11, e12, e13, e22, e23, e33]
+    
+    """
+    unit_cell_ubi = ubi_to_cell(ubi)
+    B_ubi = form_b_mat(unit_cell_ubi)
+    U = n.transpose(n.dot(B_ubi, ubi))/(2*n.pi)
+    eps = b_to_epsilon(B_ubi/(2*n.pi), unit_cell)
+    
+    return (U,eps)
+        
+        
 def a_to_cell(A):
     """
     calculate lattice constants from the A-matix as
