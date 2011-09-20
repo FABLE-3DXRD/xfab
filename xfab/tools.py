@@ -423,7 +423,7 @@ def ubi_to_u_and_eps(ubi,unit_cell):
     
     (U,eps) = ubi_to_u_and_eps(ubi,unit_cell)
     
-    ubi [3x3] matrix
+    ubi [3x3] matrix, (UB)^-1, where B=B/2*pi
     unit_cell = [a,b,c,alpha,beta,gamma]
     
     returns U matrix and strain tensor components
@@ -433,7 +433,7 @@ def ubi_to_u_and_eps(ubi,unit_cell):
     unit_cell_ubi = ubi_to_cell(ubi)
     B_ubi = form_b_mat(unit_cell_ubi)
     U = n.transpose(n.dot(B_ubi, ubi))/(2*n.pi)
-    eps = b_to_epsilon(B_ubi/(2*n.pi), unit_cell)
+    eps = b_to_epsilon(B_ubi, unit_cell)
     
     return (U,eps)
         
