@@ -12,5 +12,6 @@ setup(
   download_url='http://sourceforge.net/project/showfiles.php?group_id=82044&package_id=309377',
   url='http://fable.wiki.sourceforge.net/xfab',
   packages=['xfab'],
-  package_dir={"xfab": "xfab"}
+  package_dir={"xfab": "xfab"},
+  scripts=["scripts/gff_to_ubi.py","scripts/ubi_to_gff.py"]
 )
