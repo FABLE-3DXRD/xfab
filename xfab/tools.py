@@ -485,7 +485,7 @@ def b_to_cell(B):
                         alphastar, betastar, gammastar])
     return unit_cell
         
-def epsilon_to_b(epsilon, unit_cell):
+def epsilon_to_b_old(epsilon, unit_cell):
     """
     calculate B matrix of (Gcart = B Ghkl) from epsilon and 
     unstrained cell as in H.F. Poulsen (2004) page 33.
@@ -510,7 +510,7 @@ def epsilon_to_b(epsilon, unit_cell):
     B = form_b_mat(strainedcell)
     return B
         
-def b_to_epsilon(B, unit_cell):
+def b_to_epsilon_old(B, unit_cell):
     """
     calculate epsilon from the the unstrained cell and 
     the B matrix of (Gcart = B Ghkl) as in H.F. Poulsen (2004) page 33.
@@ -532,6 +532,59 @@ def b_to_epsilon(B, unit_cell):
     epsilon = [eps[0, 0], eps[0, 1], eps[0, 2],
                eps[1, 1], eps[1, 2], eps[2, 2]]
     return epsilon
+        
+def b_to_epsilon(B, unit_cell):
+    """
+    calculate epsilon from the the unstrained cell and 
+    the B matrix of (Gcart = B Ghkl).
+    The algorithm is similar to H.F. Poulsen (2004) page 33, 
+    except A is defined such that A'B = I
+    T' = (A*A0inv)' = A0inv'*A' = B0*Binv
+    This definition of A ensures that U relating Gcart to Gsam
+    also relates epsilon_cart to epsilon_sam
+    
+    INPUT: B - upper triangular 3x3 matrix of strained lattice constants
+    unit_cell -  unit cell = [a, b, c, alpha, beta, gamma] 
+    of unstrained lattice
+    
+    OUTPUT: epsilon = [e11, e12, e13, e22, e23, e33] 
+    
+    Jette Oddershede, jeto@fysik.dtu.dk, January 2012.
+    """
+    
+    B0 = form_b_mat(unit_cell)
+    T = n.dot(B0,n.linalg.inv(B))
+    I = n.eye(3)
+    eps = 0.5*(T+n.transpose(T))-I
+    epsilon = [eps[0, 0], eps[0, 1], eps[0, 2],
+               eps[1, 1], eps[1, 2], eps[2, 2]]
+    return epsilon
+        
+def epsilon_to_b(epsilon, unit_cell):
+    """
+    calculate B matrix of (Gcart = B Ghkl) from epsilon and 
+    unstrained cell as in H.F. Poulsen (2004) page 33 with the
+    exception that A is defined such that A'B = I
+    2*(epsilon+I) = B0*Binv + (B0*Binv)'
+    
+    INPUT: epsilon - strain tensor [e11, e12, e13, e22, e23, e33] 
+    unit_cell - unit cell = [a, b, c, alpha, beta, gamma] 
+    of unstrained lattice
+    
+    OUTPUT: B - [3x3] for strained lattice constants
+    
+    Jette Oddershede, jeto@fysik.dtu.dk, January 2012.
+    """
+    
+    B0 = form_b_mat(unit_cell)
+    Binv = n.zeros((3, 3))
+    Binv[0, 0] = (epsilon[0]+1)/B0[0, 0]
+    Binv[1, 1] = (epsilon[3]+1)/B0[1, 1]
+    Binv[2, 2] = (epsilon[5]+1)/B0[2, 2]
+    Binv[0, 1] = (2*epsilon[1]-B0[0, 1]*Binv[1, 1])/B0[0, 0]
+    Binv[1, 2] = (2*epsilon[4]-B0[1, 2]*Binv[2, 2])/B0[1, 1]
+    Binv[0, 2] = (2*epsilon[2]-B0[0, 1]*Binv[1, 2]-B0[0, 2]*Binv[2, 2])/B0[0, 0]
+    return n.linalg.inv(Binv)
         
 def euler_to_u(phi1, PHI, phi2):
     """
