@@ -330,7 +330,7 @@ class build_atomlist:
             try:
                 cifblk = self.CIFopen(ciffile=ciffile, cifblkname=cifblkname)
             except:
-                raise IOError()
+                raise 
         elif cifblk == None:
             cifblk = self.cifblk
 
