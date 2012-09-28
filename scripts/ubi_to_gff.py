@@ -1,3 +1,4 @@
+#!/usr/bin/python
 """
 Usage:
 python ubi_to_gff.py input.ubi detector.par output.gff

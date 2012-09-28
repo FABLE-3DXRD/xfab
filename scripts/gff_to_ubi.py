@@ -1,3 +1,4 @@
+#!/usr/bin/python
 """
 Usage:
 python gff_to_ubi input.gff output.ubi (paramters.par)
