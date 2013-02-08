@@ -1009,7 +1009,7 @@ def genhkl_all(unit_cell, sintlmin, sintlmax,sgname=None, sgno = None,output_stl
     Hall = n.zeros((0,4))
     # Making sure that the inversion element also for non-centrosymmetric space groups
     Rots = n.concatenate((spg.rot[:spg.nuniq],-spg.rot[:spg.nuniq]))
-    (dummy, rows) = n.unique1d((Rots*n.random.rand(3,3)).sum(axis=2).sum(axis=1),return_index=True)
+    (dummy, rows) = n.unique((Rots*n.random.rand(3,3)).sum(axis=2).sum(axis=1),return_index=True)
     Rots = Rots[n.sort(rows)]
 
 
@@ -1019,7 +1019,7 @@ def genhkl_all(unit_cell, sintlmin, sintlmax,sgname=None, sgno = None,output_stl
         for R in Rots:
             hkls.append(n.dot(refl[:3],R))
         a = n.array(hkls)
-        (dummy, rows) = n.unique1d((a*n.random.rand(3)).sum(axis=1),
+        (dummy, rows) = n.unique((a*n.random.rand(3)).sum(axis=1),
                                    return_index=True)
         Hsub= n.concatenate((a[rows], 
                              n.array([[stl]*len(rows)]).transpose()),
