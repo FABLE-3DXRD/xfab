@@ -159,16 +159,16 @@ def int_intensity(F2, L, P, I0, wavelength, cell_vol, cryst_vol):
     return k1*k2*I0*L*P*F2
 
 
-def multiplicity(position, sgname=None, sgno=None):
+def multiplicity(position, sgname=None, sgno=None, cell_choice='standard'):
     """
     Calculates the multiplicity of a fractional position in the unit cell.
 
     """
 
     if sgname != None:
-        mysg = sg.sg(sgname = sgname)
+        mysg = sg.sg(sgname=sgname, cell_choice=cell_choice)
     elif sgno !=None:
-        mysg = sg.sg(sgno = sgno)
+        mysg = sg.sg(sgno=sgno, cell_choice=cell_choice)
     else:
         raise ValueError, 'No space group information provided'
 

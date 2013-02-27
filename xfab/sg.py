@@ -5,11 +5,13 @@ from re import sub
 from string import lower
 
 class sg:
-    def __init__(self, sgno = None, sgname = None):
+    def __init__(self, sgno = None, sgname = None, cell_choice = "standard"):
         if sgno != None:
             klass_name = "".join('Sg%i' %sgno)
         elif sgname != None:
-            klass_name = sgdic[lower(sub("\s+", "", sgname))]
+            klass_name = sgdic[lower(sub("\s+", "", sgname))] 
+            if lower(sub("\s+", "", sgname))[0]=="r" and lower(sub("\s+", "", sgname))[-1]=="r":
+                cell_choice = "rhombohedral"
         if hasattr(xfab, 'sglib'):
             module = getattr(xfab, 'sglib')
             if hasattr(module, klass_name):
@@ -19,7 +21,7 @@ class sg:
         else:
             raise Exception("sglib module cannot be reached")
     
-        obj = klass()
+        obj = klass(cell_choice=cell_choice)
 
         self.name = obj.name
         self.no = obj.no
@@ -30,6 +32,9 @@ class sg:
         self.syscond = n.array(obj.syscond)
         self.rot = n.array(obj.rot)
         self.trans = n.array(obj.trans)
+        self.cell_choice = cell_choice
+        
+        
 
 
 sgdic = {
@@ -179,8 +184,12 @@ sgdic = {
          "p31" : "Sg144",
          "p32" : "Sg145",
          "r3" : "Sg146",
+         "r3h" : "Sg146",
+         "r3r" : "Sg146",
          "p-3" : "Sg147",
          "r-3" : "Sg148",
+         "r-3h" : "Sg148",
+         "r-3r" : "Sg148",
          "p312" : "Sg149",
          "p321" : "Sg150",
          "p3112" : "Sg151",
@@ -188,18 +197,28 @@ sgdic = {
          "p3212" : "Sg153",
          "p3221" : "Sg154",
          "r32" : "Sg155",
+         "r32h" : "Sg155",
+         "r32r" : "Sg155",
          "p3m1" : "Sg156",
          "p31m" : "Sg157",
          "p3c1" : "Sg158",
          "p31c" : "Sg159",
          "r3m" : "Sg160",
+         "r3mh" : "Sg160",
+         "r3mr" : "Sg160",
          "r3c" : "Sg161",
+         "r3ch" : "Sg161",
+         "r3cr" : "Sg161",
          "p-31m" : "Sg162",
          "p-31c" : "Sg163",
          "p-3m1" : "Sg164",
          "p-3c1" : "Sg165",
          "r-3m" : "Sg166",
+         "r-3mh" : "Sg166",
+         "r-3mr" : "Sg166",
          "r-3c" : "Sg167",
+         "r-3ch" : "Sg167",
+         "r-3cr" : "Sg167",
          "p6" : "Sg168",
          "p61" : "Sg169",
          "p65" : "Sg170",

@@ -967,7 +967,7 @@ def tth2(gve, wavelength):
     
     return twotheta
 
-def genhkl_all(unit_cell, sintlmin, sintlmax,sgname=None, sgno = None,output_stl=False):
+def genhkl_all(unit_cell, sintlmin, sintlmax, sgname=None, sgno=None, cell_choice='standard', output_stl=False):
     """
 	
     Generate the full set of reflections given a unit cell and space group up to maximum sin(theta)/lambda (sintlmax)
@@ -993,9 +993,9 @@ def genhkl_all(unit_cell, sintlmin, sintlmax,sgname=None, sgno = None,output_stl
     """
     from xfab import sg
     if sgname != None:
-        spg = sg.sg(sgname=sgname)
+        spg = sg.sg(sgname=sgname,cell_choice=cell_choice)
     elif sgno != None:
-        spg = sg.sg(sgno=sgno)
+        spg = sg.sg(sgno=sgno,cell_choice=cell_choice)
     else:
         raise ValueError, 'No space group information given'
     
@@ -1003,7 +1003,8 @@ def genhkl_all(unit_cell, sintlmin, sintlmax,sgname=None, sgno = None,output_stl
                       spg.syscond, 
                       sintlmin, sintlmax, 
                       crystal_system=spg.crystal_system, 
-                      Laue_class = spg.Laue ,
+                      Laue_class = spg.Laue,
+                      cell_choice = spg.cell_choice,
                       output_stl=True)
 
     Hall = n.zeros((0,4))
@@ -1031,7 +1032,7 @@ def genhkl_all(unit_cell, sintlmin, sintlmax,sgname=None, sgno = None,output_stl
     else:
         return Hall
     
-def genhkl_unique(unit_cell, sintlmin, sintlmax,sgname=None, sgno = None,output_stl=False):
+def genhkl_unique(unit_cell, sintlmin, sintlmax, sgname=None, sgno = None, cell_choice='standard', output_stl=False):
     """
 	
     Generate the only unique set of reflections given a unit cell and space group up to maximum sin(theta)/lambda (sintlmax)
@@ -1058,9 +1059,9 @@ def genhkl_unique(unit_cell, sintlmin, sintlmax,sgname=None, sgno = None,output_
 
     from xfab import sg
     if sgname != None:
-        spg = sg.sg(sgname=sgname)
+        spg = sg.sg(sgname=sgname,cell_choice=cell_choice)
     elif sgno != None:
-        spg = sg.sg(sgno=sgno)
+        spg = sg.sg(sgno=sgno,cell_choice=cell_choice)
     else:
         raise ValueError, 'No space group information given'
     
@@ -1069,6 +1070,7 @@ def genhkl_unique(unit_cell, sintlmin, sintlmax,sgname=None, sgno = None,output_
                       sintlmin, sintlmax, 
                       crystal_system=spg.crystal_system, 
                       Laue_class = spg.Laue ,
+                      cell_choice = spg.cell_choice,
                       output_stl=True)
 
 
@@ -1078,7 +1080,7 @@ def genhkl_unique(unit_cell, sintlmin, sintlmax,sgname=None, sgno = None,output_
         return H
     
 
-def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='triclinic', Laue_class ='-1' , cell_choice='standard',output_stl=None):
+def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='triclinic', Laue_class ='-1', cell_choice='standard', output_stl=None):
     """
 	
     Generate the unique set of reflections for the cell up to maximum sin(theta)/lambda (sintlmax)
@@ -1168,7 +1170,7 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
                         [[ 1, 1, -1], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0, -1]]])
 
     # Laue group : -3
-    if Laue_class == '-3':
+    if Laue_class == '-3' and cell_choice!='rhombohedral':
         print 'Laue class : -3 (hex)'
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
                         [[ 1, 2,  0], [ 1, 1, 0], [ 0, 1, 0], [ 0, 0,  1]],
@@ -1183,10 +1185,11 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
 
     # Laue group : -3
     if Laue_class == '-3' and cell_choice=='rhombohedral':
-        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 0,-1], [ 1, 1,  1]],
-                        [[ 1, 1,  0], [ 1, 0,-1], [ 0, 0,-1], [ 1, 1,  1]],
+        print 'Laue class : -3 (Rhom)'
+        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 0,-1], [ 1, 1, 1]],
+                        [[ 1, 1,  0], [ 1, 0,-1], [ 0, 0,-1], [ 1, 1, 1]],
                         [[ 0,-1, -2], [ 1, 0, 0], [ 1, 0,-1], [-1,-1, -1]],
-                        [[ 1, 0, -2], [ 1, 0,-1], [ 0, 0,-1], [-1,-1, -1]]])
+                        [[ 1, 0, -2], [ 1, 0,-1], [ 0, 0,-1], [-1,-1,-1]]])
 
     #Cubic
     # Laue group : M3M
@@ -1207,6 +1210,21 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
     stl = n.array([])
     sintlH = 0.0
     
+    #####################################################################################
+    # The factor of 1.1 in the sintlmax criteria for setting htest=1, ktest=1 and ltest=1
+    # was added based on the following observation for triclinic cells (Laue -3) with
+    # rhombohedral setting:
+    # [0,-5,-6]=[0,-1,-2]+4*[1,0,0]+0*[1,0,-1]+4*[-1,-1,-1],
+    # but the algorithm is such that [-4,-5,-6]=[0,-1,-2]+4*[-1,-1,-1] is tested first,
+    # and this has a slightly larger sintl than [0,-5,-6]
+    # If these values are on opposide sides of sintlmax [0,-5,-6] is never generated.
+    # This is a quick and dirty fix, something more elegant would be good!
+    # Jette Oddershede, February 2013
+    #####################################################################################
+    sintl_scale = 1
+    if Laue_class == '-3' and cell_choice=='rhombohedral':
+        sintl_scale = 1.1
+
     for i in range(len(segm)):
         segn = i
         # initialize the identifiers
@@ -1222,8 +1240,8 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
                 while htest == 0:
                     nref = nref + 1
                     if nref != 1:
-                        ressss = sysabs(HLAST, sysconditions, crystal_system)
-                        if sysabs(HLAST, sysconditions, crystal_system) == 0:
+                        ressss = sysabs(HLAST, sysconditions, crystal_system, cell_choice)
+                        if sysabs(HLAST, sysconditions, crystal_system, cell_choice) == 0:
                             if  sintlH > sintlmin and sintlH <= sintlmax:
                                 H = n.concatenate((H, [HLAST]))
                                 stl = n.concatenate((stl, [sintlH]))
@@ -1232,16 +1250,17 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
                     HNEW = HLAST + segm[segn, 1, :]
                     sintlH = sintl(unit_cell, HNEW)
                     #if (sintlH >= sintlmin) and (sintlH <= sintlmax):
-                    if sintlH <= sintlmax:
+                    if sintlH <= sintlmax*sintl_scale:
                         HLAST = HNEW
                     else: 
                         htest = 1
+#                        print HNEW,'htest',sintlH 
       
                 HSAVE = HSAVE + segm[segn, 2, :]
                 HLAST = HSAVE
                 HNEW  = HLAST
                 sintlH   = sintl(unit_cell, HNEW)
-                if sintlH > sintlmax:
+                if sintlH > sintlmax*sintl_scale:
                     ktest = 1
                 htest = 0
 
@@ -1250,7 +1269,7 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
             HLAST = HSAVE1
             HNEW = HLAST
             sintlH = sintl(unit_cell, HNEW)
-            if sintlH > sintlmax:
+            if sintlH > sintlmax*sintl_scale:
                 ltest = 1
             ktest = 0
 
@@ -1336,7 +1355,7 @@ def genhkl(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='triclin
         H = H[: , :3]
     return H
     
-def sysabs(hkl, syscond, crystal_system='triclinic'):
+def sysabs(hkl, syscond, crystal_system='triclinic', cell_choice='standard'):
     """
     Defined as sysabs_unique with the exception that permutations in  
     trigonal and hexagonal lattices are taken into account.
@@ -1382,7 +1401,18 @@ def sysabs(hkl, syscond, crystal_system='triclinic'):
     """
 
     sys_type = sysabs_unique(hkl, syscond)
-    if crystal_system == 'trigonal' or crystal_system == 'hexagonal':
+    if cell_choice == 'rhombohedral':
+        if sys_type == 0:
+            h = hkl[1]
+            k = hkl[2]
+            l = hkl[0]
+            sys_type = sysabs_unique([h, k, l], syscond)
+            if sys_type == 0:
+                h = hkl[2]
+                k = hkl[0]
+                l = hkl[1]
+                sys_type = sysabs_unique([h, k, l], syscond)    
+    elif crystal_system == 'trigonal' or crystal_system == 'hexagonal':
         if sys_type == 0:
             h = -(hkl[0]+hkl[1])
             k = hkl[0]
