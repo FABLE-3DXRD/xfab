@@ -32,7 +32,7 @@ class sg:
         self.syscond = n.array(obj.syscond)
         self.rot = n.array(obj.rot)
         self.trans = n.array(obj.trans)
-        self.cell_choice = cell_choice
+        self.cell_choice = obj.cell_choice
         
         
 

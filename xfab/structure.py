@@ -162,6 +162,7 @@ def int_intensity(F2, L, P, I0, wavelength, cell_vol, cryst_vol):
 def multiplicity(position, sgname=None, sgno=None, cell_choice='standard'):
     """
     Calculates the multiplicity of a fractional position in the unit cell.
+    If called by sgno, cell_choice is necessary for eg rhombohedral space groups.
 
     """
 

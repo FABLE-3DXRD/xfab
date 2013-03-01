@@ -6,109 +6,104 @@ Presently only the standard setting is available.
 
 
 class Sg1:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 1
         self.name = "P1"
         self.crystal_system = "triclinic"
         self.Laue = "-1"
         self.nsymop = 1
         self.nuniq = 1
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [[[1,0,0],[0,1,0],[0,0,1]],
                     ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 ]
 
 class Sg2:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 2
         self.name = "P-1"
         self.crystal_system = "triclinic"
         self.Laue = "-1"
         self.nsymop = 2
         self.nuniq = 2
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
                 ]
 
 class Sg3:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 3
         self.name = "P2"
         self.crystal_system = "monoclinic"
         self.Laue = "2/m"
         self.nsymop = 2
         self.nuniq = 2
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
                 ]
 
 class Sg4:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 4
         self.name = "P21"
         self.crystal_system = "monoclinic"
         self.Laue = "2/m"
         self.nsymop = 2
         self.nuniq = 2
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.500000,0.000000], 
                 ]
 
 class Sg5:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 5
         self.name = "C2"
         self.crystal_system = "monoclinic"
         self.Laue = "2/m"
         self.nsymop = 4
         self.nuniq = 2
+        self.cell_choice = "standard"
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 2, 0, 0, 0, 0, 2, 0, 2, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -117,68 +112,65 @@ class Sg5:
                 ]
 
 class Sg6:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 6
         self.name = "Pm"
         self.crystal_system = "monoclinic"
         self.Laue = "2/m"
         self.nsymop = 2
         self.nuniq = 2
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
                 ]
 
 class Sg7:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 7
         self.name = "Pc"
         self.crystal_system = "monoclinic"
         self.Laue = "2/m"
         self.nsymop = 2
         self.nuniq = 2
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.500000], 
                 ]
 
 class Sg8:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 8
         self.name = "Cm"
         self.crystal_system = "monoclinic"
         self.Laue = "2/m"
         self.nsymop = 4
         self.nuniq = 2
+        self.cell_choice = "standard"
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 2, 0, 0, 0, 0, 2, 0, 2, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -187,24 +179,23 @@ class Sg8:
                 ]
 
 class Sg9:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 9
         self.name = "Cc"
         self.crystal_system = "monoclinic"
         self.Laue = "2/m"
         self.nsymop = 4
         self.nuniq = 2
+        self.cell_choice = "standard"
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 2, 2, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.500000], 
@@ -213,24 +204,23 @@ class Sg9:
                 ]
 
 class Sg10:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 10
         self.name = "P2/m"
         self.crystal_system = "monoclinic"
         self.Laue = "2/m"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,-1]], 
                 [[-1,0,0],[0,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -239,24 +229,23 @@ class Sg10:
                 ]
 
 class Sg11:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 11
         self.name = "P21/m"
         self.crystal_system = "monoclinic"
         self.Laue = "2/m"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,-1]], 
                 [[-1,0,0],[0,-1,0],[0,0,-1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.500000,0.000000], 
@@ -265,17 +254,17 @@ class Sg11:
                 ]
 
 class Sg12:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 12
         self.name = "C2/m"
         self.crystal_system = "monoclinic"
         self.Laue = "2/m"
         self.nsymop = 8
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 2, 0, 0, 0, 0, 2, 0, 2, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
@@ -286,7 +275,6 @@ class Sg12:
                 [[-1,0,0],[0,1,0],[0,0,-1]], 
                 [[-1,0,0],[0,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -299,24 +287,23 @@ class Sg12:
                 ]
 
 class Sg13:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 13
         self.name = "P2/c"
         self.crystal_system = "monoclinic"
         self.Laue = "2/m"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,-1]], 
                 [[-1,0,0],[0,-1,0],[0,0,-1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.500000], 
@@ -325,24 +312,23 @@ class Sg13:
                 ]
 
 class Sg14:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 14
         self.name = "P21/c"
         self.crystal_system = "monoclinic"
         self.Laue = "2/m"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,-1]], 
                 [[-1,0,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -351,17 +337,17 @@ class Sg14:
                 ]
 
 class Sg15:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 15
         self.name = "C2/c"
         self.crystal_system = "monoclinic"
         self.Laue = "2/m"
         self.nsymop = 8
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 2, 2, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,-1]], 
@@ -372,7 +358,6 @@ class Sg15:
                 [[-1,0,0],[0,-1,0],[0,0,-1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.500000], 
@@ -385,24 +370,23 @@ class Sg15:
                 ]
 
 class Sg16:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 16
         self.name = "P222"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[0,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -411,24 +395,23 @@ class Sg16:
                 ]
 
 class Sg17:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 17
         self.name = "P2221"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[0,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.500000], 
@@ -437,24 +420,23 @@ class Sg17:
                 ]
 
 class Sg18:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 18
         self.name = "P21212"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[0,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -463,24 +445,23 @@ class Sg18:
                 ]
 
 class Sg19:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 19
         self.name = "P212121"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[0,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.000000,0.500000], 
@@ -489,17 +470,17 @@ class Sg19:
                 ]
 
 class Sg20:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 20
         self.name = "C2221"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 2, 0, 0, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -510,7 +491,6 @@ class Sg20:
                 [[-1,0,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[0,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.500000], 
@@ -523,17 +503,17 @@ class Sg20:
                 ]
 
 class Sg21:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 21
         self.name = "C222"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 2, 0, 0, 0, 0, 2, 0, 2, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -544,7 +524,6 @@ class Sg21:
                 [[-1,0,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[0,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -557,17 +536,17 @@ class Sg21:
                 ]
 
 class Sg22:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 22
         self.name = "F222"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2,
                         2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -586,7 +565,6 @@ class Sg22:
                 [[-1,0,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[0,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -607,17 +585,17 @@ class Sg22:
                 ]
 
 class Sg23:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 23
         self.name = "I222"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -628,7 +606,6 @@ class Sg23:
                 [[1,0,0],[0,-1,0],[0,0,-1]], 
                 [[-1,0,0],[0,1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -641,17 +618,17 @@ class Sg23:
                 ]
 
 class Sg24:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 24
         self.name = "I212121"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -662,7 +639,6 @@ class Sg24:
                 [[-1,0,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[0,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.000000,0.500000], 
@@ -675,24 +651,23 @@ class Sg24:
                 ]
 
 class Sg25:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 25
         self.name = "Pmm2"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -701,24 +676,23 @@ class Sg25:
                 ]
 
 class Sg26:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 26
         self.name = "Pmc21"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.500000], 
@@ -727,24 +701,23 @@ class Sg26:
                 ]
 
 class Sg27:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 27
         self.name = "Pcc2"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -753,24 +726,23 @@ class Sg27:
                 ]
 
 class Sg28:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 28
         self.name = "Pma2"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -779,24 +751,23 @@ class Sg28:
                 ]
 
 class Sg29:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 29
         self.name = "Pca21"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.500000], 
@@ -805,24 +776,23 @@ class Sg29:
                 ]
 
 class Sg30:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 30
         self.name = "Pnc2"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         2, 0, 2, 0, 0, 0, 0, 0, 0, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -831,24 +801,23 @@ class Sg30:
                 ]
 
 class Sg31:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 31
         self.name = "Pmn21"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.000000,0.500000], 
@@ -857,24 +826,23 @@ class Sg31:
                 ]
 
 class Sg32:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 32
         self.name = "Pba2"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -883,24 +851,23 @@ class Sg32:
                 ]
 
 class Sg33:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 33
         self.name = "Pna21"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         2, 2, 0, 0, 0, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.500000], 
@@ -909,24 +876,23 @@ class Sg33:
                 ]
 
 class Sg34:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 34
         self.name = "Pnn2"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -935,17 +901,17 @@ class Sg34:
                 ]
 
 class Sg35:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 35
         self.name = "Cmm2"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 2, 0, 0, 0, 0, 2, 0, 2, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -956,7 +922,6 @@ class Sg35:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -969,17 +934,17 @@ class Sg35:
                 ]
 
 class Sg36:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 36
         self.name = "Cmc21"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 2, 2, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -990,7 +955,6 @@ class Sg36:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.500000], 
@@ -1003,17 +967,17 @@ class Sg36:
                 ]
 
 class Sg37:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 37
         self.name = "Ccc2"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2,
                         2, 2, 2, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1024,7 +988,6 @@ class Sg37:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -1037,17 +1000,17 @@ class Sg37:
                 ]
 
 class Sg38:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 38
         self.name = "Amm2"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         2, 0, 2, 0, 0, 2, 0, 0, 0, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1058,7 +1021,6 @@ class Sg38:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -1071,17 +1033,17 @@ class Sg38:
                 ]
 
 class Sg39:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 39
         self.name = "Abm2"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2,
                         2, 0, 2, 0, 0, 2, 0, 0, 0, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1092,7 +1054,6 @@ class Sg39:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -1105,17 +1066,17 @@ class Sg39:
                 ]
 
 class Sg40:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 40
         self.name = "Ama2"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         2, 2, 2, 2, 0, 2, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1126,7 +1087,6 @@ class Sg40:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -1139,17 +1099,17 @@ class Sg40:
                 ]
 
 class Sg41:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 41
         self.name = "Aba2"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2,
                         2, 2, 2, 2, 0, 2, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1160,7 +1120,6 @@ class Sg41:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -1173,17 +1132,17 @@ class Sg41:
                 ]
 
 class Sg42:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 42
         self.name = "Fmm2"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2,
                         2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1202,7 +1161,6 @@ class Sg42:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -1223,17 +1181,17 @@ class Sg42:
                 ]
 
 class Sg43:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 43
         self.name = "Fdd2"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2,
                         4, 2, 2, 4, 2, 2, 2, 0, 4, 4, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1252,7 +1210,6 @@ class Sg43:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -1273,17 +1230,17 @@ class Sg43:
                 ]
 
 class Sg44:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 44
         self.name = "Imm2"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1294,7 +1251,6 @@ class Sg44:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -1307,17 +1263,17 @@ class Sg44:
                 ]
 
 class Sg45:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 45
         self.name = "Iba2"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 2,
                         2, 2, 2, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1328,7 +1284,6 @@ class Sg45:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -1341,17 +1296,17 @@ class Sg45:
                 ]
 
 class Sg46:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 46
         self.name = "Ima2"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
                         2, 2, 2, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1362,7 +1317,6 @@ class Sg46:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -1375,17 +1329,17 @@ class Sg46:
                 ]
 
 class Sg47:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 47
         self.name = "Pmmm"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1396,7 +1350,6 @@ class Sg47:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -1409,17 +1362,17 @@ class Sg47:
                 ]
 
 class Sg48:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 48
         self.name = "Pnnn"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1430,7 +1383,6 @@ class Sg48:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -1443,17 +1395,17 @@ class Sg48:
                 ]
 
 class Sg49:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 49
         self.name = "Pccm"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1464,7 +1416,6 @@ class Sg49:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -1477,17 +1428,17 @@ class Sg49:
                 ]
 
 class Sg50:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 50
         self.name = "Pban"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 2, 0, 0, 0, 0, 2, 0, 2, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1498,7 +1449,6 @@ class Sg50:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -1511,17 +1461,17 @@ class Sg50:
                 ]
 
 class Sg51:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 51
         self.name = "Pmma"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1532,7 +1482,6 @@ class Sg51:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.000000,0.000000], 
@@ -1545,17 +1494,17 @@ class Sg51:
                 ]
 
 class Sg52:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 52
         self.name = "Pnna"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         2, 0, 0, 2, 2, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1566,7 +1515,6 @@ class Sg52:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.000000,0.000000], 
@@ -1579,17 +1527,17 @@ class Sg52:
                 ]
 
 class Sg53:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 53
         self.name = "Pmna"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 2, 2, 0, 0, 0, 2, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1600,7 +1548,6 @@ class Sg53:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.000000,0.500000], 
@@ -1613,17 +1560,17 @@ class Sg53:
                 ]
 
 class Sg54:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 54
         self.name = "Pcca"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 2, 0, 2, 0, 0, 0, 2, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1634,7 +1581,6 @@ class Sg54:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.000000,0.000000], 
@@ -1647,17 +1593,17 @@ class Sg54:
                 ]
 
 class Sg55:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 55
         self.name = "Pbam"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1668,7 +1614,6 @@ class Sg55:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -1681,17 +1626,17 @@ class Sg55:
                 ]
 
 class Sg56:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 56
         self.name = "Pccn"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 2, 0, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1702,7 +1647,6 @@ class Sg56:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.500000,0.000000], 
@@ -1715,17 +1659,17 @@ class Sg56:
                 ]
 
 class Sg57:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 57
         self.name = "Pbcm"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1736,7 +1680,6 @@ class Sg57:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.500000], 
@@ -1749,17 +1692,17 @@ class Sg57:
                 ]
 
 class Sg58:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 58
         self.name = "Pnnm"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1770,7 +1713,6 @@ class Sg58:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -1783,17 +1725,17 @@ class Sg58:
                 ]
 
 class Sg59:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 59
         self.name = "Pmmn"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 2, 0, 2, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1804,7 +1746,6 @@ class Sg59:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -1817,17 +1758,17 @@ class Sg59:
                 ]
 
 class Sg60:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 60
         self.name = "Pbcn"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 0, 2, 0, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1838,7 +1779,6 @@ class Sg60:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.500000,0.500000], 
@@ -1851,17 +1791,17 @@ class Sg60:
                 ]
 
 class Sg61:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 61
         self.name = "Pbca"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 0, 2, 0, 2, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1872,7 +1812,6 @@ class Sg61:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.000000,0.500000], 
@@ -1885,17 +1824,17 @@ class Sg61:
                 ]
 
 class Sg62:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 62
         self.name = "Pnma"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         2, 0, 0, 0, 2, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1906,7 +1845,6 @@ class Sg62:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.000000,0.500000], 
@@ -1919,17 +1857,17 @@ class Sg62:
                 ]
 
 class Sg63:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 63
         self.name = "Cmcm"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 2, 2, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1948,7 +1886,6 @@ class Sg63:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.500000], 
@@ -1969,17 +1906,17 @@ class Sg63:
                 ]
 
 class Sg64:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 64
         self.name = "Cmca"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -1998,7 +1935,6 @@ class Sg64:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.500000,0.500000], 
@@ -2019,17 +1955,17 @@ class Sg64:
                 ]
 
 class Sg65:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 65
         self.name = "Cmmm"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 2, 0, 0, 0, 0, 2, 0, 2, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -2048,7 +1984,6 @@ class Sg65:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -2069,17 +2004,17 @@ class Sg65:
                 ]
 
 class Sg66:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 66
         self.name = "Cccm"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2,
                         2, 2, 2, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -2098,7 +2033,6 @@ class Sg66:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -2119,17 +2053,17 @@ class Sg66:
                 ]
 
 class Sg67:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 67
         self.name = "Cmma"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 2, 0, 0, 2, 2, 2, 0, 2, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -2148,7 +2082,6 @@ class Sg67:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.500000,0.000000], 
@@ -2169,17 +2102,17 @@ class Sg67:
                 ]
 
 class Sg68:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 68
         self.name = "Ccca"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2,
                         2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -2198,7 +2131,6 @@ class Sg68:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.500000,0.000000], 
@@ -2219,17 +2151,17 @@ class Sg68:
                 ]
 
 class Sg69:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 69
         self.name = "Fmmm"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 32
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2,
                         2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -2264,7 +2196,6 @@ class Sg69:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -2301,17 +2232,17 @@ class Sg69:
                 ]
 
 class Sg70:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 70
         self.name = "Fddd"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 32
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2,
                         4, 2, 2, 4, 2, 2, 4, 0, 4, 4, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -2346,7 +2277,6 @@ class Sg70:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -2383,17 +2313,17 @@ class Sg70:
                 ]
 
 class Sg71:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 71
         self.name = "Immm"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -2412,7 +2342,6 @@ class Sg71:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -2433,17 +2362,17 @@ class Sg71:
                 ]
 
 class Sg72:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 72
         self.name = "Ibam"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 2,
                         2, 2, 2, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -2462,7 +2391,6 @@ class Sg72:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -2483,17 +2411,17 @@ class Sg72:
                 ]
 
 class Sg73:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 73
         self.name = "Ibca"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 2,
                         2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -2512,7 +2440,6 @@ class Sg73:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.000000,0.500000], 
@@ -2533,17 +2460,17 @@ class Sg73:
                 ]
 
 class Sg74:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 74
         self.name = "Imma"
         self.crystal_system = "orthorhombic"
         self.Laue = "mmm"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
                         2, 0, 0, 2, 2, 2, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -2562,7 +2489,6 @@ class Sg74:
                 [[1,0,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[0,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.500000,0.000000], 
@@ -2583,24 +2509,23 @@ class Sg74:
                 ]
 
 class Sg75:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 75
         self.name = "P4"
         self.crystal_system = "tetragonal"
         self.Laue = "4/m"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
                 [[0,-1,0],[1,0,0],[0,0,1]], 
                 [[0,1,0],[-1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -2609,24 +2534,23 @@ class Sg75:
                 ]
 
 class Sg76:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 76
         self.name = "P41"
         self.crystal_system = "tetragonal"
         self.Laue = "4/m"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
                 [[0,-1,0],[1,0,0],[0,0,1]], 
                 [[0,1,0],[-1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.500000], 
@@ -2635,24 +2559,23 @@ class Sg76:
                 ]
 
 class Sg77:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 77
         self.name = "P42"
         self.crystal_system = "tetragonal"
         self.Laue = "4/m"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
                 [[0,-1,0],[1,0,0],[0,0,1]], 
                 [[0,1,0],[-1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -2661,24 +2584,23 @@ class Sg77:
                 ]
 
 class Sg78:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 78
         self.name = "P43"
         self.crystal_system = "tetragonal"
         self.Laue = "4/m"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
                 [[0,-1,0],[1,0,0],[0,0,1]], 
                 [[0,1,0],[-1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.500000], 
@@ -2687,17 +2609,17 @@ class Sg78:
                 ]
 
 class Sg79:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 79
         self.name = "I4"
         self.crystal_system = "tetragonal"
         self.Laue = "4/m"
         self.nsymop = 8
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -2708,7 +2630,6 @@ class Sg79:
                 [[0,-1,0],[1,0,0],[0,0,1]], 
                 [[0,1,0],[-1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -2721,17 +2642,17 @@ class Sg79:
                 ]
 
 class Sg80:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 80
         self.name = "I41"
         self.crystal_system = "tetragonal"
         self.Laue = "4/m"
         self.nsymop = 8
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -2742,7 +2663,6 @@ class Sg80:
                 [[0,-1,0],[1,0,0],[0,0,1]], 
                 [[0,1,0],[-1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.500000,0.500000], 
@@ -2755,24 +2675,23 @@ class Sg80:
                 ]
 
 class Sg81:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 81
         self.name = "P-4"
         self.crystal_system = "tetragonal"
         self.Laue = "4/m"
         self.nsymop = 4
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
                 [[0,1,0],[-1,0,0],[0,0,-1]], 
                 [[0,-1,0],[1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -2781,17 +2700,17 @@ class Sg81:
                 ]
 
 class Sg82:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 82
         self.name = "I-4"
         self.crystal_system = "tetragonal"
         self.Laue = "4/m"
         self.nsymop = 8
         self.nuniq = 4
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -2802,7 +2721,6 @@ class Sg82:
                 [[0,1,0],[-1,0,0],[0,0,-1]], 
                 [[0,-1,0],[1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -2815,17 +2733,17 @@ class Sg82:
                 ]
 
 class Sg83:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 83
         self.name = "P4/m"
         self.crystal_system = "tetragonal"
         self.Laue = "4/m"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -2836,7 +2754,6 @@ class Sg83:
                 [[0,1,0],[-1,0,0],[0,0,-1]], 
                 [[0,-1,0],[1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -2849,17 +2766,17 @@ class Sg83:
                 ]
 
 class Sg84:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 84
         self.name = "P42/m"
         self.crystal_system = "tetragonal"
         self.Laue = "4/m"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -2870,7 +2787,6 @@ class Sg84:
                 [[0,1,0],[-1,0,0],[0,0,-1]], 
                 [[0,-1,0],[1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -2883,17 +2799,17 @@ class Sg84:
                 ]
 
 class Sg85:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 85
         self.name = "P4/n"
         self.crystal_system = "tetragonal"
         self.Laue = "4/m"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 2, 0, 2, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -2904,7 +2820,6 @@ class Sg85:
                 [[0,1,0],[-1,0,0],[0,0,-1]], 
                 [[0,-1,0],[1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -2917,17 +2832,17 @@ class Sg85:
                 ]
 
 class Sg86:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 86
         self.name = "P42/n"
         self.crystal_system = "tetragonal"
         self.Laue = "4/m"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -2938,7 +2853,6 @@ class Sg86:
                 [[0,1,0],[-1,0,0],[0,0,-1]], 
                 [[0,-1,0],[1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -2951,17 +2865,17 @@ class Sg86:
                 ]
 
 class Sg87:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 87
         self.name = "I4/m"
         self.crystal_system = "tetragonal"
         self.Laue = "4/m"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -2980,7 +2894,6 @@ class Sg87:
                 [[0,1,0],[-1,0,0],[0,0,-1]], 
                 [[0,-1,0],[1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -3001,17 +2914,17 @@ class Sg87:
                 ]
 
 class Sg88:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 88
         self.name = "I41/a"
         self.crystal_system = "tetragonal"
         self.Laue = "4/m"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 2, 2, 2, 0, 2, 2, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3030,7 +2943,6 @@ class Sg88:
                 [[0,1,0],[-1,0,0],[0,0,-1]], 
                 [[0,-1,0],[1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.500000,0.500000], 
@@ -3051,17 +2963,17 @@ class Sg88:
                 ]
 
 class Sg89:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 89
         self.name = "P422"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3072,7 +2984,6 @@ class Sg89:
                 [[0,1,0],[1,0,0],[0,0,-1]], 
                 [[0,-1,0],[-1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -3085,17 +2996,17 @@ class Sg89:
                 ]
 
 class Sg90:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 90
         self.name = "P4212"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3106,7 +3017,6 @@ class Sg90:
                 [[0,1,0],[1,0,0],[0,0,-1]], 
                 [[0,-1,0],[-1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -3119,17 +3029,17 @@ class Sg90:
                 ]
 
 class Sg91:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 91
         self.name = "P4122"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3140,7 +3050,6 @@ class Sg91:
                 [[0,1,0],[1,0,0],[0,0,-1]], 
                 [[0,-1,0],[-1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.500000], 
@@ -3153,17 +3062,17 @@ class Sg91:
                 ]
 
 class Sg92:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 92
         self.name = "P41212"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3174,7 +3083,6 @@ class Sg92:
                 [[0,1,0],[1,0,0],[0,0,-1]], 
                 [[0,-1,0],[-1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.500000], 
@@ -3187,17 +3095,17 @@ class Sg92:
                 ]
 
 class Sg93:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 93
         self.name = "P4222"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3208,7 +3116,6 @@ class Sg93:
                 [[0,1,0],[1,0,0],[0,0,-1]], 
                 [[0,-1,0],[-1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -3221,17 +3128,17 @@ class Sg93:
                 ]
 
 class Sg94:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 94
         self.name = "P42212"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3242,7 +3149,6 @@ class Sg94:
                 [[0,1,0],[1,0,0],[0,0,-1]], 
                 [[0,-1,0],[-1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -3255,17 +3161,17 @@ class Sg94:
                 ]
 
 class Sg95:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 95
         self.name = "P4322"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3276,7 +3182,6 @@ class Sg95:
                 [[0,1,0],[1,0,0],[0,0,-1]], 
                 [[0,-1,0],[-1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.500000], 
@@ -3289,17 +3194,17 @@ class Sg95:
                 ]
 
 class Sg96:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 96
         self.name = "P43212"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3310,7 +3215,6 @@ class Sg96:
                 [[0,1,0],[1,0,0],[0,0,-1]], 
                 [[0,-1,0],[-1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.500000], 
@@ -3323,17 +3227,17 @@ class Sg96:
                 ]
 
 class Sg97:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 97
         self.name = "I422"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3352,7 +3256,6 @@ class Sg97:
                 [[0,1,0],[1,0,0],[0,0,-1]], 
                 [[0,-1,0],[-1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -3373,17 +3276,17 @@ class Sg97:
                 ]
 
 class Sg98:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 98
         self.name = "I4122"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3402,7 +3305,6 @@ class Sg98:
                 [[0,1,0],[1,0,0],[0,0,-1]], 
                 [[0,-1,0],[-1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.500000,0.500000], 
@@ -3423,17 +3325,17 @@ class Sg98:
                 ]
 
 class Sg99:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 99
         self.name = "P4mm"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3444,7 +3346,6 @@ class Sg99:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -3457,17 +3358,17 @@ class Sg99:
                 ]
 
 class Sg100:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 100
         self.name = "P4bm"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3478,7 +3379,6 @@ class Sg100:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -3491,17 +3391,17 @@ class Sg100:
                 ]
 
 class Sg101:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 101
         self.name = "P42cm"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3512,7 +3412,6 @@ class Sg101:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -3525,17 +3424,17 @@ class Sg101:
                 ]
 
 class Sg102:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 102
         self.name = "P42nm"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3546,7 +3445,6 @@ class Sg102:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -3559,17 +3457,17 @@ class Sg102:
                 ]
 
 class Sg103:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 103
         self.name = "P4cc"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
                         0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3580,7 +3478,6 @@ class Sg103:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -3593,17 +3490,17 @@ class Sg103:
                 ]
 
 class Sg104:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 104
         self.name = "P4nc"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3614,7 +3511,6 @@ class Sg104:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -3627,17 +3523,17 @@ class Sg104:
                 ]
 
 class Sg105:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 105
         self.name = "P42mc"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3648,7 +3544,6 @@ class Sg105:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -3661,17 +3556,17 @@ class Sg105:
                 ]
 
 class Sg106:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 106
         self.name = "P42bc"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 2, 0,
                         0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3682,7 +3577,6 @@ class Sg106:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -3695,17 +3589,17 @@ class Sg106:
                 ]
 
 class Sg107:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 107
         self.name = "I4mm"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3724,7 +3618,6 @@ class Sg107:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -3745,17 +3638,17 @@ class Sg107:
                 ]
 
 class Sg108:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 108
         self.name = "I4cm"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 2, 2,
                         0, 2, 2, 0, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3774,7 +3667,6 @@ class Sg108:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -3795,17 +3687,17 @@ class Sg108:
                 ]
 
 class Sg109:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 109
         self.name = "I41md"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 2, 2, 2, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3824,7 +3716,6 @@ class Sg109:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.500000,0.500000], 
@@ -3845,17 +3736,17 @@ class Sg109:
                 ]
 
 class Sg110:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 110
         self.name = "I41cd"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 2, 2,
                         0, 2, 2, 0, 0, 0, 2, 2, 2, 2, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3874,7 +3765,6 @@ class Sg110:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.500000,0.500000], 
@@ -3895,17 +3785,17 @@ class Sg110:
                 ]
 
 class Sg111:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 111
         self.name = "P-42m"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3916,7 +3806,6 @@ class Sg111:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -3929,17 +3818,17 @@ class Sg111:
                 ]
 
 class Sg112:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 112
         self.name = "P-42c"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3950,7 +3839,6 @@ class Sg112:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -3963,17 +3851,17 @@ class Sg112:
                 ]
 
 class Sg113:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 113
         self.name = "P-421m"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -3984,7 +3872,6 @@ class Sg113:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -3997,17 +3884,17 @@ class Sg113:
                 ]
 
 class Sg114:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 114
         self.name = "P-421c"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4018,7 +3905,6 @@ class Sg114:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4031,17 +3917,17 @@ class Sg114:
                 ]
 
 class Sg115:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 115
         self.name = "P-4m2"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4052,7 +3938,6 @@ class Sg115:
                 [[0,1,0],[1,0,0],[0,0,-1]], 
                 [[0,-1,0],[-1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4065,17 +3950,17 @@ class Sg115:
                 ]
 
 class Sg116:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 116
         self.name = "P-4c2"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4086,7 +3971,6 @@ class Sg116:
                 [[0,1,0],[1,0,0],[0,0,-1]], 
                 [[0,-1,0],[-1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4099,17 +3983,17 @@ class Sg116:
                 ]
 
 class Sg117:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 117
         self.name = "P-4b2"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4120,7 +4004,6 @@ class Sg117:
                 [[0,1,0],[1,0,0],[0,0,-1]], 
                 [[0,-1,0],[-1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4133,17 +4016,17 @@ class Sg117:
                 ]
 
 class Sg118:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 118
         self.name = "P-4n2"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 8
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4154,7 +4037,6 @@ class Sg118:
                 [[0,1,0],[1,0,0],[0,0,-1]], 
                 [[0,-1,0],[-1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4167,17 +4049,17 @@ class Sg118:
                 ]
 
 class Sg119:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 119
         self.name = "I-4m2"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4196,7 +4078,6 @@ class Sg119:
                 [[0,1,0],[1,0,0],[0,0,-1]], 
                 [[0,-1,0],[-1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4217,17 +4098,17 @@ class Sg119:
                 ]
 
 class Sg120:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 120
         self.name = "I-4c2"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 2, 2,
                         0, 2, 2, 0, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4246,7 +4127,6 @@ class Sg120:
                 [[0,1,0],[1,0,0],[0,0,-1]], 
                 [[0,-1,0],[-1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4267,17 +4147,17 @@ class Sg120:
                 ]
 
 class Sg121:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 121
         self.name = "I-42m"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4296,7 +4176,6 @@ class Sg121:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4317,17 +4196,17 @@ class Sg121:
                 ]
 
 class Sg122:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 122
         self.name = "I-42d"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 8
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4346,7 +4225,6 @@ class Sg122:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4367,17 +4245,17 @@ class Sg122:
                 ]
 
 class Sg123:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 123
         self.name = "P4/mmm"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4396,7 +4274,6 @@ class Sg123:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4417,17 +4294,17 @@ class Sg123:
                 ]
 
 class Sg124:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 124
         self.name = "P4/mcc"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
                         0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4446,7 +4323,6 @@ class Sg124:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4467,17 +4343,17 @@ class Sg124:
                 ]
 
 class Sg125:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 125
         self.name = "P4/nbm"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 2, 0, 0, 0, 0, 2, 0, 2, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4496,7 +4372,6 @@ class Sg125:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4517,17 +4392,17 @@ class Sg125:
                 ]
 
 class Sg126:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 126
         self.name = "P4/nnc"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4546,7 +4421,6 @@ class Sg126:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4567,17 +4441,17 @@ class Sg126:
                 ]
 
 class Sg127:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 127
         self.name = "P4/mbm"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4596,7 +4470,6 @@ class Sg127:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4617,17 +4490,17 @@ class Sg127:
                 ]
 
 class Sg128:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 128
         self.name = "P4/mnc"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4646,7 +4519,6 @@ class Sg128:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4667,17 +4539,17 @@ class Sg128:
                 ]
 
 class Sg129:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 129
         self.name = "P4/nmm"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 2, 0, 2, 2, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4696,7 +4568,6 @@ class Sg129:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4717,17 +4588,17 @@ class Sg129:
                 ]
 
 class Sg130:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 130
         self.name = "P4/ncc"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
                         0, 0, 2, 0, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4746,7 +4617,6 @@ class Sg130:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4767,17 +4637,17 @@ class Sg130:
                 ]
 
 class Sg131:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 131
         self.name = "P42/mmc"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4796,7 +4666,6 @@ class Sg131:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4817,17 +4686,17 @@ class Sg131:
                 ]
 
 class Sg132:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 132
         self.name = "P42/mcm"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4846,7 +4715,6 @@ class Sg132:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4867,17 +4735,17 @@ class Sg132:
                 ]
 
 class Sg133:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 133
         self.name = "P42/nbc"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 2, 0,
                         0, 2, 0, 0, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4896,7 +4764,6 @@ class Sg133:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4917,17 +4784,17 @@ class Sg133:
                 ]
 
 class Sg134:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 134
         self.name = "P42/nnm"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4946,7 +4813,6 @@ class Sg134:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -4967,17 +4833,17 @@ class Sg134:
                 ]
 
 class Sg135:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 135
         self.name = "P42/mbc"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 2, 0,
                         0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -4996,7 +4862,6 @@ class Sg135:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -5017,17 +4882,17 @@ class Sg135:
                 ]
 
 class Sg136:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 136
         self.name = "P42/mnm"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -5046,7 +4911,6 @@ class Sg136:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -5067,17 +4931,17 @@ class Sg136:
                 ]
 
 class Sg137:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 137
         self.name = "P42/nmc"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -5096,7 +4960,6 @@ class Sg137:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -5117,17 +4980,17 @@ class Sg137:
                 ]
 
 class Sg138:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 138
         self.name = "P42/ncm"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 16
         self.nuniq = 16
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 2, 0, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -5146,7 +5009,6 @@ class Sg138:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -5167,17 +5029,17 @@ class Sg138:
                 ]
 
 class Sg139:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 139
         self.name = "I4/mmm"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 32
         self.nuniq = 16
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -5212,7 +5074,6 @@ class Sg139:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -5249,17 +5110,17 @@ class Sg139:
                 ]
 
 class Sg140:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 140
         self.name = "I4/mcm"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 32
         self.nuniq = 16
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 2, 2,
                         0, 2, 2, 0, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -5294,7 +5155,6 @@ class Sg140:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -5331,17 +5191,17 @@ class Sg140:
                 ]
 
 class Sg141:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 141
         self.name = "I41/amd"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 32
         self.nuniq = 16
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 0, 0,
                         2, 0, 0, 2, 2, 2, 2, 2, 2, 2, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -5376,7 +5236,6 @@ class Sg141:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.500000,0.500000], 
@@ -5413,17 +5272,17 @@ class Sg141:
                 ]
 
 class Sg142:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 142
         self.name = "I41/acd"
         self.crystal_system = "tetragonal"
         self.Laue = "4/mmm"
         self.nsymop = 32
         self.nuniq = 16
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 2, 2,
                         2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -5458,7 +5317,6 @@ class Sg142:
                 [[0,-1,0],[-1,0,0],[0,0,1]], 
                 [[0,1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.500000,0.500000], 
@@ -5495,23 +5353,22 @@ class Sg142:
                 ]
 
 class Sg143:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 143
         self.name = "P3"
         self.crystal_system = "trigonal"
         self.Laue = "-3"
         self.nsymop = 3
         self.nuniq = 3
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
                 [[-1,1,0],[-1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -5519,23 +5376,22 @@ class Sg143:
                 ]
 
 class Sg144:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 144
         self.name = "P31"
         self.crystal_system = "trigonal"
         self.Laue = "-3"
         self.nsymop = 3
         self.nuniq = 3
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
                 [[-1,1,0],[-1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.333333], 
@@ -5543,23 +5399,22 @@ class Sg144:
                 ]
 
 class Sg145:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 145
         self.name = "P32"
         self.crystal_system = "trigonal"
         self.Laue = "-3"
         self.nsymop = 3
         self.nuniq = 3
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
                 [[-1,1,0],[-1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.666667], 
@@ -5571,10 +5426,28 @@ class Sg146:
         self.no = 146
         self.name = "R3"
         self.crystal_system = "trigonal"
-
         self.cell_choice = cell_choice
-        if self.cell_choice=="hexagonal" or self.cell_choice=="standard":
+        if self.cell_choice=="rhombohedral" :
+            self.name = "R3r"
             self.Laue = "-3"
+            self.nsymop = 3
+            self.nuniq = 3
+            self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0]
+            self.rot = [
+                [[1,0,0],[0,1,0],[0,0,1]], 
+                [[0,0,1],[1,0,0],[0,1,0]], 
+                [[0,1,0],[0,0,1],[1,0,0]], 
+                ]
+            self.trans = [
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                ]
+        else: #standard hexagonal setting
+            self.Laue = "-3"
+            self.cell_choice = "hexagonal"
             self.nsymop = 9
             self.nuniq = 3
             self.syscond = [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0,
@@ -5602,36 +5475,19 @@ class Sg146:
                 [0.333333,0.666667,0.666667], 
                 [0.333333,0.666667,0.666667], 
                 ]
-        elif self.cell_choice=="rhombohedral" :
-            self.Laue = "-3"
-            self.nsymop = 3
-            self.nuniq = 3
-            self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                        0, 0, 0]
-            self.rot = [
-                [[1,0,0],[0,1,0],[0,0,1]], 
-                [[0,0,1],[1,0,0],[0,1,0]], 
-                [[0,1,0],[0,0,1],[1,0,0]], 
-                ]
-            self.trans = [
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                ]
 
 class Sg147:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 147
         self.name = "P-3"
         self.crystal_system = "trigonal"
         self.Laue = "-3"
         self.nsymop = 6
         self.nuniq = 6
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -5640,7 +5496,6 @@ class Sg147:
                 [[0,1,0],[-1,1,0],[0,0,-1]], 
                 [[1,-1,0],[1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -5654,60 +5509,10 @@ class Sg148:
     def __init__(self,cell_choice="standard"):
         self.no = 148
         self.name = "R-3"
-        self.crystal_system = "trigonal"
-        
+        self.crystal_system = "trigonal"        
         self.cell_choice = cell_choice
-        if self.cell_choice=="hexagonal" or self.cell_choice=="standard":
-            self.Laue = "-3"
-            self.cell_choice = "hexagonal"
-            self.nsymop = 18
-            self.nuniq = 6
-            self.syscond = [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0,
-                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-                        0, 0, 3]
-
-            self.rot = [
-                [[1,0,0],[0,1,0],[0,0,1]], 
-                [[0,-1,0],[1,-1,0],[0,0,1]], 
-                [[-1,1,0],[-1,0,0],[0,0,1]], 
-                [[-1,0,0],[0,-1,0],[0,0,-1]], 
-                [[0,1,0],[-1,1,0],[0,0,-1]], 
-                [[1,-1,0],[1,0,0],[0,0,-1]], 
-                [[1,0,0],[0,1,0],[0,0,1]], 
-                [[0,-1,0],[1,-1,0],[0,0,1]], 
-                [[-1,1,0],[-1,0,0],[0,0,1]], 
-                [[-1,0,0],[0,-1,0],[0,0,-1]], 
-                [[0,1,0],[-1,1,0],[0,0,-1]], 
-                [[1,-1,0],[1,0,0],[0,0,-1]], 
-                [[1,0,0],[0,1,0],[0,0,1]], 
-                [[0,-1,0],[1,-1,0],[0,0,1]], 
-                [[-1,1,0],[-1,0,0],[0,0,1]], 
-                [[-1,0,0],[0,-1,0],[0,0,-1]], 
-                [[0,1,0],[-1,1,0],[0,0,-1]], 
-                [[1,-1,0],[1,0,0],[0,0,-1]], 
-                ]
-
-            self.trans = [
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.666667,0.333333,0.333333], 
-                [0.666667,0.333333,0.333333], 
-                [0.666667,0.333333,0.333333], 
-                [0.666667,0.333333,0.333333], 
-                [0.666667,0.333333,0.333333], 
-                [0.666667,0.333333,0.333333], 
-                [0.333333,0.666667,0.666667], 
-                [0.333333,0.666667,0.666667], 
-                [0.333333,0.666667,0.666667], 
-                [0.333333,0.666667,0.666667], 
-                [0.333333,0.666667,0.666667], 
-                [0.333333,0.666667,0.666667], 
-                ]
-        elif self.cell_choice=="rhombohedral" :
+        if self.cell_choice=="rhombohedral" :
+            self.name = "R-3r"
             self.Laue = "-3"
             self.nsymop = 6
             self.nuniq = 6
@@ -5730,19 +5535,67 @@ class Sg148:
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
                 ]
+        else: #standard hexagonal setting
+            self.Laue = "-3"
+            self.cell_choice = "hexagonal"
+            self.nsymop = 18
+            self.nuniq = 6
+            self.syscond = [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+                        0, 0, 3]
+            self.rot = [
+                [[1,0,0],[0,1,0],[0,0,1]], 
+                [[0,-1,0],[1,-1,0],[0,0,1]], 
+                [[-1,1,0],[-1,0,0],[0,0,1]], 
+                [[-1,0,0],[0,-1,0],[0,0,-1]], 
+                [[0,1,0],[-1,1,0],[0,0,-1]], 
+                [[1,-1,0],[1,0,0],[0,0,-1]], 
+                [[1,0,0],[0,1,0],[0,0,1]], 
+                [[0,-1,0],[1,-1,0],[0,0,1]], 
+                [[-1,1,0],[-1,0,0],[0,0,1]], 
+                [[-1,0,0],[0,-1,0],[0,0,-1]], 
+                [[0,1,0],[-1,1,0],[0,0,-1]], 
+                [[1,-1,0],[1,0,0],[0,0,-1]], 
+                [[1,0,0],[0,1,0],[0,0,1]], 
+                [[0,-1,0],[1,-1,0],[0,0,1]], 
+                [[-1,1,0],[-1,0,0],[0,0,1]], 
+                [[-1,0,0],[0,-1,0],[0,0,-1]], 
+                [[0,1,0],[-1,1,0],[0,0,-1]], 
+                [[1,-1,0],[1,0,0],[0,0,-1]], 
+                ]
+            self.trans = [
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.666667,0.333333,0.333333], 
+                [0.666667,0.333333,0.333333], 
+                [0.666667,0.333333,0.333333], 
+                [0.666667,0.333333,0.333333], 
+                [0.666667,0.333333,0.333333], 
+                [0.666667,0.333333,0.333333], 
+                [0.333333,0.666667,0.666667], 
+                [0.333333,0.666667,0.666667], 
+                [0.333333,0.666667,0.666667], 
+                [0.333333,0.666667,0.666667], 
+                [0.333333,0.666667,0.666667], 
+                [0.333333,0.666667,0.666667], 
+                ]
 
 class Sg149:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 149
         self.name = "P312"
         self.crystal_system = "trigonal"
         self.Laue = "-31m"
         self.nsymop = 6
         self.nuniq = 6
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -5751,7 +5604,6 @@ class Sg149:
                 [[-1,1,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[1,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -5762,17 +5614,17 @@ class Sg149:
                 ]
 
 class Sg150:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 150
         self.name = "P321"
         self.crystal_system = "trigonal"
         self.Laue = "-3m1"
         self.nsymop = 6
         self.nuniq = 6
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -5781,7 +5633,6 @@ class Sg150:
                 [[1,-1,0],[0,-1,0],[0,0,-1]], 
                 [[-1,0,0],[-1,1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -5792,17 +5643,17 @@ class Sg150:
                 ]
 
 class Sg151:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 151
         self.name = "P3112"
         self.crystal_system = "trigonal"
         self.Laue = "-31m"
         self.nsymop = 6
         self.nuniq = 6
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -5811,7 +5662,6 @@ class Sg151:
                 [[-1,1,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[1,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.333333], 
@@ -5822,17 +5672,17 @@ class Sg151:
                 ]
 
 class Sg152:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 152
         self.name = "P3121"
         self.crystal_system = "trigonal"
         self.Laue = "-3m1"
         self.nsymop = 6
         self.nuniq = 6
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -5841,7 +5691,6 @@ class Sg152:
                 [[1,-1,0],[0,-1,0],[0,0,-1]], 
                 [[-1,0,0],[-1,1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.333333], 
@@ -5852,17 +5701,17 @@ class Sg152:
                 ]
 
 class Sg153:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 153
         self.name = "P3212"
         self.crystal_system = "trigonal"
         self.Laue = "-31m"
         self.nsymop = 6
         self.nuniq = 6
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -5871,7 +5720,6 @@ class Sg153:
                 [[-1,1,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[1,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.666667], 
@@ -5882,17 +5730,17 @@ class Sg153:
                 ]
 
 class Sg154:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 154
         self.name = "P3221"
         self.Laue = "-3m1"
         self.crystal_system = "trigonal"
         self.nsymop = 6
         self.nuniq = 6
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -5901,7 +5749,6 @@ class Sg154:
                 [[1,-1,0],[0,-1,0],[0,0,-1]], 
                 [[-1,0,0],[-1,1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.666667], 
@@ -5915,10 +5762,33 @@ class Sg155:
     def __init__(self,cell_choice="standard"):
         self.no = 155
         self.name = "R32"
-        self.crystal_system = "trigonal"
-        
+        self.crystal_system = "trigonal"        
         self.cell_choice = cell_choice
-        if self.cell_choice=="hexagonal" or self.cell_choice=="standard":
+        if self.cell_choice=="rhombohedral" :
+            self.name = "R32r"
+            self.Laue = "-3m"
+            self.nsymop = 6
+            self.nuniq = 6
+            self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0]
+            self.rot = [
+                [[1,0,0],[0,1,0],[0,0,1]], 
+                [[0,0,1],[1,0,0],[0,1,0]], 
+                [[0,1,0],[0,0,1],[1,0,0]], 
+                [[0,-1,0],[-1,0,0],[0,0,-1]], 
+                [[-1,0,0],[0,0,-1],[0,-1,0]], 
+                [[0,0,-1],[0,-1,0],[-1,0,0]], 
+                ]
+            self.trans = [
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                ]
+        else: #standard hexagonal setting
             self.Laue = "-3m1"
             self.cell_choice = "hexagonal"
             self.nsymop = 18
@@ -5946,7 +5816,6 @@ class Sg155:
                 [[1,-1,0],[0,-1,0],[0,0,-1]], 
                 [[-1,0,0],[-1,1,0],[0,0,-1]], 
                 ]
-
             self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -5966,43 +5835,20 @@ class Sg155:
                 [0.333333,0.666667,0.666667], 
                 [0.333333,0.666667,0.666667], 
                 [0.333333,0.666667,0.666667], 
-                ]
-        elif self.cell_choice=="rhombohedral" :
-            self.Laue = "-3m"
-            self.nsymop = 6
-            self.nuniq = 6
-            self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                        0, 0, 0]
-            self.rot = [
-                [[1,0,0],[0,1,0],[0,0,1]], 
-                [[0,0,1],[1,0,0],[0,1,0]], 
-                [[0,1,0],[0,0,1],[1,0,0]], 
-                [[0,-1,0],[-1,0,0],[0,0,-1]], 
-                [[-1,0,0],[0,0,-1],[0,-1,0]], 
-                [[0,0,-1],[0,-1,0],[-1,0,0]], 
-                ]
-            self.trans = [
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
                 ]
 
 class Sg156:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 156
         self.name = "P3m1"
         self.crystal_system = "trigonal"
         self.Laue = "-3m1"
         self.nsymop = 6
         self.nuniq = 6
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -6011,7 +5857,6 @@ class Sg156:
                 [[-1,1,0],[0,1,0],[0,0,1]], 
                 [[1,0,0],[1,-1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -6022,17 +5867,17 @@ class Sg156:
                 ]
 
 class Sg157:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 157
         self.name = "P31m"
         self.crystal_system = "trigonal" 
         self.Laue = "-31m"
         self.nsymop = 6
         self.nuniq = 6
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -6041,7 +5886,6 @@ class Sg157:
                 [[1,-1,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[-1,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -6052,17 +5896,17 @@ class Sg157:
                 ]
 
 class Sg158:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 158
         self.name = "P3c1"
         self.crystal_system = "trigonal"
         self.Laue = "-3m1"
         self.nsymop = 6
         self.nuniq = 6
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 2, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -6071,7 +5915,6 @@ class Sg158:
                 [[-1,1,0],[0,1,0],[0,0,1]], 
                 [[1,0,0],[1,-1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -6082,17 +5925,17 @@ class Sg158:
                 ]
 
 class Sg159:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 159
         self.name = "P31c"
         self.crystal_system = "trigonal"
         self.Laue = "-31m"
         self.nsymop = 6
         self.nuniq = 6
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -6101,7 +5944,6 @@ class Sg159:
                 [[1,-1,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[-1,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -6115,11 +5957,35 @@ class Sg160:
     def __init__(self,cell_choice="standard"):
         self.no = 160
         self.name = "R3m"
-        self.crystal_system = "trigonal"
-        
+        self.crystal_system = "trigonal"        
         self.cell_choice = cell_choice
-        if self.cell_choice=="hexagonal" or self.cell_choice=="standard":
+        if self.cell_choice=="rhombohedral" :
+            self.name = "R3mr"
+            self.Laue = "-3m"
+            self.nsymop = 6
+            self.nuniq = 6
+            self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0]
+            self.rot = [
+                [[1,0,0],[0,1,0],[0,0,1]], 
+                [[0,0,1],[1,0,0],[0,1,0]], 
+                [[0,1,0],[0,0,1],[1,0,0]], 
+                [[0,1,0],[1,0,0],[0,0,1]], 
+                [[1,0,0],[0,0,1],[0,1,0]], 
+                [[0,0,1],[0,1,0],[1,0,0]], 
+                ]
+            self.trans = [
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000],
+                ]
+        else: #standard hexagonal setting
             self.Laue = "-3m1"
+            self.cell_choice = "hexagonal"
             self.nsymop = 18
             self.nuniq = 6
             self.syscond = [0, 0, 0, 0, 0, 3, 0, 3, 0, 0, 0, 0,
@@ -6145,7 +6011,6 @@ class Sg160:
                 [[-1,1,0],[0,1,0],[0,0,1]], 
                 [[1,0,0],[1,-1,0],[0,0,1]], 
                 ]
-
             self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -6165,89 +6030,16 @@ class Sg160:
                 [0.333333,0.666667,0.666667], 
                 [0.333333,0.666667,0.666667], 
                 [0.333333,0.666667,0.666667], 
-                ]
-        elif self.cell_choice=="rhombohedral" :
-            self.Laue = "-3m"
-            self.nsymop = 6
-            self.nuniq = 6
-            self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                        0, 0, 0]
-            self.rot = [
-                [[1,0,0],[0,1,0],[0,0,1]], 
-                [[0,0,1],[1,0,0],[0,1,0]], 
-                [[0,1,0],[0,0,1],[1,0,0]], 
-                [[0,1,0],[1,0,0],[0,0,1]], 
-                [[1,0,0],[0,0,1],[0,1,0]], 
-                [[0,0,1],[0,1,0],[1,0,0]], 
-                ]
-            self.trans = [
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000],
                 ]
 
 class Sg161:
     def __init__(self,cell_choice="standard"):
         self.no = 161
         self.name = "R3c"
-        self.crystal_system = "trigonal"
-        
+        self.crystal_system = "trigonal"        
         self.cell_choice = cell_choice
-        if self.cell_choice=="hexagonal" or self.cell_choice=="standard":
-            self.Laue = "-3m1"
-            self.cell_choice = "hexagonal"
-            self.nsymop = 18
-            self.nuniq = 6
-            self.syscond = [0, 0, 0, 0, 0, 3, 0, 3, 0, 0, 0, 0,
-                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6,
-                        0, 2, 3]
-            self.rot = [
-                [[1,0,0],[0,1,0],[0,0,1]], 
-                [[0,-1,0],[1,-1,0],[0,0,1]], 
-                [[-1,1,0],[-1,0,0],[0,0,1]], 
-                [[0,-1,0],[-1,0,0],[0,0,1]], 
-                [[-1,1,0],[0,1,0],[0,0,1]], 
-                [[1,0,0],[1,-1,0],[0,0,1]], 
-                [[1,0,0],[0,1,0],[0,0,1]], 
-                [[0,-1,0],[1,-1,0],[0,0,1]], 
-                [[-1,1,0],[-1,0,0],[0,0,1]], 
-                [[0,-1,0],[-1,0,0],[0,0,1]], 
-                [[-1,1,0],[0,1,0],[0,0,1]], 
-                [[1,0,0],[1,-1,0],[0,0,1]], 
-                [[1,0,0],[0,1,0],[0,0,1]], 
-                [[0,-1,0],[1,-1,0],[0,0,1]], 
-                [[-1,1,0],[-1,0,0],[0,0,1]], 
-                [[0,-1,0],[-1,0,0],[0,0,1]], 
-                [[-1,1,0],[0,1,0],[0,0,1]], 
-                [[1,0,0],[1,-1,0],[0,0,1]], 
-                ]
-
-            self.trans = [
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.500000], 
-                [0.000000,0.000000,0.500000], 
-                [0.000000,0.000000,0.500000], 
-                [0.666667,0.333333,0.333333], 
-                [0.666667,0.333333,0.333333], 
-                [0.666667,0.333333,0.333333], 
-                [0.666667,0.333333,0.833333], 
-                [0.666667,0.333333,0.833333], 
-                [0.666667,0.333333,0.833333], 
-                [0.333333,0.666667,0.666667], 
-                [0.333333,0.666667,0.666667], 
-                [0.333333,0.666667,0.666667], 
-                [0.333333,0.666667,0.166667], 
-                [0.333333,0.666667,0.166667], 
-                [0.333333,0.666667,0.166667], 
-                ]
-
-        elif self.cell_choice=="rhombohedral" :
+        if self.cell_choice=="rhombohedral" :
+            self.name = "R3cr"
             self.Laue = "-3m"
             self.nsymop = 6
             self.nuniq = 6
@@ -6270,20 +6062,67 @@ class Sg161:
                 [0.500000,0.500000,0.500000], 
                 [0.500000,0.500000,0.500000],
                 ]
-
+        else: #standard hexagonal setting
+            self.Laue = "-3m1"
+            self.cell_choice = "hexagonal"
+            self.nsymop = 18
+            self.nuniq = 6
+            self.syscond = [0, 0, 0, 0, 0, 3, 0, 3, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6,
+                        0, 2, 3]
+            self.rot = [
+                [[1,0,0],[0,1,0],[0,0,1]], 
+                [[0,-1,0],[1,-1,0],[0,0,1]], 
+                [[-1,1,0],[-1,0,0],[0,0,1]], 
+                [[0,-1,0],[-1,0,0],[0,0,1]], 
+                [[-1,1,0],[0,1,0],[0,0,1]], 
+                [[1,0,0],[1,-1,0],[0,0,1]], 
+                [[1,0,0],[0,1,0],[0,0,1]], 
+                [[0,-1,0],[1,-1,0],[0,0,1]], 
+                [[-1,1,0],[-1,0,0],[0,0,1]], 
+                [[0,-1,0],[-1,0,0],[0,0,1]], 
+                [[-1,1,0],[0,1,0],[0,0,1]], 
+                [[1,0,0],[1,-1,0],[0,0,1]], 
+                [[1,0,0],[0,1,0],[0,0,1]], 
+                [[0,-1,0],[1,-1,0],[0,0,1]], 
+                [[-1,1,0],[-1,0,0],[0,0,1]], 
+                [[0,-1,0],[-1,0,0],[0,0,1]], 
+                [[-1,1,0],[0,1,0],[0,0,1]], 
+                [[1,0,0],[1,-1,0],[0,0,1]], 
+                ]
+            self.trans = [
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.500000], 
+                [0.000000,0.000000,0.500000], 
+                [0.000000,0.000000,0.500000], 
+                [0.666667,0.333333,0.333333], 
+                [0.666667,0.333333,0.333333], 
+                [0.666667,0.333333,0.333333], 
+                [0.666667,0.333333,0.833333], 
+                [0.666667,0.333333,0.833333], 
+                [0.666667,0.333333,0.833333], 
+                [0.333333,0.666667,0.666667], 
+                [0.333333,0.666667,0.666667], 
+                [0.333333,0.666667,0.666667], 
+                [0.333333,0.666667,0.166667], 
+                [0.333333,0.666667,0.166667], 
+                [0.333333,0.666667,0.166667], 
+                ]
 
 class Sg162:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 162
         self.name = "P-31m"
         self.crystal_system = "trigonal"
         self.Laue = "-31m"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -6298,7 +6137,6 @@ class Sg162:
                 [[1,-1,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[-1,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -6315,17 +6153,17 @@ class Sg162:
                 ]
 
 class Sg163:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 163
         self.name = "P-31c"
         self.Laue = "-31m"
         self.crystal_system = "trigonal"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -6340,7 +6178,6 @@ class Sg163:
                 [[1,-1,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[-1,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -6357,17 +6194,17 @@ class Sg163:
                 ]
 
 class Sg164:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 164
         self.name = "P-3m1"
         self.crystal_system = "trigonal"
         self.Laue = "-3m1"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -6382,7 +6219,6 @@ class Sg164:
                 [[-1,1,0],[0,1,0],[0,0,1]], 
                 [[1,0,0],[1,-1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -6399,17 +6235,17 @@ class Sg164:
                 ]
 
 class Sg165:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 165
         self.name = "P-3c1"
         self.crystal_system = "trigonal"
         self.Laue = "-3m1"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 2, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -6424,7 +6260,6 @@ class Sg165:
                 [[-1,1,0],[0,1,0],[0,0,1]], 
                 [[1,0,0],[1,-1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -6444,10 +6279,45 @@ class Sg166:
     def __init__(self,cell_choice="standard"):
         self.no = 166
         self.name = "R-3m"
-        self.crystal_system = "trigonal"
-        
+        self.crystal_system = "trigonal"        
         self.cell_choice = cell_choice
-        if self.cell_choice=="hexagonal" or self.cell_choice=="standard":
+        if self.cell_choice=="rhombohedral" :
+            self.name = "R-3mr"
+            self.Laue = "-3m"
+            self.nsymop = 12
+            self.nuniq = 12
+            self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0]
+            self.rot = [
+                [[1,0,0],[0,1,0],[0,0,1]], 
+                [[0,0,1],[1,0,0],[0,1,0]], 
+                [[0,1,0],[0,0,1],[1,0,0]], 
+                [[0,1,0],[1,0,0],[0,0,1]], 
+                [[1,0,0],[0,0,1],[0,1,0]], 
+                [[0,0,1],[0,1,0],[1,0,0]], 
+                [[-1,0,0],[0,-1,0],[0,0,-1]], 
+                [[0,0,-1],[-1,0,0],[0,-1,0]], 
+                [[0,-1,0],[0,0,-1],[-1,0,0]], 
+                [[0,-1,0],[-1,0,0],[0,0,-1]], 
+                [[-1,0,0],[0,0,-1],[0,-1,0]], 
+                [[0,0,-1],[0,-1,0],[-1,0,0]], 
+                ]
+            self.trans = [
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000],
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000], 
+                [0.000000,0.000000,0.000000],
+                ]
+        else: #standard hexagonal setting
             self.Laue = "-3m1"
             self.cell_choice = "hexagonal"
             self.nsymop = 36
@@ -6493,7 +6363,6 @@ class Sg166:
                 [[-1,1,0],[0,1,0],[0,0,1]], 
                 [[1,0,0],[1,-1,0],[0,0,1]], 
                 ]
-
             self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -6531,13 +6400,20 @@ class Sg166:
                 [0.333333,0.666667,0.666667], 
                 [0.333333,0.666667,0.666667], 
                 [0.333333,0.666667,0.666667], 
-                ]
+                ]                
 
-        elif self.cell_choice=="rhombohedral" :
+class Sg167:
+    def __init__(self,cell_choice="standard"):
+        self.no = 167
+        self.name = "R-3c"
+        self.crystal_system = "trigonal"
+        self.cell_choice = cell_choice
+        if self.cell_choice=="rhombohedral" :
+            self.name = "R-3cr"
             self.Laue = "-3m"
             self.nsymop = 12
             self.nuniq = 12
-            self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
             self.rot = [
@@ -6558,28 +6434,17 @@ class Sg166:
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000],
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
+                [0.500000,0.500000,0.500000], 
+                [0.500000,0.500000,0.500000], 
+                [0.500000,0.500000,0.500000],
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000],
+                [0.500000,0.500000,0.500000], 
+                [0.500000,0.500000,0.500000], 
+                [0.500000,0.500000,0.500000],
                 ]
-
-                
-                
-
-class Sg167:
-    def __init__(self,cell_choice="standard"):
-        self.no = 167
-        self.name = "R-3c"
-        self.crystal_system = "trigonal"
-        
-        self.cell_choice = cell_choice
-        if self.cell_choice=="hexagonal" or self.cell_choice=="standard":
+        else: #standard hexagonal setting
             self.Laue = "-3m1"
             self.cell_choice = "hexagonal"
             self.nsymop = 36
@@ -6625,7 +6490,6 @@ class Sg167:
                 [[-1,1,0],[0,1,0],[0,0,1]], 
                 [[1,0,0],[1,-1,0],[0,0,1]], 
                 ]
-
             self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -6664,57 +6528,19 @@ class Sg167:
                 [0.333333,0.666667,0.166667], 
                 [0.333333,0.666667,0.166667], 
                 ]
-
-        elif self.cell_choice=="rhombohedral" :
-            self.Laue = "-3m"
-            self.nsymop = 12
-            self.nuniq = 12
-            self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
-                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                        0, 0, 0]
-            self.rot = [
-                [[1,0,0],[0,1,0],[0,0,1]], 
-                [[0,0,1],[1,0,0],[0,1,0]], 
-                [[0,1,0],[0,0,1],[1,0,0]], 
-                [[0,1,0],[1,0,0],[0,0,1]], 
-                [[1,0,0],[0,0,1],[0,1,0]], 
-                [[0,0,1],[0,1,0],[1,0,0]], 
-                [[-1,0,0],[0,-1,0],[0,0,-1]], 
-                [[0,0,-1],[-1,0,0],[0,-1,0]], 
-                [[0,-1,0],[0,0,-1],[-1,0,0]], 
-                [[0,-1,0],[-1,0,0],[0,0,-1]], 
-                [[-1,0,0],[0,0,-1],[0,-1,0]], 
-                [[0,0,-1],[0,-1,0],[-1,0,0]], 
-                ]
-            self.trans = [
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.500000,0.500000,0.500000], 
-                [0.500000,0.500000,0.500000], 
-                [0.500000,0.500000,0.500000],
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.000000,0.000000,0.000000], 
-                [0.500000,0.500000,0.500000], 
-                [0.500000,0.500000,0.500000], 
-                [0.500000,0.500000,0.500000],
-                ]
-
-
 
 class Sg168:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 168
         self.name = "P6"
         self.crystal_system =  "hexagonal"
         self.Laue = "6/m"
         self.nsymop = 6
         self.nuniq = 6
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -6723,7 +6549,6 @@ class Sg168:
                 [[0,1,0],[-1,1,0],[0,0,1]], 
                 [[1,-1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -6734,17 +6559,17 @@ class Sg168:
                 ]
 
 class Sg169:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 169
         self.name = "P61"
         self.crystal_system = "hexagonal"
         self.Laue = "6/m"
         self.nsymop = 6
         self.nuniq = 6
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -6753,7 +6578,6 @@ class Sg169:
                 [[0,1,0],[-1,1,0],[0,0,1]], 
                 [[1,-1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.333333], 
@@ -6764,17 +6588,17 @@ class Sg169:
                 ]
 
 class Sg170:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 170
         self.name = "P65"
         self.crystal_system = "hexagonal"
         self.Laue = "6/m"
         self.nsymop = 6
         self.nuniq = 6
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -6783,7 +6607,6 @@ class Sg170:
                 [[0,1,0],[-1,1,0],[0,0,1]], 
                 [[1,-1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.666667], 
@@ -6794,17 +6617,17 @@ class Sg170:
                 ]
 
 class Sg171:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 171
         self.name = "P62"
         self.crystal_system = "hexagonal"
         self.Laue = "6/m"
         self.nsymop = 6
         self.nuniq = 6
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -6813,7 +6636,6 @@ class Sg171:
                 [[0,1,0],[-1,1,0],[0,0,1]], 
                 [[1,-1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.666667], 
@@ -6824,17 +6646,17 @@ class Sg171:
                 ]
 
 class Sg172:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 172
         self.name = "P64"
         self.crystal_system = "hexagonal"
         self.Laue = "6/m"
         self.nsymop = 6
         self.nuniq = 6
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -6843,7 +6665,6 @@ class Sg172:
                 [[0,1,0],[-1,1,0],[0,0,1]], 
                 [[1,-1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.333333], 
@@ -6854,17 +6675,17 @@ class Sg172:
                 ]
 
 class Sg173:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 173
         self.name = "P63"
         self.crystal_system = "hexagonal"
         self.Laue = "6/m"
         self.nsymop = 6
         self.nuniq = 6
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -6873,7 +6694,6 @@ class Sg173:
                 [[0,1,0],[-1,1,0],[0,0,1]], 
                 [[1,-1,0],[1,0,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -6884,17 +6704,17 @@ class Sg173:
                 ]
 
 class Sg174:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 174
         self.name = "P-6"
         self.crystal_system = "hexagonal"
         self.Laue = "6/m"
         self.nsymop = 6
         self.nuniq = 6
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -6903,7 +6723,6 @@ class Sg174:
                 [[0,-1,0],[1,-1,0],[0,0,-1]], 
                 [[-1,1,0],[-1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -6914,17 +6733,17 @@ class Sg174:
                 ]
 
 class Sg175:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 175
         self.name = "P6/m"
         self.crystal_system = "hexagonal"
         self.Laue = "6/m"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -6939,7 +6758,6 @@ class Sg175:
                 [[0,-1,0],[1,-1,0],[0,0,-1]], 
                 [[-1,1,0],[-1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -6956,17 +6774,17 @@ class Sg175:
                 ]
 
 class Sg176:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 176
         self.name = "P63/m"
         self.crystal_system = "hexagonal"
         self.Laue = "6/m"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -6981,7 +6799,6 @@ class Sg176:
                 [[0,-1,0],[1,-1,0],[0,0,-1]], 
                 [[-1,1,0],[-1,0,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -6998,17 +6815,17 @@ class Sg176:
                 ]
 
 class Sg177:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 177
         self.name = "P622"
         self.crystal_system = "hexagonal"
         self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -7023,7 +6840,6 @@ class Sg177:
                 [[-1,1,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[1,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -7040,17 +6856,17 @@ class Sg177:
                 ]
 
 class Sg178:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 178
         self.name = "P6122"
         self.crystal_system = "hexagonal"
         self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -7065,7 +6881,6 @@ class Sg178:
                 [[-1,1,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[1,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.333333], 
@@ -7082,17 +6897,17 @@ class Sg178:
                 ]
 
 class Sg179:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 179
         self.name = "P6522"
         self.crystal_system = "hexagonal"
         self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -7107,7 +6922,6 @@ class Sg179:
                 [[-1,1,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[1,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.666667], 
@@ -7124,17 +6938,17 @@ class Sg179:
                 ]
 
 class Sg180:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 180
         self.name = "P6222"
         self.crystal_system = "hexagonal"
         self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -7149,7 +6963,6 @@ class Sg180:
                 [[-1,1,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[1,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.666667], 
@@ -7166,17 +6979,17 @@ class Sg180:
                 ]
 
 class Sg181:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 181
         self.name = "P6422"
         self.crystal_system = "hexagonal"
         self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -7191,7 +7004,6 @@ class Sg181:
                 [[-1,1,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[1,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.333333], 
@@ -7208,17 +7020,17 @@ class Sg181:
                 ]
 
 class Sg182:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 182
         self.name = "P6322"
         self.crystal_system = "hexagonal"
         self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -7233,7 +7045,6 @@ class Sg182:
                 [[-1,1,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[1,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -7250,17 +7061,17 @@ class Sg182:
                 ]
 
 class Sg183:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 183
         self.name = "P6mm"
         self.crystal_system = "hexagonal"
         self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -7275,7 +7086,6 @@ class Sg183:
                 [[1,-1,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[-1,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -7292,17 +7102,17 @@ class Sg183:
                 ]
 
 class Sg184:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 184
         self.name = "P6cc"
         self.crystal_system = "hexagonal"
         self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
                         0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -7317,7 +7127,6 @@ class Sg184:
                 [[1,-1,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[-1,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -7334,17 +7143,17 @@ class Sg184:
                 ]
 
 class Sg185:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 185
         self.name = "P63cm"
         self.crystal_system = "hexagonal"
         self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -7359,7 +7168,6 @@ class Sg185:
                 [[1,-1,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[-1,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -7376,17 +7184,17 @@ class Sg185:
                 ]
 
 class Sg186:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 186
         self.name = "P63mc"
         self.crystal_system = "hexagonal"
         self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
                         0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -7401,7 +7209,6 @@ class Sg186:
                 [[1,-1,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[-1,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -7418,17 +7225,17 @@ class Sg186:
                 ]
 
 class Sg187:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 187
         self.name = "P-6m2"
         self.crystal_system = "hexagonal"
         self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -7443,7 +7250,6 @@ class Sg187:
                 [[-1,1,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[1,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -7460,17 +7266,17 @@ class Sg187:
                 ]
 
 class Sg188:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 188
         self.name = "P-6c2"
         self.crystal_system = "hexagonal"
         self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -7485,7 +7291,6 @@ class Sg188:
                 [[-1,1,0],[0,1,0],[0,0,-1]], 
                 [[1,0,0],[1,-1,0],[0,0,-1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -7502,17 +7307,17 @@ class Sg188:
                 ]
 
 class Sg189:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 189
         self.name = "P-62m"
         self.crystal_system = "hexagonal"
         self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -7527,7 +7332,6 @@ class Sg189:
                 [[1,-1,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[-1,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -7544,17 +7348,17 @@ class Sg189:
                 ]
 
 class Sg190:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 190
         self.name = "P-62c"
         self.crystal_system = "hexagonal"
         self.Laue = "6/mmm"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
                         0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -7569,7 +7373,6 @@ class Sg190:
                 [[1,-1,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[-1,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -7586,17 +7389,17 @@ class Sg190:
                 ]
 
 class Sg191:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 191
         self.name = "P6/mmm"
         self.crystal_system = "hexagonal"
         self.Laue = "6/mmm"
         self.nsymop = 24
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -7623,7 +7426,6 @@ class Sg191:
                 [[1,-1,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[-1,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -7652,17 +7454,17 @@ class Sg191:
                 ]
 
 class Sg192:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 192
         self.name = "P6/mcc"
         self.crystal_system = "hexagonal"
         self.Laue = "6/mmm"
         self.nsymop = 24
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2,
                         0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -7689,7 +7491,6 @@ class Sg192:
                 [[1,-1,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[-1,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -7718,17 +7519,17 @@ class Sg192:
                 ]
 
 class Sg193:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 193
         self.name = "P63/mcm"
         self.crystal_system = "hexagonal"
         self.Laue = "6/mmm"
         self.nsymop = 24
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -7755,7 +7556,6 @@ class Sg193:
                 [[1,-1,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[-1,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -7784,17 +7584,17 @@ class Sg193:
                 ]
 
 class Sg194:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 194
         self.name = "P63/mmc"
         self.crystal_system = "hexagonal"
         self.Laue = "6/mmm"
         self.nsymop = 24
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[0,-1,0],[1,-1,0],[0,0,1]], 
@@ -7821,7 +7621,6 @@ class Sg194:
                 [[1,-1,0],[0,-1,0],[0,0,1]], 
                 [[-1,0,0],[-1,1,0],[0,0,1]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -7850,17 +7649,17 @@ class Sg194:
                 ]
 
 class Sg195:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 195
         self.name = "P23"
         self.crystal_system = "cubic"
         self.Laue = "m-3"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -7875,7 +7674,6 @@ class Sg195:
                 [[0,1,0],[0,0,-1],[-1,0,0]], 
                 [[0,-1,0],[0,0,-1],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -7892,17 +7690,17 @@ class Sg195:
                 ]
 
 class Sg196:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 196
         self.name = "F23"
         self.crystal_system = "cubic"
         self.Laue = "m-3"
         self.nsymop = 48
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
                         2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -7953,7 +7751,6 @@ class Sg196:
                 [[0,1,0],[0,0,-1],[-1,0,0]], 
                 [[0,-1,0],[0,0,-1],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -8006,17 +7803,17 @@ class Sg196:
                 ]
 
 class Sg197:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 197
         self.name = "I23"
         self.crystal_system = "cubic"
         self.Laue = "m-3"
         self.nsymop = 24
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -8043,7 +7840,6 @@ class Sg197:
                 [[0,1,0],[0,0,-1],[-1,0,0]], 
                 [[0,-1,0],[0,0,-1],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -8072,17 +7868,17 @@ class Sg197:
                 ]
 
 class Sg198:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 198
         self.name = "P213"
         self.crystal_system = "cubic"
         self.Laue = "m-3"
         self.nsymop = 12
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -8097,7 +7893,6 @@ class Sg198:
                 [[0,1,0],[0,0,-1],[-1,0,0]], 
                 [[0,-1,0],[0,0,-1],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.000000,0.500000], 
@@ -8114,17 +7909,17 @@ class Sg198:
                 ]
 
 class Sg199:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 199
         self.name = "I213"
         self.crystal_system = "cubic"
         self.Laue = "m-3"
         self.nsymop = 24
         self.nuniq = 12
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -8151,7 +7946,6 @@ class Sg199:
                 [[0,1,0],[0,0,-1],[-1,0,0]], 
                 [[0,-1,0],[0,0,-1],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.000000,0.500000], 
@@ -8180,17 +7974,17 @@ class Sg199:
                 ]
 
 class Sg200:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 200
         self.name = "Pm-3"
         self.crystal_system = "cubic"
         self.Laue = "m-3"
         self.nsymop = 24
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -8217,7 +8011,6 @@ class Sg200:
                 [[0,-1,0],[0,0,1],[1,0,0]], 
                 [[0,1,0],[0,0,1],[-1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -8246,17 +8039,17 @@ class Sg200:
                 ]
 
 class Sg201:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 201
         self.name = "Pn-3"
         self.crystal_system = "cubic"
         self.Laue = "m-3"
         self.nsymop = 24
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -8283,7 +8076,6 @@ class Sg201:
                 [[0,-1,0],[0,0,1],[1,0,0]], 
                 [[0,1,0],[0,0,1],[-1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -8312,17 +8104,17 @@ class Sg201:
                 ]
 
 class Sg202:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 202
         self.name = "Fm-3"
         self.crystal_system = "cubic"
         self.Laue = "m-3"
         self.nsymop = 96
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
                         2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -8421,7 +8213,6 @@ class Sg202:
                 [[0,-1,0],[0,0,1],[1,0,0]], 
                 [[0,1,0],[0,0,1],[-1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -8522,17 +8313,17 @@ class Sg202:
                 ]
 
 class Sg203:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 203
         self.name = "Fd-3"
         self.crystal_system = "cubic"
         self.Laue = "m-3"
         self.nsymop = 96
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
                         4, 2, 2, 4, 2, 2, 4, 2, 4, 4, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -8631,7 +8422,6 @@ class Sg203:
                 [[0,-1,0],[0,0,1],[1,0,0]], 
                 [[0,1,0],[0,0,1],[-1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -8732,17 +8522,17 @@ class Sg203:
                 ]
 
 class Sg204:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 204
         self.name = "Im-3"
         self.crystal_system = "cubic"
         self.Laue = "m-3"
         self.nsymop = 48
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -8793,7 +8583,6 @@ class Sg204:
                 [[0,-1,0],[0,0,1],[1,0,0]], 
                 [[0,1,0],[0,0,1],[-1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -8846,17 +8635,17 @@ class Sg204:
                 ]
 
 class Sg205:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 205
         self.name = "Pa-3"
         self.crystal_system = "cubic"
         self.Laue = "m-3"
         self.nsymop = 24
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                         0, 0, 2, 0, 2, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -8883,7 +8672,6 @@ class Sg205:
                 [[0,-1,0],[0,0,1],[1,0,0]], 
                 [[0,1,0],[0,0,1],[-1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.000000,0.500000], 
@@ -8912,17 +8700,17 @@ class Sg205:
                 ]
 
 class Sg206:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 206
         self.name = "Ia-3"
         self.crystal_system = "cubic"
         self.Laue = "m-3"
         self.nsymop = 48
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 2, 2,
                         2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -8973,7 +8761,6 @@ class Sg206:
                 [[0,-1,0],[0,0,1],[1,0,0]], 
                 [[0,1,0],[0,0,1],[-1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.000000,0.500000], 
@@ -9026,17 +8813,17 @@ class Sg206:
                 ]
 
 class Sg207:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 207
         self.name = "P432"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 24
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -9063,7 +8850,6 @@ class Sg207:
                 [[0,0,-1],[0,1,0],[1,0,0]], 
                 [[0,0,-1],[0,-1,0],[-1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -9092,17 +8878,17 @@ class Sg207:
                 ]
 
 class Sg208:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 208
         self.name = "P4232"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 24
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -9129,7 +8915,6 @@ class Sg208:
                 [[0,0,-1],[0,1,0],[1,0,0]], 
                 [[0,0,-1],[0,-1,0],[-1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -9158,17 +8943,17 @@ class Sg208:
                 ]
 
 class Sg209:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 209
         self.name = "F432"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 96
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
                         2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -9267,7 +9052,6 @@ class Sg209:
                 [[0,0,-1],[0,1,0],[1,0,0]], 
                 [[0,0,-1],[0,-1,0],[-1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -9368,17 +9152,17 @@ class Sg209:
                 ]
 
 class Sg210:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 210
         self.name = "F4132"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 96
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
                         2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -9477,7 +9261,6 @@ class Sg210:
                 [[0,0,-1],[0,1,0],[1,0,0]], 
                 [[0,0,-1],[0,-1,0],[-1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.500000,0.500000], 
@@ -9578,17 +9361,17 @@ class Sg210:
                 ]
 
 class Sg211:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 211
         self.name = "I432"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 48
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 2, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -9639,7 +9422,6 @@ class Sg211:
                 [[0,0,-1],[0,1,0],[1,0,0]], 
                 [[0,0,-1],[0,-1,0],[-1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -9692,17 +9474,17 @@ class Sg211:
                 ]
 
 class Sg212:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 212
         self.name = "P4332"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 24
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -9729,7 +9511,6 @@ class Sg212:
                 [[0,0,-1],[0,1,0],[1,0,0]], 
                 [[0,0,-1],[0,-1,0],[-1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.000000,0.500000], 
@@ -9758,17 +9539,17 @@ class Sg212:
                 ]
 
 class Sg213:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 213
         self.name = "P4132"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 24
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -9795,7 +9576,6 @@ class Sg213:
                 [[0,0,-1],[0,1,0],[1,0,0]], 
                 [[0,0,-1],[0,-1,0],[-1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.000000,0.500000], 
@@ -9824,17 +9604,17 @@ class Sg213:
                 ]
 
 class Sg214:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 214
         self.name = "I4132"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 48
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 4, 4, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -9885,7 +9665,6 @@ class Sg214:
                 [[0,0,-1],[0,1,0],[1,0,0]], 
                 [[0,0,-1],[0,-1,0],[-1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.000000,0.500000], 
@@ -9938,17 +9717,17 @@ class Sg214:
                 ]
 
 class Sg215:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 215
         self.name = "P-43m"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 24
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -9975,7 +9754,6 @@ class Sg215:
                 [[0,0,-1],[0,1,0],[-1,0,0]], 
                 [[0,0,-1],[0,-1,0],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -10004,17 +9782,17 @@ class Sg215:
                 ]
 
 class Sg216:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 216
         self.name = "F-43m"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 96
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
                         2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -10113,7 +9891,6 @@ class Sg216:
                 [[0,0,-1],[0,1,0],[-1,0,0]], 
                 [[0,0,-1],[0,-1,0],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -10214,17 +9991,17 @@ class Sg216:
                 ]
 
 class Sg217:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 217
         self.name = "I-43m"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 48
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -10275,7 +10052,6 @@ class Sg217:
                 [[0,0,-1],[0,1,0],[-1,0,0]], 
                 [[0,0,-1],[0,-1,0],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -10328,17 +10104,17 @@ class Sg217:
                 ]
 
 class Sg218:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 218
         self.name = "P-43n"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 24
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -10365,7 +10141,6 @@ class Sg218:
                 [[0,0,-1],[0,1,0],[-1,0,0]], 
                 [[0,0,-1],[0,-1,0],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -10394,17 +10169,17 @@ class Sg218:
                 ]
 
 class Sg219:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 219
         self.name = "F-43c"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 96
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [2, 2, 2, 2, 0, 0, 2, 2, 2, 0, 2, 2,
                         2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -10503,7 +10278,6 @@ class Sg219:
                 [[0,0,-1],[0,1,0],[-1,0,0]], 
                 [[0,0,-1],[0,-1,0],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -10604,17 +10378,17 @@ class Sg219:
                 ]
 
 class Sg220:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 220
         self.name = "I-43d"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 48
         self.nuniq = 24
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 4, 4, 4, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -10665,7 +10439,6 @@ class Sg220:
                 [[0,0,-1],[0,1,0],[-1,0,0]], 
                 [[0,0,-1],[0,-1,0],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.000000,0.500000], 
@@ -10718,17 +10491,17 @@ class Sg220:
                 ]
 
 class Sg221:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 221
         self.name = "Pm-3m"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 48
         self.nuniq = 48
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -10779,7 +10552,6 @@ class Sg221:
                 [[0,0,1],[0,-1,0],[-1,0,0]], 
                 [[0,0,1],[0,1,0],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -10832,17 +10604,17 @@ class Sg221:
                 ]
 
 class Sg222:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 222
         self.name = "Pn-3n"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 48
         self.nuniq = 48
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -10893,7 +10665,6 @@ class Sg222:
                 [[0,0,1],[0,-1,0],[-1,0,0]], 
                 [[0,0,1],[0,1,0],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -10946,17 +10717,17 @@ class Sg222:
                 ]
 
 class Sg223:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 223
         self.name = "Pm-3n"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 48
         self.nuniq = 48
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -11007,7 +10778,6 @@ class Sg223:
                 [[0,0,1],[0,-1,0],[-1,0,0]], 
                 [[0,0,1],[0,1,0],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -11060,17 +10830,17 @@ class Sg223:
                 ]
 
 class Sg224:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 224
         self.name = "Pn-3m"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 48
         self.nuniq = 48
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 2, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -11121,7 +10891,6 @@ class Sg224:
                 [[0,0,1],[0,-1,0],[-1,0,0]], 
                 [[0,0,1],[0,1,0],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -11174,17 +10943,17 @@ class Sg224:
                 ]
 
 class Sg225:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 225
         self.name = "Fm-3m"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 192
         self.nuniq = 48
+        self.cell_choice = "standard"
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
                         2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -11379,7 +11148,6 @@ class Sg225:
                 [[0,0,1],[0,-1,0],[-1,0,0]], 
                 [[0,0,1],[0,1,0],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -11576,17 +11344,17 @@ class Sg225:
                 ]
 
 class Sg226:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 226
         self.name = "Fm-3c"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 192
         self.nuniq = 48
+        self.cell_choice = "standard"
         self.syscond = [2, 2, 2, 2, 0, 0, 2, 2, 2, 0, 2, 2,
                         2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -11781,7 +11549,6 @@ class Sg226:
                 [[0,0,1],[0,-1,0],[-1,0,0]], 
                 [[0,0,1],[0,1,0],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -11978,17 +11745,17 @@ class Sg226:
                 ]
 
 class Sg227:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 227
         self.name = "Fd-3m"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 192
         self.nuniq = 48
+        self.cell_choice = "standard"
         self.syscond = [2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2,
                         4, 2, 2, 4, 2, 2, 4, 2, 4, 4, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -12183,7 +11950,6 @@ class Sg227:
                 [[0,0,1],[0,-1,0],[-1,0,0]], 
                 [[0,0,1],[0,1,0],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.500000,0.500000], 
@@ -12380,17 +12146,17 @@ class Sg227:
                 ]
 
 class Sg228:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 228
         self.name = "Fd-3c"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 192
         self.nuniq = 48
+        self.cell_choice = "standard"
         self.syscond = [2, 2, 2, 2, 0, 0, 2, 2, 2, 0, 2, 2,
                         4, 2, 2, 4, 2, 2, 2, 4, 4, 4, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -12585,7 +12351,6 @@ class Sg228:
                 [[0,0,1],[0,-1,0],[-1,0,0]], 
                 [[0,0,1],[0,1,0],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.500000,0.500000], 
@@ -12782,17 +12547,17 @@ class Sg228:
                 ]
 
 class Sg229:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 229
         self.name = "Im-3m"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 96
         self.nuniq = 48
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0,
                         2, 0, 0, 2, 0, 0, 2, 0, 2, 2, 2,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -12891,7 +12656,6 @@ class Sg229:
                 [[0,0,1],[0,-1,0],[-1,0,0]], 
                 [[0,0,1],[0,1,0],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.000000,0.000000,0.000000], 
@@ -12992,17 +12756,17 @@ class Sg229:
                 ]
 
 class Sg230:
-    def __init__(self):
+    def __init__(self,cell_choice='standard'):
         self.no = 230
         self.name = "Ia-3d"
         self.crystal_system = "cubic"
         self.Laue = "m-3m"
         self.nsymop = 96
         self.nuniq = 48
+        self.cell_choice = "standard"
         self.syscond = [0, 0, 0, 0, 2, 0, 0, 0, 0, 4, 2, 2,
                         0, 2, 2, 0, 2, 2, 0, 4, 4, 4, 4,
                         0, 0, 0]
-
         self.rot = [
                 [[1,0,0],[0,1,0],[0,0,1]], 
                 [[-1,0,0],[0,-1,0],[0,0,1]], 
@@ -13101,7 +12865,6 @@ class Sg230:
                 [[0,0,1],[0,-1,0],[-1,0,0]], 
                 [[0,0,1],[0,1,0],[1,0,0]], 
                 ]
-
         self.trans = [
                 [0.000000,0.000000,0.000000], 
                 [0.500000,0.000000,0.500000], 

@@ -1109,7 +1109,7 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
 
     # Triclinic : Laue group -1
     if Laue_class == '-1':
-        print 'Laue class : -1'
+        print 'Laue class : -1', unit_cell
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
                         [[-1, 0,  1], [-1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
                         [[-1, 1,  0], [-1, 0, 0], [ 0, 1, 0], [ 0, 0, -1]],
@@ -1123,7 +1123,7 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
     # Monoclinic : Laue group 2/M 
     # unique b        
     if Laue_class == '2/m':
-        print 'Laue class : 2/m'
+        print 'Laue class : 2/m', unit_cell
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
                         [[-1, 0,  1], [-1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]]])
 
@@ -1158,20 +1158,31 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
 
     # Laue group : -3M1
     if Laue_class == '-3m1':
-        print 'Laue class : -3m1 (hex)'
+        print 'Laue class : -3m1 (hex)', unit_cell
+        if unit_cell[4]==unit_cell[5]:
+            print '#############################################################'
+            print '# Are you using a rhombohedral cell in a hexagonal setting? #'
+            print '#############################################################'
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
                         [[ 0, 1,  1], [ 0, 1, 0], [ 1, 1, 0], [ 0, 0,  1]]])
 
     # Laue group : -31M
     if Laue_class == '-31m':
-        print 'Laue class : -31m (hex)'
-
+        print 'Laue class : -31m (hex)', unit_cell
+        if unit_cell[4]==unit_cell[5]:
+            print '#############################################################'
+            print '# Are you using a rhombohedral cell in a hexagonal setting? #'
+            print '#############################################################'
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
                         [[ 1, 1, -1], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0, -1]]])
 
     # Laue group : -3
     if Laue_class == '-3' and cell_choice!='rhombohedral':
-        print 'Laue class : -3 (hex)'
+        print 'Laue class : -3 (hex)', unit_cell
+        if unit_cell[4]==unit_cell[5]:
+            print '#############################################################'
+            print '# Are you using a rhombohedral cell in a hexagonal setting? #'
+            print '#############################################################'
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
                         [[ 1, 2,  0], [ 1, 1, 0], [ 0, 1, 0], [ 0, 0,  1]],
                         [[ 0, 1,  1], [ 0, 1, 0], [-1, 1, 0], [ 0, 0,  1]]])
@@ -1179,13 +1190,21 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
     # RHOMBOHEDRAL
     # Laue group : -3M
     if Laue_class == '-3m' and cell_choice=='rhombohedral':
-        print 'Laue class : -3m (Rhom)'
+        print 'Laue class : -3m (Rhom)', unit_cell
+        if unit_cell[4]!=unit_cell[5]:
+            print '#############################################################'
+            print '# Are you using a hexagonal cell in a rhombohedral setting? #'
+            print '#############################################################'
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 0,-1], [ 1, 1,  1]],
                         [[ 1, 1,  0], [ 1, 0,-1], [ 0, 0,-1], [ 1, 1,  1]]])
 
     # Laue group : -3
     if Laue_class == '-3' and cell_choice=='rhombohedral':
-        print 'Laue class : -3 (Rhom)'
+        print 'Laue class : -3 (Rhom)', unit_cell
+        if unit_cell[4]!=unit_cell[5]:
+            print '#############################################################'
+            print '# Are you using a hexagonal cell in a rhombohedral setting? #'
+            print '#############################################################'
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 0,-1], [ 1, 1, 1]],
                         [[ 1, 1,  0], [ 1, 0,-1], [ 0, 0,-1], [ 1, 1, 1]],
                         [[ 0,-1, -2], [ 1, 0, 0], [ 1, 0,-1], [-1,-1, -1]],
