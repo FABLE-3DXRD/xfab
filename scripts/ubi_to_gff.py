@@ -12,6 +12,14 @@ import numpy as n
 from string import split
 from xfab import tools
 
+if len(sys.argv) < 4:
+    print "\n"
+    print "########################################################"
+    print "Usage:"
+    print "ubi_to_gff.py input.ubi detector.par output.gff"
+    print "########################################################"
+    print "\n"
+
 list_of_grains = ig.read_grain_file(sys.argv[1])
 p = ip.parameters()
 p.loadparameters(sys.argv[2])

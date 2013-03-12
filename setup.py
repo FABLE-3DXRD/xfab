@@ -13,5 +13,5 @@ setup(
   url='http://fable.wiki.sourceforge.net/xfab',
   packages=['xfab'],
   package_dir={"xfab": "xfab"},
-  scripts=["scripts/gff_to_ubi.py","scripts/ubi_to_gff.py"]
+  scripts=["scripts/gff_to_ubi.py","scripts/ubi_to_gff.py","scripts/plot_gff.py"]
 )

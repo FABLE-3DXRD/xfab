@@ -1,7 +1,7 @@
 #!/usr/bin/python
 """
 Usage:
-python gff_to_ubi input.gff output.ubi (paramters.par)
+python gff_to_ubi input.gff output.ubi (detector.par)
 NB! Pars only needed if gff does not contain ubis
 """
 
@@ -10,6 +10,15 @@ from ImageD11.grain import grain, write_grain_file
 import sys, numpy
 from ImageD11 import parameters as ip
 from xfab import tools
+
+if len(sys.argv) < 3:
+    print "\n"
+    print "########################################################"
+    print "Usage:"
+    print "gff_to_ubi.py input.gff output.ubi (detector.par)"
+    print "NB! Pars only needed if gff does not contain ubis"
+    print "########################################################"
+    print "\n"
 
 c=columnfile(sys.argv[1])
 
