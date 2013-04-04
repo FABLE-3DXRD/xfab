@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+#Bugfix to enable ssh X11 forwarding of plots on mac
+import matplotlib
+matplotlib.use('GTK')
+#end of bugfix
 from optparse import OptionParser
 import sys
 import numpy as n
