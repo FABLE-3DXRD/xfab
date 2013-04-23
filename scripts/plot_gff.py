@@ -13,6 +13,14 @@ import mpl_toolkits.mplot3d as p3
 from ImageD11 import columnfile as ic
 from matplotlib import cm,colors
 
+"""
+For plotting gff files with colour coding according to orientation, stress or strain.
+Options for controlling labels, viewing angle, plot and grain size.
+Two gffs can be plotted simultaneously (eg for two-phase materials)
+
+Jette Oddershede, DTU Physics, March 2013 (jeto@fysik.dtu.dk)
+"""
+
 
 if __name__=='__main__':
 
@@ -40,8 +48,9 @@ if __name__=='__main__':
                       help="Colour according to symmetry information, options: \
                       None (default, random colours) \
                       standard (allowing all orientations in cubic space) \
-                      cubic (according to cubic inverse pole figure) \
+                      cubic (according to cubic inverse pole figure - IPF) \
                       hexagonal (according to hexagonal inverse pole figure) \
+                      orthorhombic (according to orthorhombic IPF) \
                       s11/s22/s33/s23/s13/s12 (stress tensor components) \
                       e11/e22/e33/e23/e13/e12 (strain tensor components)")
     parser.add_option("-m", "--min", action="store",
@@ -136,12 +145,50 @@ if __name__=='__main__':
         red =   (r1*theta-minhx)/(maxhx-minhx)
         green = (r2*theta-minhy)/(maxhy-minhy)
         blue =  (r3*theta-minhz)/(maxhz-minhz)
+    elif sym == "orthorhombic":
+        # Fill orthorhombic stereographic triangle
+        red = []
+        green = []
+        blue = []
+        fig = pl.figure(10,frameon=False,figsize=pl.figaspect(1.0))
+        ax = pl.Axes(fig,[.2,.2,.7,.7])
+        ax.set_axis_off()
+        fig.add_axes(ax)
+        #plot triangle    
+        xa = n.zeros((101))
+        ya = n.zeros((101))
+        for i in range(101):
+            xa[i] = n.cos(i*n.pi/200.)
+            ya[i] = n.sin(i*n.pi/200.)
+        pl.plot(xa,ya,'black') # Curved edge
+        pl.plot([0,1],[0,0],'black',linewidth=2) #lower line 
+        pl.plot([0,0],[1,0],'black',linewidth=2) #left line 
+        pl.text(-0.02,-0.04,'[001]')
+        pl.text(0.95,-0.04,'[100]')
+        pl.text(-0.02,1.01,'[010]')
+        # Grains
+        for i in range(data.nrows):
+            U = tools.rod_to_u([data.rodx[i],data.rody[i],data.rodz[i]])
+            axis = abs(U[2,:])
+            colour = n.zeros((3))
+            colour[0]=(2*n.arcsin(abs(axis[2]))/n.pi)**1; 
+            colour[1]=(2*n.arcsin(abs(axis[0]))/n.pi)**1;
+            colour[2]=(2*n.arcsin(abs(axis[1]))/n.pi)**1;
+            mx = max(colour)
+            colour = colour/mx
+            red.append(colour[0])
+            green.append(colour[1])
+            blue.append(colour[2])
+            X = axis[0]/(1+axis[2])
+            Y = axis[1]/(1+axis[2])            
+            pl.plot(X,Y,'o',color=colour)
+        pl.xlim()
     elif sym == "cubic":
         # Fill cubic stereographic triangle
         red = []
         green = []
         blue = []
-        fig = pl.figure(10,frameon=False)
+        fig = pl.figure(10,frameon=False,figsize=pl.figaspect(.9))
         ax = pl.Axes(fig,[.2,.2,.7,.7])
         ax.set_axis_off()
         fig.add_axes(ax)
@@ -179,6 +226,8 @@ if __name__=='__main__':
             colour[0]=((n.sqrt(2.0)-rr)/(n.sqrt(2.0)-1))**.5;
             colour[1]=((1-4*beta/n.pi)*((rr-1)/(n.sqrt(2.0)-1)))**.5;
             colour[2]=(4*beta/n.pi*((rr-1)/(n.sqrt(2.0)-1)))**.5;
+            mx = max(colour)
+            colour = colour/mx
             red.append(colour[0])
             green.append(colour[1])
             blue.append(colour[2])
@@ -195,7 +244,7 @@ if __name__=='__main__':
         red = []
         green = []
         blue = []
-        fig = pl.figure(10,frameon=False)
+        fig = pl.figure(10,frameon=False,figsize=pl.figaspect(0.5))
         ax = pl.Axes(fig,[0.2,.2,0.6,0.6])
         ax.set_axis_off()
         fig.add_axes(ax)
@@ -233,17 +282,17 @@ if __name__=='__main__':
                     UVW = uvw
                     X = x
                     Y = y
-            color = n.dot(n.transpose(A),n.transpose(UVW))**0.7
+            colour = n.dot(n.transpose(A),n.transpose(UVW))**0.7
 #            print color
-            color[0] = color[0]/a0
-            color[1] = color[1]/a1
-            color[2] = color[2]/a2
-            mx = max(color)
-            color = color/mx
-            red.append(color[0])
-            green.append(color[1])
-            blue.append(color[2])            
-            pl.plot(X,Y,'o',color=color)
+            colour[0] = colour[0]/a2
+            colour[1] = colour[1]/a1
+            colour[2] = colour[2]/a0
+            mx = max(colour)
+            colour = colour/mx
+            red.append(colour[0])
+            green.append(colour[1])
+            blue.append(colour[2])            
+            pl.plot(X,Y,'o',color=colour)
         pl.xlim()
     elif sym == "e11":
         try:
@@ -482,7 +531,7 @@ if __name__=='__main__':
     else:    
         elev = 0
         azim = 0
-    fig = pl.figure()
+    fig = pl.figure(figsize=pl.figaspect(1.0))
     ax = p3.Axes3D(fig)
     #plot data
     color = []
