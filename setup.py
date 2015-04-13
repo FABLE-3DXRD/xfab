@@ -13,5 +13,14 @@ setup(
   url='http://fable.wiki.sourceforge.net/xfab',
   packages=['xfab'],
   package_dir={"xfab": "xfab"},
-  scripts=["scripts/gff_to_ubi.py","scripts/ubi_to_gff.py","scripts/plot_gff.py","scripts/make_gve.py"]
+  scripts=["scripts/gff_to_ubi.py",
+           "scripts/ubi_to_gff.py",
+           "scripts/plot_gff.py",
+           "scripts/make_gve.py",
+           "scripts/findpeaks",
+           "scripts/grainspotter_loop",
+           "scripts/makemap_all",
+           "scripts/tweakdetpars",
+           "scripts/tweakpars_FF.py",
+           "scripts/tweakpars_NF.py"]
 )
