@@ -1220,7 +1220,7 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 1, 1,  1]],
                         [[ 1, 2,  0], [ 0, 1, 0], [ 1, 1, 0], [ 1, 1,  1]]])
 
-    if segm == None:
+    if segm is None:
         print 'No Laue class found'
         return False
 
