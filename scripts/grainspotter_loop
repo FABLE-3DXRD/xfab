@@ -1,0 +1,181 @@
+#!/usr/bin/env bash
+
+# Runs GrainSpotter until no more good seed grains are found
+# Should enter one variable: the full path to the script's INI file
+# Like: /home/jules/sp8_2013/inis/script.ini
+
+GS='grainspotter'
+GFF2UBI='gff_to_ubi.py'
+RUNMAKEMAP='makemap_all'
+MAKEGVE='make_gve.py'
+
+trap '{ echo "Hey, you pressed Ctrl-C.  Time to quit." ; exit 1; }' INT
+
+#Import parameters
+pathToINI=$1
+#source /home/jules/sp8_2013/inis/script.ini
+source $pathToINI
+# Check if all are present
+if [ $# != 1 ]; then
+echo
+echo 'Wrong input'
+echo
+echo 'Provide PATH to SCRIPT.INI'
+echo
+echo 'Run in folder where n00.flt is located, generates output in the same folder.'
+echo
+exit 1
+fi
+if [[ -z $INIFILE ]]; then
+echo 'Missing INIFILE variable - update ini file and restart'
+exit 1
+fi
+if [[ -z $MINPEAKS ]]; then
+echo 'Missing MINPEAKS variable - update ini file and restart'
+exit 1
+fi
+if [[ -z $ubifile ]]; then
+echo 'Missing ubifile variable - update ini file and restart'
+exit 1
+fi
+if [[ -z $fltfile ]]; then
+echo 'Missing fltfile variable - update ini file and restart'
+exit 1
+fi
+if [[ -z $ICUTS ]]; then
+echo 'Missing ICUTS variable - update ini file and restart'
+exit 1
+fi
+if [[ -z $FCUTS ]]; then
+echo 'Missing FCUTS variable - update ini file and restart'
+exit 1
+fi
+if [[ -z $SLIMIT ]]; then
+echo 'Missing SLIMITS variable - update ini file and restart'
+exit 1
+fi
+if [[ -z $PARS ]]; then
+echo 'Missing PARS variable - update ini file and restart'
+exit 1
+fi
+if [[ -z $CRYSYMM ]]; then
+echo 'Missing CRYSYMM variable - update ini file and restart'
+exit 1
+fi
+
+echo 'Correct number of arguments entered -- using "'$pathToINI'"'
+# ${tempVar1%.*} removes the .ubi from nX.ubi, which is input from user
+prefix=${ubifile%.*}
+prefix=${prefix//[0-9]/}
+
+# ${parameter/pattern/string}. If pattern begins with '/', all matches of pattern are
+# replaced with string.
+itemnum=${ubifile//[.a-zA-Z]/}		# Removes '.','a-z' and 'A-Z'
+
+testCon=0
+testLim=3
+loopCounter=0
+numberofgrainsbefore=0
+numberofgrains=-1
+spottercounter=-1
+
+#python /home/bl20xu/data/Krill_20130604/old_stuff/scripts/make_gve.py $prefix 00.flt rest.gve $PARS
+$MAKEGVE $fltfile rest.gve $PARS
+
+while [ $testCon -lt $testLim ]; do
+	# 'printf' notation required, if I strip the leading zero above for numbers < 10
+	# $((10#$VAR-1)) converts $VAR to base 10
+	grains_in=`printf "$prefix%02d.ubi" $((10#$itemnum+$loopCounter))`
+	grains_out=`printf "$prefix%02d.ubi" $((10#$itemnum+$loopCounter))`
+	pks_in=`printf "$prefix%02d.flt\n" $((10#$itemnum-1+$loopCounter))`
+	pks_out=`printf "$prefix%02d.flt" $((10#$itemnum+$loopCounter))`
+
+	echo -e "\nUsing --"
+	echo " GrainSpotter ini file: $INIFILE"
+	echo " Input grains: $grains_in"
+	echo " Output grains: $grains_out"
+	echo " Input peaks: $pks_in"
+	echo " Output peaks: $pks_out"
+	echo " Initial cuts: $ICUTS"
+	echo " Final cuts: $FCUTS"
+	echo " Stop limit for makemap.py: $SLIMIT"
+	echo " Minium number of peaks: $MINPEAKS"
+	echo " Full path to par file is: $PARS"
+	echo " The crystal symmetry is: $CRYSYMM"
+
+	echo -e "\nRunning GrainSpotter now"
+	# update grainspotter ini file
+	# ngrainscut=`echo "($numberofgrainsbefore*$FRACFOUND+0.5)/1" | bc`
+	ngrainscut=$NUMFOUND
+	if [ $numberofgrains -lt $ngrainscut ]; then
+	    (( spottercounter++ ))
+	    if [ $spottercounter -ge ${#EULERSTEP[@]} ]; then
+		exit 0
+	    fi
+	    eulerstep=${EULERSTEP[$spottercounter]}
+	    nsigmas=${NSIGMAS[$spottercounter]}
+	    echo "spottercounter is: $spottercounter"
+	    echo "Now using eulerstep: $eulerstep and nsigmas: $nsigmas"
+	    cat $INIFILE | sed s/_EULERSTEP_/$eulerstep/1 | sed s/_NSIGMAS_/$nsigmas/1 > grainspotter_current.ini
+	fi
+
+	# ../code/GrainSpotter/trunk/GrainSpotter.0.90 general.ini > /dev/null #Doesn't always work for some reason
+	sleep 1
+	$GS grainspotter_current.ini | tee spotterOutTemp.txt
+
+	read -r firstlineoflog < spotter_out.log
+	echo "$firstlineoflog"
+	echo "GrainSpotter done"
+
+	# ${tempVar1%.*} removes the .ubi from nX.ubi, which is input from user
+	# mv spotter_out.log ${tempVar1%.*}.log
+	mv spotter_out.gff ${grains_in%.*}.gff
+	mv spotter_out.log ${grains_in%.*}.log
+	rm -f spotter_out.ubi
+
+	# Determine the number of grains found by GrainSpotter
+	stringarray=($firstlineoflog)
+	numberofgransbefore=$numberofgrains
+	numberofgrains=${stringarray[1]}
+	SLIMIT=${stringarray[1]}
+
+	# If no grains are found, don't do anything
+	if [ "$numberofgrains" != "0" ]; then
+
+		# Create .ubi file from gff output of GrainSpotter
+		####################### CHECK PATH #######################
+		## python ../code/xfab/trunk/scripts/gff_to_ubi.py ${grains_in%.*}.gff $grains_in
+		$GFF2UBI ${grains_in%.*}.gff $grains_in
+
+		# Run the makemap iteratively to refine grain positions
+		####################### CHECK PATH #######################
+		# I put this file in '/usr/local/bin' so it can be called from anywhere!
+		$RUNMAKEMAP $grains_in $pks_in $pks_out $ICUTS $FCUTS $SLIMIT $MINPEAKS $PARS $CRYSYMM
+
+		# Setup for next run of GrainSpotter
+		if [ -f $grains_in ]; then
+			echo -e "\nGenerating next rest.gve file for GrainSpotter"
+			####################### CHECK PATH #######################
+			## python ../code/bin/make_gve.py $pks_out rest.gve ../pars_FF/FF01.par
+			#python /home/bl20xu/data/Krill_20130604/old_stuff/scripts/make_gve.py $pks_out rest.gve $PARS
+			$MAKEGVE $pks_out rest.gve $PARS
+			# Reset 'testCon' and increment 'loopCounter' only when grains are added
+			testCon=0
+			(( loopCounter++ ))
+		else
+			(( testCon++ ))
+		fi
+	else
+		echo -e "\nNo grains found"
+		rm -f ${grains_in%.*}.gff
+		rm -f ${grains_in%.*}.log
+		(( testCon++ ))
+	fi
+
+	printf "\n\n\n"
+	# I like this file because I can call 'tail' on it to check the progress of GrainSpotter
+	rm -f spotterOutTemp.txt
+done		# From big while loop
+
+
+exit 0

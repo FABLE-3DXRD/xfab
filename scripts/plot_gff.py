@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #Bugfix to enable ssh X11 forwarding of plots on mac
 import matplotlib
-matplotlib.use('GTK')
+#matplotlib.use('GTK')
 #end of bugfix
 from optparse import OptionParser
 import sys
@@ -223,9 +223,9 @@ if __name__=='__main__':
                 beta=0
             else:
                 beta=n.arctan(axis[0]/axis[1])
-            colour[0]=((n.sqrt(2.0)-rr)/(n.sqrt(2.0)-1))**.5;
-            colour[1]=((1-4*beta/n.pi)*((rr-1)/(n.sqrt(2.0)-1)))**.5;
-            colour[2]=(4*beta/n.pi*((rr-1)/(n.sqrt(2.0)-1)))**.5;
+            colour[0]=((n.sqrt(2.0)-rr)/(n.sqrt(2.0)-1))**.9;
+            colour[1]=((1-4*beta/n.pi)*((rr-1)/(n.sqrt(2.0)-1)))**.9;
+            colour[2]=(4*beta/n.pi*((rr-1)/(n.sqrt(2.0)-1)))**.9;
             mx = max(colour)
             colour = colour/mx
             red.append(colour[0])
@@ -273,7 +273,10 @@ if __name__=='__main__':
                     uvw = -g[2,:]
                 x = uvw[0]/(1+uvw[2])
                 y = uvw[1]/(1+uvw[2])
-                f = y/x
+                try:
+                  f = y/x
+                except:
+                  f=y
                 s = x*x+y*y
                 if f<=frac and s<=square and x>=0 and y>=0:
                     angle = a
