@@ -17,10 +17,8 @@ setup(
            "scripts/ubi_to_gff.py",
            "scripts/plot_gff.py",
            "scripts/make_gve.py",
-           "scripts/findpeaks",
-           "scripts/grainspotter_loop",
-           "scripts/makemap_all",
-           "scripts/tweakdetpars",
-           "scripts/tweakpars_FF.py",
-           "scripts/tweakpars_NF.py"]
+           "scripts/findpeaks.py",
+           "scripts/grainspotter_loop.py",
+           "scripts/makemap_all.py",
+           "scripts/tweakdetpars.py"]
 )
