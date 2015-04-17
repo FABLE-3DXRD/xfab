@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/opt/python/bin/python2.7
 
 
 '''
@@ -70,7 +70,7 @@ def scor_old(r): # find number of peaks
     return npks, drlv
 
 
-def scor(r):
+def scor_maggie(r):
     # slightly modified version of refinegrains.gof
     drlv = 0.
     npks = 0.
@@ -101,6 +101,15 @@ def scor_new(r):
     r.grains_to_refine = r.grains.keys()
     r.recompute_xlylzl = True
     return r.gof(), 0
+    
+def scor(r):
+    """
+    This scor function replaces all of the above since it should not refine grains (ubi and trans), but only assign reflections
+    """
+    r.assignlabels(quiet=True) 
+    npks = np.sum(labels > -1 for labels in r.scandata[args.fltfile].labels)
+    drlv = (np.sum(r.scandata[args.fltfile].drlv2)-(len(r.scandata[args.fltfile].drlv2)-npks))/npks
+    return npks, drlv
 
 
 def gaussian(x, *p):
@@ -224,7 +233,7 @@ def main(args):
     # create list of parameter names
 
     all_param_names = ['distance', 'y_center', 'z_center',
-	                   'tilt_x', 'tilt_y', 'tilt_z', 'wedge']
+                       'tilt_x', 'tilt_y', 'tilt_z', 'wedge']
     param_names = all_param_names[0:params_to_vary]
 
     print('varying:')
@@ -243,7 +252,7 @@ def main(args):
     for current_iteration in range(args.iterations):
 
         if current_iteration > 0:
-	    ## Update range on parameters
+        ## Update range on parameters
             param_range[0,0] = r.parameterobj.parameters['distance']*(1-args.dd)
             param_range[0,1] = r.parameterobj.parameters['distance']*(1+args.dd)
             param_range[1,0] = r.parameterobj.parameters['y_center']-args.dy
@@ -258,7 +267,7 @@ def main(args):
             param_range[5,1] = r.parameterobj.parameters['tilt_z']+args.dtz
             param_range[6,0] = r.parameterobj.parameters['wedge']-args.dw
             param_range[6,1] = r.parameterobj.parameters['wedge']+args.dw
-	# skip parameter refinement?
+    # skip parameter refinement?
         if args.skip_par_ref:
             print('Option to skip parameter refinement is set to ON.'
                   'GrainSweeper will use parameters values from the nf_X.par'
@@ -299,11 +308,7 @@ def main(args):
                 tz = r.parameterobj.parameters['tilt_z']
                 ww = r.parameterobj.parameters['wedge']
 
-                #n, e = scor(r) # find number of peaks
-                #r.assignlabels() ## try here...
                 n, e = scor(r)
-                #r.recompute_xlylzl = True
-                #n = r.gof([])
                 param_peaks[j,:,i] = d, n, e # write values to array
                 print(
                     '%11.1f %9.1f %9.1f %11.6f %11.6f %11.6f %11.6f %10d '
