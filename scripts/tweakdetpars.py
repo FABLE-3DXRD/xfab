@@ -190,11 +190,6 @@ def main(args):
 
     #*********************** BEGIN USER INPUT ***********************#
 
-    if args.experiment == 'FF' or args.experiment == 'ff':
-        params_to_vary = 7
-    else:
-        params_to_vary = 6
-
     print
     param_range = np.array([
     #     MIN          MAX
@@ -234,7 +229,22 @@ def main(args):
 
     all_param_names = ['distance', 'y_center', 'z_center',
                        'tilt_x', 'tilt_y', 'tilt_z', 'wedge']
-    param_names = all_param_names[0:params_to_vary]
+    param_names = []
+    if args.dd != 0:
+        param_names.append('distance')
+    if args.dy != 0:
+        param_names.append('y_center')        
+    if args.dz != 0:
+        param_names.append('z_center')        
+    if args.dtx != 0:
+        param_names.append('tilt_x')        
+    if args.dty != 0:
+        param_names.append('tilt_y')        
+    if args.dtz != 0:
+        param_names.append('tilt_z')        
+    if args.dw != 0 and (args.experiment == 'FF' or args.experiment == 'ff'):
+        param_names.append('wedge')        
+
 
     print('varying:')
     print(param_names)
@@ -293,10 +303,10 @@ def main(args):
         ## optimal par values
         for i, name in enumerate(param_names): # for each parameter
             print
-            print('Varying parameter: %s; value: %g' % (name, p_opt_array[i]))
+            print('Varying parameter: %s; value: %g' % (name, p_opt_array[all_param_names.index(name)]))
             print('   distance   y_center  z_center    tilt_x      tilt_y'
                   '      tilt_z      wedge     peaks found     e')
-            var_range = list(np.linspace(param_range[i,0], param_range[i,1],
+            var_range = list(np.linspace(param_range[all_param_names.index(name),0], param_range[all_param_names.index(name),1],
                                          args.steps))
             for j, d in enumerate(var_range): # each parameter variation step
                 r.parameterobj.parameters[name] = d
@@ -319,12 +329,12 @@ def main(args):
             p_opt = gauss_fit( param_peaks[:,0,i], param_peaks[:,1,i] )
             if p_opt is None:
                 print 'cant fit something that doesnt vary'
-                r.parameterobj.parameters[name] = p_opt_array[i]
+                r.parameterobj.parameters[name] = p_opt_array[all_param_names.index(name)]
                 continue
 
             # create Gaussian xy values, and plot original and fit curves
             # together
-            x_gauss_steps = np.linspace(param_range[i,0], param_range[i,1],
+            x_gauss_steps = np.linspace(param_range[all_param_names.index(name),0], param_range[all_param_names.index(name),1],
                                         200 )
             y_gauss_steps = gaussian(x_gauss_steps, *p_opt)
             plt.xlabel(str(name))
@@ -346,8 +356,8 @@ def main(args):
             ## print and record newest updated optimal parameter value,
             ## print peaks found
             print('Optimal parameter value: %.4f' % p_opt[1])
-            p_opt_array[i] = p_opt[1]
-            r.parameterobj.parameters[name] = p_opt_array[i]
+            p_opt_array[all_param_names.index(name)] = p_opt[1]
+            r.parameterobj.parameters[name] = p_opt_array[all_param_names.index(name)]
             print
             n, e = scor(r) # find number of peaks using all optimal
                            #parameter values
@@ -357,7 +367,7 @@ def main(args):
         print
         print('Optimal parameter values for parameter refinement'
               'iteration %d:' % (current_iteration+1))
-        print(' '.join(map(str, param_names)))
+        print(' '.join(map(str, all_param_names)))
         print('  '.join(map(str, p_opt_array)))
         print
 
@@ -377,6 +387,9 @@ def main(args):
     text_file.close()
 
     # write new paramterfile
+    r.parameterobj.parameters['t_x'] = 0
+    r.parameterobj.parameters['t_y'] = 0
+    r.parameterobj.parameters['t_z'] = 0
     r.parameterobj.saveparameters(args.outparfile)
 
 
