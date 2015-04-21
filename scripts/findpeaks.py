@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import argparse
 import os
@@ -27,8 +27,8 @@ def process_layer(args, layer):
     ## Creats median file using fable 'median.py'
     ndigits = None
     for i in range(7):
-        fmtstr = '%s%0' + str(i) + 'd.tif'
-        first_im_name = fmtstr % (args.stem, args.nstart)
+        fmtstr = '%s%0' + str(i) + 'd%s'
+        first_im_name = fmtstr % (args.stem, args.nstart, args.image_format)
         if os.path.exists(first_im_name):
             ndigits = i
             break
@@ -46,10 +46,10 @@ def process_layer(args, layer):
 
     ## Runs peaksearch.py on images using specified thresholds
     command = (
-        'peaksearch.py -n %s -F .tif -f %i -l %i -o %s/peaks '
+        'peaksearch.py -n %s -F %s -f %i -l %i -o %s/peaks '
         '-d %s/median.edf -p Y --ndigits=%i --OmegaOverRide '
         '-S %.2f -T %.3f' %
-        (args.stem, first_im, last_im, pdir, pdir, ndigits,
+        (args.stem, args.image_format, first_im, last_im, pdir, pdir, ndigits,
          args.step_ome, args.start_ome)
         )
 
@@ -141,6 +141,10 @@ if __name__ == '__main__':
     parser.add_argument(
         '-x', '--experiment', type=str, choices=['nf', 'ff', 'NF', 'FF'],
         default='', help='near-field or far-field experiment'
+        )
+    parser.add_argument(
+        '-F', '--image_format', type=str, choices=['.edf', '.tif'],
+        default='.tif', help='format of input files'
         )
     parser.add_argument(
         '-m', '--medianstep', type=int, default=10,

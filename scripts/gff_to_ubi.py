@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 """
 Usage:
 python gff_to_ubi input.gff output.ubi (detector.par)
