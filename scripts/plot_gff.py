@@ -1,11 +1,8 @@
 #!/usr/bin/env python
-#Bugfix to enable ssh X11 forwarding of plots on mac
-import matplotlib
-#matplotlib.use('GTK')
-#end of bugfix
+
 from optparse import OptionParser
 import sys
-import numpy as n
+import numpy as np
 import pylab as pl
 from xfab import symmetry,tools
 #import matplotlib.axes3d as p3
@@ -19,6 +16,8 @@ Options for controlling labels, viewing angle, plot and grain size.
 Two gffs can be plotted simultaneously (eg for two-phase materials)
 
 Jette Oddershede, DTU Physics, March 2013 (jeto@fysik.dtu.dk)
+
+Fix for hexagonal inverse pole figure, April 2015 (mkak)
 """
 
 
@@ -111,22 +110,22 @@ if __name__=='__main__':
         scale = max(data.grainvolume**0.3333)
         data.addcolumn(data.grainvolume**0.3333/scale*100,'size')
     else:
-        data.addcolumn(100.*n.ones(data.nrows),'size')
+        data.addcolumn(100.*np.ones(data.nrows),'size')
     rodx = []
     rody = []
     rodz = []
     if "rodx" not in data.titles:
         for i in range(data.nrows):
-            U = n.array([[data.U11[i],data.U12[i],data.U13[i]],
+            U = np.array([[data.U11[i],data.U12[i],data.U13[i]],
                          [data.U21[i],data.U22[i],data.U23[i]],
                          [data.U31[i],data.U32[i],data.U33[i]]])
             rod = tools.u_to_rod(U)
             rodx.append(rod[0])
             rody.append(rod[1])
             rodz.append(rod[2])
-        data.addcolumn(n.array(rodx),'rodx')
-        data.addcolumn(n.array(rody),'rody')
-        data.addcolumn(n.array(rodz),'rodz')
+        data.addcolumn(np.array(rodx),'rodx')
+        data.addcolumn(np.array(rody),'rody')
+        data.addcolumn(np.array(rodz),'rodz')
     if sym == "standard":
         #grain colours, so that all orientations in Cubic space are allowed
         maxhx=62.8*3.14/180 
@@ -136,8 +135,8 @@ if __name__=='__main__':
         maxhz=62.8*3.14/180 
         minhz=-62.8*3.14/180; 
         rr = data.rodx**2+data.rody**2+data.rodz**2
-        rr = n.sqrt(rr)
-        theta=2*n.arctan(rr)
+        rr = np.sqrt(rr)
+        theta=2*np.arctan(rr)
         r1=data.rodx/rr 
         r2=data.rody/rr 
         r3=data.rodz/rr
@@ -155,11 +154,11 @@ if __name__=='__main__':
         ax.set_axis_off()
         fig.add_axes(ax)
         #plot triangle    
-        xa = n.zeros((101))
-        ya = n.zeros((101))
+        xa = np.zeros((101))
+        ya = np.zeros((101))
         for i in range(101):
-            xa[i] = n.cos(i*n.pi/200.)
-            ya[i] = n.sin(i*n.pi/200.)
+            xa[i] = np.cos(i*np.pi/200.)
+            ya[i] = np.sin(i*np.pi/200.)
         pl.plot(xa,ya,'black') # Curved edge
         pl.plot([0,1],[0,0],'black',linewidth=2) #lower line 
         pl.plot([0,0],[1,0],'black',linewidth=2) #left line 
@@ -170,10 +169,10 @@ if __name__=='__main__':
         for i in range(data.nrows):
             U = tools.rod_to_u([data.rodx[i],data.rody[i],data.rodz[i]])
             axis = abs(U[2,:])
-            colour = n.zeros((3))
-            colour[0]=(2*n.arcsin(abs(axis[2]))/n.pi)**1; 
-            colour[1]=(2*n.arcsin(abs(axis[0]))/n.pi)**1;
-            colour[2]=(2*n.arcsin(abs(axis[1]))/n.pi)**1;
+            colour = np.zeros((3))
+            colour[0]=(2*np.arcsin(abs(axis[2]))/np.pi)**1; 
+            colour[1]=(2*np.arcsin(abs(axis[0]))/np.pi)**1;
+            colour[2]=(2*np.arcsin(abs(axis[1]))/np.pi)**1;
             mx = max(colour)
             colour = colour/mx
             red.append(colour[0])
@@ -193,11 +192,11 @@ if __name__=='__main__':
         ax.set_axis_off()
         fig.add_axes(ax)
         #plot triangle    
-        xa = n.zeros((21))
-        ya = n.zeros((21))
+        xa = np.zeros((21))
+        ya = np.zeros((21))
         for i in range(21):
-            ua = n.array([i/20., 1., 1.])
-            UA = n.linalg.norm(ua)
+            ua = np.array([i/20., 1., 1.])
+            UA = np.linalg.norm(ua)
             za = ua[2]+UA
             xa[i] = ua[1]/za
             ya[i] = ua[0]/za
@@ -211,21 +210,21 @@ if __name__=='__main__':
         for i in range(data.nrows):
             U = tools.rod_to_u([data.rodx[i],data.rody[i],data.rodz[i]])
             axis = abs(U[2,:])
-            colour = n.zeros((3))
+            colour = np.zeros((3))
             for j in range(3):
                 for k in range(j+1,3):
                     if (axis[j]>axis[k]):
                         colour[0]=axis[j]
                         axis[j]=axis[k]
                         axis[k]=colour[0]                 
-            rr=n.sqrt(axis[0]*axis[0]/((axis[2]+1))/((axis[2]+1))+(axis[1]/(axis[2]+1)+1)*(axis[1]/(axis[2]+1)+1))
+            rr=np.sqrt(axis[0]*axis[0]/((axis[2]+1))/((axis[2]+1))+(axis[1]/(axis[2]+1)+1)*(axis[1]/(axis[2]+1)+1))
             if axis[1]==0: 
                 beta=0
             else:
-                beta=n.arctan(axis[0]/axis[1])
-            colour[0]=((n.sqrt(2.0)-rr)/(n.sqrt(2.0)-1))**.9;
-            colour[1]=((1-4*beta/n.pi)*((rr-1)/(n.sqrt(2.0)-1)))**.9;
-            colour[2]=(4*beta/n.pi*((rr-1)/(n.sqrt(2.0)-1)))**.9;
+                beta=np.arctan(axis[0]/axis[1])
+            colour[0]=((np.sqrt(2.0)-rr)/(np.sqrt(2.0)-1))**.5;
+            colour[1]=((1-4*beta/np.pi)*((rr-1)/(np.sqrt(2.0)-1)))**.5;
+            colour[2]=(4*beta/np.pi*((rr-1)/(np.sqrt(2.0)-1)))**.5;
             mx = max(colour)
             colour = colour/mx
             red.append(colour[0])
@@ -236,48 +235,71 @@ if __name__=='__main__':
             pl.plot(X,Y,'o',color=colour)
         pl.xlim()
     elif sym == "hexagonal":
-        # Fill hexagonal stereographic triangle
-        A = n.array([[0,1,0],[0,-n.sqrt(3),1],[1,0,0]])
-        a0 = 1./n.sqrt(3.)
+
+        ## Fill hexagonal stereographic triangle
+        A = np.array([[ 0,           1, 0],
+                      [ 0, -np.sqrt(3), 1],
+                      [ 1,           0, 0]])
+        
+        a0 = 1./np.sqrt(3.)
         a1 = 1.
         a2 = 1.
+
         red = []
         green = []
         blue = []
+
         fig = pl.figure(10,frameon=False,figsize=pl.figaspect(0.5))
         ax = pl.Axes(fig,[0.2,.2,0.6,0.6])
         ax.set_axis_off()
         fig.add_axes(ax)
-        #plot triangle    
-        ya = n.array(range(51))/100.
-        xa = n.sqrt(1-ya**2)
+
+        ## Plot triangle    
+        ya = np.array(range(51))/100.
+        xa = np.sqrt(1-ya**2)
         pl.plot(xa,ya,'black') # Curved edge
         pl.plot([0,xa[0]],[0,0.0001],'black',linewidth=2) #lower line 
         pl.plot([xa[-1],0],[ya[-1],0],'black') # upper line
-        pl.text(-0.01,-0.02,'[001]')
-        pl.text(xa[0]-0.03,-0.02,'[010]')
-        pl.text(xa[-1]-0.03,ya[-1]+0.005,'[120]')
-        # Grains
+        
+        ## Label crystalographic directions 
+        pl.text(-0.01,-0.02,'[0001]')
+        pl.text(xa[0]-0.03,-0.02,'[2-1-10]')
+        pl.text(xa[-1]-0.03,ya[-1]+0.005,'[10-10]')
+
+        ## Grains
         r = symmetry.rotations(6)
+        
         for i in range(data.nrows):
+
             U = tools.rod_to_u([data.rodx[i],data.rody[i],data.rodz[i]])
+
             square = 1
             angle = 0
-            frac = 1./n.sqrt(3.)
+            frac = 1./np.sqrt(3.)
+
             for k in range(len(r)):
-                g = n.dot(U,r[k])
-                a = n.arccos((n.trace(g)-1)/2)                
+
+                g = np.dot(U,r[k])
+                a = np.arccos((np.trace(g)-1)/2)                
+
                 if g[2,2] > 0:
                     uvw = g[2,:]
                 else:
                     uvw = -g[2,:]
+                    
+                ## needed to switch these indices to get correct color and inv pf location
+                switch1 = uvw[0]
+                switch2 = uvw[1]
+                uvw[0] = switch2
+                uvw[1] = switch1
+
                 x = uvw[0]/(1+uvw[2])
                 y = uvw[1]/(1+uvw[2])
-                try:
-                  f = y/x
-                except:
-                  f=y
+                
+                f = y/x
                 s = x*x+y*y
+                    
+                ## Finds r (symmetry) which plots grain into triangle
                 if f<=frac and s<=square and x>=0 and y>=0:
                     angle = a
                     frac = f
@@ -285,16 +307,19 @@ if __name__=='__main__':
                     UVW = uvw
                     X = x
                     Y = y
-            colour = n.dot(n.transpose(A),n.transpose(UVW))**0.7
-#            print color
+            
+            colour = np.dot(np.transpose(A),np.transpose(UVW))**0.7
+
             colour[0] = colour[0]/a2
             colour[1] = colour[1]/a1
             colour[2] = colour[2]/a0
             mx = max(colour)
             colour = colour/mx
+           
             red.append(colour[0])
             green.append(colour[1])
-            blue.append(colour[2])            
+            blue.append(colour[2])
+
             pl.plot(X,Y,'o',color=colour)
         pl.xlim()
     elif sym == "e11":
@@ -308,7 +333,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "transverse strain:", n.sum(data.grainvolume*data.eps11_s)/n.sum(data.grainvolume)
+        print "transverse strain:", np.sum(data.grainvolume*data.eps11_s)/np.sum(data.grainvolume)
     elif sym == "e22":
         try:
             colourbar(minimum,maximum,step,'e-3')
@@ -320,7 +345,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "transverse strain:", n.sum(data.grainvolume*data.eps22_s)/n.sum(data.grainvolume)
+        print "transverse strain:", np.sum(data.grainvolume*data.eps22_s)/np.sum(data.grainvolume)
     elif sym == "e33":
         try:
             colourbar(minimum,maximum,step,'e-3')
@@ -332,7 +357,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "axial strain:", n.sum(data.grainvolume*data.eps33_s)/n.sum(data.grainvolume)
+        print "axial strain:", np.sum(data.grainvolume*data.eps33_s)/np.sum(data.grainvolume)
     elif sym == "e12":
         try:
             colourbar(minimum,maximum,step,'e-3')
@@ -344,7 +369,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "shear strain:", n.sum(data.grainvolume*data.eps12_s)/n.sum(data.grainvolume)
+        print "shear strain:", np.sum(data.grainvolume*data.eps12_s)/np.sum(data.grainvolume)
     elif sym == "e13":
         try:
             colourbar(minimum,maximum,step,'e-3')
@@ -356,7 +381,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "shear strain:", n.sum(data.grainvolume*data.eps13_s)/n.sum(data.grainvolume)
+        print "shear strain:", np.sum(data.grainvolume*data.eps13_s)/np.sum(data.grainvolume)
     elif sym == "e23":
         try:
             colourbar(minimum,maximum,step,'e-3')
@@ -368,7 +393,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "shear strain:", n.sum(data.grainvolume*data.eps23_s)/n.sum(data.grainvolume)
+        print "shear strain:", np.sum(data.grainvolume*data.eps23_s)/np.sum(data.grainvolume)
     elif sym == "s33":
         try:
             colourbar(minimum,maximum,step,'MPa')
@@ -380,7 +405,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "axial stress:", n.sum(data.grainvolume*data.sig33_s)/n.sum(data.grainvolume), "MPa" 
+        print "axial stress:", np.sum(data.grainvolume*data.sig33_s)/np.sum(data.grainvolume), "MPa" 
     elif sym == "s11":
         try:
             colourbar(minimum,maximum,step,'MPa')
@@ -392,7 +417,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "transverse s11 stress:", n.sum(data.grainvolume*data.sig11_s)/n.sum(data.grainvolume), "MPa" 
+        print "transverse s11 stress:", np.sum(data.grainvolume*data.sig11_s)/np.sum(data.grainvolume), "MPa" 
     elif sym == "s22":
         try:
             colourbar(minimum,maximum,step,'MPa')
@@ -404,7 +429,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "transverse s22 stress:", n.sum(data.grainvolume*data.sig22_s)/n.sum(data.grainvolume), "MPa" 
+        print "transverse s22 stress:", np.sum(data.grainvolume*data.sig22_s)/np.sum(data.grainvolume), "MPa" 
     elif sym == "s12":
         try:
             colourbar(minimum,maximum,step,'MPa')
@@ -416,7 +441,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "shear s12 stress:", n.sum(data.grainvolume*data.sig12_s)/n.sum(data.grainvolume), "MPa" 
+        print "shear s12 stress:", np.sum(data.grainvolume*data.sig12_s)/np.sum(data.grainvolume), "MPa" 
     elif sym == "s13":
         try:
             colourbar(minimum,maximum,step,'MPa')
@@ -428,7 +453,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "shear s13 stress:", n.sum(data.grainvolume*data.sig13_s)/n.sum(data.grainvolume), "MPa" 
+        print "shear s13 stress:", np.sum(data.grainvolume*data.sig13_s)/np.sum(data.grainvolume), "MPa" 
     elif sym == "s23":
         try:
             colourbar(minimum,maximum,step,'MPa')
@@ -440,7 +465,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "shear s23 stress:", n.sum(data.grainvolume*data.sig23_s)/n.sum(data.grainvolume), "MPa" 
+        print "shear s23 stress:", np.sum(data.grainvolume*data.sig23_s)/np.sum(data.grainvolume), "MPa" 
     elif sym == "latt_rot":
         norm = colors.normalize(0,0.5)
         color = cm.jet(norm(data.latt_rot))
@@ -468,7 +493,7 @@ if __name__=='__main__':
         blue = color[:,2]
         print min(data.sig_tth/data.grainvolume**.2),max(data.sig_tth/data.grainvolume**.2)
 #        pl.figure(8)
-#        pl.plot(n.log(data.grainvolume),n.log(data.sig_tth),'.')
+#        pl.plot(np.log(data.grainvolume),np.log(data.sig_tth),'.')
     elif sym == "eta":
         norm = colors.normalize(0.08,0.15)
         color = cm.jet(norm(data.sig_eta/data.grainvolume**.2))
@@ -477,14 +502,14 @@ if __name__=='__main__':
         blue = color[:,2]
         print min(data.sig_eta/data.grainvolume**.2),max(data.sig_eta/data.grainvolume**.2)
 #        pl.figure(8)
-#        pl.plot(n.log(data.grainvolume),n.log(data.sig_eta),'.')
+#        pl.plot(np.log(data.grainvolume),np.log(data.sig_eta),'.')
     else:
-        n.random.seed(0)
-        red = n.random.rand(data.nrows)
-        n.random.seed(1)
-        green = n.random.rand(data.nrows)
-        n.random.seed(2)
-        blue = n.random.rand(data.nrows)
+        np.random.seed(0)
+        red = np.random.rand(data.nrows)
+        np.random.seed(1)
+        green = np.random.rand(data.nrows)
+        np.random.seed(2)
+        blue = np.random.rand(data.nrows)
     data.addcolumn(red,'red')
     data.addcolumn(green,'green')
     data.addcolumn(blue,'blue')
@@ -505,7 +530,7 @@ if __name__=='__main__':
     """
     fig2 = pl.figure(0)
     ax = fig2.add_subplot(111,visible=False)
-    data = n.clip(n.random.randn(250,250),-1,1)
+    data = np.clip(np.random.randn(250,250),-1,1)
     cax = ax.imshow(data,interpolation='nearest',cmap=cm.jet)
     numticks = range(min,max+step,step)
     textticks = []
