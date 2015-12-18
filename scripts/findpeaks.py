@@ -36,8 +36,13 @@ def process_layer(args, layer):
         raise RuntimeError('format string problem, revisit')
     ## defines directory path for raw data/images
     ## first image, last image, step size between images
+	if args.image_format == '.ge2':
+        medianskip = int(args.nimages/240)
+        args.medianstep = 1
+    else:
+        medianskip = int(args.nimages/args.medianstep)
     command = ('median.py -i %s -f %i -l %i -s %i -o %s/median' %
-               (first_im_name, first_im, int(args.nimages/args.medianstep),
+               (first_im_name, first_im, medianskip,
                 args.medianstep, pdir)
               )
     if args.verbose:
@@ -102,9 +107,10 @@ if __name__ == '__main__':
         epilog=textwrap.dedent('''
             examples:
 
-            $ findpeaks FF_data/slice/Ti-7_14_img 1 1440 -179.875 0.25 -n 11 -x FF
-            $ findpeaks FF_data/silicon/raw/a 20 732 171.84 -0.48 -x FF
-            $ findpeaks NF_data/a 20 751 171.36 -0.48 -x NF
+             $ findpeaks.py FF_data/a 20 731 171.84 -0.48 -x FF -t 100 -t 300 -t 500 -t 1000
+             $ findpeaks.py NF_data/a 20 731 171.36 -0.48 -x NF -t 200 -t 300 -t 500 -t 1000
+             $ findpeaks.py FF_data/multigold_ 1 1440 -179.875 0.25 -x FF -t 100 -t 500 -t 1000
+             $ findpeaks.py FF_data/ff_ 46 1440 -179.875 0.25 -F .ge2 -x FF -t 100 -t 500 -t 1000
             ''')
         )
     parser.add_argument(
@@ -145,7 +151,7 @@ if __name__ == '__main__':
         default='', help='near-field or far-field experiment'
         )
     parser.add_argument(
-        '-F', '--image_format', type=str, choices=['.edf', '.tif'],
+        '-F', '--image_format', type=str, choices=['.edf', '.tif', '.ge2'],
         default='.tif', help='format of input files'
         )
     parser.add_argument(

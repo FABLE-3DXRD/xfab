@@ -20,5 +20,7 @@ setup(
            "scripts/findpeaks.py",
            "scripts/grainspotter_loop.py",
            "scripts/makemap_all.py",
-           "scripts/tweakdetpars.py"]
+           "scripts/tweakdetpars.py",
+           "scripts/flt_remove_beam.py",
+           "scripts/flt_split_phases.py"]
 )
