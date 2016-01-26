@@ -36,7 +36,7 @@ def process_layer(args, layer):
         raise RuntimeError('format string problem, revisit')
     ## defines directory path for raw data/images
     ## first image, last image, step size between images
-	if args.image_format == '.ge2':
+    if args.image_format == '.ge2':
         medianskip = int(args.nimages/240)
         args.medianstep = 1
     else:
