@@ -53,7 +53,7 @@ def process_layer(args, layer):
     command = (
         'peaksearch.py -n %s -F %s -f %i -l %i -o %s/peaks '
         '-d %s/median.edf -p Y --ndigits=%i --OmegaOverRide '
-        '-S %.2f -T %.3f' %
+        '-S %f -T %f' %
         (args.stem, args.image_format, first_im, last_im, pdir, pdir, ndigits,
          args.step_ome, args.start_ome)
         )
