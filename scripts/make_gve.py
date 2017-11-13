@@ -2,6 +2,7 @@
 
 # Create objects to manipulate - they hold your data
 #
+from __future__ import absolute_import
 import sys
 from ImageD11 import peakmerge, indexing, transformer
 mypeakmerger = peakmerge.peakmerger()

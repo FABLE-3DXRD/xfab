@@ -3,12 +3,14 @@ xfab.structure for reading crystal structure files (cif,pdb)
 and calculation of form factors and structure factors etc. 
 """
 
+from __future__ import absolute_import
 import numpy as n
 import logging
 
 from xfab import tools
 from xfab import sg
 from xfab import atomlib
+from six.moves import range
 
 def StructureFactor(hkl, ucell, sgname, atoms, disper = None):
     """
@@ -171,7 +173,7 @@ def multiplicity(position, sgname=None, sgno=None, cell_choice='standard'):
     elif sgno !=None:
         mysg = sg.sg(sgno=sgno, cell_choice=cell_choice)
     else:
-        raise ValueError, 'No space group information provided'
+        raise ValueError('No space group information provided')
 
     lp = n.zeros((mysg.nsymop, 3))
 
@@ -233,7 +235,7 @@ class build_atomlist:
 
         if cifblkname == None:   
             #Try to guess blockname                                                     
-            blocks = cf.keys()
+            blocks = list(cf.keys())
             if len(blocks) > 1:
                 if len(blocks) == 2 and 'global' in blocks:
                     cifblkname = blocks[abs(blocks.index('global') - 1)]
@@ -374,11 +376,11 @@ class build_atomlist:
             except:
                 occ = 1.0
 
-            if cifblk.has_key('_atom_site_symmetry_multiplicity'):
+            if '_atom_site_symmetry_multiplicity' in cifblk:
                 multi = self.remove_esd(cifblk['_atom_site_symmetry_multiplicity'][i])
             # In old SHELXL versions this code was written
             # as '_atom_site_symetry_multiplicity'
-            elif cifblk.has_key('_atom_site_symetry_multiplicity'):
+            elif '_atom_site_symetry_multiplicity' in cifblk:
                 multi = self.remove_esd(cifblk['_atom_site_symetry_multiplicity'][i])
             else:
                 multi = multiplicity([x, y, z], self.atomlist.sgname)

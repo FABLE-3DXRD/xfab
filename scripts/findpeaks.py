@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
+from __future__ import print_function
 import argparse
 import os
 import shutil
@@ -7,6 +9,7 @@ import sys
 import textwrap
 
 from ImageD11 import columnfile as ic
+from six.moves import range
 
 
 def process_layer(args, layer):
@@ -62,7 +65,7 @@ def process_layer(args, layer):
     for t in args.thresholds:
         command +=' -t %s' % t
     if args.verbose:
-        print command
+        print(command)
     os.system(command)
 
     ## removes any peak entries arising from spots containing less than N pixels
@@ -70,7 +73,7 @@ def process_layer(args, layer):
          num_lines = sum(1 for line in open('%s/peaks_t%i.flt' % (pdir, t)))
          if os.path.exists('%s/peaks_t%i.flt' % (pdir, t)) and num_lines > 1:
              d=ic.columnfile('%s/peaks_t%i.flt' % (pdir, t))
-             d.removerows('Number_of_pixels', range(args.pixels))
+             d.removerows('Number_of_pixels', list(range(args.pixels)))
              d.writefile('%s/peaks_min%d_t%i.flt' % (pdir, args.pixels, t))
 
 
@@ -95,7 +98,7 @@ def main(args):
     ## Loops through specified number of layers
     for layer in range(args.nlayers):
         if args.verbose:
-            print("\nProcessing layer %d of %d" % (layer+1, args.nlayers))
+            print(("\nProcessing layer %d of %d" % (layer+1, args.nlayers)))
         process_layer(args, layer)
 
 

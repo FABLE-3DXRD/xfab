@@ -5,6 +5,7 @@ transformations etc.
 
 """
 
+from __future__ import absolute_import
 import numpy as n
 
 def det_coor(Gt, costth, wavelength, distance, y_size, z_size, 
@@ -138,7 +139,7 @@ def trans_orientation(img, o11, o12, o21, o22, flipdir = 'forward'):
 
     if abs(o11) == 1:
         if (abs(o22) != 1) or (o12 != 0) or (o21 != 0):
-            raise ValueError, 'detector orientation makes no sense 1'
+            raise ValueError('detector orientation makes no sense 1')
         img = n.transpose(img) # to get A[i,j] be standard A[dety,detz] 
         if o11 == -1:
             if flipdir == 'forward':
@@ -156,14 +157,14 @@ def trans_orientation(img, o11, o12, o21, o22, flipdir = 'forward'):
         return img
     if abs(o12) == 1:
         if abs(o21) != 1 or (o11 != 0) or (o22 != 0):
-            raise ValueError, 'detector orientation makes no sense 2'
+            raise ValueError('detector orientation makes no sense 2')
         #transpose not needed since the matrix is transp from scratch
         if o12 == -1:
             img = n.fliplr(img)
         if o21 == -1:
             img = n.flipud(img)
         return img
-    raise ValueError, 'detector orientation makes no sense 3'
+    raise ValueError('detector orientation makes no sense 3')
 
 
 def image_flipping(img, o11, o12, o21, o22, flipdir='forward'):
@@ -196,7 +197,7 @@ def image_flipping(img, o11, o12, o21, o22, flipdir='forward'):
 
     if abs(o11) == 1:
         if (abs(o22) != 1) or (o12 != 0) or (o21 != 0):
-            raise ValueError, 'detector orientation makes no sense 1'
+            raise ValueError('detector orientation makes no sense 1')
 #        img = n.transpose(img) # to get A[i,j] be standard A[dety,detz] 
         if o11 == -1:
             img = n.flipud(img)
@@ -205,7 +206,7 @@ def image_flipping(img, o11, o12, o21, o22, flipdir='forward'):
         return img
     if abs(o12) == 1:
         if abs(o21) != 1 or (o11 != 0) or (o22 != 0):
-            raise ValueError, 'detector orientation makes no sense 2'
+            raise ValueError('detector orientation makes no sense 2')
         #transpose not needed since the matrix is transp from scratch
         img = n.transpose(img) # make transpose
         
@@ -220,7 +221,7 @@ def image_flipping(img, o11, o12, o21, o22, flipdir='forward'):
             else:
                 img = n.flipud(img)
         return img
-    raise ValueError, 'detector orientation makes no sense 3'
+    raise ValueError('detector orientation makes no sense 3')
 
 
 
@@ -240,12 +241,12 @@ def detyz_to_xy(coor, o11, o12, o21, o22, dety_size, detz_size):
 
     if abs(o11) == 1:
         if (abs(o22) != 1) or (o12 != 0) or (o21 != 0):
-            raise ValueError, 'detector orientation makes no sense 1'
+            raise ValueError('detector orientation makes no sense 1')
     elif abs(o12) == 1:
         if abs(o21) != 1 or (o11 != 0) or (o22 != 0):
-            raise ValueError, 'detector orientation makes no sense 2'
+            raise ValueError('detector orientation makes no sense 2')
     else:
-        raise ValueError, 'detector orientation makes no sense 3'
+        raise ValueError('detector orientation makes no sense 3')
     # transpose (dety, detz) to (detz, dety) to match order of (x,y)
     coor = n.array([coor[1], coor[0]])
     omat = n.array([[o11, o12], 
@@ -276,12 +277,12 @@ def xy_to_detyz(coor, o11, o12, o21, o22, dety_size, detz_size):
 
     if abs(o11) == 1:
         if (abs(o22) != 1) or (o12 != 0) or (o21 != 0):
-            raise ValueError, 'detector orientation makes no sense 1'
+            raise ValueError('detector orientation makes no sense 1')
     elif abs(o12) == 1:
         if abs(o21) != 1 or (o11 != 0) or (o22 != 0):
-            raise ValueError, 'detector orientation makes no sense 2'
+            raise ValueError('detector orientation makes no sense 2')
     else:
-        raise ValueError, 'detector orientation makes no sense 3'
+        raise ValueError('detector orientation makes no sense 3')
     omat = n.array([[o11, o12],
                     [o21, o22]])
     det_size = n.array([detz_size-1,

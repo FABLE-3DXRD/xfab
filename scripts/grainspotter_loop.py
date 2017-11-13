@@ -9,6 +9,8 @@ Like: /home/jules/sp8_2013/inis/script.ini
 Must be run in folder where n00.flt is located
 '''
 
+from __future__ import absolute_import
+from __future__ import print_function
 import sys
 import os
 import shutil
@@ -25,13 +27,13 @@ MAKEGVE='make_gve.py'
 
 # read and check input file
 if len(sys.argv) == 1:
-    print 'Provide path to SCRIPT.ini'
+    print('Provide path to SCRIPT.ini')
 elif len(sys.argv) != 2:
-    print 'Wrong number of arguments entered'
+    print('Wrong number of arguments entered')
     sys.exit()
 else:
     pathtoINI = sys.argv[1]
-    print '\nCorrect number of arguments entered -- using %s \n' %pathtoINI
+    print('\nCorrect number of arguments entered -- using %s \n' %pathtoINI)
     
 f = open(pathtoINI,'r')
 input = f.readlines()
@@ -43,9 +45,9 @@ for line in input:
         INIFILE = eval(split(line,'=')[1])
         break
 if INIFILE==False:
-    print 'Missing INIFILE variable - update ini file and restart'
+    print('Missing INIFILE variable - update ini file and restart')
 else:
-    print ' GrainSpotter ini file: %s' %INIFILE
+    print(' GrainSpotter ini file: %s' %INIFILE)
     f = open(INIFILE,'r')
     input = f.readlines()
     f.close()
@@ -55,9 +57,9 @@ else:
             maxome = eval(split(line)[2])
             break
     if minome < -180 or maxome > 180:
-        print '\n OUT OF RANGE: omegarange (%s) must be within -180 to +180.' % INIFILE
+        print('\n OUT OF RANGE: omegarange (%s) must be within -180 to +180.' % INIFILE)
         sys.exit()
-    print ' Omega range: %0.2f to %0.2f' %(minome,maxome)
+    print(' Omega range: %0.2f to %0.2f' %(minome,maxome))
 
 f = open(pathtoINI,'r')
 input = f.readlines()
@@ -69,9 +71,9 @@ for line in input:
         fltfile = eval(split(line,'=')[1])
         break
 if fltfile==False:
-    print 'Missing fltfile variable - update ini file and restart'
+    print('Missing fltfile variable - update ini file and restart')
 else:
-    print ' GrainSpotter input peaks: %s' %fltfile
+    print(' GrainSpotter input peaks: %s' %fltfile)
     
 ubifile=False
 for line in input:
@@ -81,9 +83,9 @@ for line in input:
         itemnum = eval(split(ubifile,'.')[0].translate(None,letters))
         break
 if ubifile==False:
-    print 'Missing ubifile variable - update ini file and restart'
+    print('Missing ubifile variable - update ini file and restart')
 else:
-    print ' GrainSpotter output grains: %s' %ubifile
+    print(' GrainSpotter output grains: %s' %ubifile)
     
 NUMFOUND=False
 for line in input:
@@ -91,9 +93,9 @@ for line in input:
         NUMFOUND = eval(split(line,'=')[1])
         break
 if NUMFOUND==False:
-    print 'Missing NUMFOUND variable - update ini file and restart'
+    print('Missing NUMFOUND variable - update ini file and restart')
 else:
-    print ' Continue running GrainSpotter while the number of new grains is at least: %s' %NUMFOUND
+    print(' Continue running GrainSpotter while the number of new grains is at least: %s' %NUMFOUND)
     
 PARS=False
 for line in input:
@@ -101,9 +103,9 @@ for line in input:
         PARS = eval(split(line,'=')[1])
         break
 if PARS==False:
-    print 'Missing PARS variable - update ini file and restart'
+    print('Missing PARS variable - update ini file and restart')
 else:
-    print ' Full path to par file is: %s' %PARS
+    print(' Full path to par file is: %s' %PARS)
     
 ICUTS=False
 for line in input:
@@ -111,9 +113,9 @@ for line in input:
         ICUTS = eval(split(line,'=')[1])
         break
 if ICUTS==False:
-    print 'Missing ICUTS variable - update ini file and restart'
+    print('Missing ICUTS variable - update ini file and restart')
 else:
-    print ' Makemap initial cuts: %s' %ICUTS
+    print(' Makemap initial cuts: %s' %ICUTS)
     
 FCUTS=False
 for line in input:
@@ -121,9 +123,9 @@ for line in input:
         FCUTS = eval(split(line,'=')[1])
         break
 if FCUTS==False:
-    print 'Missing FCUTS variable - update ini file and restart'
+    print('Missing FCUTS variable - update ini file and restart')
 else:
-    print ' Makemap final cuts: %s' %FCUTS
+    print(' Makemap final cuts: %s' %FCUTS)
     
 SLIMIT=False
 for line in input:
@@ -131,9 +133,9 @@ for line in input:
         SLIMIT = eval(split(line,'=')[1])
         break
 if SLIMIT==False:
-    print 'Missing SLIMIT variable - update ini file and restart'
+    print('Missing SLIMIT variable - update ini file and restart')
 else:
-    print ' Makemap stop limit, number of new reflections per grain: %s' %SLIMIT
+    print(' Makemap stop limit, number of new reflections per grain: %s' %SLIMIT)
 
 MINPEAKS=False
 for line in input:
@@ -141,9 +143,9 @@ for line in input:
         MINPEAKS = eval(split(line,'=')[1])
         break
 if MINPEAKS==False:
-    print 'Missing MINPEAKS variable - update ini file and restart'
+    print('Missing MINPEAKS variable - update ini file and restart')
 else:
-    print ' Makemap minimum number of peaks: %s' %MINPEAKS
+    print(' Makemap minimum number of peaks: %s' %MINPEAKS)
 
 CRYSYMM=False
 for line in input:
@@ -151,9 +153,9 @@ for line in input:
         CRYSYMM = eval(split(line,'=')[1])
         break
 if CRYSYMM==False:
-    print 'Missing CRYSYMM variable - update ini file and restart'
+    print('Missing CRYSYMM variable - update ini file and restart')
 else:
-    print ' The crystal symmetry is: %s' %CRYSYMM    
+    print(' The crystal symmetry is: %s' %CRYSYMM)    
     
 EULERSTEP=False
 for line in input:
@@ -162,7 +164,7 @@ for line in input:
         EULERSTEP = eval(ES.replace('(','[').replace(')',']').replace(' ',','))
         break
 if EULERSTEP==False:
-    print 'Missing EULERSTEP variable - update ini file and restart'
+    print('Missing EULERSTEP variable - update ini file and restart')
 
 NSIGMAS=False
 for line in input:
@@ -171,7 +173,7 @@ for line in input:
         NSIGMAS = eval(NS.replace('(','[').replace(')',']').replace(' ',','))
         break
 if NSIGMAS==False:
-    print 'Missing NSIGMAS variable - update ini file and restart'
+    print('Missing NSIGMAS variable - update ini file and restart')
 
     
 # Setup for loop
@@ -191,7 +193,7 @@ while testCon < testLim:
     log_out = '%s%0.2d.log' %(prefix,itemnum+loopCounter)
     gff_out = '%s%0.2d.gff' %(prefix,itemnum+loopCounter)
     
-    print '\nConvert peaks to g-vectors'
+    print('\nConvert peaks to g-vectors')
     command = '%s %s rest.gve %s' %(MAKEGVE,pks_in,PARS)
     #print command
     os.system(command)
@@ -203,9 +205,9 @@ while testCon < testLim:
 
     eulerstep = EULERSTEP[spottercounter]
     nsigmas = NSIGMAS[spottercounter]
-    print '\nRunning GrainSpotter'
-    print 'spottercounter is: %i' %spottercounter
-    print 'Now using eulerstep: %0.1f and nsigmas %0.1f' %(eulerstep,nsigmas)
+    print('\nRunning GrainSpotter')
+    print('spottercounter is: %i' %spottercounter)
+    print('Now using eulerstep: %0.1f and nsigmas %0.1f' %(eulerstep,nsigmas))
     
     ## REPLACES cat COMMAND IN ORDER TO FUNCTION ON WINDOWS
     ## mkak 14.03.2016
@@ -228,7 +230,7 @@ while testCon < testLim:
     f = open('spotter_out.log','r')
     lines = f.readlines()
     f.close()
-    print lines[0], 'GrainSpotter done'
+    print(lines[0], 'GrainSpotter done')
     numberofgrainsbefore = numberofgrains
     numberofgrains = eval(lines[0].translate(None,letters))
     slimit = SLIMIT*numberofgrains    
@@ -243,7 +245,7 @@ while testCon < testLim:
     if numberofgrains != 0:
         command = '%s %s %s' %(GFF2UBI,gff_out,grains_in)
         os.system(command)
-        print '\nRunning makemap.py'
+        print('\nRunning makemap.py')
         command = '%s %s %s %s %f %f %i %i %s %s' %(RUNMAKEMAP,grains_in,pks_in,pks_out,ICUTS,FCUTS,slimit,MINPEAKS,PARS,CRYSYMM)
         os.system(command)
         
@@ -253,12 +255,12 @@ while testCon < testLim:
         else:
             testCon = testCon + 1
     else:
-        print 'No grains found'
+        print('No grains found')
         os.remove(gff_out)
         os.remove(log_out)
         testCon = testCon + 1
         
 os.remove('spotterOutTemp.txt')
-print '\nOK\n'
+print('\nOK\n')
 
         

@@ -1,15 +1,18 @@
+from __future__ import absolute_import
+from __future__ import print_function
 import unittest
 from CifFile import ReadCif
 import numpy as n
 
 from xfab import structure
+from six.moves import range
 
         
 
 class test_multiplicity(unittest.TestCase):
     def test_general_pos(self):
         multi = structure.multiplicity(n.array([0.13,0.23,0.05]),sgname='P21')
-        self.assertEquals(multi,2)
+        self.assertEqual(multi,2)
     def test_alu_pos(self):
         sgname ='Fm-3m'
         ##fractional coor   x,   y,    z,   multiplicity   (from Int. Tables A)
@@ -21,11 +24,11 @@ class test_multiplicity(unittest.TestCase):
                        [0.0  , 0.21, 0.21,  48]])
         for i in range(len(pos)):
             multi = structure.multiplicity(pos[i,0:3], sgname)
-            self.assertEquals(multi,pos[i,3])
+            self.assertEqual(multi,pos[i,3])
 
     def test_tft_mirror(self):
         multi = structure.multiplicity(n.array([0.0,0.25821,0.16339]),sgname='Cmca')
-        self.assertEquals(multi,8)
+        self.assertEqual(multi,8)
 
 class test_cifread(unittest.TestCase):
     def test_cifopen(self):  ## test method names begin 'test*'
@@ -34,7 +37,7 @@ class test_cifread(unittest.TestCase):
     def test_cifread(self):
         mylist =  structure.build_atomlist()
         mylist.CIFread('PPA.cif','oPPA')
-        self.assertEquals([8.5312,4.8321,10.125,90.00,92.031,90.00],
+        self.assertEqual([8.5312,4.8321,10.125,90.00,92.031,90.00],
                           mylist.atomlist.cell)
 
 
@@ -56,11 +59,11 @@ class test_structurefactor(unittest.TestCase):
                                                  mylist.atomlist.dispersion)
             F2 = Fr**2 + Fi**2
             reldif = F2/eval(fcf['_refln_F_squared_calc'][i])-1
-            print i, reldif, F2
+            print(i, reldif, F2)
             if F2 > 10: # Only compare those with an F^2 larger than ten 
                         # to avoid that the very weak reflections which
                         # have a relative difference that are slightly larger
-                self.assertAlmostEquals(reldif,0,2)
+                self.assertAlmostEqual(reldif,0,2)
 
 if __name__ == '__main__':
     unittest.main()
