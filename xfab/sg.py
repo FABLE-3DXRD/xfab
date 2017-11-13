@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import xfab
 from xfab import sglib
 import numpy as n

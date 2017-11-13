@@ -4,6 +4,8 @@ Usage:
 python ubi_to_gff.py input.ubi detector.par output.gff
 """
 
+from __future__ import absolute_import
+from __future__ import print_function
 from ImageD11 import columnfile as ic
 from ImageD11 import grain as ig
 from ImageD11 import parameters as ip
@@ -11,20 +13,21 @@ import sys
 import numpy as n
 from string import split
 from xfab import tools
+from six.moves import range
 
 if len(sys.argv) < 4:
-    print "\n"
-    print "########################################################"
-    print "Usage:"
-    print "ubi_to_gff.py input.ubi detector.par output.gff"
-    print "########################################################"
-    print "\n"
+    print("\n")
+    print("########################################################")
+    print("Usage:")
+    print("ubi_to_gff.py input.ubi detector.par output.gff")
+    print("########################################################")
+    print("\n")
 
 list_of_grains = ig.read_grain_file(sys.argv[1])
 p = ip.parameters()
 p.loadparameters(sys.argv[2])
 uc = [p.parameters['cell__a'],p.parameters['cell__b'],p.parameters['cell__c'],p.parameters['cell_alpha'],p.parameters['cell_beta'],p.parameters['cell_gamma']]
-print uc
+print(uc)
 
 grainno = []
 x = []

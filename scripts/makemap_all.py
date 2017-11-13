@@ -6,19 +6,22 @@
  	stop limit, min number of peaks, full path to .par file, crystal symmetry
 """
 
+from __future__ import absolute_import
+from __future__ import print_function
 import sys
 import os
 from string import split,digits,letters#,replace
+from six.moves import range
 
 
 # read and check input file
 if len(sys.argv) != 10:
-	print "Should enter nine variables:" 
-	print "nX.ubi, n(X-1).flt, nX.flt, "
-	print "initial cuts, final cuts, stop limit, "
-	print "min number of peaks, full path to .par file, crystal symmetry \n" 
-	print "Example:"
-	print "makemap_all.py nall.ubi n00.flt rest.flt 0.03 0.02 5 100 NF_final.par cubic\n"
+	print("Should enter nine variables:") 
+	print("nX.ubi, n(X-1).flt, nX.flt, ")
+	print("initial cuts, final cuts, stop limit, ")
+	print("min number of peaks, full path to .par file, crystal symmetry \n") 
+	print("Example:")
+	print("makemap_all.py nall.ubi n00.flt rest.flt 0.03 0.02 5 100 NF_final.par cubic\n")
 	sys.exit()
 else:
 	UBI = sys.argv[1]			# Input grains in .ubi format, overwritten by the program
@@ -33,7 +36,7 @@ else:
 
 
 # Run makemap loop 1 with first threshold cut ICUTS
-print "Beginnning makemap loop 1 with cuts (-t %f)" %ICUTS
+print("Beginnning makemap loop 1 with cuts (-t %f)" %ICUTS)
 command = "makemap.py -p %s -u %s -U %s -f %s -F %s -t %f -s %s > makemapTempOut.txt" %(PARS,UBI,UBI,FLT_IN,FLT_OUT,ICUTS,CRYSYMM)
 os.system(command)
 
@@ -43,8 +46,8 @@ f.close()
 
 pks0 = eval(lines[-2].translate(None,letters))
 pks1 = eval(lines[-1].translate(None,letters))
-print "Initial number of peaks %i" %pks0
-print "Number of remaining peaks %i" %pks1
+print("Initial number of peaks %i" %pks0)
+print("Number of remaining peaks %i" %pks1)
 	
 new_assigned = LIMIT + 1
 counter = 1
@@ -59,7 +62,7 @@ while new_assigned > LIMIT:
 	new_assigned = pks1 - pks2
 	pks1 = pks2
 
-print "makemap.py was run %i times" %(counter)
+print("makemap.py was run %i times" %(counter))
 
 
 # Remove grains with less than MINPEAKS peaks
@@ -75,23 +78,23 @@ for i in range(len(lines)):
 			breaklinenum = i - 3
 			break
 if breaklinenum > 0:
-	print "Removing grains with less than %i peaks" %MINPEAKS
-	print "Deleting from line %i on!" %breaklinenum
+	print("Removing grains with less than %i peaks" %MINPEAKS)
+	print("Deleting from line %i on!" %breaklinenum)
 	f = open(UBI,'w')
 	for i in range(breaklinenum):
 		f.write("%s" %lines[i])
 	f.close()
 elif breaklinenum == 0:
-	print "All seed grains are bad."
-	print "Deleting %s and %s files!" %(UBI,FLT_OUT)
+	print("All seed grains are bad.")
+	print("Deleting %s and %s files!" %(UBI,FLT_OUT))
 	os.remove(UBI)
 	os.remove(FLT_OUT)
 else:
-	print "All grains have at least %i peaks" %MINPEAKS		
+	print("All grains have at least %i peaks" %MINPEAKS)		
 			
 # Run makemap loop 2 with first threshold cut FCUTS
 if os.path.exists(UBI):
-	print "Beginnning makemap loop 2 with cuts (-t %f)" %FCUTS
+	print("Beginnning makemap loop 2 with cuts (-t %f)" %FCUTS)
 	command = "makemap.py -p %s -u %s -U %s -f %s -F %s -t %f -s %s > makemapTempOut.txt" %(PARS,UBI,UBI,FLT_IN,FLT_OUT,FCUTS,CRYSYMM)
 	os.system(command)
 
@@ -101,8 +104,8 @@ if os.path.exists(UBI):
 
 	pks0 = eval(lines[-2].translate(None,letters))
 	pks1 = eval(lines[-1].translate(None,letters))
-	print "Initial number of peaks %i" %pks0
-	print "Number of remaining peaks %i" %pks1
+	print("Initial number of peaks %i" %pks0)
+	print("Number of remaining peaks %i" %pks1)
 	
 	new_assigned = LIMIT + 1
 	counter = 1
@@ -117,6 +120,6 @@ if os.path.exists(UBI):
 		new_assigned = pks1 - pks2
 		pks1 = pks2
 
-	print "makemap.py was run %i more times" %(counter)
+	print("makemap.py was run %i more times" %(counter))
 
 os.remove("makemapTempOut.txt")

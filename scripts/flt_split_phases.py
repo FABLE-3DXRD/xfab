@@ -4,6 +4,8 @@
 
 ##########################################################################
 # IMPORT PYTHON PACKAGES
+from __future__ import absolute_import
+from __future__ import print_function
 import numpy as np
 import math
 #import matplotlib.pyplot as plt
@@ -17,6 +19,7 @@ import argparse
 #import shutil
 #import sys
 import textwrap
+from six.moves import range
 
 ##########################################################################
 def readparfile(filename):
@@ -152,7 +155,7 @@ def sortFLT(FLTfile,sp1FLTfile,sp2FLTfile,sp1_sinth,sp2_sinth,distance,centers,p
     fsp1.close()
     fsp2.close()
     
-    print '\nCreated files %s and %s.' % (sp1FLTfile,sp2FLTfile)
+    print('\nCreated files %s and %s.' % (sp1FLTfile,sp2FLTfile))
 
 
     return()
