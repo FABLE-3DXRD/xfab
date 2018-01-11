@@ -261,8 +261,6 @@ class build_atomlist:
         function to read pdb file (www.pdb.org) and make 
         atomlist structure
         """
-        upper = str.upper
-        lower = str.lower
         from re import sub
         try:
             text = open(pdbfile, 'r').readlines()
@@ -287,7 +285,7 @@ class build_atomlist:
         sg = ''
         for i in range(len(sgtmp)):
             if sgtmp[i] != '1':
-                sg = sg + lower(sgtmp[i])
+                sg = sg + sgtmp[i].lower()
         self.atomlist.sgname = sg
 
         # Build SCALE matrix for transformation of 
@@ -306,7 +304,7 @@ class build_atomlist:
             if text[i].find('ATOM') == 0 or text[i].find('HETATM') ==0:
                 no = no + 1 
                 label = sub("\s+", "", text[i][12:16])
-                atomtype = upper(sub("\s+", "", text[i][76:78]))
+                atomtype = sub("\s+", "", text[i][76:78]).upper()
                 x = float(text[i][30:38])
                 y = float(text[i][38:46])
                 z = float(text[i][46:54])
@@ -329,7 +327,6 @@ class build_atomlist:
 
     def CIFread(self, ciffile = None, cifblkname = None, cifblk = None):
         from re import sub
-        upper = str.upper
         if ciffile != None:
             try:
                 cifblk = self.CIFopen(ciffile=ciffile, cifblkname=cifblkname)
@@ -353,18 +350,18 @@ class build_atomlist:
         # Dispersion factors
         for i in range(len(cifblk['_atom_type_symbol'])):
             try:
-                self.atomlist.dispersion[upper(cifblk['_atom_type_symbol'][i])] =\
+                self.atomlist.dispersion[cifblk['_atom_type_symbol'][i].upper()] =\
                     [self.remove_esd(cifblk['_atom_type_scat_dispersion_real'][i]),
                      self.remove_esd(cifblk['_atom_type_scat_dispersion_imag'][i])]
             except:
-                self.atomlist.dispersion[upper(cifblk['_atom_type_symbol'][i])] = None
+                self.atomlist.dispersion[cifblk['_atom_type_symbol'][i].upper()] = None
                 logging.warning('No dispersion factors for %s in cif file - set to zero'\
                                     %cifblk['_atom_type_symbol'][i])
 
         for i in range(len(cifblk['_atom_site_type_symbol'])):
             label = cifblk['_atom_site_label'][i]
             #atomno = atomtype[upper(cifblk['_atom_site_type_symbol'][i])]
-            atomtype = upper(cifblk['_atom_site_type_symbol'][i])
+            atomtype = cifblk['_atom_site_type_symbol'][i].upper()
             x = self.remove_esd(cifblk['_atom_site_fract_x'][i])
             y = self.remove_esd(cifblk['_atom_site_fract_y'][i])
             z = self.remove_esd(cifblk['_atom_site_fract_z'][i])

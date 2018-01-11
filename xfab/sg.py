@@ -10,8 +10,8 @@ class sg:
         if sgno != None:
             klass_name = "".join('Sg%i' %sgno)
         elif sgname != None:
-            klass_name = sgdic[str.lower(sub("\s+", "", sgname))] 
-            if str.lower(sub("\s+", "", sgname))[0]=="r" and str.lower(sub("\s+", "", sgname))[-1]=="r":
+            klass_name = sgdic[sub("\s+", "", sgname).lower()] 
+            if sub("\s+", "", sgname).lower()[0]=="r" and sub("\s+", "", sgname).lower()[-1]=="r":
                 cell_choice = "rhombohedral"
         if hasattr(xfab, 'sglib'):
             module = getattr(xfab, 'sglib')
