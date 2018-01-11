@@ -21,6 +21,8 @@ function definitions.
 
 '''
 
+from __future__ import absolute_import
+from __future__ import print_function
 import argparse
 import os
 import shutil
@@ -30,6 +32,8 @@ import textwrap
 import numpy as np
 from scipy.optimize import leastsq
 import matplotlib
+from six.moves import map
+from six.moves import range
 matplotlib.use('PDF')
 import matplotlib.pyplot as plt # for plotting data if needed
 import string
@@ -52,7 +56,7 @@ def scor_old(r): # find number of peaks
 
     npks = 0
     drlv = 0
-    ks = r.grains.keys()
+    ks = list(r.grains.keys())
     for key in ks:
         g = r.grains[key]
         grainname = key[0]
@@ -98,7 +102,7 @@ def scor_maggie(r):
 
 
 def scor_new(r):
-    r.grains_to_refine = r.grains.keys()
+    r.grains_to_refine = list(r.grains.keys())
     r.recompute_xlylzl = True
     return r.gof(), 0
     
@@ -165,9 +169,9 @@ def gauss_fit(x, y):
         sigma =  x[-1] - x[np.argmax(y)]
     p0 = [A, mu, sigma]
     print('Initial estimates of Gaussian fit parameters:')
-    print('A     %.1f' % A)
-    print('mu    %.4f' % mu)
-    print('sigma %.4f' % sigma)
+    print(('A     %.1f' % A))
+    print(('mu    %.4f' % mu))
+    print(('sigma %.4f' % sigma))
 
     # find optimal Gaussian parameters
     #p_opt = curve_fit(gaussian, x, y, p0=p0)
@@ -177,7 +181,7 @@ def gauss_fit(x, y):
 def main(args):
 
     # set up peak-finding
-    print
+    print()
     r = refinegrains()
     r.loadparameters(args.parfile)
     r.loadfiltered(args.fltfile)
@@ -190,7 +194,7 @@ def main(args):
 
     #*********************** BEGIN USER INPUT ***********************#
 
-    print
+    print()
     param_range = np.array([
     #     MIN          MAX
     #----------------------------
@@ -248,15 +252,15 @@ def main(args):
 
     print('varying:')
     print(param_names)
-    print
+    print()
 
     # find number of peaks using initial optimal parameter values
     for i, name in enumerate(all_param_names):
         r.parameterobj.parameters[name] = p_opt_array[i]
     r.assignlabels() ## try here...
     n, e = scor(r)
-    print('Peaks found before parameter refinement: %d' % n)
-    print
+    print(('Peaks found before parameter refinement: %d' % n))
+    print()
 
     # parameter refinement iteration loop
     for current_iteration in range(args.iterations):
@@ -283,10 +287,10 @@ def main(args):
                   'GrainSweeper will use parameters values from the nf_X.par'
                   'file, unless the opt_par_values_nf_X.txt already exists '
                   '(in which case values from this .txt file will be used.')
-            print
+            print()
             print('The parameter refinement skipping option can be '
                   'toggled/overridden in the tweakpars.py script.')
-            print
+            print()
             break
 
             ## set initial optimal parameters
@@ -302,8 +306,8 @@ def main(args):
         ## find peaks for each par variation, fit Gaussian to curve, and find
         ## optimal par values
         for i, name in enumerate(param_names): # for each parameter
-            print
-            print('Varying parameter: %s; value: %g' % (name, p_opt_array[all_param_names.index(name)]))
+            print()
+            print(('Varying parameter: %s; value: %g' % (name, p_opt_array[all_param_names.index(name)])))
             print('   distance   y_center  z_center    tilt_x      tilt_y'
                   '      tilt_z      wedge     peaks found     e')
             var_range = list(np.linspace(param_range[all_param_names.index(name),0], param_range[all_param_names.index(name),1],
@@ -320,15 +324,15 @@ def main(args):
 
                 n, e = scor(r)
                 param_peaks[j,:,i] = d, n, e # write values to array
-                print(
+                print((
                     '%11.1f %9.1f %9.1f %11.6f %11.6f %11.6f %11.6f %10d '
                     '%11.5f' % (dd, yy, zz, tx, ty, tz, ww, n, e)
-                    )
+                    ))
 
             # create Gaussian fit
             p_opt = gauss_fit( param_peaks[:,0,i], param_peaks[:,1,i] )
             if p_opt is None:
-                print 'cant fit something that doesnt vary'
+                print('cant fit something that doesnt vary')
                 r.parameterobj.parameters[name] = p_opt_array[all_param_names.index(name)]
                 continue
 
@@ -355,21 +359,21 @@ def main(args):
 
             ## print and record newest updated optimal parameter value,
             ## print peaks found
-            print('Optimal parameter value: %.4f' % p_opt[1])
+            print(('Optimal parameter value: %.4f' % p_opt[1]))
             p_opt_array[all_param_names.index(name)] = p_opt[1]
             r.parameterobj.parameters[name] = p_opt_array[all_param_names.index(name)]
-            print
+            print()
             n, e = scor(r) # find number of peaks using all optimal
                            #parameter values
-            print('Peaks found after variation: %d' % n)
+            print(('Peaks found after variation: %d' % n))
 
         # print optimal parameters from current iteration
-        print
-        print('Optimal parameter values for parameter refinement'
-              'iteration %d:' % (current_iteration+1))
-        print(' '.join(map(str, all_param_names)))
-        print('  '.join(map(str, p_opt_array)))
-        print
+        print()
+        print(('Optimal parameter values for parameter refinement'
+              'iteration %d:' % (current_iteration+1)))
+        print((' '.join(map(str, all_param_names))))
+        print(('  '.join(map(str, p_opt_array))))
+        print()
 
     # create optimal parameter values file (for importing into shell)
     if args.experiment:

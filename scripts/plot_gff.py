@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
+from __future__ import print_function
 from optparse import OptionParser
 import sys
 import numpy as np
@@ -9,6 +11,7 @@ from xfab import symmetry,tools
 import mpl_toolkits.mplot3d as p3
 from ImageD11 import columnfile as ic
 from matplotlib import cm,colors
+from six.moves import range
 
 """
 For plotting gff files with colour coding according to orientation, stress or strain.
@@ -93,7 +96,7 @@ if __name__=='__main__':
     do_exit = False
 
     if options.input == None:
-      print "\nNo stem of input .gff supplied [-i input]\n"
+      print("\nNo stem of input .gff supplied [-i input]\n")
       do_exit = True
     if do_exit:
         parser.print_help()
@@ -255,7 +258,7 @@ if __name__=='__main__':
         fig.add_axes(ax)
 
         ## Plot triangle    
-        ya = np.array(range(51))/100.
+        ya = np.array(list(range(51)))/100.
         xa = np.sqrt(1-ya**2)
         pl.plot(xa,ya,'black') # Curved edge
         pl.plot([0,xa[0]],[0,0.0001],'black',linewidth=2) #lower line 
@@ -333,7 +336,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "transverse strain:", np.sum(data.grainvolume*data.eps11_s)/np.sum(data.grainvolume)
+        print("transverse strain:", np.sum(data.grainvolume*data.eps11_s)/np.sum(data.grainvolume))
     elif sym == "e22":
         try:
             colourbar(minimum,maximum,step,'e-3')
@@ -345,7 +348,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "transverse strain:", np.sum(data.grainvolume*data.eps22_s)/np.sum(data.grainvolume)
+        print("transverse strain:", np.sum(data.grainvolume*data.eps22_s)/np.sum(data.grainvolume))
     elif sym == "e33":
         try:
             colourbar(minimum,maximum,step,'e-3')
@@ -357,7 +360,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "axial strain:", np.sum(data.grainvolume*data.eps33_s)/np.sum(data.grainvolume)
+        print("axial strain:", np.sum(data.grainvolume*data.eps33_s)/np.sum(data.grainvolume))
     elif sym == "e12":
         try:
             colourbar(minimum,maximum,step,'e-3')
@@ -369,7 +372,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "shear strain:", np.sum(data.grainvolume*data.eps12_s)/np.sum(data.grainvolume)
+        print("shear strain:", np.sum(data.grainvolume*data.eps12_s)/np.sum(data.grainvolume))
     elif sym == "e13":
         try:
             colourbar(minimum,maximum,step,'e-3')
@@ -381,7 +384,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "shear strain:", np.sum(data.grainvolume*data.eps13_s)/np.sum(data.grainvolume)
+        print("shear strain:", np.sum(data.grainvolume*data.eps13_s)/np.sum(data.grainvolume))
     elif sym == "e23":
         try:
             colourbar(minimum,maximum,step,'e-3')
@@ -393,7 +396,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "shear strain:", np.sum(data.grainvolume*data.eps23_s)/np.sum(data.grainvolume)
+        print("shear strain:", np.sum(data.grainvolume*data.eps23_s)/np.sum(data.grainvolume))
     elif sym == "s33":
         try:
             colourbar(minimum,maximum,step,'MPa')
@@ -405,7 +408,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "axial stress:", np.sum(data.grainvolume*data.sig33_s)/np.sum(data.grainvolume), "MPa" 
+        print("axial stress:", np.sum(data.grainvolume*data.sig33_s)/np.sum(data.grainvolume), "MPa") 
     elif sym == "s11":
         try:
             colourbar(minimum,maximum,step,'MPa')
@@ -417,7 +420,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "transverse s11 stress:", np.sum(data.grainvolume*data.sig11_s)/np.sum(data.grainvolume), "MPa" 
+        print("transverse s11 stress:", np.sum(data.grainvolume*data.sig11_s)/np.sum(data.grainvolume), "MPa") 
     elif sym == "s22":
         try:
             colourbar(minimum,maximum,step,'MPa')
@@ -429,7 +432,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "transverse s22 stress:", np.sum(data.grainvolume*data.sig22_s)/np.sum(data.grainvolume), "MPa" 
+        print("transverse s22 stress:", np.sum(data.grainvolume*data.sig22_s)/np.sum(data.grainvolume), "MPa") 
     elif sym == "s12":
         try:
             colourbar(minimum,maximum,step,'MPa')
@@ -441,7 +444,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "shear s12 stress:", np.sum(data.grainvolume*data.sig12_s)/np.sum(data.grainvolume), "MPa" 
+        print("shear s12 stress:", np.sum(data.grainvolume*data.sig12_s)/np.sum(data.grainvolume), "MPa") 
     elif sym == "s13":
         try:
             colourbar(minimum,maximum,step,'MPa')
@@ -453,7 +456,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "shear s13 stress:", np.sum(data.grainvolume*data.sig13_s)/np.sum(data.grainvolume), "MPa" 
+        print("shear s13 stress:", np.sum(data.grainvolume*data.sig13_s)/np.sum(data.grainvolume), "MPa") 
     elif sym == "s23":
         try:
             colourbar(minimum,maximum,step,'MPa')
@@ -465,7 +468,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print "shear s23 stress:", np.sum(data.grainvolume*data.sig23_s)/np.sum(data.grainvolume), "MPa" 
+        print("shear s23 stress:", np.sum(data.grainvolume*data.sig23_s)/np.sum(data.grainvolume), "MPa") 
     elif sym == "latt_rot":
         norm = colors.normalize(0,0.5)
         color = cm.jet(norm(data.latt_rot))
@@ -491,7 +494,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print min(data.sig_tth/data.grainvolume**.2),max(data.sig_tth/data.grainvolume**.2)
+        print(min(data.sig_tth/data.grainvolume**.2),max(data.sig_tth/data.grainvolume**.2))
 #        pl.figure(8)
 #        pl.plot(np.log(data.grainvolume),np.log(data.sig_tth),'.')
     elif sym == "eta":
@@ -500,7 +503,7 @@ if __name__=='__main__':
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
-        print min(data.sig_eta/data.grainvolume**.2),max(data.sig_eta/data.grainvolume**.2)
+        print(min(data.sig_eta/data.grainvolume**.2),max(data.sig_eta/data.grainvolume**.2))
 #        pl.figure(8)
 #        pl.plot(np.log(data.grainvolume),np.log(data.sig_eta),'.')
     else:
@@ -532,7 +535,7 @@ if __name__=='__main__':
     ax = fig2.add_subplot(111,visible=False)
     data = np.clip(np.random.randn(250,250),-1,1)
     cax = ax.imshow(data,interpolation='nearest',cmap=cm.jet)
-    numticks = range(min,max+step,step)
+    numticks = list(range(min,max+step,step))
     textticks = []
     num2ticks = []
     for i in numticks:

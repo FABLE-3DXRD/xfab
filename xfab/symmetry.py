@@ -3,9 +3,12 @@ xfab.symmetry has a few function for calculation of symmetry
 related stuff
 """
 
+from __future__ import absolute_import
+from __future__ import print_function
 from numpy import zeros, arccos, pi, dot, transpose, array, concatenate, cos, sin, dot
 from numpy.linalg import det, inv
 from xfab import tools
+from six.moves import range
 
 
 def Umis(umat_1, umat_2, crystal_system):
@@ -30,7 +33,7 @@ def Umis(umat_1, umat_2, crystal_system):
         g_vector = dot(umat_2, transpose(dot(umat_1, rot[k])))
         detg = det(g_vector)
         if detg < 0.9999 or detg > 1.0001:
-            print 'mistake %f' % detg
+            print('mistake %f' % detg)
         else:
             length = (g_vector.diagonal().sum()-1.)/2.
             if abs(length) > 1.00000000:
@@ -53,7 +56,7 @@ def add_perm(hkl, crystal_system):
     nperm = perm.shape[0]
     
     for k in range(nperm):
-        print dot(perm[k],hkl)
+        print(dot(perm[k],hkl))
 
         
 def add_rot(umat, crystal_system):
@@ -66,7 +69,7 @@ def add_rot(umat, crystal_system):
     nrot = rot.shape[0]
     
     for k in range(nrot):
-        print dot(umat, rot[k])
+        print(dot(umat, rot[k]))
 
         
 def permutations(crystal_system):

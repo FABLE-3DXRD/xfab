@@ -4,9 +4,12 @@
 
 ##########################################################################
 # IMPORT PYTHON PACKAGES
+from __future__ import absolute_import
+from __future__ import print_function
 import os
 import argparse
 import textwrap
+from six.moves import range
 
 ##########################################################################
 def sortFLT(FLTfile,newFLTfile,args):
@@ -36,7 +39,7 @@ def sortFLT(FLTfile,newFLTfile,args):
     f.close()
     fw.close()
     
-    print '\nCreated file %s.' % (newFLTfile)
+    print('\nCreated file %s.' % (newFLTfile))
 
 
     return()
@@ -57,13 +60,13 @@ def main(args):
         args.bminx = args.bmaxx
         args.bmaxx = newmax
         if args.verbose:
-            print 'Redefined limits of beamspot: x min and max were switched.'
+            print('Redefined limits of beamspot: x min and max were switched.')
     if args.bmaxy < args.bminy:
         newmax = args.bminy
         args.bminy = args.bmaxy
         args.bmaxy = newmax
         if args.verbose:
-            print 'Redefined limits of beamspot: y min and max were switched.'
+            print('Redefined limits of beamspot: y min and max were switched.')
 
     sortFLT(args.fltfile,newfltfile,args)
 
