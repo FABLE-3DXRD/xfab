@@ -3,15 +3,15 @@ import xfab
 from xfab import sglib
 import numpy as n
 from re import sub
-from string import lower
+
 
 class sg:
     def __init__(self, sgno = None, sgname = None, cell_choice = "standard"):
         if sgno != None:
             klass_name = "".join('Sg%i' %sgno)
         elif sgname != None:
-            klass_name = sgdic[lower(sub("\s+", "", sgname))] 
-            if lower(sub("\s+", "", sgname))[0]=="r" and lower(sub("\s+", "", sgname))[-1]=="r":
+            klass_name = sgdic[str.lower(sub("\s+", "", sgname))] 
+            if str.lower(sub("\s+", "", sgname))[0]=="r" and str.lower(sub("\s+", "", sgname))[-1]=="r":
                 cell_choice = "rhombohedral"
         if hasattr(xfab, 'sglib'):
             module = getattr(xfab, 'sglib')

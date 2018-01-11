@@ -261,7 +261,8 @@ class build_atomlist:
         function to read pdb file (www.pdb.org) and make 
         atomlist structure
         """
-        from string import atof, atoi, lower, upper
+        upper = str.upper
+        lower = str.lower
         from re import sub
         try:
             text = open(pdbfile, 'r').readlines()
@@ -271,12 +272,12 @@ class build_atomlist:
 
         for i in range(len(text)):
             if text[i].find('CRYST1') == 0:
-                a = atof(text[i][6:15])
-                b = atof(text[i][15:24])
-                c = atof(text[i][24:33])
-                alp = atof(text[i][33:40])
-                bet = atof(text[i][40:47])
-                gam = atof(text[i][47:54])
+                a = float(text[i][6:15])
+                b = float(text[i][15:24])
+                c = float(text[i][24:33])
+                alp = float(text[i][33:40])
+                bet = float(text[i][40:47])
+                gam = float(text[i][47:54])
                 sg = text[i][55:66]
 
         self.atomlist.cell = [a, b, c, alp, bet, gam]
@@ -296,9 +297,9 @@ class build_atomlist:
             if text[i].find('SCALE') == 0:
                 # FOUND SCALE LINE
                 scale = text[i].split()
-                scaleline = atoi(scale[0][-1])-1
+                scaleline = int(scale[0][-1])-1
                 for j in range(1, len(scale)):
-                    scalemat[scaleline, j-1] = atof(scale[j])
+                    scalemat[scaleline, j-1] = float(scale[j])
                 
         no = 0
         for i in range(len(text)):
@@ -306,14 +307,14 @@ class build_atomlist:
                 no = no + 1 
                 label = sub("\s+", "", text[i][12:16])
                 atomtype = upper(sub("\s+", "", text[i][76:78]))
-                x = atof(text[i][30:38])
-                y = atof(text[i][38:46])
-                z = atof(text[i][46:54])
+                x = float(text[i][30:38])
+                y = float(text[i][38:46])
+                z = float(text[i][46:54])
                 # transform orthonormal coordinates to fractional
                 pos = n.dot(scalemat, [x, y, z, 1])
-                adp = atof(text[i][60:66])/(8*n.pi**2) # B to U
+                adp = float(text[i][60:66])/(8*n.pi**2) # B to U
                 adp_type = 'Uiso'
-                occ = atof(text[i][54:60])
+                occ = float(text[i][54:60])
                 multi = multiplicity(pos, self.atomlist.sgname)
                 self.atomlist.add_atom(label=label,
                                        atomtype=atomtype,
@@ -328,7 +329,7 @@ class build_atomlist:
 
     def CIFread(self, ciffile = None, cifblkname = None, cifblk = None):
         from re import sub
-        from string import upper
+        upper = str.upper
         if ciffile != None:
             try:
                 cifblk = self.CIFopen(ciffile=ciffile, cifblkname=cifblkname)
@@ -408,12 +409,11 @@ class build_atomlist:
         e.g. '1.234(56)' to '1.234'.
         """
 
-        from string import atof
         
         if a.find('(') == -1:
-            value = atof(a)
+            value = float(a)
         else:
-            value = atof(a[:a.find('(')])
+            value = float(a[:a.find('(')])
         return value
 
 
