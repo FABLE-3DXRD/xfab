@@ -1,6 +1,8 @@
+from __future__ import absolute_import
 import unittest
 import numpy as n
 from xfab import tools
+from six.moves import range
 
 
 class test_euler2u(unittest.TestCase):
@@ -10,7 +12,7 @@ class test_euler2u(unittest.TestCase):
         phi2 = 0.0
         Umat = tools.euler_to_u(phi1,PHI,phi2)
         diff = n.abs(Umat-n.eye(3)).sum()
-        self.assertAlmostEquals(diff,0,9)
+        self.assertAlmostEqual(diff,0,9)
 
     def test2(self):  
         phi1 = 0.1
@@ -18,7 +20,7 @@ class test_euler2u(unittest.TestCase):
         phi2 = -0.1
         Umat = tools.euler_to_u(phi1,PHI,phi2)
         diff = n.abs(Umat-n.eye(3)).sum()
-        self.assertAlmostEquals(diff,0,9)
+        self.assertAlmostEqual(diff,0,9)
 
 class test_rodrigues(unittest.TestCase):
 
@@ -28,7 +30,7 @@ class test_rodrigues(unittest.TestCase):
         rodvec2 = tools.u_to_rod(Umat)
 
         diff = n.abs(rodvec-rodvec2).sum()
-        self.assertAlmostEquals(diff,0,9)
+        self.assertAlmostEqual(diff,0,9)
 
         
     def test_U2rod2U(self):  
@@ -40,7 +42,7 @@ class test_rodrigues(unittest.TestCase):
         Umat2 = tools.rod_to_u(rodvec)
 
         diff = n.abs(Umat-Umat2).sum()
-        self.assertAlmostEquals(diff,0,9)
+        self.assertAlmostEqual(diff,0,9)
 
 
     def test_ubi2rod(self):  
@@ -53,7 +55,7 @@ class test_rodrigues(unittest.TestCase):
         rodubi = tools.ubi_to_rod(ubi)
         rodU = tools.u_to_rod(Umat)
         diff = n.abs(rodubi-rodU).sum()
-        self.assertAlmostEquals(diff,0,9)
+        self.assertAlmostEqual(diff,0,9)
 
 class test_u2ubi(unittest.TestCase):
     def test1(self):  
@@ -67,11 +69,11 @@ class test_u2ubi(unittest.TestCase):
         ubi2 = tools.u_to_ubi(Umat,cell)
         (U2,B2) = tools.ubi_to_u_b(ubi2)
         diff = n.abs(ubi-ubi2).sum()
-        self.assertAlmostEquals(diff,0,9)  
+        self.assertAlmostEqual(diff,0,9)  
         diff = n.abs(Umat-U2).sum()
-        self.assertAlmostEquals(diff,0,9)  
+        self.assertAlmostEqual(diff,0,9)  
         diff = n.abs(Bmat-B2).sum()
-        self.assertAlmostEquals(diff,0,9)  
+        self.assertAlmostEqual(diff,0,9)  
 
 
 
@@ -88,7 +90,7 @@ class test_twotheta(unittest.TestCase):
         tth = tools.tth(ucell, hkl, wavelength)
         tth2 = tools.tth2(gvec,wavelength)
         diff = n.abs(tth-tth2)
-        self.assertAlmostEquals(diff,0,9)
+        self.assertAlmostEqual(diff,0,9)
         
 
 class test_general_orientation(unittest.TestCase):
@@ -117,7 +119,7 @@ class test_general_orientation(unittest.TestCase):
 #            print Om1[i]
 #            print Om2[i]
             diff = n.abs(Om1[i]-Om2[i]).sum()
-            self.assertAlmostEquals(diff,0,9)        
+            self.assertAlmostEqual(diff,0,9)        
 
 
 
@@ -128,7 +130,7 @@ class test_ABepsilon(unittest.TestCase):
         A = tools.form_a_mat(ucell)
         ucell2 = tools.a_to_cell(A)
         diff = n.abs(ucell-ucell2).sum()
-        self.assertAlmostEquals(diff,0,9)        
+        self.assertAlmostEqual(diff,0,9)        
         
         
     def test_ucell2B2ucell(self):
@@ -136,7 +138,7 @@ class test_ABepsilon(unittest.TestCase):
         B = tools.form_b_mat(ucell)
         ucell2 = tools.b_to_cell(B)
         diff = n.abs(ucell-ucell2).sum()
-        self.assertAlmostEquals(diff,0,9)  
+        self.assertAlmostEqual(diff,0,9)  
 
     def test_epsilon2B2epsilon(self):
         ucell = n.array([3.5+n.random.rand(),3.5+n.random.rand(),3.5+n.random.rand(),89.5+n.random.rand(),89.5+n.random.rand(),89.5+n.random.rand()])
@@ -155,8 +157,8 @@ class test_qr(unittest.TestCase):
         (U1,B1) = tools.ub_to_u_b(UB)
         diffU = n.abs(U-U1).sum()
         diffB = n.abs(B-B1).sum()
-        self.assertAlmostEquals(diffU,0,9)  
-        self.assertAlmostEquals(diffB,0,9)  
+        self.assertAlmostEqual(diffU,0,9)  
+        self.assertAlmostEqual(diffB,0,9)  
         
 
     def test_ubi2rod(self):  
@@ -170,8 +172,8 @@ class test_qr(unittest.TestCase):
         (U1,B1) = tools.ubi_to_u_b(ubi)
         diffU = n.abs(Umat-U1).sum()
         diffB = n.abs(Bmat-B1).sum()
-        self.assertAlmostEquals(diffU,0,9)  
-        self.assertAlmostEquals(diffB,0,9)  
+        self.assertAlmostEqual(diffU,0,9)  
+        self.assertAlmostEqual(diffB,0,9)  
 
 class test_reduce_cell(unittest.TestCase):
     def test_1(self):
@@ -193,7 +195,7 @@ class test_reduce_cell(unittest.TestCase):
 
         diff_cell = n.abs(red_cell - red_cell_ref)
         for diff_par in diff_cell:
-            self.assertAlmostEquals(diff_par,0,9)  
+            self.assertAlmostEqual(diff_par,0,9)  
     
 if __name__ == '__main__':
     unittest.main()

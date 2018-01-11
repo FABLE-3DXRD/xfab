@@ -3,12 +3,14 @@ xfab.structure for reading crystal structure files (cif,pdb)
 and calculation of form factors and structure factors etc. 
 """
 
+from __future__ import absolute_import
 import numpy as n
 import logging
 
 from xfab import tools
 from xfab import sg
 from xfab import atomlib
+from six.moves import range
 
 def StructureFactor(hkl, ucell, sgname, atoms, disper = None):
     """
@@ -171,7 +173,7 @@ def multiplicity(position, sgname=None, sgno=None, cell_choice='standard'):
     elif sgno !=None:
         mysg = sg.sg(sgno=sgno, cell_choice=cell_choice)
     else:
-        raise ValueError, 'No space group information provided'
+        raise ValueError('No space group information provided')
 
     lp = n.zeros((mysg.nsymop, 3))
 
@@ -233,7 +235,7 @@ class build_atomlist:
 
         if cifblkname == None:   
             #Try to guess blockname                                                     
-            blocks = cf.keys()
+            blocks = list(cf.keys())
             if len(blocks) > 1:
                 if len(blocks) == 2 and 'global' in blocks:
                     cifblkname = blocks[abs(blocks.index('global') - 1)]
@@ -259,7 +261,6 @@ class build_atomlist:
         function to read pdb file (www.pdb.org) and make 
         atomlist structure
         """
-        from string import atof, atoi, lower, upper
         from re import sub
         try:
             text = open(pdbfile, 'r').readlines()
@@ -269,12 +270,12 @@ class build_atomlist:
 
         for i in range(len(text)):
             if text[i].find('CRYST1') == 0:
-                a = atof(text[i][6:15])
-                b = atof(text[i][15:24])
-                c = atof(text[i][24:33])
-                alp = atof(text[i][33:40])
-                bet = atof(text[i][40:47])
-                gam = atof(text[i][47:54])
+                a = float(text[i][6:15])
+                b = float(text[i][15:24])
+                c = float(text[i][24:33])
+                alp = float(text[i][33:40])
+                bet = float(text[i][40:47])
+                gam = float(text[i][47:54])
                 sg = text[i][55:66]
 
         self.atomlist.cell = [a, b, c, alp, bet, gam]
@@ -284,7 +285,7 @@ class build_atomlist:
         sg = ''
         for i in range(len(sgtmp)):
             if sgtmp[i] != '1':
-                sg = sg + lower(sgtmp[i])
+                sg = sg + sgtmp[i].lower()
         self.atomlist.sgname = sg
 
         # Build SCALE matrix for transformation of 
@@ -294,24 +295,24 @@ class build_atomlist:
             if text[i].find('SCALE') == 0:
                 # FOUND SCALE LINE
                 scale = text[i].split()
-                scaleline = atoi(scale[0][-1])-1
+                scaleline = int(scale[0][-1])-1
                 for j in range(1, len(scale)):
-                    scalemat[scaleline, j-1] = atof(scale[j])
+                    scalemat[scaleline, j-1] = float(scale[j])
                 
         no = 0
         for i in range(len(text)):
             if text[i].find('ATOM') == 0 or text[i].find('HETATM') ==0:
                 no = no + 1 
                 label = sub("\s+", "", text[i][12:16])
-                atomtype = upper(sub("\s+", "", text[i][76:78]))
-                x = atof(text[i][30:38])
-                y = atof(text[i][38:46])
-                z = atof(text[i][46:54])
+                atomtype = sub("\s+", "", text[i][76:78]).upper()
+                x = float(text[i][30:38])
+                y = float(text[i][38:46])
+                z = float(text[i][46:54])
                 # transform orthonormal coordinates to fractional
                 pos = n.dot(scalemat, [x, y, z, 1])
-                adp = atof(text[i][60:66])/(8*n.pi**2) # B to U
+                adp = float(text[i][60:66])/(8*n.pi**2) # B to U
                 adp_type = 'Uiso'
-                occ = atof(text[i][54:60])
+                occ = float(text[i][54:60])
                 multi = multiplicity(pos, self.atomlist.sgname)
                 self.atomlist.add_atom(label=label,
                                        atomtype=atomtype,
@@ -326,7 +327,6 @@ class build_atomlist:
 
     def CIFread(self, ciffile = None, cifblkname = None, cifblk = None):
         from re import sub
-        from string import upper
         if ciffile != None:
             try:
                 cifblk = self.CIFopen(ciffile=ciffile, cifblkname=cifblkname)
@@ -350,18 +350,18 @@ class build_atomlist:
         # Dispersion factors
         for i in range(len(cifblk['_atom_type_symbol'])):
             try:
-                self.atomlist.dispersion[upper(cifblk['_atom_type_symbol'][i])] =\
+                self.atomlist.dispersion[cifblk['_atom_type_symbol'][i].upper()] =\
                     [self.remove_esd(cifblk['_atom_type_scat_dispersion_real'][i]),
                      self.remove_esd(cifblk['_atom_type_scat_dispersion_imag'][i])]
             except:
-                self.atomlist.dispersion[upper(cifblk['_atom_type_symbol'][i])] = None
+                self.atomlist.dispersion[cifblk['_atom_type_symbol'][i].upper()] = None
                 logging.warning('No dispersion factors for %s in cif file - set to zero'\
                                     %cifblk['_atom_type_symbol'][i])
 
         for i in range(len(cifblk['_atom_site_type_symbol'])):
             label = cifblk['_atom_site_label'][i]
             #atomno = atomtype[upper(cifblk['_atom_site_type_symbol'][i])]
-            atomtype = upper(cifblk['_atom_site_type_symbol'][i])
+            atomtype = cifblk['_atom_site_type_symbol'][i].upper()
             x = self.remove_esd(cifblk['_atom_site_fract_x'][i])
             y = self.remove_esd(cifblk['_atom_site_fract_y'][i])
             z = self.remove_esd(cifblk['_atom_site_fract_z'][i])
@@ -374,11 +374,11 @@ class build_atomlist:
             except:
                 occ = 1.0
 
-            if cifblk.has_key('_atom_site_symmetry_multiplicity'):
+            if '_atom_site_symmetry_multiplicity' in cifblk:
                 multi = self.remove_esd(cifblk['_atom_site_symmetry_multiplicity'][i])
             # In old SHELXL versions this code was written
             # as '_atom_site_symetry_multiplicity'
-            elif cifblk.has_key('_atom_site_symetry_multiplicity'):
+            elif '_atom_site_symetry_multiplicity' in cifblk:
                 multi = self.remove_esd(cifblk['_atom_site_symetry_multiplicity'][i])
             else:
                 multi = multiplicity([x, y, z], self.atomlist.sgname)
@@ -406,12 +406,11 @@ class build_atomlist:
         e.g. '1.234(56)' to '1.234'.
         """
 
-        from string import atof
         
         if a.find('(') == -1:
-            value = atof(a)
+            value = float(a)
         else:
-            value = atof(a[:a.find('(')])
+            value = float(a[:a.find('(')])
         return value
 
 

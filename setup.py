@@ -1,11 +1,13 @@
 #!/usr/bin/env python
-from distutils.core import setup,Extension
+from __future__ import absolute_import
+#from distutils.core import setup,Extension
+from setuptools import setup,Extension
 import sys
 
 
 setup(
   name='xfab',
-  version='0.0.2',
+  version='0.0.3',
   description='Crystallographic toolbox and library',
   license='GPL', maintainer='Henning Osholm Soerensen and Jon Wright',
   maintainer_email='osholm@nano.ku.dk or wright@esrf.eu',

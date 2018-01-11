@@ -5,20 +5,23 @@ python gff_to_ubi input.gff output.ubi (detector.par)
 NB! Pars only needed if gff does not contain ubis
 """
 
+from __future__ import absolute_import
+from __future__ import print_function
 from ImageD11.columnfile import columnfile
 from ImageD11.grain import grain, write_grain_file
 import sys, numpy
 from ImageD11 import parameters as ip
 from xfab import tools
+from six.moves import range
 
 if len(sys.argv) < 3:
-    print "\n"
-    print "########################################################"
-    print "Usage:"
-    print "gff_to_ubi.py input.gff output.ubi (detector.par)"
-    print "NB! Pars only needed if gff does not contain ubis"
-    print "########################################################"
-    print "\n"
+    print("\n")
+    print("########################################################")
+    print("Usage:")
+    print("gff_to_ubi.py input.gff output.ubi (detector.par)")
+    print("NB! Pars only needed if gff does not contain ubis")
+    print("########################################################")
+    print("\n")
 
 c=columnfile(sys.argv[1])
 
@@ -28,7 +31,7 @@ try:
     p.loadparameters(sys.argv[3])
     uc = [p.parameters['cell__a'],p.parameters['cell__b'],p.parameters['cell__c'],
           p.parameters['cell_alpha'],p.parameters['cell_beta'],p.parameters['cell_gamma']]
-    print uc
+    print(uc)
 except:
     pass
     
@@ -43,7 +46,7 @@ for i in range(c.nrows):
         grains.append( grain( numpy.reshape(ubi , (3,3)),
                           translation = t ) )
     except:
-        print c.grainno[i]
+        print(c.grainno[i])
         U = numpy.array([[c.U11[i],c.U12[i],c.U13[i]],
                          [c.U21[i],c.U22[i],c.U23[i]],
                          [c.U31[i],c.U32[i],c.U33[i]]])
