@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 from __future__ import absolute_import
-from distutils.core import setup,Extension
+#from distutils.core import setup,Extension
+from setuptools import setup,Extension
 import sys
 
 
