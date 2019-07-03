@@ -8,6 +8,15 @@ transformations etc.
 from __future__ import absolute_import
 import numpy as n
 
+try:
+    from numba import jit
+except:
+    print("No numba")
+    def jit(func):
+        return func
+
+
+
 def det_coor(Gt, costth, wavelength, distance, y_size, z_size, 
              dety_center, detz_center, R_tilt, tx, ty, tz):
     """
@@ -35,6 +44,7 @@ def det_coor(Gt, costth, wavelength, distance, y_size, z_size,
     detz = n.sum(R_tilt[:, 2]*Ltv)/z_size + detz_center
     return [dety, detz]
 
+@jit
 def det_coor2(tth, eta, distance, y_size, z_size, 
               dety_center, detz_center, R_tilt, tx, ty, tz,):
     """
