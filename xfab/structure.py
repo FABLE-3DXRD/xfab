@@ -383,9 +383,22 @@ class build_atomlist:
             else:
                 multi = multiplicity([x, y, z], self.atomlist.sgname)
 
+            # Test for B or U
 
             if adp_type == None:
                 adp = 0.0
+            elif adp_type == 'Biso':
+                adp = self.remove_esd(cifblk['_atom_site_B_iso_or_equiv'][i])/(8*n.pi**2)
+                adp_type = 'Uiso'
+            elif adp_type == 'Bani':
+                anisonumber = cifblk['_atom_site_aniso_label'].index(label)
+                adp = [ self.remove_esd(cifblk['_atom_site_aniso_B_11'][anisonumber])/(8*n.pi**2),
+                        self.remove_esd(cifblk['_atom_site_aniso_B_22'][anisonumber])/(8*n.pi**2),
+                        self.remove_esd(cifblk['_atom_site_aniso_B_33'][anisonumber])/(8*n.pi**2),
+                        self.remove_esd(cifblk['_atom_site_aniso_B_23'][anisonumber])/(8*n.pi**2),
+                        self.remove_esd(cifblk['_atom_site_aniso_B_13'][anisonumber])/(8*n.pi**2),
+                        self.remove_esd(cifblk['_atom_site_aniso_B_12'][anisonumber])/(8*n.pi**2)]
+                adp_type = 'Uani'
             elif adp_type == 'Uiso':
                 adp = self.remove_esd(cifblk['_atom_site_U_iso_or_equiv'][i])
             elif adp_type == 'Uani':
