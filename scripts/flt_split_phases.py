@@ -8,95 +8,84 @@ from __future__ import absolute_import
 from __future__ import print_function
 import numpy as np
 import math
-#import matplotlib.pyplot as plt
-
-#from ImageD11 import transformer
 from xfab import tools
-
+from ImageD11 import parameters
 import os
 import argparse
 
-#import shutil
-#import sys
 import textwrap
 from six.moves import range
-
 ##########################################################################
+myparms = parameters.parameters()
+
 def readparfile(filename):
 
-    f=open(filename,'r')
-
+    myparms.loadparameters(filename)
     omat = np.zeros((2,2))
-
-    for i in range(29):
-        line=f.readline()
-        if line.split()[0] == 'cell__a':
-            a0 = float(line.split()[-1])
-        if line.split()[0] == 'cell__b':
-                b0 = float(line.split()[-1])
-        if line.split()[0] == 'cell__c':
-                c0 = float(line.split()[-1])
-        if line.split()[0] == 'cell_alpha':
-                alpha0 = float(line.split()[-1])
-        if line.split()[0] == 'cell_beta':
-                beta0 = float(line.split()[-1])
-        if line.split()[0] == 'cell_gamma':
-                gamma0 = float(line.split()[-1])
-        if line.split()[0] == 'cell_lattice_[P,A,B,C,I,F,R]':
-                lattice = str(line.split()[-1])
-        if line.split()[0] == 'chi':
-                chi = float(line.split()[-1])
-        if line.split()[0] == 'distance':
-                distance = float(line.split()[-1])
-        if line.split()[0] == 'fit_tolerance':
-                fit_tolerance = float(line.split()[-1])
-        if line.split()[0] == 'min_bin_prob':
-                min_bin_prob = float(line.split()[-1])
-        if line.split()[0] == 'no_bins':
-                no_bins = float(line.split()[-1])
-        if line.split()[0] == 'o11':
-                omat[0,0] = float(line.split()[-1])
-        if line.split()[0] == 'o12':
-                omat[0,1] = float(line.split()[-1])
-        if line.split()[0] == 'o21':
-                omat[1,0] = float(line.split()[-1])
-        if line.split()[0] == 'o22':
-                omat[1,1] = float(line.split()[-1])
-        if line.split()[0] == 'omegasign':
-                omegasign = float(line.split()[-1])
-        if line.split()[0] == 't_x':
-                t_x = float(line.split()[-1])
-        if line.split()[0] == 't_y':
-                t_y = float(line.split()[-1])
-        if line.split()[0] == 't_z':
-                t_z = float(line.split()[-1])
-        if line.split()[0] == 'tilt_x':
-                tilt_x = float(line.split()[-1])
-        if line.split()[0] == 'tilt_y':
-                tilt_y = float(line.split()[-1])
-        if line.split()[0] == 'tilt_z':
-                tilt_z = float(line.split()[-1])
-        if line.split()[0] == 'wavelength':
-                wavelength = float(line.split()[-1])
-        if line.split()[0] == 'wedge':
-                wedge = float(line.split()[-1])
-        if line.split()[0] == 'y_center':
-                y_center = float(line.split()[-1])
-        if line.split()[0] == 'y_size':
-                y_size = float(line.split()[-1])
-        if line.split()[0] == 'z_center':
-                z_center = float(line.split()[-1])
-        if line.split()[0] == 'z_size':
-                z_size = float(line.split()[-1])
-
-    f.close()
+    if 'cell__a' in myparms.get_parameters().keys():
+        a0 = float(myparms.get('cell__a'))
+    if 'cell__b' in myparms.get_parameters().keys():
+        b0 = float(myparms.get('cell__b'))
+    if 'cell__c' in myparms.get_parameters().keys():
+        c0 = float(myparms.get('cell__c'))
+    if 'cell_alpha' in myparms.get_parameters().keys():
+        alpha0 = float(myparms.get('cell_alpha'))
+    if 'cell_beta' in myparms.get_parameters().keys():
+        beta0 = float(myparms.get('cell_beta'))
+    if 'cell_gamma' in myparms.get_parameters().keys():
+        gamma0 = float(myparms.get('cell_gamma'))
+    if 'cell_lattice_[P,A,B,C,I,F,R]' in myparms.get_parameters().keys():
+        lattice = str(myparms.get('cell_lattice_[P,A,B,C,I,F,R]'))
+    if 'chi' in myparms.get_parameters().keys():
+        chi = float(myparms.get('chi'))
+    if 'distance' in myparms.get_parameters().keys():
+        distance = float(myparms.get('distance'))
+    if 'fit_tolerance' in myparms.get_parameters().keys():
+        fit_tolerance = float(myparms.get( 'fit_tolerance'))
+    if 'min_bin_prob' in myparms.get_parameters().keys():
+        min_bin_prob = float(myparms.get('min_bin_prob'))
+    if 'no_bins' in myparms.get_parameters().keys():
+        no_bins = float(myparms.get('no_bins'))
+    if 'o11' in myparms.get_parameters().keys():
+        omat[0,0] = float(myparms.get('o11'))
+    if 'o12' in myparms.get_parameters().keys():
+        omat[0,1] = float(myparms.get('o12'))
+    if 'o21' in myparms.get_parameters().keys():
+        omat[1,0] = float(myparms.get('o21'))
+    if 'o22' in myparms.get_parameters().keys():
+        omat[1,1] = float(myparms.get('o22'))
+    if 'omegasign' in myparms.get_parameters().keys():
+        omegasign = float(myparms.get('omegasign'))
+    if 't_x' in myparms.get_parameters().keys():
+        t_x = float(myparms.get('t_x'))
+    if 't_y' in myparms.get_parameters().keys():
+        t_y = float(myparms.get('t_y'))
+    if 't_z' in myparms.get_parameters().keys():
+        t_z = float(myparms.get('t_z'))
+    if 'tilt_x' in myparms.get_parameters().keys():
+        tilt_x = float(myparms.get('tilt_x'))
+    if 'tilt_y' in myparms.get_parameters().keys():
+        tilt_y = float(myparms.get('tilt_y'))
+    if 'tilt_z' in myparms.get_parameters().keys():
+        tilt_z = float(myparms.get('tilt_z'))
+    if 'wavelength' in myparms.get_parameters().keys():
+        wavelength = float(myparms.get('wavelength'))
+    if 'wedge' in myparms.get_parameters().keys():
+        wedge = float(myparms.get('wedge'))
+    if 'y_center' in myparms.get_parameters().keys():
+        y_center = float(myparms.get('y_center'))
+    if 'y_size' in myparms.get_parameters().keys():
+        y_size = float(myparms.get('y_size'))
+    if 'z_center' in myparms.get_parameters().keys():
+        z_center = float(myparms.get('z_center'))
+    if 'z_size' in myparms.get_parameters().keys():
+        z_size = float(myparms.get('y_size'))
 
     unitcell=np.array([a0, b0, c0, alpha0, beta0, gamma0])
     t_array = np.array([t_x, t_y, t_z])
     tilts = np.array([tilt_x, tilt_y, tilt_z])
     centers = np.array([y_center, z_center])
     pixsize = np.array([y_size, z_size])
-    
 
     return(unitcell,lattice,distance,omat,tilts,wavelength,wedge,centers,pixsize)
 ##########################################################################
