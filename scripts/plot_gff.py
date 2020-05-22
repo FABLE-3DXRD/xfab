@@ -328,10 +328,10 @@ if __name__=='__main__':
     elif sym == "e11":
         try:
             colourbar(minimum,maximum,step,'e-3')
-            norm = colors.normalize(minimum*1e-3,maximum*1e-3)
+            norm = colors.Normalize(minimum*1e-3,maximum*1e-3)
         except:
             colourbar(-1,1,1,'e-3')
-            norm = colors.normalize(-1e-3,1e-3)
+            norm = colors.Normalize(-1e-3,1e-3)
         color = cm.jet(norm(data.eps11_s))
         red = color[:,0]
         green = color[:,1]
@@ -340,10 +340,10 @@ if __name__=='__main__':
     elif sym == "e22":
         try:
             colourbar(minimum,maximum,step,'e-3')
-            norm = colors.normalize(minimum*1e-3,maximum*1e-3)
+            norm = colors.Normalize(minimum*1e-3,maximum*1e-3)
         except:
             colourbar(-1,1,1,'e-3')
-            norm = colors.normalize(-1e-3,1e-3)
+            norm = colors.Normalize(-1e-3,1e-3)
         color = cm.jet(norm(data.eps22_s))
         red = color[:,0]
         green = color[:,1]
@@ -352,10 +352,10 @@ if __name__=='__main__':
     elif sym == "e33":
         try:
             colourbar(minimum,maximum,step,'e-3')
-            norm = colors.normalize(minimum*1e-3,maximum*1e-3)
+            norm = colors.Normalize(minimum*1e-3,maximum*1e-3)
         except:
             colourbar(-1,1,1,'e-3')
-            norm = colors.normalize(-1e-3,1e-3)
+            norm = colors.Normalize(-1e-3,1e-3)
         color = cm.jet(norm(data.eps33_s))
         red = color[:,0]
         green = color[:,1]
@@ -364,10 +364,10 @@ if __name__=='__main__':
     elif sym == "e12":
         try:
             colourbar(minimum,maximum,step,'e-3')
-            norm = colors.normalize(minimum*1e-3,maximum*1e-3)
+            norm = colors.Normalize(minimum*1e-3,maximum*1e-3)
         except:
             colourbar(-1,1,1,'e-3')
-            norm = colors.normalize(-1e-3,1e-3)
+            norm = colors.Normalize(-1e-3,1e-3)
         color = cm.jet(norm(data.eps12_s))
         red = color[:,0]
         green = color[:,1]
@@ -376,10 +376,10 @@ if __name__=='__main__':
     elif sym == "e13":
         try:
             colourbar(minimum,maximum,step,'e-3')
-            norm = colors.normalize(minimum*1e-3,maximum*1e-3)
+            norm = colors.Normalize(minimum*1e-3,maximum*1e-3)
         except:
             colourbar(-1,1,1,'e-3')
-            norm = colors.normalize(-1e-3,1e-3)
+            norm = colors.Normalize(-1e-3,1e-3)
         color = cm.jet(norm(data.eps13_s))
         red = color[:,0]
         green = color[:,1]
@@ -388,10 +388,10 @@ if __name__=='__main__':
     elif sym == "e23":
         try:
             colourbar(minimum,maximum,step,'e-3')
-            norm = colors.normalize(minimum*1e-3,maximum*1e-3)
+            norm = colors.Normalize(minimum*1e-3,maximum*1e-3)
         except:
             colourbar(-1,1,1,'e-3')
-            norm = colors.normalize(-1e-3,1e-3)
+            norm = colors.Normalize(-1e-3,1e-3)
         color = cm.jet(norm(data.eps23_s))
         red = color[:,0]
         green = color[:,1]
@@ -400,10 +400,10 @@ if __name__=='__main__':
     elif sym == "s33":
         try:
             colourbar(minimum,maximum,step,'MPa')
-            norm = colors.normalize(minimum,maximum)
+            norm = colors.Normalize(minimum,maximum)
         except:
             colourbar(-50,150,50,'MPa')
-            norm = colors.normalize(-50,150)
+            norm = colors.Normalize(-50,150)
         color = cm.jet(norm(data.sig33_s))
         red = color[:,0]
         green = color[:,1]
@@ -412,10 +412,10 @@ if __name__=='__main__':
     elif sym == "s11":
         try:
             colourbar(minimum,maximum,step,'MPa')
-            norm = colors.normalize(minimum,maximum)
+            norm = colors.Normalize(minimum,maximum)
         except:
             colourbar(-50,150,50,'MPa')
-            norm = colors.normalize(-50,150)
+            norm = colors.Normalize(-50,150)
         color = cm.jet(norm(data.sig11_s))
         red = color[:,0]
         green = color[:,1]
@@ -424,10 +424,10 @@ if __name__=='__main__':
     elif sym == "s22":
         try:
             colourbar(minimum,maximum,step,'MPa')
-            norm = colors.normalize(minimum,maximum)
+            norm = colors.Normalize(minimum,maximum)
         except:
             colourbar(-50,150,50,'MPa')
-            norm = colors.normalize(-50,150)
+            norm = colors.Normalize(-50,150)
         color = cm.jet(norm(data.sig22_s))
         red = color[:,0]
         green = color[:,1]
@@ -436,10 +436,10 @@ if __name__=='__main__':
     elif sym == "s12":
         try:
             colourbar(minimum,maximum,step,'MPa')
-            norm = colors.normalize(minimum,maximum)
+            norm = colors.Normalize(minimum,maximum)
         except:
             colourbar(-50,50,50,'MPa')
-            norm = colors.normalize(-50,50)
+            norm = colors.Normalize(-50,50)
         color = cm.jet(norm(data.sig12_s))
         red = color[:,0]
         green = color[:,1]
@@ -448,10 +448,10 @@ if __name__=='__main__':
     elif sym == "s13":
         try:
             colourbar(minimum,maximum,step,'MPa')
-            norm = colors.normalize(minimum,maximum)
+            norm = colors.Normalize(minimum,maximum)
         except:
             colourbar(-50,50,50,'MPa')
-            norm = colors.normalize(-50,50)
+            norm = colors.Normalize(-50,50)
         color = cm.jet(norm(data.sig13_s))
         red = color[:,0]
         green = color[:,1]
@@ -460,36 +460,36 @@ if __name__=='__main__':
     elif sym == "s23":
         try:
             colourbar(minimum,maximum,step,'MPa')
-            norm = colors.normalize(minimum,maximum)
+            norm = colors.Normalize(minimum,maximum)
         except:
             colourbar(-50,50,50,'MPa')
-            norm = colors.normalize(-50,50)
+            norm = colors.Normalize(-50,50)
         color = cm.jet(norm(data.sig23_s))
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
         print("shear s23 stress:", np.sum(data.grainvolume*data.sig23_s)/np.sum(data.grainvolume), "MPa") 
     elif sym == "latt_rot":
-        norm = colors.normalize(0,0.5)
+        norm = colors.Normalize(0,0.5)
         color = cm.jet(norm(data.latt_rot))
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
         colourbar(0.0,0.5,0.1,'deg')
     elif sym == "tz":
-        norm = colors.normalize(-0.1,0.1)
+        norm = colors.Normalize(-0.1,0.1)
         color = cm.jet(norm(data.tz))
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
     elif sym == "vol":
-        norm = colors.normalize(0,10)
+        norm = colors.Normalize(0,10)
         color = cm.jet(norm(data.grainvolume/data.d_grainvolume))
         red = color[:,0]
         green = color[:,1]
         blue = color[:,2]
     elif sym == "tth":
-        norm = colors.normalize(0.007,0.009)
+        norm = colors.Normalize(0.007,0.009)
         color = cm.jet(norm(data.sig_tth/data.grainvolume**.2))
         red = color[:,0]
         green = color[:,1]
@@ -498,7 +498,7 @@ if __name__=='__main__':
 #        pl.figure(8)
 #        pl.plot(np.log(data.grainvolume),np.log(data.sig_tth),'.')
     elif sym == "eta":
-        norm = colors.normalize(0.08,0.15)
+        norm = colors.Normalize(0.08,0.15)
         color = cm.jet(norm(data.sig_eta/data.grainvolume**.2))
         red = color[:,0]
         green = color[:,1]
