@@ -22,6 +22,38 @@ class test_euler2u(unittest.TestCase):
         diff = n.abs(Umat-n.eye(3)).sum()
         self.assertAlmostEqual(diff,0,9)
 
+    def test_gridded_euler_space(self):
+        '''Test that euler_to_u() and u_to_euler() give consistent output
+        for a corasly gridded Euler space, phi1,PHI,phi2 = [-2*pi , 2*pi].
+        between the two functions.
+        '''
+        gridded_angles = n.linspace(-2*n.pi, 2*n.pi, 20)
+        self._check_angles( gridded_angles )
+
+    def test_special_euler_angles(self):
+        '''Test that euler_to_u() and u_to_euler() give consistent output
+        for special angles such as: pi, pi/2, 0 ... etc
+        '''
+        special_angles = n.array([-2*n.pi, -n.pi, -n.pi/2, 0, n.pi/2, n.pi, 2*n.pi])
+        self._check_angles( special_angles )
+
+    def _check_angles(self, angles):
+        '''Check consistency for euler_to_u() and u_to_euler(). I.e check that 
+        the orientation matrix constructed for some set of angles is recovered
+        again when passing between the two functions.
+        '''
+        for phi1 in angles:
+            for PHI in angles:
+                for phi2 in angles:
+                    U = tools.euler_to_u(phi1, PHI, phi2)
+                    phi1_new, PHI_new, phi2_new = tools.u_to_euler( U )
+                    U_new = tools.euler_to_u(phi1_new, PHI_new, phi2_new)
+                    maxdiff = n.max( n.abs( U - U_new ) )
+                    self.assertTrue( maxdiff < 1e-8 )
+                    self.assertTrue( 0 <= phi1_new <= 2*n.pi )
+                    self.assertTrue( 0 <= PHI_new  <= 2*n.pi )
+                    self.assertTrue( 0 <= phi2_new <= 2*n.pi )
+
 class test_rodrigues(unittest.TestCase):
 
     def test_rod2U2rod(self):  
