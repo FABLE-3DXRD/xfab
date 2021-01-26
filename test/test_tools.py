@@ -24,7 +24,7 @@ class test_euler2u(unittest.TestCase):
 
     def test_gridded_euler_space(self):
         '''Test that euler_to_u() and u_to_euler() give consistent output
-        for a corasly gridded Euler space, phi1,PHI,phi2 = [-2*pi , 2*pi].
+        for a coarsly gridded Euler space, phi1,PHI,phi2 = [-2*pi , 2*pi].
         between the two functions.
         '''
         gridded_angles = n.linspace(-2*n.pi, 2*n.pi, 20)
