@@ -617,62 +617,63 @@ def euler_to_u(phi1, PHI, phi2):
     U[1, 2] =  -n.cos(phi1)*n.sin(PHI)
     U[2, 2] =   n.cos(PHI)
     return U
-        
+
+def _arctan2(y, x):
+    """Modified arctan function used locally in u_to_euler().
+    """
+    tol = 1e-8
+    if n.abs(x)<tol: x = 0
+    if n.abs(y)<tol: y = 0
+
+    if x>0:
+        return n.arctan(y/x)
+    elif x<0 and y>=0:
+        return n.arctan(y/x) + n.pi
+    elif x<0 and y<0:
+        return n.arctan(y/x) - n.pi
+    elif x==0 and y>0:
+        return n.pi/2
+    elif x==0 and y<0:
+        return -n.pi/2
+    elif x==0 and y==0:
+        raise ValueError('Local function _arctan2() does not accept arguments (0,0)')
+
 def u_to_euler(U):
-    """
-    calculate Euler angles (phi1, PHI, phi2) from a U matrix
-    The formalism follows the ID11-3DXRD specs
-    Note that there are two solutions
-    (phi1, PHI, phi2) AND (phi1 + pi, -PHI, phi2 + pi)
-    We pick the one with phi1 in the range [-pi/2 pi/2]
-    
-    INPUT: array([[U11, U12, U13],[ U21, U22, U23],[U31, U32, U33]])
-    
-    OUTPUT: euler_angles = array([phi1, PHI, phi2]) in radians
-    
-    Fails if U[2,1] or U[1,2] = 0 e.g. then U[2,2] = ~1
-    If U[2,2] ~ 1 ph1 = ph2 = atan(U[1,0]/U[0,0])/2
-    In this case there is only one solution.
-    
-    Henning Osholm Sorensen, Risoe National Laboratory, June 23, 2006.
-    
-    Translated from MATLAB to python by Henning Osholm, March 28, 2008.
-    
-    Originally based on code from:
-    Henning Poulsen, Risoe National Laboratory June 15, 2002.
-    
-    """
+    """Convert unitary 3x3 rotation matrix into Euler angles in Bunge notation.
+    The returned Euler angles are all in the range [0, 2*pi]. If Gimbal lock occurs
+    (PHI=0) infinite number of solutions exists. The solution returned is phi2=0. 
 
-    phi1 = [0, 0]
-    PHI  = [0, 0]
-    phi2 = [0, 0]
+    Implementation is based on the notes by
+        Depriester, Dorian. (2018). Computing Euler angles with Bunge convention from rotation matrix.
+        https://www.researchgate.net/publication/324088567_Computing_Euler_angles_with_Bunge_convention_from_rotation_matrix 
+    notationwise U = g.T in in these notes. 
 
-    PHI[0] = n.arccos(U[2, 2])
-    if PHI[0] < 0.0001:
-        phi2[0] = n.arctan(U[1, 0]/U[0, 0])/2.
-        phi1[0] = phi2[0]
+        INPUT:
+            U : unitary 3x3 rotation matrix as a numpy array (shape=(3,3))
+        RETURNS
+            angles : Euler angles in radians. numpy array as, [phi1, PHI, phi2].
+
+
+        Last Modified: Axel Henningsson, January 2021
+    """
+    tol = 1e-8
+    PHI = n.arccos(U[2, 2])
+    if n.abs(PHI)<tol:
+        phi1 = _arctan2(-U[0, 1], U[0, 0])
+        phi2 = 0
+    elif n.abs(PHI-n.pi)<tol:
+        phi1 = _arctan2(U[0, 1], U[0, 0])
+        phi2 = 0
     else:
-        # There is two solutions
-        phi1[0] = n.arctan(-U[0, 2]/U[1, 2])
-        phi2[0] = n.arctan(U[2, 0]/U[2, 1])
-        PHI[1] = 2*n.pi-PHI[0]
-        phi1[1] = phi1[0]+n.pi
-        phi2[1] = phi2[0]+n.pi
+        phi1 = _arctan2(U[0, 2], -U[1, 2])
+        phi2 = _arctan2(U[2, 0], U[2, 1])
             
-    # Pick smallest solution for phi1
-    phi1 = min(phi1)
-    # The correct combination is found by brute-force
-    minsum = n.Inf  
-    for j in range(2):
-        for k in range(2):
-            U2 = euler_to_u(phi1, PHI[j], phi2[k])
-            Udev = abs(U2 - U)
-            sumUdev = n.sum(Udev)
-            if sumUdev < minsum:
-                minsum = sumUdev
-                mj = j
-                mk = k
-    return n.array([ phi1, PHI[mj], phi2[mk] ])
+    if phi1<0:
+        phi1 = phi1 + 2*n.pi
+    if phi2<0:
+        phi2 = phi2 + 2*n.pi
+
+    return n.array([ phi1, PHI, phi2 ])
 
 # def U2rod_old(U):
 #     """
@@ -1650,4 +1651,3 @@ def sysabs_unique(hkl, syscond):
 #                 sysabs_type = 24
     
     return sysabs_type
-
