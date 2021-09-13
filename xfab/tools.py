@@ -8,6 +8,7 @@ from __future__ import print_function
 import numpy as n
 from math import degrees
 from six.moves import range
+from xfab import checks
 
 
 def find_omega_general(g_w, twoth, w_x, w_y):
@@ -417,6 +418,8 @@ def ubi_to_u(ubi):
     unit_cell = ubi_to_cell(ubi)
     B = form_b_mat(unit_cell)
     U = n.transpose(n.dot(B, ubi))/(2*n.pi)
+    if checks.is_activated(): checks._check_rotation_matrix(U)
+
     return U
         
         
@@ -436,6 +439,9 @@ def ubi_to_u_and_eps(ubi,unit_cell):
     unit_cell_ubi = ubi_to_cell(ubi)
     B_ubi = form_b_mat(unit_cell_ubi)
     U = n.transpose(n.dot(B_ubi, ubi))/(2*n.pi)
+
+    if checks.is_activated(): checks._check_rotation_matrix(U)
+
     eps = b_to_epsilon(B_ubi, unit_cell)
     
     return (U,eps)
@@ -606,6 +612,8 @@ def euler_to_u(phi1, PHI, phi2):
     Origingal MATLAB code from: Henning Poulsen, Risoe 15/6 2002.
     
     """
+    if checks.is_activated(): checks._check_euler_angles(phi1, PHI, phi2)
+
     U = n.zeros((3, 3))
     U[0, 0] =   n.cos(phi1)*n.cos(phi2)-n.sin(phi1)*n.sin(phi2)*n.cos(PHI)
     U[1, 0] =   n.sin(phi1)*n.cos(phi2)+n.cos(phi1)*n.sin(phi2)*n.cos(PHI)
@@ -656,6 +664,8 @@ def u_to_euler(U):
 
         Last Modified: Axel Henningsson, January 2021
     """
+    if checks.is_activated(): checks._check_rotation_matrix(U)
+
     tol = 1e-8
     PHI = n.arccos(U[2, 2])
     if n.abs(PHI)<tol:
@@ -706,6 +716,7 @@ def u_to_rod(U):
 
     Function taken from GrainsSpotter by Soeren Schmidt
     """
+    if checks.is_activated(): checks._check_rotation_matrix(U)
 
     ttt = 1+U[0, 0]+U[1, 1]+U[2, 2]
     if abs(ttt) < 1e-16: 
@@ -723,6 +734,8 @@ def u_to_ubi(u_mat,unit_cell):
     OUTPUT: UBI 3x3 matrix
 
     """
+    if checks.is_activated(): checks._check_rotation_matrix(u_mat)
+
     b_mat = form_b_mat(unit_cell)
     
     return n.linalg.inv(n.dot(u_mat,b_mat))*(2*n.pi)
@@ -803,7 +816,9 @@ def ub_to_u_b(UB):
         U[0, 2] = -U[0, 2]
         U[1, 2] = -U[1, 2]
         U[2, 2] = -U[2, 2]
-        
+
+    if checks.is_activated(): checks._check_rotation_matrix(U)
+
     return (U, B)
 
 def reduce_cell(unit_cell,uvw = 3):

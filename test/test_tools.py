@@ -17,24 +17,24 @@ class test_euler2u(unittest.TestCase):
     def test2(self):  
         phi1 = 0.1
         PHI  = 0.0
-        phi2 = -0.1
+        phi2 = -0.1 + 2*n.pi
         Umat = tools.euler_to_u(phi1,PHI,phi2)
         diff = n.abs(Umat-n.eye(3)).sum()
         self.assertAlmostEqual(diff,0,9)
 
     def test_gridded_euler_space(self):
         '''Test that euler_to_u() and u_to_euler() give consistent output
-        for a coarsly gridded Euler space, phi1,PHI,phi2 = [-2*pi , 2*pi].
+        for a coarsly gridded Euler space, phi1,PHI,phi2 = [0 , 2*pi].
         between the two functions.
         '''
-        gridded_angles = n.linspace(-2*n.pi, 2*n.pi, 20)
+        gridded_angles = n.linspace(0, 2*n.pi, 20)
         self._check_angles( gridded_angles )
 
     def test_special_euler_angles(self):
         '''Test that euler_to_u() and u_to_euler() give consistent output
         for special angles such as: pi, pi/2, 0 ... etc
         '''
-        special_angles = n.array([-2*n.pi, -n.pi, -n.pi/2, 0, n.pi/2, n.pi, 2*n.pi])
+        special_angles = n.array([0, n.pi/2, n.pi, 2*n.pi])
         self._check_angles( special_angles )
 
     def _check_angles(self, angles):
