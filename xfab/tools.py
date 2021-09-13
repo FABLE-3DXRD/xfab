@@ -10,6 +10,7 @@ from math import degrees
 from six.moves import range
 from xfab import checks
 
+
 def find_omega_general(g_w, twoth, w_x, w_y):
     """
     For gw find the omega rotation (in radians) around an axis 
@@ -417,7 +418,6 @@ def ubi_to_u(ubi):
     unit_cell = ubi_to_cell(ubi)
     B = form_b_mat(unit_cell)
     U = n.transpose(n.dot(B, ubi))/(2*n.pi)
-
     if checks.is_activated(): checks._check_rotation_matrix(U)
 
     return U
@@ -612,8 +612,7 @@ def euler_to_u(phi1, PHI, phi2):
     Origingal MATLAB code from: Henning Poulsen, Risoe 15/6 2002.
     
     """
-    
-    if checks.is_activated(): checks._check_euler_angles(phi1, PHI, phi2) 
+    if checks.is_activated(): checks._check_euler_angles(phi1, PHI, phi2)
 
     U = n.zeros((3, 3))
     U[0, 0] =   n.cos(phi1)*n.cos(phi2)-n.sin(phi1)*n.sin(phi2)*n.cos(PHI)
@@ -664,7 +663,6 @@ def u_to_euler(U):
 
 
         Last Modified: Axel Henningsson, January 2021
-
     """
     if checks.is_activated(): checks._check_rotation_matrix(U)
 
@@ -800,9 +798,6 @@ def ub_to_u_b(UB):
     """
     
     (U, B) = n.linalg.qr(UB)
-
-    if checks.is_activated(): checks._check_rotation_matrix(U)
-
     if B[0, 0] < 0:
         B[0, 0] = -B[0, 0]
         B[0, 1] = -B[0, 1]
@@ -821,7 +816,9 @@ def ub_to_u_b(UB):
         U[0, 2] = -U[0, 2]
         U[1, 2] = -U[1, 2]
         U[2, 2] = -U[2, 2]
-        
+
+    if checks.is_activated(): checks._check_rotation_matrix(U)
+
     return (U, B)
 
 def reduce_cell(unit_cell,uvw = 3):

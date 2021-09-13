@@ -48,7 +48,6 @@ class test_euler2u(unittest.TestCase):
                     U = tools.euler_to_u(phi1, PHI, phi2)
                     phi1_new, PHI_new, phi2_new = tools.u_to_euler( U )
                     U_new = tools.euler_to_u(phi1_new, PHI_new, phi2_new)
-                    
                     maxdiff = n.max( n.abs( U - U_new ) )
                     self.assertTrue( maxdiff < 1e-8 )
                     self.assertTrue( 0 <= phi1_new <= 2*n.pi )

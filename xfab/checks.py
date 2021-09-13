@@ -9,17 +9,17 @@ using python -O to run codes will remove any checks. Example usage
 
 import xfab
 
-xfab.is_activated()
+xfab.checks.is_activated()
 
 out: True
 
 xfab.off()
-xfab.is_activated()
+xfab.checks.is_activated()
 
 out: False
 
 xfab.on()
-xfab.is_activated()
+xfab.checks.is_activated()
 
 out: True
 
