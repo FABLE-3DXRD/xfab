@@ -40,6 +40,12 @@ class test_cifread(unittest.TestCase):
         self.assertEqual([8.5312,4.8321,10.125,90.00,92.031,90.00],
                           mylist.atomlist.cell)
 
+    def test_cifread_atom_type_symbol_lacking(self):
+        mylist =  structure.build_atomlist()
+        try:
+            mylist.CIFread('SiO2_mp-7000_conventional_standard.cif')
+        except:
+            self.fail("CIFread() failed to read CIF lacking _atom_type_symbol")
 
 class test_structurefactor(unittest.TestCase):
     def test_sfcalc(self):  ## test method names begin 'test*'

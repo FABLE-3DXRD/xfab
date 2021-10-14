@@ -348,15 +348,22 @@ class build_atomlist:
                                    cifblk['_symmetry_space_group_name_H-M'])
 
         # Dispersion factors
-        for i in range(len(cifblk['_atom_type_symbol'])):
-            try:
-                self.atomlist.dispersion[cifblk['_atom_type_symbol'][i].upper()] =\
-                    [self.remove_esd(cifblk['_atom_type_scat_dispersion_real'][i]),
-                     self.remove_esd(cifblk['_atom_type_scat_dispersion_imag'][i])]
-            except:
-                self.atomlist.dispersion[cifblk['_atom_type_symbol'][i].upper()] = None
+        if '_atom_type_symbol' in list(cifblk.keys()):
+            for i in range(len(cifblk['_atom_type_symbol'])):
+                try:
+                    self.atomlist.dispersion[cifblk['_atom_type_symbol'][i].upper()] =\
+                        [self.remove_esd(cifblk['_atom_type_scat_dispersion_real'][i]),
+                        self.remove_esd(cifblk['_atom_type_scat_dispersion_imag'][i])]
+                except:
+                    self.atomlist.dispersion[cifblk['_atom_type_symbol'][i].upper()] = None
+                    logging.warning('No dispersion factors for %s in cif file - set to zero'\
+                                        %cifblk['_atom_type_symbol'][i])
+        else:
+            logging.warning('No _atom_type_symbol found in CIF')
+            for i in range(len(cifblk['_atom_site_type_symbol'])):
+                self.atomlist.dispersion[cifblk['_atom_site_type_symbol'][i].upper()] = None
                 logging.warning('No dispersion factors for %s in cif file - set to zero'\
-                                    %cifblk['_atom_type_symbol'][i])
+                                        %cifblk['_atom_site_type_symbol'][i])
 
         for i in range(len(cifblk['_atom_site_type_symbol'])):
             label = cifblk['_atom_site_label'][i]
