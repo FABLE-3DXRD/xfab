@@ -248,7 +248,7 @@ class build_atomlist:
         try:
             self.cifblk = cf[cifblkname]
         except:
-            logging.error('Block - %s - not found in %s' % (blockname, ciffile))
+            logging.error('Block - %s - not found in %s' % (cifblkname, ciffile))
             raise IOError
         return self.cifblk
 
