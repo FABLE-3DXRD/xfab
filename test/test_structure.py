@@ -1,13 +1,15 @@
 from __future__ import absolute_import
 from __future__ import print_function
+from posixpath import dirname
 import unittest
+import os
 from CifFile import ReadCif
 import numpy as n
 
 from xfab import structure
 from six.moves import range
 
-        
+DATA_PATH = os.path.join( os.path.dirname(__file__), 'data')
 
 class test_multiplicity(unittest.TestCase):
     def test_general_pos(self):
@@ -33,17 +35,17 @@ class test_multiplicity(unittest.TestCase):
 class test_cifread(unittest.TestCase):
     def test_cifopen(self):  ## test method names begin 'test*'
         mylist =  structure.build_atomlist()
-        mylist.CIFopen('PPA.cif','oPPA')
+        mylist.CIFopen(os.path.join(DATA_PATH,'PPA.cif'),'oPPA')
     def test_cifread(self):
         mylist =  structure.build_atomlist()
-        mylist.CIFread('PPA.cif','oPPA')
+        mylist.CIFread(os.path.join(DATA_PATH,'PPA.cif'),'oPPA')
         self.assertEqual([8.5312,4.8321,10.125,90.00,92.031,90.00],
                           mylist.atomlist.cell)
 
     def test_cifread_atom_type_symbol_lacking(self):
         mylist =  structure.build_atomlist()
         try:
-            mylist.CIFread('SiO2_mp-7000_conventional_standard.cif')
+            mylist.CIFread(os.path.join(DATA_PATH,'SiO2_mp-7000_conventional_standard.cif'))
         except:
             self.fail("CIFread() failed to read CIF lacking _atom_type_symbol")
 
@@ -51,10 +53,10 @@ class test_structurefactor(unittest.TestCase):
     def test_sfcalc(self):  ## test method names begin 'test*'
         # Read the cif
         mylist =  structure.build_atomlist()
-        mylist.CIFread('PPA.cif','oPPA')
+        mylist.CIFread(os.path.join(DATA_PATH,'PPA.cif'),'oPPA')
 
         # Read the fcf
-        fcf = ReadCif('oPPA.fcf')['oPPA']
+        fcf = ReadCif(os.path.join(DATA_PATH,'oPPA.fcf'))['oPPA']
         for i in range(500):# Consider only the first 500 reflections
             hkl =[eval(fcf['_refln_index_h'][i]),
                   eval(fcf['_refln_index_k'][i]),
