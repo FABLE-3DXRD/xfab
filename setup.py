@@ -12,7 +12,7 @@ setup(
   license='GPL', maintainer='Henning Osholm Soerensen and Jon Wright',
   maintainer_email='osholm@nano.ku.dk, wright@esrf.eu',
   download_url='http://sourceforge.net/project/showfiles.php?group_id=82044&package_id=309377',
-  url='https://github.com/FABLE-3DXRD/xfab',
+  url='http://fable.wiki.sourceforge.net/xfab',
   packages=['xfab'],
   package_dir={"xfab": "xfab"},
   scripts=["scripts/gff_to_ubi.py",
@@ -24,8 +24,5 @@ setup(
            "scripts/makemap_all.py",
            "scripts/tweakdetpars.py",
            "scripts/flt_remove_beam.py",
-           "scripts/flt_split_phases.py"],
-  install_requires = ['numpy==1.22.1',
-                      'six==1.16.0',
-                      'pycifrw==4.4.3']
+           "scripts/flt_split_phases.py"]
 )
