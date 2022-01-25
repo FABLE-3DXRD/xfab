@@ -24,7 +24,7 @@ setup(
            "scripts/makemap_all.py",
            "scripts/tweakdetpars.py",
            "scripts/flt_remove_beam.py",
-           "scripts/flt_split_phases.py"]
+           "scripts/flt_split_phases.py"],
   install_requires = ['numpy',
                       'six',
                       'pycifrw']
