@@ -8,7 +8,7 @@ def lintit(infile,outfile):
     os.system("pylint %s > %s"%(infile,outfile))
 
 
-pyfiles = glob.glob(os.path.join("..","xfab","*.py")
+pyfiles = glob.glob(os.path.join("..","xfab","*.py"))
 
 for f in pyfiles:
     outf = os.path.split(f)[-1] + ".lint"
