@@ -25,5 +25,7 @@ setup(
            "scripts/tweakdetpars.py",
            "scripts/flt_remove_beam.py",
            "scripts/flt_split_phases.py"],
-  install_requires = ['pycifrw', 'numpy', 'six']
+  install_requires = ['numpy==1.22.1',
+                      'six==1.16.0',
+                      'pycifrw==4.4.3']
 )
