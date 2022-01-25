@@ -3,7 +3,7 @@
 import glob, os
 
 def lintit(infile,outfile):
-    print infile,outfile
+    print(infile,outfile)
     os.system("pylint %s > %s"%(infile,outfile))
 
 
