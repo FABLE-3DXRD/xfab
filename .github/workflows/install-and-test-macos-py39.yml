@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: macos-latest, setup.py install and pytest 
+name: macos-latest, setup.py install and pytest
 
 on:
   push:
@@ -11,25 +11,27 @@ on:
 
 jobs:
   build:
-
     runs-on: macos-latest
-
+    strategy:
+      matrix:
+        python-version: [ '2.7', '3.x' ]
+    name: Python ${{ matrix.python-version }} sample
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v2
-      with:
-        python-version: "3.9"
-    - name: Install dependencies
-      run: |
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: x64
+      - run: |
         python -m pip install --upgrade pip
         pip install flake8 pytest
         pip install numpy six pycifrw
-        python setup.py install
-    - name: Lint with flake8
-      run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-    - name: Test with pytest
-      run: |
-        pytest
+        python -m pip install .
+      - name: Lint with flake8
+        run: |
+          # stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+      - name: Test with pytest
+        run: |
+          pytest
