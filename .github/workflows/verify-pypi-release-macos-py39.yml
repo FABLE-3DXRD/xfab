@@ -1,20 +1,19 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: macos-latest, setup.py install and pytest
+name: On pypi release, macos-latest, pip install and pytest
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    tags:
+      - v*.*
 
 jobs:
   build:
     runs-on: macos-latest
     strategy:
       matrix:
-        python-version: [ '2.7', '3.9',  '3.x' ]
+        python-version: [ '2.7', '3.9', '3.x' ]
     name: Python ${{ matrix.python-version }} sample
     steps:
       - uses: actions/checkout@v2
@@ -34,3 +33,4 @@ jobs:
       - name: Test with pytest
         run: |
           pytest
+
