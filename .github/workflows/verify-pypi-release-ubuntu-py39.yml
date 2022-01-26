@@ -5,9 +5,8 @@ name: ubuntu-latest, pip install and pytest
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    tags:
+      - v*.*
 
 jobs:
   build:
@@ -24,8 +23,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install flake8 pytest
-        pip install numpy six pycifrw
-        python setup.py install
+        pip install xfab
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
