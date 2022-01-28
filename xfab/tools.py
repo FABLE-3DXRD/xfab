@@ -10,6 +10,8 @@ from math import degrees
 from six.moves import range
 from xfab import checks
 
+from xfab import xfab_logging
+logger = xfab_logging.get_module_level_logger(__name__)
 
 def find_omega_general(g_w, twoth, w_x, w_y):
     """
@@ -1128,7 +1130,7 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
 
     # Triclinic : Laue group -1
     if Laue_class == '-1':
-        print('Laue class : -1', unit_cell)
+        logger.debug('Laue class : -1 %s'%unit_cell)
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
                         [[-1, 0,  1], [-1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
                         [[-1, 1,  0], [-1, 0, 0], [ 0, 1, 0], [ 0, 0, -1]],
@@ -1142,7 +1144,7 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
     # Monoclinic : Laue group 2/M 
     # unique b        
     if Laue_class == '2/m':
-        print('Laue class : 2/m', unit_cell)
+        logger.debug('Laue class : 2/m %s'%unit_cell)
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
                         [[-1, 0,  1], [-1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]]])
 
@@ -1177,31 +1179,31 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
 
     # Laue group : -3M1
     if Laue_class == '-3m1':
-        print('Laue class : -3m1 (hex)', unit_cell)
+        logger.debug('Laue class : -3m1 (hex) %s'%unit_cell)
         if unit_cell[4]==unit_cell[5]:
-            print('#############################################################')
-            print('# Are you using a rhombohedral cell in a hexagonal setting? #')
-            print('#############################################################')
+            logger.debug('#############################################################')
+            logger.debug('# Are you using a rhombohedral cell in a hexagonal setting? #')
+            logger.debug('#############################################################')
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
                         [[ 0, 1,  1], [ 0, 1, 0], [ 1, 1, 0], [ 0, 0,  1]]])
 
     # Laue group : -31M
     if Laue_class == '-31m':
-        print('Laue class : -31m (hex)', unit_cell)
+        logger.debug('Laue class : -31m (hex) %s'%unit_cell)
         if unit_cell[4]==unit_cell[5]:
-            print('#############################################################')
-            print('# Are you using a rhombohedral cell in a hexagonal setting? #')
-            print('#############################################################')
+            logger.debug('#############################################################')
+            logger.debug('# Are you using a rhombohedral cell in a hexagonal setting? #')
+            logger.debug('#############################################################')
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
                         [[ 1, 1, -1], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0, -1]]])
 
     # Laue group : -3
     if Laue_class == '-3' and cell_choice!='rhombohedral':
-        print('Laue class : -3 (hex)', unit_cell)
+        logger.debug('Laue class : -3 (hex) %s'%unit_cell)
         if unit_cell[4]==unit_cell[5]:
-            print('#############################################################')
-            print('# Are you using a rhombohedral cell in a hexagonal setting? #')
-            print('#############################################################')
+            logger.debug('#############################################################')
+            logger.debug('# Are you using a rhombohedral cell in a hexagonal setting? #')
+            logger.debug('#############################################################')
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
                         [[ 1, 2,  0], [ 1, 1, 0], [ 0, 1, 0], [ 0, 0,  1]],
                         [[ 0, 1,  1], [ 0, 1, 0], [-1, 1, 0], [ 0, 0,  1]]])
@@ -1209,21 +1211,21 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
     # RHOMBOHEDRAL
     # Laue group : -3M
     if Laue_class == '-3m' and cell_choice=='rhombohedral':
-        print('Laue class : -3m (Rhom)', unit_cell)
+        logger.debug('Laue class : -3m (Rhom) %s'%unit_cell)
         if unit_cell[4]!=unit_cell[5]:
-            print('#############################################################')
-            print('# Are you using a hexagonal cell in a rhombohedral setting? #')
-            print('#############################################################')
+            logger.debug('#############################################################')
+            logger.debug('# Are you using a hexagonal cell in a rhombohedral setting? #')
+            logger.debug('#############################################################')
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 0,-1], [ 1, 1,  1]],
                         [[ 1, 1,  0], [ 1, 0,-1], [ 0, 0,-1], [ 1, 1,  1]]])
 
     # Laue group : -3
     if Laue_class == '-3' and cell_choice=='rhombohedral':
-        print('Laue class : -3 (Rhom)', unit_cell)
+        logger.debug('Laue class : -3 (Rhom) %s'%unit_cell)
         if unit_cell[4]!=unit_cell[5]:
-            print('#############################################################')
-            print('# Are you using a hexagonal cell in a rhombohedral setting? #')
-            print('#############################################################')
+            logger.debug('#############################################################')
+            logger.debug('# Are you using a hexagonal cell in a rhombohedral setting? #')
+            logger.debug('#############################################################')
         segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 0,-1], [ 1, 1, 1]],
                         [[ 1, 1,  0], [ 1, 0,-1], [ 0, 0,-1], [ 1, 1, 1]],
                         [[ 0,-1, -2], [ 1, 0, 0], [ 1, 0,-1], [-1,-1, -1]],
@@ -1240,7 +1242,7 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
                         [[ 1, 2,  0], [ 0, 1, 0], [ 1, 1, 0], [ 1, 1,  1]]])
 
     if segm is None:
-        print('No Laue class found')
+        logger.debug('No Laue class found')
         return False
 
     nref = 0

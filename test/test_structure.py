@@ -67,7 +67,6 @@ class test_structurefactor(unittest.TestCase):
                                                  mylist.atomlist.dispersion)
             F2 = Fr**2 + Fi**2
             reldif = F2/eval(fcf['_refln_F_squared_calc'][i])-1
-            print(i, reldif, F2)
             if F2 > 10: # Only compare those with an F^2 larger than ten 
                         # to avoid that the very weak reflections which
                         # have a relative difference that are slightly larger

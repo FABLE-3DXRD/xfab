@@ -149,10 +149,10 @@ class parameters:
         for k,v in list(self.parameters.items()):
             if hasattr(other,k):
                 var = getattr(other,k)
-                print("setting: pars[%s] from %s to %s"%(k,v,var))
+                logger.debug("setting: pars[%s] from %s to %s"%(k,v,var))
                 self.parameters[k]=var
             else:
-                print("error: %s has no attribute %s, ignoring"%(other,k))
+                logger.debug("error: %s has no attribute %s, ignoring"%(other,k))
 
     def update_other(self,other):
         """
@@ -189,7 +189,7 @@ class parameters:
                 name=name.replace("-","_")
                 self.parameters[name]=value
             except ValueError:
-                print("Failed to read:",line)
+                logger.error("Failed to read:%s"%(line))
         self.dumbtypecheck()
 
     def dumbtypecheck(self):
