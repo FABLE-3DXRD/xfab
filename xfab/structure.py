@@ -4,7 +4,6 @@ and calculation of form factors and structure factors etc.
 """
 
 from __future__ import absolute_import
-from re import L
 import numpy as n
 
 from xfab import tools
