@@ -24,6 +24,9 @@ Class to handle groups of parameters to be saved in and out
 of files and edited in guis with the fixed/varied info etc
 """
 
+from xfab import xfab_logging
+logger = xfab_logging.get_module_level_logger(__name__)
+
 class par:
     """
     Represents a thing which can vary
@@ -66,7 +69,6 @@ class par:
                 self.can_vary,
                 self.stepsize ]
 
-import logging 
 class parameters:
     """
     Class to hold a set of named parameters
@@ -147,10 +149,10 @@ class parameters:
         for k,v in list(self.parameters.items()):
             if hasattr(other,k):
                 var = getattr(other,k)
-                print("setting: pars[%s] from %s to %s"%(k,v,var))
+                logger.debug("setting: pars[%s] from %s to %s"%(k,v,var))
                 self.parameters[k]=var
             else:
-                print("error: %s has no attribute %s, ignoring"%(other,k))
+                logger.debug("error: %s has no attribute %s, ignoring"%(other,k))
 
     def update_other(self,other):
         """
@@ -159,10 +161,10 @@ class parameters:
         for k,v in list(self.parameters.items()):
             if hasattr(other,k):
                 var = getattr(other,k)
-                logging.debug("setting: %s.%s from %s to %s"%(other,k,var,v))
+                logger.debug("setting: %s.%s from %s to %s"%(other,k,var,v))
                 setattr(other,k,v)
             else:
-                logging.debug("error: %s has no attribute %s, ignoring"%
+                logger.debug("error: %s has no attribute %s, ignoring"%
                               (other,k))
 
     def saveparameters(self,filename):
@@ -187,7 +189,7 @@ class parameters:
                 name=name.replace("-","_")
                 self.parameters[name]=value
             except ValueError:
-                print("Failed to read:",line)
+                logger.error("Failed to read:%s"%(line))
         self.dumbtypecheck()
 
     def dumbtypecheck(self):

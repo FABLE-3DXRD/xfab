@@ -5,12 +5,14 @@ and calculation of form factors and structure factors etc.
 
 from __future__ import absolute_import
 import numpy as n
-import logging
 
 from xfab import tools
 from xfab import sg
 from xfab import atomlib
 from six.moves import range
+
+from xfab import xfab_logging
+logger = xfab_logging.get_module_level_logger(__name__)
 
 def StructureFactor(hkl, ucell, sgname, atoms, disper = None):
     """
@@ -45,7 +47,7 @@ def StructureFactor(hkl, ucell, sgname, atoms, disper = None):
         else:
             expij = 1
             atoms[i].adp = 'Uiso'
-            #logging.error("wrong no of elements in atomlist")
+            #logger.error("wrong no of elements in atomlist")
 
         # Atomic form factors
         f = FormFactor(atoms[i].atomtype, stl)
@@ -227,7 +229,7 @@ class build_atomlist:
         try:
             cf = ReadCif(ciffile)
         except:
-            logging.error('File %s could not be accessed' %ciffile)        
+            logger.error('File %s could not be accessed' %ciffile)        
 
         if cifblkname == None:   
             #Try to guess blockname                                                     
@@ -236,10 +238,10 @@ class build_atomlist:
                 if len(blocks) == 2 and 'global' in blocks:
                     cifblkname = blocks[abs(blocks.index('global') - 1)]
                 else:
-                    logging.error('More than one possible data set:')
-                    logging.error('The following data block names are in the file:')
+                    logger.error('More than one possible data set:')
+                    logger.error('The following data block names are in the file:')
                     for block in blocks:
-                        logging.error(block)
+                        logger.error(block)
                     raise Exception
             else:
                 # Only one available
@@ -248,7 +250,7 @@ class build_atomlist:
         try:
             self.cifblk = cf[cifblkname]
         except:
-            logging.error('Block - %s - not found in %s' % (cifblkname, ciffile))
+            logger.error('Block - %s - not found in %s' % (cifblkname, ciffile))
             raise IOError
         return self.cifblk
 
@@ -261,7 +263,7 @@ class build_atomlist:
         try:
             text = open(pdbfile, 'r').readlines()
         except:
-            logging.error('File %s could not be accessed' % pdbfile)
+            logger.error('File %s could not be accessed' % pdbfile)
 
 
         for i in range(len(text)):
@@ -352,13 +354,13 @@ class build_atomlist:
                         self.remove_esd(cifblk['_atom_type_scat_dispersion_imag'][i])]
                 except:
                     self.atomlist.dispersion[cifblk['_atom_type_symbol'][i].upper()] = None
-                    logging.warning('No dispersion factors for %s in cif file - set to zero'\
+                    logger.warning('No dispersion factors for %s in cif file - set to zero'\
                                         %cifblk['_atom_type_symbol'][i])
         else:
-            logging.warning('No _atom_type_symbol found in CIF')
+            logger.warning('No _atom_type_symbol found in CIF')
             for i in range(len(cifblk['_atom_site_type_symbol'])):
                 self.atomlist.dispersion[cifblk['_atom_site_type_symbol'][i].upper()] = None
-                logging.warning('No dispersion factors for %s in cif file - set to zero'\
+                logger.warning('No dispersion factors for %s in cif file - set to zero'\
                                         %cifblk['_atom_site_type_symbol'][i])
 
         for i in range(len(cifblk['_atom_site_type_symbol'])):
