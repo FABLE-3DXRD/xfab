@@ -26,7 +26,7 @@ class test_Umis(unittest.TestCase):
 
             for i in range(1, 8):
                 m = symmetry.Umis(U1, U2, crystal_system=i)
-                self.assertLessEqual(np.abs(np.min(m[:, 1]) - np.abs(dangle)), 1e-6)
+                self.assertLessEqual(np.abs(np.min(m[:, 1]) - np.abs(dangle)), 1e-5)
 
     def test_90dgr_flipped_cubic(self):
         for _ in range(100):
@@ -38,7 +38,7 @@ class test_Umis(unittest.TestCase):
 
             m = symmetry.Umis(U1, U2, crystal_system=7)
             self.assertAlmostEqual(np.min(m[:, 1]), 0)
-            self.assertLessEqual(np.min(np.abs(m[:, 1] - 90)), 1e-6)
+            self.assertLessEqual(np.min(np.abs(m[:, 1] - 90)), 1e-5)
 
     def test_old_Umis(self):
         for _ in range(100):
@@ -47,14 +47,15 @@ class test_Umis(unittest.TestCase):
             for i in range(1, 8):
                 m1 = self._Umis_old(U1, U2, crystal_system=i)
                 m2 = symmetry.Umis(U1, U2, crystal_system=i)
-                self.assertLessEqual(np.max(np.abs(m1 - m2)), 1e-6)
+                self.assertLessEqual(np.max(np.abs(m1 - m2)), 1e-5)
 
     def _get_rot_z_mat(self, angle):
         c, s = np.cos(np.radians(angle)), np.sin(np.radians(angle))
         return np.array([[c, -s, 0], [s, c, 0], [0, 0, 1]])
 
     def _Umis_old(self, umat_1, umat_2, crystal_system):
-        """Old verified implementation (prior to 2022 implementation of Umis)"""
+        """Old verified implementation (prior to 2022 implementation of Umis)
+        """
         rot = symmetry.rotations(crystal_system)
         t_save = np.zeros((0, 2))
         for k in range(rot.shape[0]):
@@ -71,7 +72,7 @@ class test_Umis(unittest.TestCase):
 
     def random_uniform_orientation(self):
         """Generate random rotations using QR.
-        see M. Ozols, “How to generate a random unitary matrix,” 2009.
+        see M. Ozols, How to generate a random unitary matrix, 2009.
         """
         Z = np.random.standard_normal((3, 3))
         Q, _ = np.linalg.qr(Z)
