@@ -37,7 +37,7 @@ class test_Umis(unittest.TestCase):
             U2 = self._get_rot_z_mat(angle + dangle)
 
             m = symmetry.Umis(U1, U2, crystal_system=7)
-            self.assertAlmostEqual(np.min(m[:, 1]), 0)
+            self.assertLessEqual(np.abs(np.min(m[:, 1])), 1e-5)
             self.assertLessEqual(np.min(np.abs(m[:, 1] - 90)), 1e-5)
 
     def test_old_Umis(self):
