@@ -14,7 +14,7 @@ class test_Umis(unittest.TestCase):
     def test_identical_rotations(self):
         for i in range(1, 8):
             m = symmetry.Umis(np.eye(3, 3), np.eye(3, 3), crystal_system=i)
-            self.assertAlmostEqual(np.min(m), 0)
+            self.assertAlmostEqual(np.abs(np.min(m[:, 1])), 1e-5)
 
     def test_small_perturbation_rotations(self):
         for _ in range(100):
