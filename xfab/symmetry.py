@@ -8,8 +8,9 @@ from __future__ import print_function
 from xfab import tools
 from six.moves import range
 import numpy as np
-from xfab import xfab_logging
 from xfab import checks
+from xfab import CHECKS
+from xfab import xfab_logging
 logger = xfab_logging.get_module_level_logger(__name__)
 
 
@@ -34,7 +35,7 @@ def Umis(umat_1, umat_2, crystal_system):
             ``shape=(N,2)``.
 
     """
-    if checks.is_activated():
+    if CHECKS.activated:
         checks._check_rotation_matrix(umat_1)
         checks._check_rotation_matrix(umat_2)
 
