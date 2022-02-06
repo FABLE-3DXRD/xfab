@@ -30,3 +30,12 @@ xfab is a library of data and functions for use in Crystallographic computations
 # even if advised of the possibility of such.
 
 
+"""Set a package wide global variable that toogle input/output on functions.
+Checks are on by default. Toogling of checks can be achived as:
+
+    import xfab
+    xfab.CHECKS.activated = False
+
+"""
+from xfab.checks import _checkState
+CHECKS = _checkState()
