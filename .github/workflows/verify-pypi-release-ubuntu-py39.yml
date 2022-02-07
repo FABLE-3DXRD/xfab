@@ -3,10 +3,12 @@
 
 name: On pypi release, ubuntu-latest, pip install and pytest
 
+# Only trigger when the pypi release workflow succeeded
 on:
-  push:
-    tags:
-      - v*.*
+  workflow_run:
+    workflows: ["Upload Python Package to pypi.org"]
+    types:
+      - completed
 
 jobs:
   build:
