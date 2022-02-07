@@ -17,7 +17,7 @@ def _check_rotation_matrix(U):
         U: 3x3 matrix represented as a numpy array of shape=(3,3).
 
     """
-    if not np.allclose( np.dot(U.T, U), np.eye(3,3) ):
+    if not np.allclose( np.dot(U.T, U), np.eye(3,3), atol=1e-6):
         raise ValueError("orientation matrix U is not unitary, np.dot(U.T, U)!=np.eye(3,3)")
 
     if not np.allclose( np.linalg.det(U), 1.0 ):

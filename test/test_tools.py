@@ -4,6 +4,7 @@ import numpy as n
 from xfab import tools
 from six.moves import range
 
+n.random.seed(0) # to make all unittest repeatable
 
 class test_euler2u(unittest.TestCase):
     def test1(self):  
@@ -107,6 +108,15 @@ class test_u2ubi(unittest.TestCase):
         diff = n.abs(Bmat-B2).sum()
         self.assertAlmostEqual(diff,0,9)  
 
+    def test_precision_lost_in_ubi_to_u(self):
+        # Test that small errors are allowed by xfab.checks regardless of dtypes.
+        Bmat = tools.form_b_mat([3, 4, 5, 80, 95, 100])
+        for _ in range(1):
+            Umat, _ = n.linalg.qr(n.random.standard_normal((3, 3)))
+            print(Umat)
+            ubi = n.linalg.inv(n.dot(Umat, Bmat))*2*n.pi
+            _ = tools.ubi_to_u(ubi.astype(n.float64))
+            _ = tools.ubi_to_u(ubi.astype(n.float32))
 
 
 class test_twotheta(unittest.TestCase):
