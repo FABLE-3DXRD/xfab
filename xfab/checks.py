@@ -10,6 +10,7 @@ xfab.CHECKS.activated = False
 """
 import numpy as np
 
+
 def _check_rotation_matrix(U):
     """Verify that a 3 x 3 matrix is a rotation matrix.
 
@@ -17,7 +18,7 @@ def _check_rotation_matrix(U):
         U: 3x3 matrix represented as a numpy array of shape=(3,3).
 
     """
-    if not np.allclose( np.dot(U.T, U), np.eye(3,3), atol=1e-6):
+    if not np.allclose( np.dot(U.T, U), np.eye(3,3)):
         raise ValueError("orientation matrix U is not unitary, np.dot(U.T, U)!=np.eye(3,3)")
 
     if not np.allclose( np.linalg.det(U), 1.0 ):
@@ -38,6 +39,16 @@ def _check_euler_angles(phi1, PHI, phi2):
 
     if not (0<=phi2<=np.pi*2):
         raise ValueError("Euler angle phi2="+str(phi2)+" is not in range [0,2*pi]")
+
+def _check_ubi_matrix(ubi):
+    """Verify that a 3 x 3 matrix is a ubi matrix. I.e a matrix of 3 lattice vectors.
+
+    Args:
+        U: 3x3 matrix represented as a numpy array of shape=(3,3).
+
+    """
+    if np.dot(ubi[2,:], np.cross(ubi[0,:],ubi[1,:]))<0:
+        raise ValueError("ubi matrix must hold lattice vectors forming a feasible unit cell")
 
 class _checkState(object):
 

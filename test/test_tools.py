@@ -108,15 +108,19 @@ class test_u2ubi(unittest.TestCase):
         diff = n.abs(Bmat-B2).sum()
         self.assertAlmostEqual(diff,0,9)  
 
-    def test_precision_lost_in_ubi_to_u(self):
+    def test_precision_lost_in_ubi_and_b_transforms(self):
         # Test that small errors are allowed by xfab.checks regardless of dtypes.
-        Bmat = tools.form_b_mat([3, 4, 5, 80, 95, 100])
-        for _ in range(1):
-            Umat, _ = n.linalg.qr(n.random.standard_normal((3, 3)))
-            print(Umat)
+        unit_cell = [3, 4, 5, 80, 95, 100]
+        Bmat = tools.form_b_mat(unit_cell)
+        for _ in range(10):
+            Umat, _ = n.linalg.qr( n.random.standard_normal((3, 3)) )
             ubi = n.linalg.inv(n.dot(Umat, Bmat))*2*n.pi
-            _ = tools.ubi_to_u(ubi.astype(n.float64))
-            _ = tools.ubi_to_u(ubi.astype(n.float32))
+            for dtype in [float, n.float64, n.float32, n.float16]:
+                _ = tools.ubi_to_u(ubi.copy().astype(dtype))
+                _, _ = tools.ubi_to_u_and_eps(ubi.copy().astype(dtype), unit_cell)
+                _ = tools.b_to_cell(Bmat.copy().astype(dtype))
+                _ = tools.b_to_epsilon_old(Bmat.copy().astype(dtype), unit_cell)
+                _ = tools.b_to_epsilon(Bmat.copy().astype(dtype), unit_cell)
 
 
 class test_twotheta(unittest.TestCase):

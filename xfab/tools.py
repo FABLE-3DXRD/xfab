@@ -391,55 +391,58 @@ def form_a_mat_inv(unit_cell):
     return Ainv
 
 
-def ubi_to_cell(ubi):
+def ubi_to_cell(ubi_matrix):
     """
     calculate lattice constants from the UBI-matrix as
     defined in H.F.Poulsen 2004 eqn.3.23
     
     ubi_to_cell(ubi)
     
-    ubi [3x3] matrix of (U*B)^-1
+    ubi_matrix [3x3] matrix of (U*B)^-1
     in this case B = B /2pi
     returns unit_cell = [a, b, c, alpha, beta, gamma] 
     
     """
+    ubi = n.asarray(ubi_matrix, float)
     return n.array(a_to_cell(n.transpose(ubi)))
         
-def ubi_to_u(ubi):
+def ubi_to_u(ubi_matrix):
     """
     calculate lattice constants from the UBI-matrix 
     defined(U*B)^-1 and is B from form_b_mat devided by 2pi
     
     ubi_to_u(ubi)
     
-    ubi [3x3] matrix
+    ubi_matrix [3x3] matrix
     
     returns U matrix 
     
     """
+    ubi = n.asarray(ubi_matrix, float)
+    if CHECKS.activated: checks._check_ubi_matrix(ubi)
     unit_cell = ubi_to_cell(ubi)
     B = form_b_mat(unit_cell)
     U = n.transpose(n.dot(B, ubi))/(2*n.pi)
-    if CHECKS.activated: checks._check_rotation_matrix(U)
 
     return U
         
-        
-def ubi_to_u_and_eps(ubi,unit_cell):
+def ubi_to_u_and_eps(ubi_matrix,unit_cell):
     """
     calculate lattice lattice rotation and strain from the UBI-matrix 
     
     (U,eps) = ubi_to_u_and_eps(ubi,unit_cell)
     
-    ubi [3x3] matrix, (UB)^-1, where B=B/2*pi
+    ubi_matrix [3x3] matrix, (UB)^-1, where B=B/2*pi
     unit_cell = [a,b,c,alpha,beta,gamma]
     
     returns U matrix and strain tensor components
     eps = [e11, e12, e13, e22, e23, e33]
     
     """
-    unit_cell_ubi = ubi_to_cell(ubi)
-    B_ubi = form_b_mat(unit_cell_ubi)
+    #TODO: Fix input unit_cell (recomputed internally?!)
+    ubi = n.asarray(ubi_matrix, float)
+    unit_cell = ubi_to_cell(ubi)
+    B_ubi = form_b_mat(unit_cell)
     U = n.transpose(n.dot(B_ubi, ubi))/(2*n.pi)
 
     if CHECKS.activated: checks._check_rotation_matrix(U)
@@ -449,19 +452,19 @@ def ubi_to_u_and_eps(ubi,unit_cell):
     return (U,eps)
         
         
-def a_to_cell(A):
+def a_to_cell(A_matrix):
     """
     calculate lattice constants from the A-matix as
     defined in H.F.Poulsen 2004 eqn.3.23
     
     a_to_cell(A)
     
-    A [3x3] upper triangular matrix
+    A_matrix [3x3] upper triangular matrix
     returns unit_cell = [a, b, c, alpha, beta, gamma] 
     
     Jette Oddershede, March 10, 2008.
     """
-    
+    A = n.asarray(A_matrix, float)
     g = n.dot(n.transpose(A), A)
     a = n.sqrt(g[0, 0])
     b = n.sqrt(g[1, 1])
@@ -472,17 +475,17 @@ def a_to_cell(A):
     unit_cell = [a, b, c, alpha, beta, gamma]
     return unit_cell
         
-def b_to_cell(B): 
+def b_to_cell(B_matrix): 
     """
     calculate lattice constants from the B-matix as
     defined in H.F.Poulsen 2004 eqn.3.4
     
-    B [3x3] upper triangular matrix
+    B_matrix [3x3] upper triangular matrix
     returns unit_cell = [a, b, c, alpha, beta, gamma] 
     
     Jette Oddershede, April 21, 2008.
     """
-        
+    B = n.asarray(B_matrix, float)
     B = B/(2*n.pi)
     g = n.dot(n.transpose(B), B)
     astar = n.sqrt(g[0, 0])
@@ -521,12 +524,12 @@ def epsilon_to_b_old(epsilon, unit_cell):
     B = form_b_mat(strainedcell)
     return B
         
-def b_to_epsilon_old(B, unit_cell):
+def b_to_epsilon_old(B_matrix, unit_cell):
     """
     calculate epsilon from the the unstrained cell and 
-    the B matrix of (Gcart = B Ghkl) as in H.F. Poulsen (2004) page 33.
+    the B_matrix matrix of (Gcart = B Ghkl) as in H.F. Poulsen (2004) page 33.
     
-    INPUT: B - upper triangular 3x3 matrix of strained lattice constants
+    INPUT: B_matrix - upper triangular 3x3 matrix of strained lattice constants
     unit_cell -  unit cell = [a, b, c, alpha, beta, gamma] 
     of unstrained lattice
     
@@ -534,7 +537,7 @@ def b_to_epsilon_old(B, unit_cell):
     
     Jette Oddershede, April 21, 2008.
     """
-    
+    B = n.asarray(B_matrix, float)
     A0inv = form_a_mat_inv(unit_cell)
     A = form_a_mat(b_to_cell(B))
     T = n.dot(A, A0inv)
@@ -544,7 +547,7 @@ def b_to_epsilon_old(B, unit_cell):
                eps[1, 1], eps[1, 2], eps[2, 2]]
     return epsilon
         
-def b_to_epsilon(B, unit_cell):
+def b_to_epsilon(B_matrix, unit_cell):
     """
     calculate epsilon from the the unstrained cell and 
     the B matrix of (Gcart = B Ghkl).
@@ -554,7 +557,7 @@ def b_to_epsilon(B, unit_cell):
     This definition of A ensures that U relating Gcart to Gsam
     also relates epsilon_cart to epsilon_sam
     
-    INPUT: B - upper triangular 3x3 matrix of strained lattice constants
+    INPUT: B_matrix - upper triangular 3x3 matrix of strained lattice constants
     unit_cell -  unit cell = [a, b, c, alpha, beta, gamma] 
     of unstrained lattice
     
@@ -562,7 +565,7 @@ def b_to_epsilon(B, unit_cell):
     
     Jette Oddershede, jeto@fysik.dtu.dk, January 2012.
     """
-    
+    B = n.asarray(B_matrix, float)
     B0 = form_b_mat(unit_cell)
     T = n.dot(B0,n.linalg.inv(B))
     I = n.eye(3)
@@ -648,7 +651,7 @@ def _arctan2(y, x):
     elif x==0 and y==0:
         raise ValueError('Local function _arctan2() does not accept arguments (0,0)')
 
-def u_to_euler(U):
+def u_to_euler(U_matrix):
     """Convert unitary 3x3 rotation matrix into Euler angles in Bunge notation.
     The returned Euler angles are all in the range [0, 2*pi]. If Gimbal lock occurs
     (PHI=0) infinite number of solutions exists. The solution returned is phi2=0. 
@@ -656,16 +659,17 @@ def u_to_euler(U):
     Implementation is based on the notes by
         Depriester, Dorian. (2018). Computing Euler angles with Bunge convention from rotation matrix.
         https://www.researchgate.net/publication/324088567_Computing_Euler_angles_with_Bunge_convention_from_rotation_matrix 
-    notationwise U = g.T in in these notes. 
+    notationwise U_matrix = g.T in in these notes. 
 
         INPUT:
-            U : unitary 3x3 rotation matrix as a numpy array (shape=(3,3))
+            U_matrix : unitary 3x3 rotation matrix as a numpy array (shape=(3,3))
         RETURNS
             angles : Euler angles in radians. numpy array as, [phi1, PHI, phi2].
 
 
         Last Modified: Axel Henningsson, January 2021
     """
+    U = n.asarray(U_matrix, float)
     if CHECKS.activated: checks._check_rotation_matrix(U)
 
     tol = 1e-8
@@ -710,14 +714,15 @@ def u_to_euler(U):
 #     Rod = ehat * n.tan(angle/2.)
 #     return Rod.real
 
-def u_to_rod(U):
+def u_to_rod(U_matrix):
     """
     Get Rodrigues vector from U matrix (Busing Levy)
-    INPUT: U 3x3 matrix
+    INPUT: U_matrix 3x3 matrix
     OUTPUT: Rodrigues vector  
 
     Function taken from GrainsSpotter by Soeren Schmidt
     """
+    U = n.asarray(U_matrix, float)
     if CHECKS.activated: checks._check_rotation_matrix(U)
 
     ttt = 1+U[0, 0]+U[1, 1]+U[2, 2]
@@ -729,45 +734,48 @@ def u_to_rod(U):
     r3 = (U[0, 1]-U[1, 0])*a
     return n.array([r1, r2, r3])
 
-def u_to_ubi(u_mat,unit_cell):
+def u_to_ubi(U_matrix, unit_cell):
     """
     Get UBI matrix from U matrix and unit cell
-    INPUT: U orientaion matrix and unit cell
+    INPUT: U_matrix orientaion matrix and unit cell
     OUTPUT: UBI 3x3 matrix
 
     """
-    if CHECKS.activated: checks._check_rotation_matrix(u_mat)
+    U = n.asarray( U_matrix, float)
+    if CHECKS.activated: checks._check_rotation_matrix(U)
 
     b_mat = form_b_mat(unit_cell)
     
-    return n.linalg.inv(n.dot(u_mat,b_mat))*(2*n.pi)
+    return n.linalg.inv(n.dot(U,b_mat))*(2*n.pi)
 
 
-def ubi_to_rod(ubi):
+def ubi_to_rod(ubi_matrix):
     """
     Get Rodrigues vector from UBI matrix
-    INPUT: UBI 3x3 matrix
+    INPUT: ubi_matrix 3x3 matrix
     OUTPUT: Rodrigues vector  
 
     """
 
-    return u_to_rod(ubi_to_u(ubi))
+    return u_to_rod(ubi_to_u(ubi_matrix))
 
-def ubi_to_u_b(ubi):
+def ubi_to_u_b(ubi_matrix):
     """
     Get Rodrigues vector from UBI matrix
-    INPUT: UBI 3x3 matrix
+    INPUT: ubi_matrix 3x3 matrix
     OUTPUT: U orientaion matrix and B metric matrix  
 
     """
+    ubi = n.asarray(ubi_matrix, float)
     return ub_to_u_b(n.linalg.inv(ubi)*(2*n.pi))
 
 
-def rod_to_u(r):
+def rod_to_u(rodriguez_vector):
     """
     rod_to_u calculates the U orientation matrix given an oriention
     represented in Rodrigues space. r = [r1, r2, r3]
     """
+    r = n.asarray(rodriguez_vector, float)
     g = n.zeros((3, 3))
     r2 = n.dot(r , r)
 
@@ -793,12 +801,12 @@ def rod_to_u(r):
             g[i, j] =  1/(1+r2) * ((1-r2)*fac + 2*r[i]*r[j] - term)
     return n.transpose(g)
 
-def ub_to_u_b(UB):
+def ub_to_u_b(UB_matrix):
     """
     qr decomposition to get U unitary and B upper triangular with positive
     diagonal from UB
     """
-    
+    UB = n.asarray(UB_matrix, float)
     (U, B) = n.linalg.qr(UB)
     if B[0, 0] < 0:
         B[0, 0] = -B[0, 0]
