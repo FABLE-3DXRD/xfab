@@ -439,16 +439,16 @@ def ubi_to_u_and_eps(ubi_matrix,unit_cell):
     eps = [e11, e12, e13, e22, e23, e33]
     
     """
-    #TODO: Fix input unit_cell (recomputed internally?!)
     ubi = n.asarray(ubi_matrix, float)
-    unit_cell = ubi_to_cell(ubi)
-    B_ubi = form_b_mat(unit_cell)
-    U = n.transpose(n.dot(B_ubi, ubi))/(2*n.pi)
+    deformed_unit_cell = ubi_to_cell(ubi)
+    B_deformed = form_b_mat(deformed_unit_cell)
+    U = n.transpose(n.dot(B_deformed, ubi))/(2*n.pi)
 
     if CHECKS.activated: checks._check_rotation_matrix(U)
 
-    eps = b_to_epsilon(B_ubi, unit_cell)
-    
+    B = n.linalg.inv(ubi_matrix.dot(U))
+    eps = b_to_epsilon(B, unit_cell)
+
     return (U,eps)
         
         

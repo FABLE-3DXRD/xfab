@@ -122,6 +122,18 @@ class test_u2ubi(unittest.TestCase):
                 _ = tools.b_to_epsilon_old(Bmat.copy().astype(dtype), unit_cell)
                 _ = tools.b_to_epsilon(Bmat.copy().astype(dtype), unit_cell)
 
+class test_ubi_to_u_and_eps(unittest.TestCase):
+    def test1(self):
+        unit_cell = [1., 1., 1., 90., 90., 90.]
+        eps_true = [0.01, 0.0, 0.024, -0.03, 0.3, 0.0]
+        b_true = tools.epsilon_to_b(eps_true, unit_cell)
+        u_true = n.eye(3)
+        ubi = n.linalg.inv( u_true.dot(b_true) )
+        u, eps = tools.ubi_to_u_and_eps(ubi, unit_cell)
+        for e1,e2 in zip(eps,eps_true):
+            self.assertAlmostEqual(e1,e2)
+        for u1,u2 in zip(u_true.flatten(), u.flatten()):
+            self.assertAlmostEqual(u1,u2)
 
 class test_twotheta(unittest.TestCase):
 
