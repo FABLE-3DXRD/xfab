@@ -150,6 +150,15 @@ class test_twotheta(unittest.TestCase):
         diff = n.abs(tth-tth2)
         self.assertAlmostEqual(diff,0,9)
         
+class test_ubi_to_cell(unittest.TestCase):
+    def test1(self):
+        unit_cell_1  =  [2., 3., 4., 90.,90.,120.]
+        B = tools.form_b_mat(unit_cell_1)
+        U = n.eye(3, 3, dtype=n.float64)
+        ubi = n.linalg.inv( U.dot(B) )
+        unit_cell_2 = tools.ubi_to_cell(ubi)
+        for c1,c2 in zip(unit_cell_1, unit_cell_2):
+            self.assertAlmostEqual( c1, c2, msg='unit cell is not preserved over B matrix cycling')
 
 class test_general_orientation(unittest.TestCase):
 

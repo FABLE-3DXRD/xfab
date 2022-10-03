@@ -403,8 +403,8 @@ def ubi_to_cell(ubi_matrix):
     returns unit_cell = [a, b, c, alpha, beta, gamma] 
     
     """
-    ubi = n.asarray(ubi_matrix, float)
-    return n.array(a_to_cell(n.transpose(ubi)))
+    ubi = n.asarray(ubi_matrix * 2 * n.pi, float)
+    return n.array(a_to_cell( n.transpose(ubi) ))
         
 def ubi_to_u(ubi_matrix):
     """
@@ -422,7 +422,7 @@ def ubi_to_u(ubi_matrix):
     if CHECKS.activated: checks._check_ubi_matrix(ubi)
     unit_cell = ubi_to_cell(ubi)
     B = form_b_mat(unit_cell)
-    U = n.transpose(n.dot(B, ubi))/(2*n.pi)
+    U = n.transpose(n.dot(B, ubi))
 
     return U
         
@@ -442,7 +442,7 @@ def ubi_to_u_and_eps(ubi_matrix,unit_cell):
     ubi = n.asarray(ubi_matrix, float)
     deformed_unit_cell = ubi_to_cell(ubi)
     B_deformed = form_b_mat(deformed_unit_cell)
-    U = n.transpose(n.dot(B_deformed, ubi))/(2*n.pi)
+    U = n.transpose(n.dot(B_deformed, ubi))
 
     if CHECKS.activated: checks._check_rotation_matrix(U)
 
