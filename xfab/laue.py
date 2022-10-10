@@ -1,33 +1,17 @@
 """
-xfab.tools module is a collection of functions 
+xfab.laue module is a collection of functions 
 for doing calculation useful in crystallography  
 """
 
 from __future__ import absolute_import
 from __future__ import print_function
-import numpy as n
+import numpy as np
 from math import degrees
 from six.moves import range
-import warnings
 from xfab import checks
 from xfab import CHECKS
 from xfab import xfab_logging
 logger = xfab_logging.get_module_level_logger(__name__)
-
-# _MSG1 = 'xfab.tools is deprecated and will be replaced by xfab.laue. \
-# This update will remove the current 2*pi convention form \
-# the B matrix in xfab. To supress this warning you should \
-# transition into xfab.laue.'
-# _MSG2 = 'The use of 2*pi in xfab.tools as a leading factor for the \
-# B matrix is deprecated. Consider transitioning into the new module \
-# xfab.laue which drops the 2*pi factor on the B matrix while keeping \
-# all other functionalities identical. The new convention defines the \
-# incident and scattered wavevectors with length 1/wavelength.'
-# def _import_deprecated(msg, stacklevel=2):
-#     warnings.warn(msg, DeprecationWarning, stacklevel)
-# def _two_pi_deprecated(msg, stacklevel=2):
-#     warnings.warn(msg, DeprecationWarning, stacklevel)
-# _import_deprecated(_MSG1, stacklevel=3)
 
 def find_omega_general(g_w, twoth, w_x, w_y):
     """
@@ -36,20 +20,20 @@ def find_omega_general(g_w, twoth, w_x, w_y):
     Furthermore find eta (in radians)
     Soren Schmidt, implemented by Jette Oddershede
     """
-    #_two_pi_deprecated(_MSG2, stacklevel=3)
-    assert abs(n.dot(g_w, g_w)-n.sin(twoth/2)**2) < 1e-9, \
+    g_w_n = np.sin(twoth/2) * g_w / np.linalg.norm(g_w, axis=0)
+    assert abs(np.dot(g_w_n, g_w_n)-np.sin(twoth/2)**2) < 1e-9, \
         'g-vector must have length sin(theta)'
-    w_mat_x = n.array([[1, 0        , 0         ],
-                       [0, n.cos(w_x), -n.sin(w_x)],
-                       [0, n.sin(w_x),  n.cos(w_x)]])
-    w_mat_y = n.array([[ n.cos(w_y), 0, n.sin(w_y)],
+    w_mat_x = np.array([[1, 0        , 0         ],
+                       [0, np.cos(w_x), -np.sin(w_x)],
+                       [0, np.sin(w_x),  np.cos(w_x)]])
+    w_mat_y = np.array([[ np.cos(w_y), 0, np.sin(w_y)],
                        [0         , 1, 0        ],
-                       [-n.sin(w_y), 0, n.cos(w_y)]])
-    r_mat = n.dot(w_mat_x,w_mat_y)
+                       [-np.sin(w_y), 0, np.cos(w_y)]])
+    r_mat = np.dot(w_mat_x,w_mat_y)
 
-    a = g_w[0]*r_mat[0][0] + g_w[1]*r_mat[0][1] 
-    b = g_w[0]*r_mat[1][0] - g_w[1]*r_mat[0][0] 
-    c = - n.dot(g_w, g_w) - g_w[2]*r_mat[0][2] 
+    a = g_w_n[0]*r_mat[0][0] + g_w_n[1]*r_mat[0][1] 
+    b = g_w_n[0]*r_mat[1][0] - g_w_n[1]*r_mat[0][0] 
+    c = - np.dot(g_w_n, g_w_n) - g_w_n[2]*r_mat[0][2] 
     d = a*a + b*b - c*c
 
     omega = []
@@ -57,24 +41,23 @@ def find_omega_general(g_w, twoth, w_x, w_y):
     if d < 0:
         pass
     else:
-        sq_d = n.sqrt(d)
+        sq_d = np.sqrt(d)
     
     
         for i in range(2):
             cosomega = (a*c + b*sq_d*(-1)**i)/(a*a+b*b)
             sinomega = (b*c + a*sq_d*(-1)**(i+1))/(a*a+b*b)
-            omega.append(n.arctan2(sinomega, cosomega))
-            if omega[i] > n.pi:
-                omega[i] = omega[i] - 2*n.pi
+            omega.append(np.arctan2(sinomega, cosomega))
+            if omega[i] > np.pi:
+                omega[i] = omega[i] - 2*np.pi
             omega_mat = form_omega_mat_general(omega[i], w_x, w_y)
-            g_t = n.dot(omega_mat, g_w)
-            sineta = -2*g_t[1]/n.sin(twoth)
-            coseta = 2*g_t[2]/n.sin(twoth)
-            eta.append(n.arctan2(sineta, coseta))
+            g_t = np.dot(omega_mat, g_w_n)
+            sineta = -2*g_t[1]/np.sin(twoth)
+            coseta = 2*g_t[2]/np.sin(twoth)
+            eta.append(np.arctan2(sineta, coseta))
             
-    return n.array(omega), n.array(eta)
-    
-    
+    return np.array(omega), np.array(eta)
+
 
 def find_omega_quart(g_w, twoth, w_x, w_y):
     """
@@ -83,24 +66,24 @@ def find_omega_quart(g_w, twoth, w_x, w_y):
     Furthermore find eta (in radians)
     Soren Schmidt, implemented by Jette Oddershede
     """
-    #_two_pi_deprecated(_MSG2, stacklevel=3)
-    assert abs(n.dot(g_w, g_w)-n.sin(twoth/2)**2) < 1e-9, \
+    g_w_n = np.sin(twoth/2) * g_w / np.linalg.norm(g_w, axis=0)
+    assert abs(np.dot(g_w_n, g_w_n)-np.sin(twoth/2)**2) < 1e-9, \
         'g-vector must have length sin(theta)'
-    w_mat_x = n.array([[1, 0        , 0         ],
-                       [0, n.cos(w_x), -n.sin(w_x)],
-                       [0, n.sin(w_x),  n.cos(w_x)]])
-    w_mat_y = n.array([[ n.cos(w_y), 0, n.sin(w_y)],
+    w_mat_x = np.array([[1, 0        , 0         ],
+                       [0, np.cos(w_x), -np.sin(w_x)],
+                       [0, np.sin(w_x),  np.cos(w_x)]])
+    w_mat_y = np.array([[ np.cos(w_y), 0, np.sin(w_y)],
                        [0         , 1, 0        ],
-                       [-n.sin(w_y), 0, n.cos(w_y)]])
-    normal = n.dot(w_mat_x, n.dot(w_mat_y, n.array([0, 0, 1])))
+                       [-np.sin(w_y), 0, np.cos(w_y)]])
+    normal = np.dot(w_mat_x, np.dot(w_mat_y, np.array([0, 0, 1])))
 
-    a = g_w[0]*(1-normal[0]**2) - \
-        g_w[1]*normal[0]*normal[1] - \
-        g_w[2]*normal[0]*normal[2]
-    b = g_w[2]*normal[1] - g_w[1]*normal[2]
-    c = - n.dot(g_w, g_w) - g_w[0]*normal[0]**2 - \
-        g_w[1]*normal[0]*normal[1] - \
-        g_w[2]*normal[0]*normal[2]
+    a = g_w_n[0]*(1-normal[0]**2) - \
+        g_w_n[1]*normal[0]*normal[1] - \
+        g_w_n[2]*normal[0]*normal[2]
+    b = g_w_n[2]*normal[1] - g_w_n[1]*normal[2]
+    c = - np.dot(g_w_n, g_w_n) - g_w_n[0]*normal[0]**2 - \
+        g_w_n[1]*normal[0]*normal[1] - \
+        g_w_n[2]*normal[0]*normal[2]
     d = a*a + b*b - c*c
 
     omega = []
@@ -108,22 +91,22 @@ def find_omega_quart(g_w, twoth, w_x, w_y):
     if d < 0:
         pass
     else:
-        sq_d = n.sqrt(d)
+        sq_d = np.sqrt(d)
     
     
         for i in range(2):
             cosomega = (a*c + b*sq_d*(-1)**i)/(a*a+b*b)
             sinomega = (b*c + a*sq_d*(-1)**(i+1))/(a*a+b*b)
-            omega.append(n.arctan2(sinomega, cosomega))
-            if omega[i] > n.pi:
-                omega[i] = omega[i] - 2*n.pi
-            omega_mat = quart_to_omega(omega[i]*180./n.pi, w_x, w_y)
-            g_t = n.dot(omega_mat, g_w)
-            sineta = -2*g_t[1]/n.sin(twoth)
-            coseta = 2*g_t[2]/n.sin(twoth)
-            eta.append(n.arctan2(sineta, coseta))
+            omega.append(np.arctan2(sinomega, cosomega))
+            if omega[i] > np.pi:
+                omega[i] = omega[i] - 2*np.pi
+            omega_mat = quart_to_omega(omega[i]*180./np.pi, w_x, w_y)
+            g_t = np.dot(omega_mat, g_w_n)
+            sineta = -2*g_t[1]/np.sin(twoth)
+            coseta = 2*g_t[2]/np.sin(twoth)
+            eta.append(np.arctan2(sineta, coseta))
             
-    return n.array(omega), n.array(eta)
+    return np.array(omega), np.array(eta)
     
     
 
@@ -134,16 +117,16 @@ def find_omega_wedge(g_w, twoth, wedge):
     This code is a translation of c-code from GrainSpotter by Soren Schmidt
     """
     
-    #_two_pi_deprecated(_MSG2, stacklevel=3)
-    #Normalize G-vector
-    g_w = g_w/n.sqrt(n.dot(g_w, g_w))
 
-    costth = n.cos(twoth)
-    sintth = n.sin(twoth)
+    #Normalize G-vector
+    g_w = g_w/np.sqrt(np.dot(g_w, g_w))
+
+    costth = np.cos(twoth)
+    sintth = np.sin(twoth)
     cosfactor = costth -1
-    length = n.sqrt(-2*cosfactor)
-    sinwedge = n.sin(wedge)
-    coswedge = n.cos(wedge)
+    length = np.sqrt(-2*cosfactor)
+    sinwedge = np.sin(wedge)
+    coswedge = np.cos(wedge)
     # Determine cos(eta)
     coseta = ( g_w[2]*length + sinwedge * cosfactor ) / coswedge / sintth
 
@@ -153,11 +136,11 @@ def find_omega_wedge(g_w, twoth, wedge):
     if (abs(coseta) > 1.):
         return omega, eta
     # else calc the two eta values
-    eta = n.array([n.arccos(coseta), -n.arccos(coseta)])
+    eta = np.array([np.arccos(coseta), -np.arccos(coseta)])
     # replaced this by the above to make find_omega_wedge
     # and find_omega_quart give same eta 
-    # eta = n.array([n.arccos(coseta), 2*n.pi-n.arccos(coseta)])
-    #print eta*180.0/n.pi
+    # eta = np.array([np.arccos(coseta), 2*np.pi-np.arccos(coseta)])
+    #print eta*180.0/np.pi
     
     # Now find the Omega value(s)
     # A slight change in the code from GrainSpotter: the lenght 
@@ -165,14 +148,14 @@ def find_omega_wedge(g_w, twoth, wedge):
     # these can be only scale somega and comega equally 
     a = (coswedge * cosfactor + sinwedge * sintth * coseta)
     for i in range(2):
-        b = -sintth * n.sin(eta[i])
+        b = -sintth * np.sin(eta[i])
         somega = (b*g_w[0] - a*g_w[1])/(a*a + b*b)
         comega = (g_w[0] - b*somega)/a
         
-        omega.append(n.arctan2(somega, comega))
-        if omega[i] > n.pi:
-            omega[i] = omega[i] - 2*n.pi
-    return n.array(omega), eta
+        omega.append(np.arctan2(somega, comega))
+        if omega[i] > np.pi:
+            omega[i] = omega[i] - 2*np.pi
+    return np.array(omega), eta
 
 
 
@@ -184,35 +167,35 @@ def find_omega(g_w, twoth):
     Solves an equation of type a*cos(w)+b*sin(w) = c by the fixpoint method.
     
     """
-    #_two_pi_deprecated(_MSG2, stacklevel=3)
-    g_g = n.sqrt(n.dot(g_w, g_w))
-    costth = n.cos(twoth)
+    g_w_n = np.sin(twoth/2) * g_w / np.linalg.norm(g_w, axis=0)
+    g_g = np.sqrt(np.dot(g_w_n, g_w_n))
+    costth = np.cos(twoth)
     
-    a =  g_w[0]/g_g
-    b = -g_w[1]/g_g
-    c = (costth - 1)/n.sqrt(2*(1 - costth))
+    a =  g_w_n[0]/g_g
+    b = -g_w_n[1]/g_g
+    c = (costth - 1)/np.sqrt(2*(1 - costth))
   
     d = a**2 + b**2
     sq_d = d - c**2
     
     omega = []
     if sq_d > 0:
-        sq_d = n.sqrt(sq_d)
+        sq_d = np.sqrt(sq_d)
         comega = (a*c + b*sq_d)/d
         somega = (b*c - a*sq_d)/d
-        omega.append(n.arccos(comega))
-#        if omega[0] > n.pi:
-#            omega[0] = omega[0] - 2*n.pi
+        omega.append(np.arccos(comega))
+#        if omega[0] > np.pi:
+#            omega[0] = omega[0] - 2*np.pi
         if somega < 0:
             omega[0] = -omega[0]
         comega = comega - 2*b*sq_d/d
         somega = somega + 2*a*sq_d/d
-        omega.append(n.arccos(comega))
-#        if omega[1] > n.pi:
-#            omega[1] = omega[1] - 2*n.pi
+        omega.append(np.arccos(comega))
+#        if omega[1] > np.pi:
+#            omega[1] = omega[1] - 2*np.pi
         if somega < 0:
             omega[1] = -omega[1]
-    return n.array(omega)
+    return np.array(omega)
 
 
 def cell_invert(unit_cell):
@@ -227,12 +210,12 @@ def cell_invert(unit_cell):
     a = unit_cell[0]
     b = unit_cell[1]
     c = unit_cell[2]
-    calp = n.cos(unit_cell[3]*n.pi/180.)
-    cbet = n.cos(unit_cell[4]*n.pi/180.)
-    cgam = n.cos(unit_cell[5]*n.pi/180.)
-    salp = n.sin(unit_cell[3]*n.pi/180.)
-    sbet = n.sin(unit_cell[4]*n.pi/180.)
-    sgam = n.sin(unit_cell[5]*n.pi/180.)
+    calp = np.cos(unit_cell[3]*np.pi/180.)
+    cbet = np.cos(unit_cell[4]*np.pi/180.)
+    cgam = np.cos(unit_cell[5]*np.pi/180.)
+    salp = np.sin(unit_cell[3]*np.pi/180.)
+    sbet = np.sin(unit_cell[4]*np.pi/180.)
+    sgam = np.sin(unit_cell[5]*np.pi/180.)
     V = cell_volume(unit_cell)
 
     astar = b*c*salp/V
@@ -245,9 +228,9 @@ def cell_invert(unit_cell):
     cbetstar = (calp*cgam-cbet)/(salp*sgam)
     cgamstar = (calp*cbet-cgam)/(salp*sbet)
 
-    alpstar = n.arccos(calpstar)*180./n.pi
-    betstar = n.arccos(cbetstar)*180./n.pi
-    gamstar = n.arccos(cgamstar)*180./n.pi
+    alpstar = np.arccos(calpstar)*180./np.pi
+    betstar = np.arccos(cbetstar)*180./np.pi
+    gamstar = np.arccos(cgamstar)*180./np.pi
     
     return [astar, bstar, cstar, alpstar, betstar, gamstar]
 
@@ -260,8 +243,8 @@ def form_omega_mat(omega):
     
     OUTPUT: Omega rotation matrix
     """
-    Om = n.array([[n.cos(omega), -n.sin(omega), 0],
-                  [n.sin(omega),  n.cos(omega), 0],
+    Om = np.array([[np.cos(omega), -np.sin(omega), 0],
+                  [np.sin(omega),  np.cos(omega), 0],
                   [  0         ,  0           , 1]])
     return Om
 
@@ -273,14 +256,14 @@ def form_omega_mat_general(omega,chi,wedge):
     
     OUTPUT: Omega rotation matrix
     """
-    phi_x = n.array([[1, 0         , 0         ],
-                     [0, n.cos(chi), -n.sin(chi)],
-                     [0, n.sin(chi),  n.cos(chi)]])
-    phi_y = n.array([[ n.cos(wedge), 0, n.sin(wedge)],
+    phi_x = np.array([[1, 0         , 0         ],
+                     [0, np.cos(chi), -np.sin(chi)],
+                     [0, np.sin(chi),  np.cos(chi)]])
+    phi_y = np.array([[ np.cos(wedge), 0, np.sin(wedge)],
                      [0            , 1, 0        ],
-                     [-n.sin(wedge), 0, n.cos(wedge)]])
+                     [-np.sin(wedge), 0, np.cos(wedge)]])
     Om = form_omega_mat(omega)
-    Om = n.dot(phi_x,n.dot(phi_y,Om))
+    Om = np.dot(phi_x,np.dot(phi_y,Om))
     return Om
 
 def cell_volume(unit_cell):
@@ -296,11 +279,11 @@ def cell_volume(unit_cell):
     a = unit_cell[0]
     b = unit_cell[1]
     c = unit_cell[2]
-    calp = n.cos(unit_cell[3]*n.pi/180.)
-    cbet = n.cos(unit_cell[4]*n.pi/180.)
-    cgam = n.cos(unit_cell[5]*n.pi/180.)
+    calp = np.cos(unit_cell[3]*np.pi/180.)
+    cbet = np.cos(unit_cell[4]*np.pi/180.)
+    cgam = np.cos(unit_cell[5]*np.pi/180.)
     
-    angular = n.sqrt(1 - calp*calp - cbet*cbet - cgam*cgam + 2*calp*cbet*cgam)
+    angular = np.sqrt(1 - calp*calp - cbet*cbet - cgam*cgam + 2*calp*cbet*cgam)
     #Volume of unit cell
     V = a*b*c*angular                                             
     return V
@@ -308,7 +291,7 @@ def cell_volume(unit_cell):
 def form_b_mat(unit_cell):
     """
     calculate B matrix of (Gcart = B Ghkl) following eq. 3.4 in 
-    H.F. Poulsen.
+    H.F. Poulsenp.
     Three-dimensional X-ray diffraction microscopy. 
     Mapping polycrystals and their dynamics. 
     Springer Tracts in Modern Physics, v. 205), (Springer, Berlin, 2004).
@@ -322,22 +305,20 @@ def form_b_mat(unit_cell):
     a = unit_cell[0]
     b = unit_cell[1]
     c = unit_cell[2]
-    calp = n.cos(unit_cell[3]*n.pi/180.)
-    cbet = n.cos(unit_cell[4]*n.pi/180.)
-    cgam = n.cos(unit_cell[5]*n.pi/180.)
-    salp = n.sin(unit_cell[3]*n.pi/180.)
-    sbet = n.sin(unit_cell[4]*n.pi/180.)
-    sgam = n.sin(unit_cell[5]*n.pi/180.)
+    calp = np.cos(unit_cell[3]*np.pi/180.)
+    cbet = np.cos(unit_cell[4]*np.pi/180.)
+    cgam = np.cos(unit_cell[5]*np.pi/180.)
+    salp = np.sin(unit_cell[3]*np.pi/180.)
+    sbet = np.sin(unit_cell[4]*np.pi/180.)
+    sgam = np.sin(unit_cell[5]*np.pi/180.)
 
     #Volume of unit cell
     V = cell_volume(unit_cell)
     
     #  Calculate reciprocal lattice parameters: 
-    # NOTICE PHYSICIST DEFINITION of recip axes with 2*pi
-    #_two_pi_deprecated(_MSG2, stacklevel=3)
-    astar = 2*n.pi*b*c*salp/V                        
-    bstar = 2*n.pi*a*c*sbet/V                        
-    cstar = 2*n.pi*a*b*sgam/V                        
+    astar = b*c*salp/V                        
+    bstar = a*c*sbet/V                        
+    cstar = a*b*sgam/V                        
     #salpstar = V/(a*b*c*sbet*sgam)                 
     sbetstar = V/(a*b*c*salp*sgam)                 
     sgamstar = V/(a*b*c*salp*sbet)                 
@@ -346,7 +327,7 @@ def form_b_mat(unit_cell):
     cgamstar = (calp*cbet-cgam)/(salp*sbet)        
     
     # Form B matrix following eq. 3.4 in H.F Poulsen
-    B = n.array([[astar, bstar*cgamstar,  cstar*cbetstar      ],
+    B = np.array([[astar, bstar*cgamstar,  cstar*cbetstar      ],
                  [0,     bstar*sgamstar, -cstar*sbetstar*calp ],
                  [0,     0,               cstar*sbetstar*salp ]])
     return B
@@ -355,7 +336,7 @@ def form_b_mat(unit_cell):
 
 def form_a_mat(unit_cell):
     """
-    calculate the A matrix given in eq. 3.23 of H.F. Poulsen.
+    calculate the A matrix given in eq. 3.23 of H.F. Poulsenp.
     Three-dimensional X-ray diffraction microscopy. 
     Mapping polycrystals and their dynamics. 
     (Springer Tracts in Modern Physics, v. 205), (Springer, Berlin, 2004).
@@ -370,12 +351,12 @@ def form_a_mat(unit_cell):
     a = unit_cell[0]
     b = unit_cell[1]
     c = unit_cell[2]
-    calp = n.cos(unit_cell[3]*n.pi/180.)
-    cbet = n.cos(unit_cell[4]*n.pi/180.)
-    cgam = n.cos(unit_cell[5]*n.pi/180.)
-    #salp = n.sin(unit_cell[3]*n.pi/180.)
-    sbet = n.sin(unit_cell[4]*n.pi/180.)
-    sgam = n.sin(unit_cell[5]*n.pi/180.)
+    calp = np.cos(unit_cell[3]*np.pi/180.)
+    cbet = np.cos(unit_cell[4]*np.pi/180.)
+    cgam = np.cos(unit_cell[5]*np.pi/180.)
+    #salp = np.sin(unit_cell[3]*np.pi/180.)
+    sbet = np.sin(unit_cell[4]*np.pi/180.)
+    sgam = np.sin(unit_cell[5]*np.pi/180.)
     
     #Volume of unit cell
     V = cell_volume(unit_cell)
@@ -385,14 +366,14 @@ def form_a_mat(unit_cell):
     calpstar = (cbet*cgam-calp)/(sbet*sgam)        
     
     # Form A matrix following eq. 3.23 in H.F Poulsen
-    A = n.array([[a, b*cgam,  c*cbet       ],
+    A = np.array([[a, b*cgam,  c*cbet       ],
                  [0, b*sgam, -c*sbet*calpstar ],
                  [0, 0,       c*sbet*salpstar ]])
     return A
                 
 def form_a_mat_inv(unit_cell):
     """
-    calculate the inverse of the A matrix given in eq. 3.23 of H.F. Poulsen.
+    calculate the inverse of the A matrix given in eq. 3.23 of H.F. Poulsenp.
     Three-dimensional X-ray diffraction microscopy. 
     Mapping polycrystals and their dynamics. 
     (Springer Tracts in Modern Physics, v. 205), (Springer, Berlin, 2004).
@@ -405,14 +386,14 @@ def form_a_mat_inv(unit_cell):
     """
 
     A = form_a_mat(unit_cell)
-    Ainv = n.linalg.inv(A)
+    Ainv = np.linalg.inv(A)
     return Ainv
 
 
 def ubi_to_cell(ubi_matrix):
     """
     calculate lattice constants from the UBI-matrix as
-    defined in H.F.Poulsen 2004 eqn.3.23
+    defined in H.F.Poulsen 2004 eqnp.3.23
     
     ubi_to_cell(ubi)
     
@@ -421,8 +402,8 @@ def ubi_to_cell(ubi_matrix):
     returns unit_cell = [a, b, c, alpha, beta, gamma] 
     
     """
-    ubi = n.asarray(ubi_matrix, float)
-    return n.array(a_to_cell(n.transpose(ubi)))
+    ubi = np.asarray(ubi_matrix, float)
+    return np.array(a_to_cell(np.transpose(ubi)))
         
 def ubi_to_u(ubi_matrix):
     """
@@ -436,12 +417,11 @@ def ubi_to_u(ubi_matrix):
     returns U matrix 
     
     """
-    ubi = n.asarray(ubi_matrix, float)
+    ubi = np.asarray(ubi_matrix, float)
     if CHECKS.activated: checks._check_ubi_matrix(ubi)
     unit_cell = ubi_to_cell(ubi)
     B = form_b_mat(unit_cell)
-    #_two_pi_deprecated(_MSG2, stacklevel=3)
-    U = n.transpose(n.dot(B, ubi))/(2*n.pi)
+    U = np.transpose(np.dot(B, ubi))
 
     return U
         
@@ -458,15 +438,14 @@ def ubi_to_u_and_eps(ubi_matrix,unit_cell):
     eps = [e11, e12, e13, e22, e23, e33]
     
     """
-    ubi = n.asarray(ubi_matrix, float)
+    ubi = np.asarray(ubi_matrix, float)
     deformed_unit_cell = ubi_to_cell(ubi)
     B_deformed = form_b_mat(deformed_unit_cell)
-    #_two_pi_deprecated(_MSG2, stacklevel=3)
-    U = n.transpose(n.dot(B_deformed, ubi))/(2*n.pi)
+    U = np.transpose(np.dot(B_deformed, ubi))
 
     if CHECKS.activated: checks._check_rotation_matrix(U)
 
-    B = n.linalg.inv(ubi_matrix.dot(U))
+    B = np.linalg.inv(ubi_matrix.dot(U))
     eps = b_to_epsilon(B, unit_cell)
 
     return (U,eps)
@@ -475,7 +454,7 @@ def ubi_to_u_and_eps(ubi_matrix,unit_cell):
 def a_to_cell(A_matrix):
     """
     calculate lattice constants from the A-matix as
-    defined in H.F.Poulsen 2004 eqn.3.23
+    defined in H.F.Poulsen 2004 eqnp.3.23
     
     a_to_cell(A)
     
@@ -484,37 +463,35 @@ def a_to_cell(A_matrix):
     
     Jette Oddershede, March 10, 2008.
     """
-    A = n.asarray(A_matrix, float)
-    g = n.dot(n.transpose(A), A)
-    a = n.sqrt(g[0, 0])
-    b = n.sqrt(g[1, 1])
-    c = n.sqrt(g[2, 2])
-    alpha = degrees(n.arccos(g[1, 2]/b/c))
-    beta  = degrees(n.arccos(g[0, 2]/a/c))
-    gamma = degrees(n.arccos(g[0, 1]/a/b))
+    A = np.asarray(A_matrix, float)
+    g = np.dot(np.transpose(A), A)
+    a = np.sqrt(g[0, 0])
+    b = np.sqrt(g[1, 1])
+    c = np.sqrt(g[2, 2])
+    alpha = degrees(np.arccos(g[1, 2]/b/c))
+    beta  = degrees(np.arccos(g[0, 2]/a/c))
+    gamma = degrees(np.arccos(g[0, 1]/a/b))
     unit_cell = [a, b, c, alpha, beta, gamma]
     return unit_cell
         
 def b_to_cell(B_matrix): 
     """
     calculate lattice constants from the B-matix as
-    defined in H.F.Poulsen 2004 eqn.3.4
+    defined in H.F.Poulsen 2004 eqnp.3.4
     
     B_matrix [3x3] upper triangular matrix
     returns unit_cell = [a, b, c, alpha, beta, gamma] 
     
     Jette Oddershede, April 21, 2008.
     """
-    B = n.asarray(B_matrix, float)
-    #_two_pi_deprecated(_MSG2, stacklevel=3)
-    B = B/(2*n.pi)
-    g = n.dot(n.transpose(B), B)
-    astar = n.sqrt(g[0, 0])
-    bstar = n.sqrt(g[1, 1])
-    cstar = n.sqrt(g[2, 2])
-    alphastar = degrees(n.arccos(g[1, 2]/bstar/cstar))
-    betastar  = degrees(n.arccos(g[0, 2]/astar/cstar))
-    gammastar = degrees(n.arccos(g[0, 1]/astar/bstar))
+    B = np.asarray(B_matrix, float)
+    g = np.dot(np.transpose(B), B)
+    astar = np.sqrt(g[0, 0])
+    bstar = np.sqrt(g[1, 1])
+    cstar = np.sqrt(g[2, 2])
+    alphastar = degrees(np.arccos(g[1, 2]/bstar/cstar))
+    betastar  = degrees(np.arccos(g[0, 2]/astar/cstar))
+    gammastar = degrees(np.arccos(g[0, 1]/astar/bstar))
     
     unit_cell = cell_invert([astar, bstar, cstar,
                         alphastar, betastar, gammastar])
@@ -534,7 +511,7 @@ def epsilon_to_b_old(epsilon, unit_cell):
     """
     
     A0inv = form_a_mat_inv(unit_cell)
-    A = n.zeros((3, 3))
+    A = np.zeros((3, 3))
     A[0, 0] = (epsilon[0]+1)/A0inv[0, 0]
     A[1, 1] = (epsilon[3]+1)/A0inv[1, 1]
     A[2, 2] = (epsilon[5]+1)/A0inv[2, 2]
@@ -558,12 +535,12 @@ def b_to_epsilon_old(B_matrix, unit_cell):
     
     Jette Oddershede, April 21, 2008.
     """
-    B = n.asarray(B_matrix, float)
+    B = np.asarray(B_matrix, float)
     A0inv = form_a_mat_inv(unit_cell)
     A = form_a_mat(b_to_cell(B))
-    T = n.dot(A, A0inv)
-    I = n.eye(3)
-    eps = 0.5*(T+n.transpose(T))-I
+    T = np.dot(A, A0inv)
+    I = np.eye(3)
+    eps = 0.5*(T+np.transpose(T))-I
     epsilon = [eps[0, 0], eps[0, 1], eps[0, 2],
                eps[1, 1], eps[1, 2], eps[2, 2]]
     return epsilon
@@ -586,11 +563,11 @@ def b_to_epsilon(B_matrix, unit_cell):
     
     Jette Oddershede, jeto@fysik.dtu.dk, January 2012.
     """
-    B = n.asarray(B_matrix, float)
+    B = np.asarray(B_matrix, float)
     B0 = form_b_mat(unit_cell)
-    T = n.dot(B0,n.linalg.inv(B))
-    I = n.eye(3)
-    eps = 0.5*(T+n.transpose(T))-I
+    T = np.dot(B0,np.linalg.inv(B))
+    I = np.eye(3)
+    eps = 0.5*(T+np.transpose(T))-I
     epsilon = [eps[0, 0], eps[0, 1], eps[0, 2],
                eps[1, 1], eps[1, 2], eps[2, 2]]
     return epsilon
@@ -612,14 +589,14 @@ def epsilon_to_b(epsilon, unit_cell):
     """
     
     B0 = form_b_mat(unit_cell)
-    Binv = n.zeros((3, 3))
+    Binv = np.zeros((3, 3))
     Binv[0, 0] = (epsilon[0]+1)/B0[0, 0]
     Binv[1, 1] = (epsilon[3]+1)/B0[1, 1]
     Binv[2, 2] = (epsilon[5]+1)/B0[2, 2]
     Binv[0, 1] = (2*epsilon[1]-B0[0, 1]*Binv[1, 1])/B0[0, 0]
     Binv[1, 2] = (2*epsilon[4]-B0[1, 2]*Binv[2, 2])/B0[1, 1]
     Binv[0, 2] = (2*epsilon[2]-B0[0, 1]*Binv[1, 2]-B0[0, 2]*Binv[2, 2])/B0[0, 0]
-    return n.linalg.inv(Binv)
+    return np.linalg.inv(Binv)
         
 def euler_to_u(phi1, PHI, phi2):
     """
@@ -640,45 +617,45 @@ def euler_to_u(phi1, PHI, phi2):
     """
     if CHECKS.activated: checks._check_euler_angles(phi1, PHI, phi2)
 
-    U = n.zeros((3, 3))
-    U[0, 0] =   n.cos(phi1)*n.cos(phi2)-n.sin(phi1)*n.sin(phi2)*n.cos(PHI)
-    U[1, 0] =   n.sin(phi1)*n.cos(phi2)+n.cos(phi1)*n.sin(phi2)*n.cos(PHI)
-    U[2, 0] =   n.sin(phi2)*n.sin(PHI)
-    U[0, 1] =  -n.cos(phi1)*n.sin(phi2)-n.sin(phi1)*n.cos(phi2)*n.cos(PHI)
-    U[1, 1] =  -n.sin(phi1)*n.sin(phi2)+n.cos(phi1)*n.cos(phi2)*n.cos(PHI)
-    U[2, 1] =   n.cos(phi2)*n.sin(PHI)
-    U[0, 2] =   n.sin(phi1)*n.sin(PHI) 
-    U[1, 2] =  -n.cos(phi1)*n.sin(PHI)
-    U[2, 2] =   n.cos(PHI)
+    U = np.zeros((3, 3))
+    U[0, 0] =   np.cos(phi1)*np.cos(phi2)-np.sin(phi1)*np.sin(phi2)*np.cos(PHI)
+    U[1, 0] =   np.sin(phi1)*np.cos(phi2)+np.cos(phi1)*np.sin(phi2)*np.cos(PHI)
+    U[2, 0] =   np.sin(phi2)*np.sin(PHI)
+    U[0, 1] =  -np.cos(phi1)*np.sin(phi2)-np.sin(phi1)*np.cos(phi2)*np.cos(PHI)
+    U[1, 1] =  -np.sin(phi1)*np.sin(phi2)+np.cos(phi1)*np.cos(phi2)*np.cos(PHI)
+    U[2, 1] =   np.cos(phi2)*np.sin(PHI)
+    U[0, 2] =   np.sin(phi1)*np.sin(PHI) 
+    U[1, 2] =  -np.cos(phi1)*np.sin(PHI)
+    U[2, 2] =   np.cos(PHI)
     return U
 
 def _arctan2(y, x):
     """Modified arctan function used locally in u_to_euler().
     """
     tol = 1e-8
-    if n.abs(x)<tol: x = 0
-    if n.abs(y)<tol: y = 0
+    if np.abs(x)<tol: x = 0
+    if np.abs(y)<tol: y = 0
 
     if x>0:
-        return n.arctan(y/x)
+        return np.arctan(y/x)
     elif x<0 and y>=0:
-        return n.arctan(y/x) + n.pi
+        return np.arctan(y/x) + np.pi
     elif x<0 and y<0:
-        return n.arctan(y/x) - n.pi
+        return np.arctan(y/x) - np.pi
     elif x==0 and y>0:
-        return n.pi/2
+        return np.pi/2
     elif x==0 and y<0:
-        return -n.pi/2
+        return -np.pi/2
     elif x==0 and y==0:
         raise ValueError('Local function _arctan2() does not accept arguments (0,0)')
 
 def u_to_euler(U_matrix):
-    """Convert unitary 3x3 rotation matrix into Euler angles in Bunge notation.
+    """Convert unitary 3x3 rotation matrix into Euler angles in Bunge notationp.
     The returned Euler angles are all in the range [0, 2*pi]. If Gimbal lock occurs
     (PHI=0) infinite number of solutions exists. The solution returned is phi2=0. 
 
     Implementation is based on the notes by
-        Depriester, Dorian. (2018). Computing Euler angles with Bunge convention from rotation matrix.
+        Depriester, Dorianp. (2018). Computing Euler angles with Bunge convention from rotation matrix.
         https://www.researchgate.net/publication/324088567_Computing_Euler_angles_with_Bunge_convention_from_rotation_matrix 
     notationwise U_matrix = g.T in in these notes. 
 
@@ -690,15 +667,15 @@ def u_to_euler(U_matrix):
 
         Last Modified: Axel Henningsson, January 2021
     """
-    U = n.asarray(U_matrix, float)
+    U = np.asarray(U_matrix, float)
     if CHECKS.activated: checks._check_rotation_matrix(U)
 
     tol = 1e-8
-    PHI = n.arccos(U[2, 2])
-    if n.abs(PHI)<tol:
+    PHI = np.arccos(U[2, 2])
+    if np.abs(PHI)<tol:
         phi1 = _arctan2(-U[0, 1], U[0, 0])
         phi2 = 0
-    elif n.abs(PHI-n.pi)<tol:
+    elif np.abs(PHI-np.pi)<tol:
         phi1 = _arctan2(U[0, 1], U[0, 0])
         phi2 = 0
     else:
@@ -706,11 +683,11 @@ def u_to_euler(U_matrix):
         phi2 = _arctan2(U[2, 0], U[2, 1])
             
     if phi1<0:
-        phi1 = phi1 + 2*n.pi
+        phi1 = phi1 + 2*np.pi
     if phi2<0:
-        phi2 = phi2 + 2*n.pi
+        phi2 = phi2 + 2*np.pi
 
-    return n.array([ phi1, PHI, phi2 ])
+    return np.array([ phi1, PHI, phi2 ])
 
 # def U2rod_old(U):
 #     """
@@ -719,20 +696,20 @@ def u_to_euler(U_matrix):
  
 #     added argsort of w
 #     """
-#     w, v = n.linalg.eig(U)
+#     w, v = np.linalg.eig(U)
 #     #print w
 #     #print v
-#     order = n.argsort(w.real)
+#     order = np.argsort(w.real)
 #     #print w, order
 #     ehat = v[:, order[-1]]
 #     print order
 # #     if order.tolist() != range(3):
 # #         print 'HHFH'
-# #         angle = -1*n.arccos(w[order[1]].real)
+# #         angle = -1*np.arccos(w[order[1]].real)
 # #     else:
-# #         angle = n.arccos(w[order[1]].real)
-#     angle = n.arccos(w[order[1]].real)
-#     Rod = ehat * n.tan(angle/2.)
+# #         angle = np.arccos(w[order[1]].real)
+#     angle = np.arccos(w[order[1]].real)
+#     Rod = ehat * np.tan(angle/2.)
 #     return Rod.real
 
 def u_to_rod(U_matrix):
@@ -743,7 +720,7 @@ def u_to_rod(U_matrix):
 
     Function taken from GrainsSpotter by Soeren Schmidt
     """
-    U = n.asarray(U_matrix, float)
+    U = np.asarray(U_matrix, float)
     if CHECKS.activated: checks._check_rotation_matrix(U)
 
     ttt = 1+U[0, 0]+U[1, 1]+U[2, 2]
@@ -753,7 +730,7 @@ def u_to_rod(U_matrix):
     r1 = (U[1, 2]-U[2, 1])*a
     r2 = (U[2, 0]-U[0, 2])*a
     r3 = (U[0, 1]-U[1, 0])*a
-    return n.array([r1, r2, r3])
+    return np.array([r1, r2, r3])
 
 def u_to_ubi(U_matrix, unit_cell):
     """
@@ -762,12 +739,12 @@ def u_to_ubi(U_matrix, unit_cell):
     OUTPUT: UBI 3x3 matrix
 
     """
-    U = n.asarray( U_matrix, float)
+    U = np.asarray( U_matrix, float)
     if CHECKS.activated: checks._check_rotation_matrix(U)
 
     b_mat = form_b_mat(unit_cell)
-    #_two_pi_deprecated(_MSG2, stacklevel=3)
-    return n.linalg.inv(n.dot(U,b_mat))*(2*n.pi)
+    
+    return np.linalg.inv(np.dot(U,b_mat))
 
 
 def ubi_to_rod(ubi_matrix):
@@ -787,9 +764,8 @@ def ubi_to_u_b(ubi_matrix):
     OUTPUT: U orientaion matrix and B metric matrix  
 
     """
-    ubi = n.asarray(ubi_matrix, float)
-    #_two_pi_deprecated(_MSG2, stacklevel=3)
-    return ub_to_u_b(n.linalg.inv(ubi)*(2*n.pi))
+    ubi = np.asarray(ubi_matrix, float)
+    return ub_to_u_b(np.linalg.inv(ubi))
 
 
 def rod_to_u(rodriguez_vector):
@@ -797,9 +773,9 @@ def rod_to_u(rodriguez_vector):
     rod_to_u calculates the U orientation matrix given an oriention
     represented in Rodrigues space. r = [r1, r2, r3]
     """
-    r = n.asarray(rodriguez_vector, float)
-    g = n.zeros((3, 3))
-    r2 = n.dot(r , r)
+    r = np.asarray(rodriguez_vector, float)
+    g = np.zeros((3, 3))
+    r2 = np.dot(r , r)
 
     for i in range(3):
         for j in range(3):
@@ -821,15 +797,15 @@ def rod_to_u(rodriguez_vector):
                     sign = 0
                 term = term + 2*sign*r[k]
             g[i, j] =  1/(1+r2) * ((1-r2)*fac + 2*r[i]*r[j] - term)
-    return n.transpose(g)
+    return np.transpose(g)
 
 def ub_to_u_b(UB_matrix):
     """
     qr decomposition to get U unitary and B upper triangular with positive
     diagonal from UB
     """
-    UB = n.asarray(UB_matrix, float)
-    (U, B) = n.linalg.qr(UB)
+    UB = np.asarray(UB_matrix, float)
+    (U, B) = np.linalg.qr(UB)
     if B[0, 0] < 0:
         B[0, 0] = -B[0, 0]
         B[0, 1] = -B[0, 1]
@@ -861,31 +837,31 @@ def reduce_cell(unit_cell,uvw = 3):
     OUTPUT unit_cell reduced -  array([a, b, c, alpha, beta, gamma])
     """
 
-    res = n.zeros((0, 4))
-    red_a_mat = n.zeros((3, 3))
+    res = np.zeros((0, 4))
+    red_a_mat = np.zeros((3, 3))
 
     a_mat = form_a_mat(unit_cell)
 
-    for i in n.arange(-uvw, uvw):
-        for j in n.arange(-uvw, uvw):
-            for k in n.arange(-uvw, uvw):
-                tmp = n.dot(a_mat, n.array([i, j, k]))
-                res = n.concatenate((res, [[i, j, k, n.linalg.norm(tmp)]]))
+    for i in np.arange(-uvw, uvw):
+        for j in np.arange(-uvw, uvw):
+            for k in np.arange(-uvw, uvw):
+                tmp = np.dot(a_mat, np.array([i, j, k]))
+                res = np.concatenate((res, [[i, j, k, np.linalg.norm(tmp)]]))
                 
-    res = res[n.argsort(res[:, 3]), :]
+    res = res[np.argsort(res[:, 3]), :]
 
-    red_a_mat[0] = n.dot(a_mat, res[1, :3])
+    red_a_mat[0] = np.dot(a_mat, res[1, :3])
 
     for i in range(2, len(res)):
-        tmp = n.dot(a_mat, res[i, :3])
-        kryds = n.cross(tmp, red_a_mat[0])
-        if n.sum(n.abs(kryds)) > 0.00001:
+        tmp = np.dot(a_mat, res[i, :3])
+        kryds = np.cross(tmp, red_a_mat[0])
+        if np.sum(np.abs(kryds)) > 0.00001:
             red_a_mat[1] = tmp
             break
 
     for j in range(i, len(res)):
-        tmp = n.dot(a_mat, res[j,:3])
-        dist = n.dot(kryds, tmp)/n.linalg.norm(kryds)
+        tmp = np.dot(a_mat, res[j,:3])
+        dist = np.dot(kryds, tmp)/np.linalg.norm(kryds)
         if dist >  0.00001:
             red_a_mat[2] = tmp
             break
@@ -902,16 +878,16 @@ def detect_tilt(tilt_x, tilt_y, tilt_z):
     
     Henning Osholm Sorensen 2006
     """ 
-    Rx = n.array([[              1,              0,              0],
-                  [              0,  n.cos(tilt_x), -n.sin(tilt_x)],
-                  [              0,  n.sin(tilt_x),  n.cos(tilt_x)]])
-    Ry = n.array([[  n.cos(tilt_y),              0,  n.sin(tilt_y)],
+    Rx = np.array([[              1,              0,              0],
+                  [              0,  np.cos(tilt_x), -np.sin(tilt_x)],
+                  [              0,  np.sin(tilt_x),  np.cos(tilt_x)]])
+    Ry = np.array([[  np.cos(tilt_y),              0,  np.sin(tilt_y)],
                   [              0,              1,              0],
-                  [ -n.sin(tilt_y),              0,  n.cos(tilt_y)]])
-    Rz = n.array([[  n.cos(tilt_z), -n.sin(tilt_z),              0],
-                  [  n.sin(tilt_z),  n.cos(tilt_z),              0],
+                  [ -np.sin(tilt_y),              0,  np.cos(tilt_y)]])
+    Rz = np.array([[  np.cos(tilt_z), -np.sin(tilt_z),              0],
+                  [  np.sin(tilt_z),  np.cos(tilt_z),              0],
                   [              0,              0,              1]])
-    R = n.dot(Rx, n.dot(Ry, Rz))
+    R = np.dot(Rx, np.dot(Ry, Rz))
     return R
        
        
@@ -924,16 +900,16 @@ def quart_to_omega(w, w_x, w_y):
      Quarternions are used for the calculations to avoid singularities in
      subsequent refinements.
     """
-    whalf = w*n.pi/360. 
-    w_mat_x = n.array([[1, 0         , 0         ],
-                       [0, n.cos(w_x), -n.sin(w_x)],
-                       [0, n.sin(w_x),  n.cos(w_x)]])
-    w_mat_y = n.array([[ n.cos(w_y), 0, n.sin(w_y)],
+    whalf = w*np.pi/360. 
+    w_mat_x = np.array([[1, 0         , 0         ],
+                       [0, np.cos(w_x), -np.sin(w_x)],
+                       [0, np.sin(w_x),  np.cos(w_x)]])
+    w_mat_y = np.array([[ np.cos(w_y), 0, np.sin(w_y)],
                        [0          , 1, 0         ],
-                       [-n.sin(w_y), 0, n.cos(w_y)]])
-    qua = n.dot(w_mat_x, n.dot(w_mat_y, n.array([0, 0, n.sin(whalf)]))) 
-    q = [n.cos(whalf), qua[0], qua[1], qua[2]] 
-    omega_mat = n.array([[1-2*q[2]**2-2*q[3]**2  ,
+                       [-np.sin(w_y), 0, np.cos(w_y)]])
+    qua = np.dot(w_mat_x, np.dot(w_mat_y, np.array([0, 0, np.sin(whalf)]))) 
+    q = [np.cos(whalf), qua[0], qua[1], qua[2]] 
+    omega_mat = np.array([[1-2*q[2]**2-2*q[3]**2  ,
                           2*q[1]*q[2]-2*q[3]*q[0],
                           2*q[1]*q[3]+2*q[2]*q[0]],
                          [2*q[1]*q[2]+2*q[3]*q[0],
@@ -962,9 +938,9 @@ def sintl(unit_cell, hkl):
     a   = float(unit_cell[0])
     b   = float(unit_cell[1])
     c   = float(unit_cell[2])
-    calp = n.cos(unit_cell[3]*n.pi/180.)
-    cbet = n.cos(unit_cell[4]*n.pi/180.)
-    cgam = n.cos(unit_cell[5]*n.pi/180.)
+    calp = np.cos(unit_cell[3]*np.pi/180.)
+    cbet = np.cos(unit_cell[4]*np.pi/180.)
+    cgam = np.cos(unit_cell[5]*np.pi/180.)
 
     (h, k, l) = hkl
     
@@ -975,7 +951,7 @@ def sintl(unit_cell, hkl):
 
     part2 = 1 - (calp**2 + cbet**2 + cgam**2) + 2*calp*cbet*cgam
 
-    stl = n.sqrt(part1) / (2*n.sqrt(part2))
+    stl = np.sqrt(part1) / (2*np.sqrt(part2))
 
     return stl
 
@@ -994,9 +970,9 @@ def tth(unit_cell, hkl, wavelength):
     
     Henning Osholm Sorensen, Risoe-DTU, July 16, 2008.
     """
-    #_two_pi_deprecated(_MSG2, stacklevel=3)
+
     stl = sintl(unit_cell, hkl) # calls sintl function in tools
-    twotheta = 2*n.arcsin(wavelength*stl)
+    twotheta = 2*np.arcsin(wavelength*stl)
     
     return twotheta
 
@@ -1005,18 +981,15 @@ def tth2(gve, wavelength):
     
     calculates two theta for a scattering vector given the wavelenght
     
-    INPUT:  gve: scattering vector 
-                 (defined in reciprocal space (2*pi/lambda))
+    INPUT:  gve: scattering vector of length 1/d (where d is the interplanar lattice spacing)
             wavelenth (in Angstroem) 
 
     OUTPUT: twotheta (in radians)
     
     Henning Osholm Sorensen, Risoe DTU, July 17, 2008.
     """
-    #_two_pi_deprecated(_MSG2, stacklevel=3)
-    length = n.sqrt(n.dot(gve, gve))
-    twotheta = 2.0*n.arcsin(length*wavelength/(4*n.pi))
-    
+    interplanar_lattice_spacing = 1. / np.linalg.norm(gve, axis=0)
+    twotheta = 2.0 * np.arcsin( wavelength / ( 2 * interplanar_lattice_spacing ) )
     return twotheta
 
 def genhkl_all(unit_cell, sintlmin, sintlmax, sgname=None, sgno=None, cell_choice='standard', output_stl=False):
@@ -1059,25 +1032,25 @@ def genhkl_all(unit_cell, sintlmin, sintlmax, sgname=None, sgno=None, cell_choic
                       cell_choice = spg.cell_choice,
                       output_stl=True)
 
-    Hall = n.zeros((0,4))
+    Hall = np.zeros((0,4))
     # Making sure that the inversion element also for non-centrosymmetric space groups
-    Rots = n.concatenate((spg.rot[:spg.nuniq],-spg.rot[:spg.nuniq]))
-    (dummy, rows) = n.unique((Rots*n.random.rand(3,3)).sum(axis=2).sum(axis=1),return_index=True)
-    Rots = Rots[n.sort(rows)]
+    Rots = np.concatenate((spg.rot[:spg.nuniq],-spg.rot[:spg.nuniq]))
+    (dummy, rows) = np.unique((Rots*np.random.rand(3,3)).sum(axis=2).sum(axis=1),return_index=True)
+    Rots = Rots[np.sort(rows)]
 
 
     for refl in H[:]:
         hkls = []
         stl = refl[3]
         for R in Rots:
-            hkls.append(n.dot(refl[:3],R))
-        a = n.array(hkls)
-        (dummy, rows) = n.unique((a*n.random.rand(3)).sum(axis=1),
+            hkls.append(np.dot(refl[:3],R))
+        a = np.array(hkls)
+        (dummy, rows) = np.unique((a*np.random.rand(3)).sum(axis=1),
                                    return_index=True)
-        Hsub= n.concatenate((a[rows], 
-                             n.array([[stl]*len(rows)]).transpose()),
+        Hsub= np.concatenate((a[rows], 
+                             np.array([[stl]*len(rows)]).transpose()),
                             axis=1)
-        Hall = n.concatenate((Hall,Hsub))
+        Hall = np.concatenate((Hall,Hsub))
 
     if output_stl == False:
         return Hall[:,:3]
@@ -1162,50 +1135,50 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
     # Triclinic : Laue group -1
     if Laue_class == '-1':
         logger.debug('Laue class : -1 %s'%unit_cell)
-        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
+        segm = np.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
                         [[-1, 0,  1], [-1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
                         [[-1, 1,  0], [-1, 0, 0], [ 0, 1, 0], [ 0, 0, -1]],
                         [[ 0, 1, -1], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0, -1]]])
     
     # Monoclinic : Laue group 2/M 
     # unique a
-    #segm = n.array([[[ 0, 0,  0], [ 0, 1, 0], [ 1, 0, 0], [ 0, 0,  1]],
+    #segm = np.array([[[ 0, 0,  0], [ 0, 1, 0], [ 1, 0, 0], [ 0, 0,  1]],
     #                [[ 0,-1,  1], [ 0,-1, 0], [ 1, 0, 0], [ 0, 0,  1]]])
 
     # Monoclinic : Laue group 2/M 
     # unique b        
     if Laue_class == '2/m':
         logger.debug('Laue class : 2/m %s'%unit_cell)
-        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
+        segm = np.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
                         [[-1, 0,  1], [-1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]]])
 
     # unique c
-    #segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 0, 1], [ 0, 1,  0]],
+    #segm = np.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 0, 1], [ 0, 1,  0]],
     #                [[-1, 1,  0], [-1, 0, 0], [ 0, 0, 1], [ 0, 1,  0]]])
 
     # Orthorhombic : Laue group MMM
     if Laue_class == 'mmm':
-        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]]])
+        segm = np.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]]])
 
     # Tetragonal 
     # Laue group : 4/MMM
     if Laue_class == '4/mmm':
-        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]]])
+        segm = np.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]]])
 
     # Laue group : 4/M
     if Laue_class == '4/m':
-        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
+        segm = np.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
                         [[ 1, 2,  0], [ 1, 1, 0], [ 0, 1, 0], [ 0, 0,  1]]])
 
     # Hexagonal
     # Laue group : 6/MMM
     if Laue_class == '6/mmm':
-        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]]])
+        segm = np.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]]])
 
 
     # Laue group : 6/M
     if Laue_class == '6/m':
-        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
+        segm = np.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
                         [[ 1, 2,  0], [ 0, 1, 0], [ 1, 1, 0], [ 0, 0,  1]]])
 
     # Laue group : -3M1
@@ -1215,7 +1188,7 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
             logger.debug('#############################################################')
             logger.debug('# Are you using a rhombohedral cell in a hexagonal setting? #')
             logger.debug('#############################################################')
-        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
+        segm = np.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
                         [[ 0, 1,  1], [ 0, 1, 0], [ 1, 1, 0], [ 0, 0,  1]]])
 
     # Laue group : -31M
@@ -1225,7 +1198,7 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
             logger.debug('#############################################################')
             logger.debug('# Are you using a rhombohedral cell in a hexagonal setting? #')
             logger.debug('#############################################################')
-        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
+        segm = np.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
                         [[ 1, 1, -1], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0, -1]]])
 
     # Laue group : -3
@@ -1235,7 +1208,7 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
             logger.debug('#############################################################')
             logger.debug('# Are you using a rhombohedral cell in a hexagonal setting? #')
             logger.debug('#############################################################')
-        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
+        segm = np.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 0, 0,  1]],
                         [[ 1, 2,  0], [ 1, 1, 0], [ 0, 1, 0], [ 0, 0,  1]],
                         [[ 0, 1,  1], [ 0, 1, 0], [-1, 1, 0], [ 0, 0,  1]]])
 
@@ -1247,7 +1220,7 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
             logger.debug('#############################################################')
             logger.debug('# Are you using a hexagonal cell in a rhombohedral setting? #')
             logger.debug('#############################################################')
-        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 0,-1], [ 1, 1,  1]],
+        segm = np.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 0,-1], [ 1, 1,  1]],
                         [[ 1, 1,  0], [ 1, 0,-1], [ 0, 0,-1], [ 1, 1,  1]]])
 
     # Laue group : -3
@@ -1257,7 +1230,7 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
             logger.debug('#############################################################')
             logger.debug('# Are you using a hexagonal cell in a rhombohedral setting? #')
             logger.debug('#############################################################')
-        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 0,-1], [ 1, 1, 1]],
+        segm = np.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 0,-1], [ 1, 1, 1]],
                         [[ 1, 1,  0], [ 1, 0,-1], [ 0, 0,-1], [ 1, 1, 1]],
                         [[ 0,-1, -2], [ 1, 0, 0], [ 1, 0,-1], [-1,-1, -1]],
                         [[ 1, 0, -2], [ 1, 0,-1], [ 0, 0,-1], [-1,-1,-1]]])
@@ -1265,11 +1238,11 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
     #Cubic
     # Laue group : M3M
     if Laue_class == 'm-3m':
-        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 1, 1,  1]]])
+        segm = np.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 1, 1,  1]]])
 
     # Laue group : M3
     if Laue_class == 'm-3':
-        segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 1, 1,  1]],
+        segm = np.array([[[ 0, 0,  0], [ 1, 0, 0], [ 1, 1, 0], [ 1, 1,  1]],
                         [[ 1, 2,  0], [ 0, 1, 0], [ 1, 1, 0], [ 1, 1,  1]]])
 
     if segm is None:
@@ -1277,8 +1250,8 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
         return False
 
     nref = 0
-    H = n.zeros((0, 3))
-    stl = n.array([])
+    H = np.zeros((0, 3))
+    stl = np.array([])
     sintlH = 0.0
     
     #####################################################################################
@@ -1314,8 +1287,8 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
                         ressss = sysabs(HLAST, sysconditions, crystal_system, cell_choice)
                         if sysabs(HLAST, sysconditions, crystal_system, cell_choice) == 0:
                             if  sintlH > sintlmin and sintlH <= sintlmax:
-                                H = n.concatenate((H, [HLAST]))
-                                stl = n.concatenate((stl, [sintlH]))
+                                H = np.concatenate((H, [HLAST]))
+                                stl = np.concatenate((stl, [sintlH]))
                         else: 
                             nref = nref - 1
                     HNEW = HLAST + segm[segn, 1, :]
@@ -1344,9 +1317,9 @@ def genhkl_base(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='tr
                 ltest = 1
             ktest = 0
 
-    stl = n.transpose([stl])
-    H = n.concatenate((H, stl), 1) # combine hkl and sintl
-    H =  H[n.argsort(H, 0)[:, 3], :] # sort hkl's according to stl
+    stl = np.transpose([stl])
+    H = np.concatenate((H, stl), 1) # combine hkl and sintl
+    H =  H[np.argsort(H, 0)[:, 3], :] # sort hkl's according to stl
     if output_stl == None:
         H = H[: , :3]
     return H
@@ -1360,15 +1333,15 @@ def genhkl(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='triclin
     
     Henning Osholm Sorensen, June 23, 2006.
     """
-    segm = n.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
+    segm = np.array([[[ 0, 0,  0], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
                     [[-1, 0,  1], [-1, 0, 0], [ 0, 1, 0], [ 0, 0,  1]],
                     [[-1, 1,  0], [-1, 0, 0], [ 0, 1, 0], [ 0, 0, -1]],
                     [[ 0, 1, -1], [ 1, 0, 0], [ 0, 1, 0], [ 0, 0, -1]]])
 
 
     nref = 0
-    H = n.zeros((0, 3))
-    stl = n.array([])
+    H = np.zeros((0, 3))
+    stl = np.array([])
     sintlH = 0.0
     
     for i in range(len(segm)):
@@ -1389,10 +1362,10 @@ def genhkl(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='triclin
                         ressss = sysabs(HLAST, sysconditions, crystal_system)
                         if sysabs(HLAST, sysconditions, crystal_system) == 0:
                             if  sintlH > sintlmin and sintlH <= sintlmax:
-                                H = n.concatenate((H, [HLAST]))
-                                H = n.concatenate((H, [-HLAST]))
-                                stl = n.concatenate((stl, [sintlH]))
-                                stl = n.concatenate((stl, [sintlH]))
+                                H = np.concatenate((H, [HLAST]))
+                                H = np.concatenate((H, [-HLAST]))
+                                stl = np.concatenate((stl, [sintlH]))
+                                stl = np.concatenate((stl, [sintlH]))
                         else: 
                             nref = nref - 1
                     HNEW = HLAST + segm[segn, 1, :]
@@ -1419,9 +1392,9 @@ def genhkl(unit_cell, sysconditions, sintlmin, sintlmax, crystal_system='triclin
                 ltest = 1
             ktest = 0
 
-    stl = n.transpose([stl])
-    H = n.concatenate((H, stl), 1) # combine hkl and sintl
-    H =  H[n.argsort(H, 0)[:, 3], :] # sort hkl's according to stl
+    stl = np.transpose([stl])
+    H = np.concatenate((H, stl), 1) # combine hkl and sintl
+    H =  H[np.argsort(H, 0)[:, 3], :] # sort hkl's according to stl
     if output_stl == None:
         H = H[: , :3]
     return H

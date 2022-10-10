@@ -6,6 +6,7 @@ from six.moves import range
 
 n.random.seed(0) # to make all unittest repeatable
 
+
 class test_euler2u(unittest.TestCase):
     def test1(self):  
         phi1 = 0.0
