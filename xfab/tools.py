@@ -14,20 +14,20 @@ from xfab import CHECKS
 from xfab import xfab_logging
 logger = xfab_logging.get_module_level_logger(__name__)
 
-_MSG1 = 'xfab.tools is deprecated and will be replaced by xfab.laue. \
-This update will remove the current 2*pi convention form \
-the B matrix in xfab. To supress this warning you should \
-transition into xfab.laue.'
-_MSG2 = 'The use of 2*pi in xfab.tools as a leading factor for the \
-B matrix is deprecated. Consider transitioning into the new module \
-xfab.laue which drops the 2*pi factor on the B matrix while keeping \
-all other functionalities identical. The new convention defines the \
-incident and scattered wavevectors with length 1/wavelength.'
-def _import_deprecated(msg, stacklevel=2):
-    warnings.warn(msg, DeprecationWarning, stacklevel)
-def _two_pi_deprecated(msg, stacklevel=2):
-    warnings.warn(msg, DeprecationWarning, stacklevel)
-_import_deprecated(_MSG1, stacklevel=3)
+# _MSG1 = 'xfab.tools is deprecated and will be replaced by xfab.laue. \
+# This update will remove the current 2*pi convention form \
+# the B matrix in xfab. To supress this warning you should \
+# transition into xfab.laue.'
+# _MSG2 = 'The use of 2*pi in xfab.tools as a leading factor for the \
+# B matrix is deprecated. Consider transitioning into the new module \
+# xfab.laue which drops the 2*pi factor on the B matrix while keeping \
+# all other functionalities identical. The new convention defines the \
+# incident and scattered wavevectors with length 1/wavelength.'
+# def _import_deprecated(msg, stacklevel=2):
+#     warnings.warn(msg, DeprecationWarning, stacklevel)
+# def _two_pi_deprecated(msg, stacklevel=2):
+#     warnings.warn(msg, DeprecationWarning, stacklevel)
+# _import_deprecated(_MSG1, stacklevel=3)
 
 def find_omega_general(g_w, twoth, w_x, w_y):
     """
@@ -36,7 +36,7 @@ def find_omega_general(g_w, twoth, w_x, w_y):
     Furthermore find eta (in radians)
     Soren Schmidt, implemented by Jette Oddershede
     """
-    _two_pi_deprecated(_MSG2, stacklevel=3)
+    #_two_pi_deprecated(_MSG2, stacklevel=3)
     assert abs(n.dot(g_w, g_w)-n.sin(twoth/2)**2) < 1e-9, \
         'g-vector must have length sin(theta)'
     w_mat_x = n.array([[1, 0        , 0         ],
@@ -83,7 +83,7 @@ def find_omega_quart(g_w, twoth, w_x, w_y):
     Furthermore find eta (in radians)
     Soren Schmidt, implemented by Jette Oddershede
     """
-    _two_pi_deprecated(_MSG2, stacklevel=3)
+    #_two_pi_deprecated(_MSG2, stacklevel=3)
     assert abs(n.dot(g_w, g_w)-n.sin(twoth/2)**2) < 1e-9, \
         'g-vector must have length sin(theta)'
     w_mat_x = n.array([[1, 0        , 0         ],
@@ -134,7 +134,7 @@ def find_omega_wedge(g_w, twoth, wedge):
     This code is a translation of c-code from GrainSpotter by Soren Schmidt
     """
     
-    _two_pi_deprecated(_MSG2, stacklevel=3)
+    #_two_pi_deprecated(_MSG2, stacklevel=3)
     #Normalize G-vector
     g_w = g_w/n.sqrt(n.dot(g_w, g_w))
 
@@ -184,7 +184,7 @@ def find_omega(g_w, twoth):
     Solves an equation of type a*cos(w)+b*sin(w) = c by the fixpoint method.
     
     """
-    _two_pi_deprecated(_MSG2, stacklevel=3)
+    #_two_pi_deprecated(_MSG2, stacklevel=3)
     g_g = n.sqrt(n.dot(g_w, g_w))
     costth = n.cos(twoth)
     
@@ -334,7 +334,7 @@ def form_b_mat(unit_cell):
     
     #  Calculate reciprocal lattice parameters: 
     # NOTICE PHYSICIST DEFINITION of recip axes with 2*pi
-    _two_pi_deprecated(_MSG2, stacklevel=3)
+    #_two_pi_deprecated(_MSG2, stacklevel=3)
     astar = 2*n.pi*b*c*salp/V                        
     bstar = 2*n.pi*a*c*sbet/V                        
     cstar = 2*n.pi*a*b*sgam/V                        
@@ -440,7 +440,7 @@ def ubi_to_u(ubi_matrix):
     if CHECKS.activated: checks._check_ubi_matrix(ubi)
     unit_cell = ubi_to_cell(ubi)
     B = form_b_mat(unit_cell)
-    _two_pi_deprecated(_MSG2, stacklevel=3)
+    #_two_pi_deprecated(_MSG2, stacklevel=3)
     U = n.transpose(n.dot(B, ubi))/(2*n.pi)
 
     return U
@@ -461,7 +461,7 @@ def ubi_to_u_and_eps(ubi_matrix,unit_cell):
     ubi = n.asarray(ubi_matrix, float)
     deformed_unit_cell = ubi_to_cell(ubi)
     B_deformed = form_b_mat(deformed_unit_cell)
-    _two_pi_deprecated(_MSG2, stacklevel=3)
+    #_two_pi_deprecated(_MSG2, stacklevel=3)
     U = n.transpose(n.dot(B_deformed, ubi))/(2*n.pi)
 
     if CHECKS.activated: checks._check_rotation_matrix(U)
@@ -506,7 +506,7 @@ def b_to_cell(B_matrix):
     Jette Oddershede, April 21, 2008.
     """
     B = n.asarray(B_matrix, float)
-    _two_pi_deprecated(_MSG2, stacklevel=3)
+    #_two_pi_deprecated(_MSG2, stacklevel=3)
     B = B/(2*n.pi)
     g = n.dot(n.transpose(B), B)
     astar = n.sqrt(g[0, 0])
@@ -766,7 +766,7 @@ def u_to_ubi(U_matrix, unit_cell):
     if CHECKS.activated: checks._check_rotation_matrix(U)
 
     b_mat = form_b_mat(unit_cell)
-    _two_pi_deprecated(_MSG2, stacklevel=3)
+    #_two_pi_deprecated(_MSG2, stacklevel=3)
     return n.linalg.inv(n.dot(U,b_mat))*(2*n.pi)
 
 
@@ -788,7 +788,7 @@ def ubi_to_u_b(ubi_matrix):
 
     """
     ubi = n.asarray(ubi_matrix, float)
-    _two_pi_deprecated(_MSG2, stacklevel=3)
+    #_two_pi_deprecated(_MSG2, stacklevel=3)
     return ub_to_u_b(n.linalg.inv(ubi)*(2*n.pi))
 
 
@@ -994,7 +994,7 @@ def tth(unit_cell, hkl, wavelength):
     
     Henning Osholm Sorensen, Risoe-DTU, July 16, 2008.
     """
-    _two_pi_deprecated(_MSG2, stacklevel=3)
+    #_two_pi_deprecated(_MSG2, stacklevel=3)
     stl = sintl(unit_cell, hkl) # calls sintl function in tools
     twotheta = 2*n.arcsin(wavelength*stl)
     
@@ -1013,7 +1013,7 @@ def tth2(gve, wavelength):
     
     Henning Osholm Sorensen, Risoe DTU, July 17, 2008.
     """
-    _two_pi_deprecated(_MSG2, stacklevel=3)
+    #_two_pi_deprecated(_MSG2, stacklevel=3)
     length = n.sqrt(n.dot(gve, gve))
     twotheta = 2.0*n.arcsin(length*wavelength/(4*n.pi))
     
