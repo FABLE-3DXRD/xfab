@@ -220,6 +220,10 @@ class atomlist:
                                     pos=pos, adp_type=adp_type,
                                     adp=adp, occ=occ, symmulti=symmulti))
 
+def remove_oxidation_state(s):
+    import re
+    return re.sub(r'\d.*$', '', s)
+
 class build_atomlist:
     def __init__(self):
         self.atomlist = atomlist()
@@ -342,31 +346,35 @@ class build_atomlist:
 
         #self.atomlist.sgname = upper(sub("\s+","",
         #                       cifblk['_symmetry_space_group_name_H-M']))
-        self.atomlist.sgname = sub("\s+", "",
-                                   cifblk['_symmetry_space_group_name_H-M'])
+        try:
+            self.atomlist.sgname = sub("\s+", "",
+                                       cifblk['_symmetry_space_group_name_H-M'])
+        except KeyError:
+            self.atomlist.sgname = sub("\s+", "",
+                           cifblk['_space_group_name_H-M_alt'])
 
         # Dispersion factors
         if '_atom_type_symbol' in list(cifblk.keys()):
             for i in range(len(cifblk['_atom_type_symbol'])):
                 try:
-                    self.atomlist.dispersion[cifblk['_atom_type_symbol'][i].upper()] =\
+                    self.atomlist.dispersion[remove_oxidation_state(cifblk['_atom_type_symbol'][i].upper())] =\
                         [self.remove_esd(cifblk['_atom_type_scat_dispersion_real'][i]),
                         self.remove_esd(cifblk['_atom_type_scat_dispersion_imag'][i])]
                 except:
-                    self.atomlist.dispersion[cifblk['_atom_type_symbol'][i].upper()] = None
+                    self.atomlist.dispersion[remove_oxidation_state(cifblk['_atom_type_symbol'][i].upper())] = None
                     logger.warning('No dispersion factors for %s in cif file - set to zero'\
                                         %cifblk['_atom_type_symbol'][i])
         else:
             logger.warning('No _atom_type_symbol found in CIF')
             for i in range(len(cifblk['_atom_site_type_symbol'])):
-                self.atomlist.dispersion[cifblk['_atom_site_type_symbol'][i].upper()] = None
+                self.atomlist.dispersion[remove_oxidation_state(cifblk['_atom_site_type_symbol'][i].upper())] = None
                 logger.warning('No dispersion factors for %s in cif file - set to zero'\
                                         %cifblk['_atom_site_type_symbol'][i])
 
         for i in range(len(cifblk['_atom_site_type_symbol'])):
             label = cifblk['_atom_site_label'][i]
             #atomno = atomtype[upper(cifblk['_atom_site_type_symbol'][i])]
-            atomtype = cifblk['_atom_site_type_symbol'][i].upper()
+            atomtype = remove_oxidation_state(cifblk['_atom_site_type_symbol'][i].upper())
             x = self.remove_esd(cifblk['_atom_site_fract_x'][i])
             y = self.remove_esd(cifblk['_atom_site_fract_y'][i])
             z = self.remove_esd(cifblk['_atom_site_fract_z'][i])
