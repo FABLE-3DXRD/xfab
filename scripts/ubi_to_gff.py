@@ -11,7 +11,6 @@ from ImageD11 import grain as ig
 from ImageD11 import parameters as ip
 import sys
 import numpy as n
-from string import split
 from xfab import tools
 from six.moves import range
 
@@ -53,7 +52,11 @@ eps13 = []
 eps12 = []
 titles = ["grainno","x","y","z","rodx","rody","rodz","U11","U12","U13","U21","U22","U23","U31","U32","U33","eps11","eps22","eps33","eps23","eps13","eps12"]
 for i in range(len(list_of_grains)):
-    grainno.append(eval(split(list_of_grains[i].name,':')[0]))
+    # grainno.append(eval(split(list_of_grains[i].name,':')[0]))
+    try:
+        grainno.append(int(list_of_grains[i].name.split(':')[0]))
+    except:
+        grainno.append(i)
     x.append(list_of_grains[i].translation[0]/1000.)
     y.append(list_of_grains[i].translation[1]/1000.)
     z.append(list_of_grains[i].translation[2]/1000.)
