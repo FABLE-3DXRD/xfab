@@ -1,6 +1,3 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-
 name: ubuntu-latest, install and pytest
 
 on:
@@ -10,28 +7,43 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  test-py3:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ '2.7', '3.9', '3.x' ]
-    name: Python ${{ matrix.python-version }} sample
+        python-version: ['3.9', '3.x']
+    name: Python ${{ matrix.python-version }}
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          architecture: x64
       - run: |
           python -m pip install --upgrade pip
-          pip install flake8 pytest
-          pip install numpy six pycifrw
+          pip install flake8 pytest numpy six pycifrw
           python -m pip install .
       - name: Lint with flake8
-        run: |
-          # stop the build if there are Python syntax errors or undefined names
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
       - name: Test with pytest
+        run: pytest
+
+  test-py27:
+    runs-on: ubuntu-22.04
+    name: Python 2.7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Python 2.7
         run: |
-          pytest
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            python2 python2-dev python3-virtualenv
+          virtualenv -p python2 ${HOME}/cp27
+          source ${HOME}/cp27/bin/activate
+          ${HOME}/cp27/bin/python -m pip install -U pip setuptools wheel
+          echo "${HOME}/cp27/bin" >> $GITHUB_PATH
+      - name: Install dependencies
+        run: |
+          python -m pip install 'numpy<1.17' six pycifrw pytest
+          python -m pip install .
+      - name: Test with pytest
+        run: python -m pytest
