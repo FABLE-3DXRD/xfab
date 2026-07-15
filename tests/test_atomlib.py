@@ -36,14 +36,15 @@ def test_form_factor_f0_equals_Z(key):
     c = coeffs[8]
     f0 = a_sum + c
     assert abs(f0 - Z[key]) < 0.5, \
-        f"{key}: f(0) = {f0:.3f}, expected Z = {Z[key]}, diff = {f0 - Z[key]:.3f}"
+        "{}: f(0) = {:.3f}, expected Z = {}, diff = {:.3f}".format(
+            key, f0, Z[key], f0 - Z[key])
 
 
 def test_all_elements_present():
     assert len(atomlib.formfactor) == len(Z), \
-        f"Expected {len(Z)} elements, got {len(atomlib.formfactor)}"
+        "Expected {} elements, got {}".format(len(Z), len(atomlib.formfactor))
     for key in Z:
-        assert key in atomlib.formfactor, f"Missing element: {key}"
+        assert key in atomlib.formfactor, "Missing element: {}".format(key)
 
 
 def test_form_factor_decreases_with_stl():
@@ -56,5 +57,7 @@ def test_form_factor_decreases_with_stl():
         for stl in stl_vals:
             f = FormFactor(key, stl)
             if prev is not None:
-                assert f < prev, f"{key}: f({stl})={f:.3f} >= f(prev_stl)={prev:.3f}"
+                assert f < prev, \
+                    "{}: f({})={:.3f} >= f(prev_stl)={:.3f}".format(
+                        key, stl, f, prev)
             prev = f
