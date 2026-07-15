@@ -230,7 +230,7 @@ class build_atomlist:
             cf = ReadCif(ciffile)
         except:
             logger.error('File %s could not be accessed' %ciffile)        
-
+            raise
         if cifblkname == None:   
             #Try to guess blockname                                                     
             blocks = list(cf.keys())
